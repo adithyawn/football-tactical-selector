@@ -1,11 +1,8 @@
-# Ignore semua file
-*
-
-# Kecuali file-file ini (negasi dengan !)
-!.gitignore
-!football_tactical_selector.html
-!index.html
-!README.md
+# Kecuali file-file ini yang dibutuhkan untuk GitHub Pages
+# !.gitignore (automatically included)
+# !football_tactical_selector.html (automatically included)
+# !index.html (automatically included)
+# !README.md (automatically included)
 
 # Ignore file Python
 *.py
