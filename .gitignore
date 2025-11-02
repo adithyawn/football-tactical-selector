@@ -1,0 +1,33 @@
+# Ignore semua file
+*
+
+# Kecuali file-file ini (negasi dengan !)
+!.gitignore
+!football_tactical_selector.html
+!index.html
+!README.md
+
+# Ignore file Python
+*.py
+*.pyc
+__pycache__/
+
+# Ignore file Markdown test
+TEST_*.md
+
+# Ignore backup files
+*.bak
+*.backup
+*~
+
+# Ignore OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Ignore log files
+*.log
+
+# Ignore temporary files
+*.tmp
+*.temp
