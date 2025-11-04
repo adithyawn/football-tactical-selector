@@ -578,22 +578,21 @@
                     <!-- User Formation Selection -->
                     <div class="recommendation-item" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%); color: white;">
                         <h3>⚽ Pilih Formasi yang Akan Digunakan:</h3>
-                        <select id="userSelectedFormation" onchange="updateAnalysisWithUserFormation()" style="padding: 10px 15px; font-size: 16px; border: none; border-radius: 5px; margin-top: 10px; width: 100%; max-width: 250px;">
+                        <select id="userFormationSelect" onchange="updateAnalysisWithUserFormation()" style="padding: 10px 15px; font-size: 16px; border: none; border-radius: 5px; margin-top: 10px; width: 100%; max-width: 250px;">
                             <option value="">-- Pilih Formasi Anda --</option>
-                            <option value="recommended">Gunakan Formasi Utama (Recommended)</option>
-                            <option value="alternative">Gunakan Formasi Alternatif</option>
+                            <option value="recommended" selected>Gunakan Formasi Utama (Recommended)</option>
                             <option value="4-3-3">4-3-3</option>
                             <option value="4-2-3-1">4-2-3-1</option>
                             <option value="4-4-2">4-4-2</option>
+                            <option value="4-1-4-1">4-1-4-1</option>
                             <option value="3-5-2">3-5-2</option>
                             <option value="5-3-2">5-3-2</option>
                             <option value="3-4-3">3-4-3</option>
                             <option value="4-5-1">4-5-1</option>
-                            <option value="5-4-1">5-4-1</option>
-                            <option value="4-1-4-1">4-1-4-1</option>
                             <option value="3-4-2-1">3-4-2-1</option>
                             <option value="4-3-2-1">4-3-2-1</option>
-                            <option value="4-1-2-1-2">4-1-2-1-2</option>
+                            <option value="5-4-1">5-4-1</option>
+                            <option value="3-3-4">3-3-4</option>
                         </select>
                         <div style="margin-top: 10px; font-size: 0.9em; opacity: 0.9;">
                             <span id="selectedFormationDisplay">Sistem akan menyesuaikan analisis dengan formasi pilihan Anda</span>
@@ -704,20 +703,30 @@
                                 <option value="4-3-3">4-3-3</option>
                                 <option value="4-2-3-1">4-2-3-1</option>
                                 <option value="4-4-2">4-4-2</option>
+                                <option value="4-1-4-1">4-1-4-1</option>
                                 <option value="3-5-2">3-5-2</option>
                                 <option value="5-3-2">5-3-2</option>
                                 <option value="3-4-3">3-4-3</option>
+                                <option value="4-5-1">4-5-1</option>
+                                <option value="3-4-2-1">3-4-2-1</option>
+                                <option value="4-3-2-1">4-3-2-1</option>
+                                <option value="5-4-1">5-4-1</option>
+                                <option value="3-3-4">3-3-4</option>
                             </select>
                         </div>
                         <div>
                             <label style="display: block; margin-bottom: 5px;">Opponent Formation:</label>
                             <select id="statsOpponentFormation" onchange="updateStatisticalAnalysis()">
-                                <option value="4-2-3-1">4-2-3-1</option>
                                 <option value="4-3-3">4-3-3</option>
+                                <option value="4-2-3-1">4-2-3-1</option>
                                 <option value="4-4-2">4-4-2</option>
-                                <option value="3-4-3">3-4-3</option>
-                                <option value="5-4-1">5-4-1</option>
                                 <option value="3-5-2">3-5-2</option>
+                                <option value="3-4-3">3-4-3</option>
+                                <option value="5-3-2">5-3-2</option>
+                                <option value="4-5-1">4-5-1</option>
+                                <option value="4-1-4-1">4-1-4-1</option>
+                                <option value="3-4-2-1">3-4-2-1</option>
+                                <option value="4-3-2-1">4-3-2-1</option>
                             </select>
                         </div>
                         <div>
@@ -867,6 +876,106 @@
                     </p>
                 </div>
 
+                <!-- Advanced Metrics Dashboard -->
+                <div style="margin-top: 30px; padding: 20px; background: linear-gradient(135deg, #3d4e7a 0%, #4a2c5e 100%); border-radius: 10px;">
+                    <h3 style="color: white; margin-bottom: 20px;">📈 Advanced Metrics Dashboard</h3>
+                    
+                    <!-- xG (Expected Goals) Prediction -->
+                    <div style="background: rgba(255,255,255,0.15); padding: 18px; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.2);">
+                        <h4 style="color: #fff; margin-bottom: 15px; font-size: 16px;">⚽ Expected Goals (xG) Analysis</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                            <div style="background: rgba(255,255,255,0.25); padding: 18px; border-radius: 6px; border: 2px solid rgba(255,255,255,0.4);">
+                                <div style="color: #ffffff; font-size: 15px; margin-bottom: 10px; font-weight: 700;">Your xG per Match</div>
+                                <div style="color: #fff; font-size: 32px; font-weight: bold;" id="metricsYourXG">1.8</div>
+                                <div style="color: #ffffff; font-size: 15px; margin-top: 10px; font-weight: 600;" id="metricsYourXGTrend">↑ Above average</div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.25); padding: 18px; border-radius: 6px; border: 2px solid rgba(255,255,255,0.4);">
+                                <div style="color: #ffffff; font-size: 15px; margin-bottom: 10px; font-weight: 700;">Opponent xG Allowed</div>
+                                <div style="color: #fff; font-size: 32px; font-weight: bold;" id="metricsOppXG">1.3</div>
+                                <div style="color: #ffffff; font-size: 15px; margin-top: 10px; font-weight: 600;" id="metricsOppXGTrend">↓ Good defense</div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.25); padding: 18px; border-radius: 6px; border: 2px solid rgba(255,255,255,0.4);">
+                                <div style="color: #ffffff; font-size: 15px; margin-bottom: 10px; font-weight: 700;">Shot Quality</div>
+                                <div style="color: #fff; font-size: 32px; font-weight: bold;" id="metricsShotQuality">0.127</div>
+                                <div style="color: #ffffff; font-size: 15px; margin-top: 10px; font-weight: 600;" id="metricsShotQualityDesc">xG per shot</div>
+                            </div>
+                            <div style="background: rgba(255,255,255,0.25); padding: 18px; border-radius: 6px; border: 2px solid rgba(255,255,255,0.4);">
+                                <div style="color: #ffffff; font-size: 15px; margin-bottom: 10px; font-weight: 700;">Big Chances Created</div>
+                                <div style="color: #fff; font-size: 32px; font-weight: bold;" id="metricsBigChances">3.2</div>
+                                <div style="color: #ffffff; font-size: 15px; margin-top: 10px; font-weight: 600;">per match</div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 15px; padding: 15px; background: rgba(0,0,0,0.3); border-radius: 5px; border: 1px solid rgba(255,255,255,0.2);">
+                            <div style="color: #fff; font-size: 15px; font-weight: bold; margin-bottom: 8px;">🎯 xG-Based Prediction</div>
+                            <div style="color: #90ee90; font-size: 14px; font-weight: 500;" id="metricsXGPrediction">Expected scoreline: 2-1 (67% win probability)</div>
+                        </div>
+                    </div>
+
+                    <!-- Heat Map Visualization -->
+                    <div style="background: rgba(255,255,255,0.15); padding: 18px; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.2);">
+                        <h4 style="color: #fff; margin-bottom: 15px; font-size: 18px; font-weight: 700;">🗺️ Tactical Heat Map</h4>
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <!-- Your Team Heat Map -->
+                            <div>
+                                <div style="color: #7fff00; font-size: 18px; margin-bottom: 12px; font-weight: bold;">Your Attack Zones</div>
+                                <div style="background: rgba(0,0,0,0.5); padding: 16px; border-radius: 6px; position: relative; border: 2px solid rgba(255,255,255,0.3);" id="metricsYourHeatMap">
+                                    <!-- Heat map will be generated here -->
+                                </div>
+                            </div>
+                            <!-- Opponent Weakness Heat Map -->
+                            <div>
+                                <div style="color: #ff4444; font-size: 18px; margin-bottom: 12px; font-weight: bold;">Opponent Weak Zones</div>
+                                <div style="background: rgba(0,0,0,0.5); padding: 16px; border-radius: 6px; position: relative; border: 2px solid rgba(255,255,255,0.3);" id="metricsOppHeatMap">
+                                    <!-- Heat map will be generated here -->
+                                </div>
+                            </div>
+                        </div>
+                        <div style="margin-top: 12px; color: #fff; font-size: 15px; font-weight: 600;">
+                            🔥 Red = High activity | 🟡 Yellow = Medium | 🔵 Blue = Low
+                        </div>
+                    </div>
+
+                    <!-- Passing Network Suggestions -->
+                    <div style="background: rgba(255,255,255,0.15); padding: 18px; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.2);">
+                        <h4 style="color: #fff; margin-bottom: 15px; font-size: 18px; font-weight: 700;">🔗 Passing Network Optimization</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px;" id="metricsPassingNetwork">
+                            <!-- Passing network suggestions will be generated here -->
+                        </div>
+                    </div>
+
+                    <!-- Defensive Vulnerability Zones -->
+                    <div style="background: rgba(255,255,255,0.15); padding: 18px; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.2);">
+                        <h4 style="color: #fff; margin-bottom: 15px; font-size: 18px; font-weight: 700;">🛡️ Defensive Vulnerability Analysis</h4>
+                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px;" id="metricsVulnerability">
+                            <!-- Vulnerability zones will be generated here -->
+                        </div>
+                    </div>
+
+                    <!-- Key Battles -->
+                    <div style="background: rgba(255,255,255,0.15); padding: 18px; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.2);">
+                        <h4 style="color: #fff; margin-bottom: 15px; font-size: 18px; font-weight: 700;">🎯 Key Battles - Position Matchups</h4>
+                        <div id="keyBattles" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 12px;">
+                            <!-- Key battles will be generated here -->
+                        </div>
+                    </div>
+
+                    <!-- Player Role Optimizer -->
+                    <div style="background: rgba(255,255,255,0.15); padding: 18px; border-radius: 8px; margin-bottom: 15px; border: 1px solid rgba(255,255,255,0.2);">
+                        <h4 style="color: #fff; margin-bottom: 15px; font-size: 18px; font-weight: 700;">🎯 Player Role Optimizer - Individual Instructions</h4>
+                        <div id="playerRoleOptimizer" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;">
+                            <!-- Player roles will be generated here -->
+                        </div>
+                    </div>
+
+                    <!-- Set Pieces Strategy -->
+                    <div style="background: rgba(255,255,255,0.15); padding: 18px; border-radius: 8px; border: 1px solid rgba(255,255,255,0.2);">
+                        <h4 style="color: #fff; margin-bottom: 15px; font-size: 18px; font-weight: 700;">⚡ Set Pieces Strategy</h4>
+                        <div id="setPiecesStrategy" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 15px;">
+                            <!-- Set pieces tactics will be generated here -->
+                        </div>
+                    </div>
+                </div>
+
                 <div style="background: #ecf0f1; padding: 15px; border-radius: 8px; margin-top: 20px; font-size: 0.9em; color: #7f8c8d;">
                     <strong>📈 Data Sources:</strong> Statistical analysis based on comprehensive data from:
                     • 50,000+ professional matches (2020-2025) • UEFA Technical Reports • 
@@ -880,6 +989,9 @@
     </div>
 
     <script>
+        // Flag to prevent infinite loop when updating dropdowns programmatically
+        let isUpdatingDropdowns = false;
+        
         // Enhanced Database with Modern Tactical Systems
         const tacticalDatabase = {
             // === MODERN TACTICAL SYSTEMS ===
@@ -1491,6 +1603,165 @@
                 formasiDefensif: "5-3-2",
                 perubahanPosisi: "ST mundur jadi MC",
                 tugasKhususOOP: "MC pressing ke CM lawan"
+            }
+        };
+
+        // DATABASE PLAYER ROLES & INSTRUCTIONS PER FORMATION
+        const playerRoleDatabase = {
+            "4-3-3": {
+                "GK": { role: "Sweeper Keeper (Support)", instructions: ["Come For Crosses", "Distribute to Centre-Backs", "Take Fewer Risks"], duty: "Support" },
+                "RB": { role: "Full-Back (Support)", instructions: ["Get Further Forward", "Overlap", "Stay Wider"], duty: "Support" },
+                "RCB": { role: "Ball Playing Defender (Defend)", instructions: ["Pass Shorter", "Take Fewer Risks"], duty: "Defend" },
+                "LCB": { role: "Central Defender (Defend)", instructions: ["Mark Tighter", "Stay Back"], duty: "Defend" },
+                "LB": { role: "Full-Back (Attack)", instructions: ["Get Further Forward", "Cross More Often", "Run Wide With Ball"], duty: "Attack" },
+                "RCM": { role: "Box to Box Midfielder (Support)", instructions: ["Get Further Forward", "Roam From Position"], duty: "Support" },
+                "CM": { role: "Deep Lying Playmaker (Support)", instructions: ["Hold Position", "Take More Risks", "Switch Ball To Other Flank"], duty: "Support" },
+                "LCM": { role: "Mezzala (Support)", instructions: ["Get Further Forward", "Move Into Channels"], duty: "Support" },
+                "RW": { role: "Inverted Winger (Attack)", instructions: ["Cut Inside", "Shoot More Often", "Sit Narrower"], duty: "Attack" },
+                "ST": { role: "Advanced Forward (Attack)", instructions: ["Move Into Channels", "Get In Behind"], duty: "Attack" },
+                "LW": { role: "Winger (Support)", instructions: ["Cross More Often", "Stay Wider", "Run Wide With Ball"], duty: "Support" }
+            },
+            "4-2-3-1": {
+                "GK": { role: "Goalkeeper (Defend)", instructions: ["Distribute to Full-Backs", "Roll It Out"], duty: "Defend" },
+                "RB": { role: "Wing-Back (Support)", instructions: ["Get Further Forward", "Cross More Often"], duty: "Support" },
+                "RCB": { role: "Central Defender (Defend)", instructions: ["Mark Tighter"], duty: "Defend" },
+                "LCB": { role: "Ball Playing Defender (Defend)", instructions: ["Pass Shorter", "Take Fewer Risks"], duty: "Defend" },
+                "LB": { role: "Wing-Back (Attack)", instructions: ["Get Further Forward", "Cross From Byline"], duty: "Attack" },
+                "RCDM": { role: "Defensive Midfielder (Defend)", instructions: ["Stay Back", "Hold Position", "Mark Tighter"], duty: "Defend" },
+                "LCDM": { role: "Ball Winning Midfielder (Defend)", instructions: ["Tackle Harder", "Close Down More"], duty: "Defend" },
+                "RW": { role: "Inside Forward (Attack)", instructions: ["Cut Inside", "Shoot More Often", "Get In Behind"], duty: "Attack" },
+                "CAM": { role: "Advanced Playmaker (Attack)", instructions: ["Take More Risks", "Move Into Channels", "Roam From Position"], duty: "Attack" },
+                "LW": { role: "Inverted Winger (Support)", instructions: ["Cut Inside", "Sit Narrower", "Take Fewer Risks"], duty: "Support" },
+                "ST": { role: "Complete Forward (Support)", instructions: ["Move Into Channels", "Hold Up Ball"], duty: "Support" }
+            },
+            "4-4-2": {
+                "GK": { role: "Goalkeeper (Defend)", instructions: ["Distribute Quickly", "Take Fewer Risks"], duty: "Defend" },
+                "RB": { role: "Full-Back (Support)", instructions: ["Get Further Forward", "Cross More Often"], duty: "Support" },
+                "RCB": { role: "Central Defender (Defend)", instructions: ["Mark Tighter", "Stay Back"], duty: "Defend" },
+                "LCB": { role: "Central Defender (Defend)", instructions: ["Mark Tighter", "Stay Back"], duty: "Defend" },
+                "LB": { role: "Full-Back (Support)", instructions: ["Get Further Forward", "Overlap"], duty: "Support" },
+                "RM": { role: "Winger (Support)", instructions: ["Cross More Often", "Stay Wider", "Track Back"], duty: "Support" },
+                "RCM": { role: "Box to Box Midfielder (Support)", instructions: ["Get Further Forward", "Roam From Position"], duty: "Support" },
+                "LCM": { role: "Central Midfielder (Defend)", instructions: ["Hold Position", "Tackle Harder"], duty: "Defend" },
+                "LM": { role: "Winger (Attack)", instructions: ["Cross More Often", "Get Further Forward", "Run Wide With Ball"], duty: "Attack" },
+                "RST": { role: "Poacher (Attack)", instructions: ["Move Into Channels", "Stay Central"], duty: "Attack" },
+                "LST": { role: "Target Man (Attack)", instructions: ["Hold Up Ball", "Knock Ball Beyond"], duty: "Attack" }
+            },
+            "4-1-4-1": {
+                "GK": { role: "Sweeper Keeper (Support)", instructions: ["Distribute to Centre-Backs", "Take Fewer Risks"], duty: "Support" },
+                "RB": { role: "Full-Back (Attack)", instructions: ["Get Further Forward", "Cross From Byline"], duty: "Attack" },
+                "RCB": { role: "Ball Playing Defender (Defend)", instructions: ["Pass Shorter", "Take Fewer Risks"], duty: "Defend" },
+                "LCB": { role: "Central Defender (Defend)", instructions: ["Mark Tighter"], duty: "Defend" },
+                "LB": { role: "Full-Back (Attack)", instructions: ["Get Further Forward", "Run Wide With Ball"], duty: "Attack" },
+                "DM": { role: "Deep Lying Playmaker (Defend)", instructions: ["Hold Position", "Take More Risks", "Switch Ball To Other Flank"], duty: "Defend" },
+                "RCM": { role: "Mezzala (Attack)", instructions: ["Move Into Channels", "Get Further Forward"], duty: "Attack" },
+                "CAM": { role: "Attacking Midfielder (Attack)", instructions: ["Take More Risks", "Get Further Forward", "Roam From Position"], duty: "Attack" },
+                "LCM": { role: "Mezzala (Attack)", instructions: ["Move Into Channels", "Get Further Forward"], duty: "Attack" },
+                "ST": { role: "False Nine (Support)", instructions: ["Roam From Position", "Move Into Channels", "Hold Up Ball"], duty: "Support" }
+            },
+            "3-5-2": {
+                "GK": { role: "Sweeper Keeper (Support)", instructions: ["Distribute to Centre-Backs", "Come For Crosses"], duty: "Support" },
+                "RCB": { role: "Central Defender (Defend)", instructions: ["Mark Tighter", "Stay Back"], duty: "Defend" },
+                "CB": { role: "Ball Playing Defender (Defend)", instructions: ["Pass Shorter", "Take Fewer Risks"], duty: "Defend" },
+                "LCB": { role: "Central Defender (Cover)", instructions: ["Cover", "Stay Back"], duty: "Cover" },
+                "RWB": { role: "Wing-Back (Attack)", instructions: ["Get Further Forward", "Cross More Often", "Stay Wider"], duty: "Attack" },
+                "RCM": { role: "Box to Box Midfielder (Support)", instructions: ["Get Further Forward", "Roam From Position"], duty: "Support" },
+                "CM": { role: "Deep Lying Playmaker (Defend)", instructions: ["Hold Position", "Switch Ball To Other Flank"], duty: "Defend" },
+                "LCM": { role: "Central Midfielder (Support)", instructions: ["Tackle Harder", "Close Down More"], duty: "Support" },
+                "LWB": { role: "Wing-Back (Attack)", instructions: ["Get Further Forward", "Cross From Byline", "Run Wide With Ball"], duty: "Attack" },
+                "RST": { role: "Advanced Forward (Attack)", instructions: ["Get In Behind", "Move Into Channels"], duty: "Attack" },
+                "LST": { role: "Complete Forward (Support)", instructions: ["Hold Up Ball", "Knock Ball Beyond"], duty: "Support" }
+            },
+            "5-3-2": {
+                "GK": { role: "Goalkeeper (Defend)", instructions: ["Distribute Quickly", "Take Fewer Risks"], duty: "Defend" },
+                "RWB": { role: "Wing-Back (Support)", instructions: ["Get Further Forward", "Cross More Often"], duty: "Support" },
+                "RCB": { role: "Central Defender (Defend)", instructions: ["Mark Tighter", "Stay Back"], duty: "Defend" },
+                "CB": { role: "Central Defender (Defend)", instructions: ["Mark Tighter", "Stay Back"], duty: "Defend" },
+                "LCB": { role: "Central Defender (Defend)", instructions: ["Mark Tighter", "Stay Back"], duty: "Defend" },
+                "LWB": { role: "Wing-Back (Support)", instructions: ["Track Back", "Cross More Often"], duty: "Support" },
+                "RCM": { role: "Ball Winning Midfielder (Defend)", instructions: ["Tackle Harder", "Close Down More"], duty: "Defend" },
+                "CM": { role: "Deep Lying Playmaker (Defend)", instructions: ["Hold Position", "Take Fewer Risks"], duty: "Defend" },
+                "LCM": { role: "Central Midfielder (Defend)", instructions: ["Tackle Harder", "Hold Position"], duty: "Defend" },
+                "RST": { role: "Target Man (Attack)", instructions: ["Hold Up Ball", "Move Into Channels"], duty: "Attack" },
+                "LST": { role: "Poacher (Attack)", instructions: ["Stay Central", "Get In Behind"], duty: "Attack" }
+            },
+            "3-4-3": {
+                "GK": { role: "Sweeper Keeper (Attack)", instructions: ["Come For Crosses", "Distribute to Centre-Backs"], duty: "Attack" },
+                "RCB": { role: "Ball Playing Defender (Defend)", instructions: ["Pass Shorter", "Take More Risks"], duty: "Defend" },
+                "CB": { role: "Central Defender (Defend)", instructions: ["Mark Tighter"], duty: "Defend" },
+                "LCB": { role: "Ball Playing Defender (Defend)", instructions: ["Pass Shorter", "Take More Risks"], duty: "Defend" },
+                "RM": { role: "Wide Midfielder (Support)", instructions: ["Cross More Often", "Track Back"], duty: "Support" },
+                "RCM": { role: "Box to Box Midfielder (Support)", instructions: ["Get Further Forward", "Roam From Position"], duty: "Support" },
+                "LCM": { role: "Mezzala (Attack)", instructions: ["Move Into Channels", "Get Further Forward"], duty: "Attack" },
+                "LM": { role: "Wide Midfielder (Attack)", instructions: ["Get Further Forward", "Cross More Often", "Run Wide With Ball"], duty: "Attack" },
+                "RW": { role: "Inside Forward (Attack)", instructions: ["Cut Inside", "Shoot More Often"], duty: "Attack" },
+                "ST": { role: "Complete Forward (Attack)", instructions: ["Move Into Channels", "Hold Up Ball"], duty: "Attack" },
+                "LW": { role: "Inverted Winger (Attack)", instructions: ["Cut Inside", "Get In Behind", "Sit Narrower"], duty: "Attack" }
+            },
+            "4-5-1": {
+                "GK": { role: "Goalkeeper (Defend)", instructions: ["Distribute Quickly", "Take Fewer Risks"], duty: "Defend" },
+                "RB": { role: "Full-Back (Defend)", instructions: ["Stay Back", "Cross Less Often"], duty: "Defend" },
+                "RCB": { role: "Central Defender (Defend)", instructions: ["Mark Tighter", "Stay Back"], duty: "Defend" },
+                "LCB": { role: "Central Defender (Defend)", instructions: ["Mark Tighter", "Stay Back"], duty: "Defend" },
+                "LB": { role: "Full-Back (Defend)", instructions: ["Stay Back", "Track Back"], duty: "Defend" },
+                "RM": { role: "Wide Midfielder (Support)", instructions: ["Track Back", "Cross More Often"], duty: "Support" },
+                "RCM": { role: "Ball Winning Midfielder (Defend)", instructions: ["Tackle Harder", "Close Down More"], duty: "Defend" },
+                "CM": { role: "Deep Lying Playmaker (Defend)", instructions: ["Hold Position", "Pass Shorter"], duty: "Defend" },
+                "LCM": { role: "Central Midfielder (Defend)", instructions: ["Tackle Harder", "Hold Position"], duty: "Defend" },
+                "LM": { role: "Wide Midfielder (Support)", instructions: ["Track Back", "Hold Position"], duty: "Support" },
+                "ST": { role: "Target Man (Support)", instructions: ["Hold Up Ball", "Come Deep For Ball"], duty: "Support" }
+            },
+            "3-4-2-1": {
+                "GK": { role: "Sweeper Keeper (Support)", instructions: ["Distribute to Centre-Backs", "Take Fewer Risks"], duty: "Support" },
+                "RCB": { role: "Ball Playing Defender (Defend)", instructions: ["Pass Shorter", "Take More Risks"], duty: "Defend" },
+                "CB": { role: "Central Defender (Defend)", instructions: ["Mark Tighter", "Stay Back"], duty: "Defend" },
+                "LCB": { role: "Ball Playing Defender (Defend)", instructions: ["Pass Shorter", "Take More Risks"], duty: "Defend" },
+                "RM": { role: "Wing-Back (Support)", instructions: ["Get Further Forward", "Cross More Often"], duty: "Support" },
+                "RCM": { role: "Box to Box Midfielder (Support)", instructions: ["Get Further Forward", "Roam From Position"], duty: "Support" },
+                "LCM": { role: "Deep Lying Playmaker (Support)", instructions: ["Hold Position", "Switch Ball To Other Flank"], duty: "Support" },
+                "LM": { role: "Wing-Back (Attack)", instructions: ["Get Further Forward", "Cross From Byline"], duty: "Attack" },
+                "RCAM": { role: "Advanced Playmaker (Support)", instructions: ["Take More Risks", "Move Into Channels"], duty: "Support" },
+                "LCAM": { role: "Shadow Striker (Attack)", instructions: ["Get Further Forward", "Move Into Channels", "Get In Behind"], duty: "Attack" },
+                "ST": { role: "Complete Forward (Attack)", instructions: ["Hold Up Ball", "Move Into Channels"], duty: "Attack" }
+            },
+            "4-3-2-1": {
+                "GK": { role: "Sweeper Keeper (Support)", instructions: ["Distribute to Centre-Backs", "Come For Crosses"], duty: "Support" },
+                "RB": { role: "Full-Back (Support)", instructions: ["Get Further Forward", "Overlap"], duty: "Support" },
+                "RCB": { role: "Ball Playing Defender (Defend)", instructions: ["Pass Shorter", "Take More Risks"], duty: "Defend" },
+                "LCB": { role: "Ball Playing Defender (Defend)", instructions: ["Pass Shorter", "Take More Risks"], duty: "Defend" },
+                "LB": { role: "Full-Back (Attack)", instructions: ["Get Further Forward", "Run Wide With Ball"], duty: "Attack" },
+                "RCM": { role: "Mezzala (Support)", instructions: ["Move Into Channels", "Roam From Position"], duty: "Support" },
+                "CM": { role: "Regista (Support)", instructions: ["Hold Position", "Take More Risks", "Switch Ball To Other Flank"], duty: "Support" },
+                "LCM": { role: "Box to Box Midfielder (Support)", instructions: ["Get Further Forward", "Roam From Position"], duty: "Support" },
+                "RCAM": { role: "Advanced Playmaker (Attack)", instructions: ["Take More Risks", "Roam From Position"], duty: "Attack" },
+                "LCAM": { role: "Attacking Midfielder (Support)", instructions: ["Move Into Channels", "Roam From Position"], duty: "Support" },
+                "ST": { role: "False Nine (Support)", instructions: ["Come Deep For Ball", "Roam From Position", "Hold Up Ball"], duty: "Support" }
+            },
+            "5-4-1": {
+                "GK": { role: "Goalkeeper (Defend)", instructions: ["Distribute Quickly", "Take Fewer Risks"], duty: "Defend" },
+                "RWB": { role: "Wing-Back (Defend)", instructions: ["Track Back", "Stay Back"], duty: "Defend" },
+                "RCB": { role: "Central Defender (Defend)", instructions: ["Mark Tighter", "Stay Back"], duty: "Defend" },
+                "CB": { role: "Central Defender (Defend)", instructions: ["Mark Tighter", "Stay Back"], duty: "Defend" },
+                "LCB": { role: "Central Defender (Defend)", instructions: ["Mark Tighter", "Stay Back"], duty: "Defend" },
+                "LWB": { role: "Wing-Back (Defend)", instructions: ["Track Back", "Stay Back"], duty: "Defend" },
+                "RCM": { role: "Ball Winning Midfielder (Defend)", instructions: ["Tackle Harder", "Close Down More", "Stay Back"], duty: "Defend" },
+                "LCM": { role: "Central Midfielder (Defend)", instructions: ["Tackle Harder", "Hold Position", "Stay Back"], duty: "Defend" },
+                "RM": { role: "Wide Midfielder (Defend)", instructions: ["Track Back", "Hold Position"], duty: "Defend" },
+                "LM": { role: "Wide Midfielder (Defend)", instructions: ["Track Back", "Hold Position"], duty: "Defend" },
+                "ST": { role: "Target Man (Support)", instructions: ["Hold Up Ball", "Come Deep For Ball"], duty: "Support" }
+            },
+            "3-3-4": {
+                "GK": { role: "Sweeper Keeper (Attack)", instructions: ["Come For Crosses", "Distribute Quickly", "Take More Risks"], duty: "Attack" },
+                "RCB": { role: "Ball Playing Defender (Stopper)", instructions: ["Pass Riskier", "Get Further Forward"], duty: "Stopper" },
+                "CB": { role: "Central Defender (Cover)", instructions: ["Cover", "Mark Tighter"], duty: "Cover" },
+                "LCB": { role: "Ball Playing Defender (Stopper)", instructions: ["Pass Riskier", "Get Further Forward"], duty: "Stopper" },
+                "RCM": { role: "Box to Box Midfielder (Support)", instructions: ["Get Further Forward", "Shoot More Often"], duty: "Support" },
+                "CM": { role: "Advanced Playmaker (Attack)", instructions: ["Take More Risks", "Get Further Forward", "Shoot More Often"], duty: "Attack" },
+                "LCM": { role: "Mezzala (Attack)", instructions: ["Move Into Channels", "Get Further Forward", "Shoot More Often"], duty: "Attack" },
+                "RW": { role: "Inside Forward (Attack)", instructions: ["Cut Inside", "Shoot More Often", "Get In Behind"], duty: "Attack" },
+                "RST": { role: "Advanced Forward (Attack)", instructions: ["Get In Behind", "Stay Central"], duty: "Attack" },
+                "LST": { role: "Poacher (Attack)", instructions: ["Move Into Channels", "Get In Behind"], duty: "Attack" },
+                "LW": { role: "Inverted Winger (Attack)", instructions: ["Cut Inside", "Shoot More Often", "Get In Behind"], duty: "Attack" }
             }
         };
 
@@ -2138,6 +2409,476 @@
             return output;
         }
 
+        // Set Pieces Strategy Database
+        const setPiecesDatabase = {
+            '4-3-3': {
+                corners: {
+                    offensive: ['Near post flick-on with striker', 'Far post target for opposite winger', 'Short corner to create overload'],
+                    players: 'ST + Wingers attack, FB stay back, 1 CM edge of box'
+                },
+                freeKicks: {
+                    direct: 'Winger with best technique (curved shot)',
+                    indirect: 'CM delivers, ST + Wingers attack near/far post',
+                    positioning: 'Create wall of 3 attackers for screening'
+                },
+                throwIns: {
+                    attacking: 'Quick throw to winger in space, or FB overlap',
+                    defensive: 'Safe to CB or GK, avoid risky passes'
+                },
+                penalties: 'Striker (primary) or most composed midfielder',
+                setPlaymaker: 'Central Midfielder with best passing & vision'
+            },
+            '4-2-3-1': {
+                corners: {
+                    offensive: ['CAM attacks near post', 'ST far post', 'Wingers cut inside for rebounds'],
+                    players: 'ST + CAM + 2 Wingers attack, CDMs protect, 1 FB stays'
+                },
+                freeKicks: {
+                    direct: 'CAM (primary) or winger with better technique',
+                    indirect: 'CAM delivers from central position',
+                    positioning: 'Wingers + ST create movement in box'
+                },
+                throwIns: {
+                    attacking: 'Find CAM between lines or quick to winger',
+                    defensive: 'CDM drops to receive, maintain shape'
+                },
+                penalties: 'Striker (primary) or CAM (backup)',
+                setPlaymaker: 'CAM - primary creative outlet'
+            },
+            '4-4-2': {
+                corners: {
+                    offensive: ['Both strikers attack posts', 'CMs attack edge of box', 'Wingers stay wide for cutback'],
+                    players: '2 STs + 2 CMs in box, wingers wide, FBs balanced'
+                },
+                freeKicks: {
+                    direct: 'CM with best long shots',
+                    indirect: 'Winger delivers, both STs attack',
+                    positioning: 'Twin striker partnership crucial'
+                },
+                throwIns: {
+                    attacking: 'Winger receives, immediate cross to STs',
+                    defensive: 'CM receives and distributes'
+                },
+                penalties: 'Senior striker or most composed CM',
+                setPlaymaker: 'Central Midfielder with leadership'
+            },
+            '4-1-4-1': {
+                corners: {
+                    offensive: ['AMs attack near/far posts', 'ST holds center', 'Wide mids provide cutbacks'],
+                    players: 'ST + 2 AMs attack, DM stays back, FBs split'
+                },
+                freeKicks: {
+                    direct: 'Advanced midfielder with technique',
+                    indirect: 'AM delivers, ST creates distraction',
+                    positioning: 'Diamond shape in box for movement'
+                },
+                throwIns: {
+                    attacking: 'Find AM in pocket or quick to wide mid',
+                    defensive: 'DM always available as safety'
+                },
+                penalties: 'Striker (primary) or senior AM',
+                setPlaymaker: 'DM controls from deep or AM from advanced position'
+            },
+            '3-5-2': {
+                corners: {
+                    offensive: ['Both STs attack posts', 'CMs attack box', 'WBs deliver crosses'],
+                    players: '2 STs + 2 CMs in box, 1 CM edge, WBs wide'
+                },
+                freeKicks: {
+                    direct: 'CM with best shooting from distance',
+                    indirect: 'WB delivers from wide, STs attack',
+                    positioning: 'Both strikers create chaos in box'
+                },
+                throwIns: {
+                    attacking: 'WB receives and drives forward',
+                    defensive: 'CM receives, CBs stay in line'
+                },
+                penalties: 'Primary striker or most composed CM',
+                setPlaymaker: 'Central midfielder - dictates tempo'
+            },
+            '5-3-2': {
+                corners: {
+                    offensive: ['Target man attacks near post', 'Second striker far post', 'CMs cover edge'],
+                    players: 'Both STs attack, 1 CM in box, rest defend'
+                },
+                freeKicks: {
+                    direct: 'CM with power shooting',
+                    indirect: 'WB delivers, target man holds defenders',
+                    positioning: 'Compact defensive shape if lost'
+                },
+                throwIns: {
+                    attacking: 'WB receives, immediate long ball forward',
+                    defensive: 'Very safe - CB or CM only'
+                },
+                penalties: 'Target man (power) or composed CM',
+                setPlaymaker: 'Deep-lying midfielder with vision'
+            },
+            '3-4-3': {
+                corners: {
+                    offensive: ['All 3 forwards attack box', 'WMs deliver or cut inside', '1 CM attacks'],
+                    players: '3 Forwards + 1 CM attack, 1 CM protects, CBs stay'
+                },
+                freeKicks: {
+                    direct: 'Forward with best technique',
+                    indirect: 'WM delivers from angle',
+                    positioning: 'Three forwards create overload in box'
+                },
+                throwIns: {
+                    attacking: 'Quick to WM or forward in channel',
+                    defensive: 'CM receives, risk management critical'
+                },
+                penalties: 'Central forward or winger with composure',
+                setPlaymaker: 'Central midfielder or creative forward'
+            },
+            '4-5-1': {
+                corners: {
+                    offensive: ['ST holds center', '2 CMs attack posts', 'Others protect counter'],
+                    players: 'ST + 2 CMs attack, rest defend shape'
+                },
+                freeKicks: {
+                    direct: 'CM with long shot ability',
+                    indirect: 'Careful delivery, ST target',
+                    positioning: 'Majority stay back for defensive shape'
+                },
+                throwIns: {
+                    attacking: 'Safe to CM or wide mid, build slowly',
+                    defensive: 'Very conservative - maintain compact block'
+                },
+                penalties: 'Lone striker or most experienced CM',
+                setPlaymaker: 'Central midfielder - controls game pace'
+            },
+            '3-4-2-1': {
+                corners: {
+                    offensive: ['ST attacks far post', 'AMs attack near post & edge', 'WBs deliver'],
+                    players: 'ST + 2 AMs attack, CMs cover, WBs provide width'
+                },
+                freeKicks: {
+                    direct: 'AM with best free kick stats',
+                    indirect: 'WB or AM delivers, ST targets',
+                    positioning: 'AMs make late runs into box'
+                },
+                throwIns: {
+                    attacking: 'WB receives, find AM between lines',
+                    defensive: 'CM receives safely'
+                },
+                penalties: 'Striker (primary) or senior AM (backup)',
+                setPlaymaker: 'Advanced midfielder - creative hub'
+            },
+            '4-3-2-1': {
+                corners: {
+                    offensive: ['False 9 drops to create space', 'AMs attack vacated space', '1 CM attacks'],
+                    players: 'False 9 + 2 AMs + 1 CM, rest maintain shape'
+                },
+                freeKicks: {
+                    direct: 'AM with technical ability',
+                    indirect: 'AM delivers, others exploit space',
+                    positioning: 'Intelligent movement, not just power'
+                },
+                throwIns: {
+                    attacking: 'Find AM or false 9 in pocket',
+                    defensive: 'Regista receives and recycles'
+                },
+                penalties: 'False 9 or most composed AM',
+                setPlaymaker: 'Regista (deep) or AM (advanced)'
+            },
+            '5-4-1': {
+                corners: {
+                    offensive: ['Only ST attacks box', 'Maybe 1 CM joins', 'All others defend'],
+                    players: 'Ultra defensive - ST alone, rest protect'
+                },
+                freeKicks: {
+                    direct: 'CM with power from distance',
+                    indirect: 'Long ball to ST, no risks',
+                    positioning: 'Immediate defensive shape recovery'
+                },
+                throwIns: {
+                    attacking: 'Very rare - long to ST only',
+                    defensive: 'Absolutely safe - CB or WB'
+                },
+                penalties: 'Striker or designated penalty taker',
+                setPlaymaker: 'Central midfielder (limited creative role)'
+            },
+            '3-3-4': {
+                corners: {
+                    offensive: ['All 4 forwards attack box', 'APM provides cutbacks', '1 CM attacks edge'],
+                    players: 'Maximum attack - 4 forwards + 1 CM, huge risk'
+                },
+                freeKicks: {
+                    direct: 'Forward or APM with technique',
+                    indirect: 'Quick delivery to chaos in box',
+                    positioning: 'Four forwards overwhelm defense'
+                },
+                throwIns: {
+                    attacking: 'Immediate forward pass, high tempo',
+                    defensive: 'Quick but very risky - vulnerable to counters'
+                },
+                penalties: 'Most composed forward',
+                setPlaymaker: 'Attacking Playmaker - high-risk creativity'
+            }
+        };
+
+        function generatePlayerRoleOptimizer(formasi) {
+            const roleData = playerRoleDatabase[formasi];
+            if (!roleData) {
+                return "<div style='padding: 15px; text-align: center; color: #999;'>Player role data not available for this formation</div>";
+            }
+            
+            let html = "";
+            const positions = Object.keys(roleData);
+            
+            positions.forEach(position => {
+                const playerRole = roleData[position];
+                const dutyColor = playerRole.duty === "Attack" ? "#ff6b6b" : 
+                                 playerRole.duty === "Support" ? "#ffa94d" : "#82aaff";
+                
+                html += `<div style='padding: 16px; background: rgba(255,255,255,0.05); border-radius: 5px; border-left: 4px solid ${dutyColor};'>`;
+                html += `<div style='font-weight: bold; color: ${dutyColor}; margin-bottom: 8px; font-size: 18px;'>${position}</div>`;
+                html += `<div style='color: #c3e88d; font-size: 17px; margin-bottom: 8px; font-weight: 600;'>${playerRole.role}</div>`;
+                html += `<div style='font-size: 16px; color: #ffffff;'>`;
+                playerRole.instructions.forEach(instruction => {
+                    html += `<div style='margin: 4px 0;'>• ${instruction}</div>`;
+                });
+                html += `</div></div>`;
+            });
+            
+            return html;
+        }
+
+        function generateSetPiecesStrategy(formasi) {
+            const setPieces = setPiecesDatabase[formasi];
+            if (!setPieces) {
+                return "<div style='padding: 15px; text-align: center; color: #999;'>Set pieces data not available for this formation</div>";
+            }
+            
+            let html = "";
+            
+            // Corner Kicks
+            html += `<div style='padding: 18px; background: rgba(255,165,0,0.1); border-radius: 6px; border-left: 4px solid #ffa500;'>`;
+            html += `<div style='font-weight: bold; color: #ffa500; margin-bottom: 10px; font-size: 18px;'>🚩 Corner Kicks</div>`;
+            html += `<div style='color: #ffffff; font-size: 16px; margin-bottom: 8px;'><strong>Tactics:</strong></div>`;
+            setPieces.corners.offensive.forEach(tactic => {
+                html += `<div style='color: #ffffff; font-size: 15px; margin-left: 10px; margin-bottom: 4px;'>• ${tactic}</div>`;
+            });
+            html += `<div style='color: #ffa500; font-size: 16px; margin-top: 10px; font-weight: 600;'>👥 Players: ${setPieces.corners.players}</div>`;
+            html += `</div>`;
+            
+            // Free Kicks
+            html += `<div style='padding: 18px; background: rgba(100,149,237,0.1); border-radius: 6px; border-left: 4px solid #6495ed;'>`;
+            html += `<div style='font-weight: bold; color: #6495ed; margin-bottom: 10px; font-size: 18px;'>⚽ Free Kicks</div>`;
+            html += `<div style='color: #ffffff; font-size: 15px; margin-bottom: 6px;'><strong>Direct:</strong> ${setPieces.freeKicks.direct}</div>`;
+            html += `<div style='color: #ffffff; font-size: 15px; margin-bottom: 6px;'><strong>Indirect:</strong> ${setPieces.freeKicks.indirect}</div>`;
+            html += `<div style='color: #6495ed; font-size: 15px; font-weight: 600;'>📍 ${setPieces.freeKicks.positioning}</div>`;
+            html += `</div>`;
+            
+            // Throw-ins
+            html += `<div style='padding: 18px; background: rgba(50,205,50,0.1); border-radius: 6px; border-left: 4px solid #32cd32;'>`;
+            html += `<div style='font-weight: bold; color: #32cd32; margin-bottom: 10px; font-size: 18px;'>🤾 Throw-ins</div>`;
+            html += `<div style='color: #ffffff; font-size: 15px; margin-bottom: 6px;'><strong>Attacking Third:</strong> ${setPieces.throwIns.attacking}</div>`;
+            html += `<div style='color: #ffffff; font-size: 15px;'><strong>Defensive Third:</strong> ${setPieces.throwIns.defensive}</div>`;
+            html += `</div>`;
+            
+            // Penalties & Set Playmaker
+            html += `<div style='padding: 18px; background: rgba(220,20,60,0.1); border-radius: 6px; border-left: 4px solid #dc143c;'>`;
+            html += `<div style='font-weight: bold; color: #dc143c; margin-bottom: 10px; font-size: 18px;'>🎯 Penalties & Key Takers</div>`;
+            html += `<div style='color: #ffffff; font-size: 16px; margin-bottom: 8px;'><strong>Penalty Taker:</strong> ${setPieces.penalties}</div>`;
+            html += `<div style='color: #ffffff; font-size: 16px;'><strong>Set Piece Specialist:</strong> ${setPieces.setPlaymaker}</div>`;
+            html += `</div>`;
+            
+            return html;
+        }
+
+        function generateKeyBattles(yourForm, oppForm) {
+            // Define key matchup analysis based on formation combinations
+            const battles = [];
+            
+            // Analyze based on your formation
+            if (yourForm === '4-3-3') {
+                battles.push({
+                    matchup: 'Your Wingers vs Their Fullbacks',
+                    advantage: oppForm.includes('3-') || oppForm === '5-3-2' ? 'High' : 'Medium',
+                    analysis: oppForm.includes('3-') ? 'Exploit wide areas - they have no natural fullbacks' : 'Use pace and 1v1 skills to beat fullbacks',
+                    instruction: 'Wingers stay wide, attack space behind fullbacks'
+                });
+                battles.push({
+                    matchup: 'Your CM vs Their Midfield',
+                    advantage: oppForm === '4-4-2' || oppForm === '4-2-3-1' ? 'Medium' : 'High',
+                    analysis: oppForm === '4-4-2' ? 'Numerical parity - focus on quality' : 'You can control midfield with 3 CMs',
+                    instruction: 'Dominate possession, dictate tempo'
+                });
+            } else if (yourForm === '4-2-3-1') {
+                battles.push({
+                    matchup: 'Your CAM vs Their DM',
+                    advantage: !oppForm.includes('4-1-4-1') && !oppForm.includes('4-3-3') ? 'High' : 'Medium',
+                    analysis: 'CAM finds space between lines - key creative outlet',
+                    instruction: 'CAM drops deep when marked, make late runs'
+                });
+                battles.push({
+                    matchup: 'Your Wingers vs Their Fullbacks',
+                    advantage: oppForm.includes('3-') ? 'Very High' : 'Medium',
+                    analysis: 'Support from CAM creates overloads in wide areas',
+                    instruction: 'Coordinate with CAM for 2v1 situations'
+                });
+            } else if (yourForm === '4-4-2') {
+                battles.push({
+                    matchup: 'Your Twin Strikers vs Their CBs',
+                    advantage: oppForm.includes('3-') ? 'Medium' : 'High',
+                    analysis: oppForm.includes('3-') ? 'They have extra CB - need movement' : '2v2 battle - use partnership',
+                    instruction: 'Constant movement, drag CBs out of position'
+                });
+                battles.push({
+                    matchup: 'Your Central Midfield vs Theirs',
+                    advantage: oppForm === '4-3-3' || oppForm === '4-1-4-1' ? 'Low' : 'Medium',
+                    analysis: oppForm === '4-3-3' ? 'Outnumbered 2v3 - need discipline' : 'Even battle in midfield',
+                    instruction: 'Stay compact, support each other'
+                });
+            } else if (yourForm === '3-5-2') {
+                battles.push({
+                    matchup: 'Your Wing-backs vs Their Wingers',
+                    advantage: oppForm === '4-3-3' || oppForm === '4-2-3-1' ? 'Medium' : 'High',
+                    analysis: 'WBs have dual role - attack and defend wide areas',
+                    instruction: 'Track back quickly, overlap when safe'
+                });
+                battles.push({
+                    matchup: 'Your 3 CBs vs Their Attack',
+                    advantage: oppForm === '4-5-1' || oppForm.includes('1 ST') ? 'High' : 'Medium',
+                    analysis: oppForm.includes('1') ? 'Numerical advantage 3v1 or 3v2' : 'Match their forwards',
+                    instruction: 'Stay compact, cover for wing-backs'
+                });
+            } else if (yourForm === '3-4-3') {
+                battles.push({
+                    matchup: 'Your 3 Forwards vs Their Defense',
+                    advantage: !oppForm.includes('5-') && !oppForm.includes('3-') ? 'Very High' : 'Medium',
+                    analysis: oppForm.includes('4-') ? 'Overload their back 4 with constant pressure' : 'Equal numbers - need quality',
+                    instruction: 'Rotate positions, create chaos'
+                });
+                battles.push({
+                    matchup: 'Your CBs vs Their Strikers',
+                    advantage: oppForm === '4-5-1' || oppForm.includes('1 ST') ? 'High' : 'Low',
+                    analysis: oppForm.includes('2 ST') ? 'Vulnerable to twin strikers' : 'Can handle lone striker',
+                    instruction: 'Don\'t push too high, risk of counter'
+                });
+            } else if (yourForm === '4-5-1') {
+                battles.push({
+                    matchup: 'Your Midfield 5 vs Theirs',
+                    advantage: 'Very High',
+                    analysis: 'Numerical superiority in midfield - control the game',
+                    instruction: 'Dominate possession, wear them down'
+                });
+                battles.push({
+                    matchup: 'Your Lone ST vs Their Defense',
+                    advantage: 'Low',
+                    analysis: 'Isolated striker - must hold ball and bring others in',
+                    instruction: 'Hold-up play crucial, wait for support'
+                });
+            } else if (yourForm === '5-3-2' || yourForm === '5-4-1') {
+                battles.push({
+                    matchup: 'Your Back 5 vs Their Attack',
+                    advantage: 'Very High',
+                    analysis: 'Extremely solid defense - hard to break down',
+                    instruction: 'Stay disciplined, absorb pressure'
+                });
+                battles.push({
+                    matchup: 'Your Counter Attacks vs Their High Line',
+                    advantage: oppForm === '4-3-3' || oppForm === '3-4-3' ? 'High' : 'Medium',
+                    analysis: 'Look for quick breaks when winning ball',
+                    instruction: 'Fast transition, long balls to strikers'
+                });
+            } else if (yourForm === '4-1-4-1') {
+                battles.push({
+                    matchup: 'Your Diamond Midfield vs Their Center',
+                    advantage: oppForm === '4-4-2' || oppForm === '4-2-3-1' ? 'High' : 'Medium',
+                    analysis: 'Central overload with 4 midfielders',
+                    instruction: 'Quick passing triangles, control center'
+                });
+                battles.push({
+                    matchup: 'Your Wide Areas vs Their Flanks',
+                    advantage: 'Low',
+                    analysis: 'Lack of natural width - vulnerable to wide attacks',
+                    instruction: 'Fullbacks must push up when attacking'
+                });
+            } else if (yourForm === '3-4-2-1') {
+                battles.push({
+                    matchup: 'Your 2 AMs vs Their Defensive Mid',
+                    advantage: oppForm.includes('1 DM') ? 'High' : 'Very High',
+                    analysis: '2 AMs can overload space between lines',
+                    instruction: 'Constant movement, find pockets of space'
+                });
+                battles.push({
+                    matchup: 'Your Wing-backs vs Their Wingers',
+                    advantage: 'Medium',
+                    analysis: 'Must balance attacking and defensive duties',
+                    instruction: 'Communication crucial with CBs'
+                });
+            } else if (yourForm === '4-3-2-1') {
+                battles.push({
+                    matchup: 'Your False 9 vs Their Defense',
+                    advantage: 'High',
+                    analysis: 'Drops deep to create space for AMs to exploit',
+                    instruction: 'Drag CBs out, AMs run into space'
+                });
+                battles.push({
+                    matchup: 'Your 2 AMs vs Their Midfield',
+                    advantage: 'High',
+                    analysis: 'Technical overload in final third',
+                    instruction: 'Quick combinations, through balls'
+                });
+            } else if (yourForm === '3-3-4') {
+                battles.push({
+                    matchup: 'Your 4 Forwards vs Their Defense',
+                    advantage: 'Very High',
+                    analysis: 'Maximum attacking threat - overwhelm them',
+                    instruction: 'Constant pressure, shoot on sight'
+                });
+                battles.push({
+                    matchup: 'Your 3 CBs vs Their Attack',
+                    advantage: 'Very Low',
+                    analysis: 'Extremely exposed defensively - high risk',
+                    instruction: 'Must score more than concede'
+                });
+            }
+            
+            // Add general tactical battle
+            battles.push({
+                matchup: 'Overall Tactical Battle',
+                advantage: 'Even',
+                analysis: `${yourForm} vs ${oppForm} - Execution and player quality will decide`,
+                instruction: 'Maintain shape, follow tactical plan'
+            });
+            
+            let html = '';
+            battles.forEach(battle => {
+                let advantageColor, advantageIcon;
+                if (battle.advantage === 'Very High') {
+                    advantageColor = '#00ff00';
+                    advantageIcon = '🔥🔥🔥';
+                } else if (battle.advantage === 'High') {
+                    advantageColor = '#7fff00';
+                    advantageIcon = '🔥🔥';
+                } else if (battle.advantage === 'Medium') {
+                    advantageColor = '#ffa500';
+                    advantageIcon = '⚖️';
+                } else if (battle.advantage === 'Low') {
+                    advantageColor = '#ff6b6b';
+                    advantageIcon = '⚠️';
+                } else if (battle.advantage === 'Very Low') {
+                    advantageColor = '#ff4444';
+                    advantageIcon = '🚨';
+                } else {
+                    advantageColor = '#82aaff';
+                    advantageIcon = '⚖️';
+                }
+                
+                html += `<div style="padding: 18px; background: rgba(255,255,255,0.1); border-radius: 6px; border-left: 4px solid ${advantageColor}; border: 1px solid rgba(255,255,255,0.2);">`;
+                html += `<div style="color: #ffffff; font-weight: bold; font-size: 17px; margin-bottom: 8px;">${battle.matchup}</div>`;
+                html += `<div style="color: ${advantageColor}; font-size: 16px; margin-bottom: 8px; font-weight: 700;">${advantageIcon} Advantage: ${battle.advantage}</div>`;
+                html += `<div style="color: #e0e0e0; font-size: 15px; margin-bottom: 8px; font-style: italic;">📊 ${battle.analysis}</div>`;
+                html += `<div style="color: #ffffff; font-size: 15px; font-weight: 600;">💡 ${battle.instruction}</div>`;
+                html += `</div>`;
+            });
+            
+            return html;
+        }
+
         function generateKeyPlayers(formasi, situasiGame) {
             let data = formasiCharacteristics[formasi];
             if (!data) return "Versatile players needed";
@@ -2462,6 +3203,23 @@
             const kondisiKita = document.getElementById('kondisiKita').value;
             const waktuPertandingan = document.getElementById('waktuPertandingan').value;
             const karakteristikTim = document.getElementById('karakteristikTim').value;
+            
+            // Auto-populate Statistical Analysis - Opponent Formation dropdown
+            const statsOpponentDropdown = document.getElementById('statsOpponentFormation');
+            if (statsOpponentDropdown && formasiLawan && !isUpdatingDropdowns) {
+                console.log('Auto-populating stats opponent dropdown with:', formasiLawan);
+                const options = Array.from(statsOpponentDropdown.options);
+                const hasOption = options.some(option => option.value === formasiLawan);
+                
+                if (hasOption) {
+                    isUpdatingDropdowns = true; // Set flag to prevent recursive update
+                    statsOpponentDropdown.value = formasiLawan;
+                    console.log('Stats opponent dropdown value set to:', statsOpponentDropdown.value);
+                    // Trigger update statistical analysis dengan formasi lawan baru
+                    updateStatisticalAnalysis();
+                    setTimeout(() => { isUpdatingDropdowns = false; }, 100); // Reset flag after brief delay
+                }
+            }
 
             // Debug info
             console.log('='.repeat(60));
@@ -2602,6 +3360,23 @@
                 
                 modifiedRecommendation.formasi = bestFormation.recommended;
                 modifiedRecommendation.alternatif = bestFormation.alternative;
+                
+                // Auto-populate Statistical Analysis dropdown dengan formasi yang direkomendasikan
+                const statsYourFormationDropdown = document.getElementById('statsYourFormation');
+                if (statsYourFormationDropdown && formasiTerpilih && !isUpdatingDropdowns) {
+                    console.log('Auto-populating stats YOUR formation dropdown with recommended:', formasiTerpilih);
+                    const options = Array.from(statsYourFormationDropdown.options);
+                    const hasOption = options.some(option => option.value === formasiTerpilih);
+                    
+                    if (hasOption) {
+                        isUpdatingDropdowns = true; // Set flag to prevent recursive update
+                        statsYourFormationDropdown.value = formasiTerpilih;
+                        console.log('Stats YOUR formation dropdown value set to:', statsYourFormationDropdown.value);
+                        // Trigger update statistical analysis dengan formasi rekomendasi
+                        updateStatisticalAnalysis();
+                        setTimeout(() => { isUpdatingDropdowns = false; }, 100); // Reset flag after brief delay
+                    }
+                }
                 
                 // Tampilkan formasi COUNTER di Rekomendasi Taktik dengan explanation
                 let counterNote = bestFormation.explanation ? 
@@ -3274,6 +4049,11 @@
             document.getElementById('instruksiKhusus').textContent = instruksi;
             document.getElementById('tempoPermainan').innerHTML = tempo;
             document.getElementById('pemainKunci').innerHTML = pemain;
+            
+            // Generate Player Role Optimizer
+            const playerRoles = generatePlayerRoleOptimizer(formasi);
+            document.getElementById('playerRoleOptimizer').innerHTML = playerRoles;
+            
             document.getElementById('outOfPossession').textContent = outOfPossession;
             document.getElementById('defensiveLine').textContent = defensiveLine;
             document.getElementById('markingStrategy').innerHTML = marking || "🎯 Standard marking assignments";
@@ -3691,12 +4471,12 @@
                     "<div style='padding: 8px; background: linear-gradient(135deg, rgba(255, 107, 107, 0.12), rgba(255, 159, 64, 0.12)); border-left: 4px solid #ff6b6b; border-radius: 3px;'>" +
                     "<strong style='color: #ff6b6b; font-size: 14px;'>⚽ STRATEGI PASSING VS BLOK LAWAN</strong>" +
                     
-                    "<div style='margin: 5px 0;'><strong style='color: #ffa94d;'>🛡️ Jenis Blok:</strong> " + jenisBlok + "</div>" +
+                    "<div style='margin: 5px 0;'><strong style='color: #ffa94d;'>🛡️ Jenis Blok Lawan:</strong> " + jenisBlok + "</div>" +
                     
                     "<div style='margin: 6px 0; padding: 6px; background: rgba(0,0,0,0.2); border-radius: 3px; line-height: 1.5;'>" +
-                    "<div style='margin-bottom: 3px;'><strong style='color: #82aaff;'>📏 Line of Defence:</strong> <span style='color: #c3e88d;'>" + lineOfDefence + "</span></div>" +
-                    "<div style='margin-bottom: 3px;'><strong style='color: #82aaff;'>⚔️ Line of Engagement:</strong> <span style='color: #c3e88d;'>" + lineOfEngagement + "</span></div>" +
-                    "<div><strong style='color: #82aaff;'>💪 Pressing Intensity:</strong> <span style='color: #c3e88d;'>" + pressingIntensity + "</span></div>" +
+                    "<div style='margin-bottom: 3px;'><strong style='color: #82aaff;'>📏 Line of Defence Lawan:</strong> <span style='color: #c3e88d;'>" + lineOfDefence + "</span></div>" +
+                    "<div style='margin-bottom: 3px;'><strong style='color: #82aaff;'>⚔️ Line of Engagement Lawan:</strong> <span style='color: #c3e88d;'>" + lineOfEngagement + "</span></div>" +
+                    "<div><strong style='color: #82aaff;'>💪 Pressing Intensity Lawan:</strong> <span style='color: #c3e88d;'>" + pressingIntensity + "</span></div>" +
                     "</div>" +
                     
                     "<div style='margin: 5px 0; font-size: 12px; color: #aaa; font-style: italic;'>🎯 " + tujuanBlok + "</div>" +
@@ -3762,10 +4542,62 @@
         }
 
         function updateAnalysisWithUserFormation() {
-            const selectedFormation = document.getElementById('userFormationSelect').value;
+            const userFormationElement = document.getElementById('userFormationSelect');
+            if (!userFormationElement) {
+                return; // Element not found, exit function
+            }
+            
+            const selectedFormation = userFormationElement.value;
             
             if (!selectedFormation) {
                 return; // Jika tidak ada formasi dipilih, keluar dari fungsi
+            }
+            
+            // Jika user memilih "recommended", ambil formasi dari rekomendasi sistem
+            if (selectedFormation === 'recommended') {
+                // Ambil formasi yang direkomendasikan dari display
+                const formasiUtamaElement = document.getElementById('formasiUtama');
+                if (formasiUtamaElement) {
+                    const formasiUtamaText = formasiUtamaElement.textContent || formasiUtamaElement.innerText;
+                    // Extract formasi dari text (ambil bagian pertama sebelum spasi atau tanda kurung)
+                    const recommendedFormation = formasiUtamaText.split(/[\s(]/)[0];
+                    
+                    // Update Statistical Analysis dropdown dengan formasi recommended
+                    const statsFormationDropdown = document.getElementById('statsYourFormation');
+                    if (statsFormationDropdown && recommendedFormation && !isUpdatingDropdowns) {
+                        console.log('Auto-populating stats dropdown with recommended formation:', recommendedFormation);
+                        const options = Array.from(statsFormationDropdown.options);
+                        const hasOption = options.some(option => option.value === recommendedFormation);
+                        
+                        if (hasOption) {
+                            isUpdatingDropdowns = true;
+                            statsFormationDropdown.value = recommendedFormation;
+                            console.log('Stats dropdown value set to recommended:', statsFormationDropdown.value);
+                            updateStatisticalAnalysis();
+                            setTimeout(() => { isUpdatingDropdowns = false; }, 100);
+                        }
+                    }
+                }
+                return; // Exit function setelah handle recommended
+            }
+            
+            // Auto-populate Statistical Analysis dropdown dengan formasi yang dipilih
+            const statsFormationDropdown = document.getElementById('statsYourFormation');
+            if (statsFormationDropdown && selectedFormation !== 'recommended' && !isUpdatingDropdowns) {
+                console.log('Auto-populating stats dropdown with:', selectedFormation);
+                // Cek apakah formasi ada di dropdown Statistical Analysis
+                const options = Array.from(statsFormationDropdown.options);
+                const hasOption = options.some(option => option.value === selectedFormation);
+                
+                console.log('Has option in stats dropdown:', hasOption);
+                if (hasOption) {
+                    isUpdatingDropdowns = true; // Set flag to prevent recursive update
+                    statsFormationDropdown.value = selectedFormation;
+                    console.log('Stats dropdown value set to:', statsFormationDropdown.value);
+                    // Trigger update statistical analysis dengan formasi baru
+                    updateStatisticalAnalysis();
+                    setTimeout(() => { isUpdatingDropdowns = false; }, 100); // Reset flag after brief delay
+                }
             }
             
             // Update formasi utama dengan pilihan user
@@ -3785,12 +4617,68 @@
                     '3-3-4': '3-3-4 (Ultra Attack)'
                 };
                 
-                document.getElementById('formasiUtama').textContent = formationNames[selectedFormation] || selectedFormation;
+                const formasiUtamaElement = document.getElementById('formasiUtama');
+                if (formasiUtamaElement) {
+                    // Get formation characteristics - SAME AS RECOMMENDATION SYSTEM
+                    const formationData = formasiCharacteristics[selectedFormation];
+                    let formasiHTML = formationNames[selectedFormation] || selectedFormation;
+                    
+                    // Get counter explanation if available
+                    const formasiLawan = document.getElementById('formasiLawan')?.value;
+                    if (formasiLawan && formationCounters[formasiLawan]) {
+                        const counterData = formationCounters[formasiLawan];
+                        if (counterData.primary === selectedFormation || counterData.alternative === selectedFormation) {
+                            formasiHTML += "<br><small style='color: #82aaff;'>💡 " + counterData.explanation + "</small>";
+                        }
+                    }
+                    
+                    // Add formation characteristics - SAME FORMAT AS RECOMMENDATIONS
+                    if (formationData) {
+                        formasiHTML += "<br><br><div style='padding: 8px; background: rgba(130, 170, 255, 0.1); border-left: 3px solid #82aaff; border-radius: 4px; margin-top: 8px;'>";
+                        formasiHTML += "📊 <strong>Karakteristik " + selectedFormation + ":</strong><br>";
+                        formasiHTML += "• Tipe: " + formationData.tipePermainan + "<br>";
+                        formasiHTML += "• Kekuatan Menyerang: " + formationData.kekuatanMenyerang + "/10<br>";
+                        formasiHTML += "• Kekuatan Bertahan: " + formationData.kekuatanBertahan + "/10<br>";
+                        formasiHTML += "• Kontrol Tengah: " + formationData.kontrolTengah + "/10<br>";
+                        formasiHTML += "• Lebar Sayap: " + formationData.lebarSayap + "/10<br>";
+                        formasiHTML += "• Fleksibilitas: " + formationData.fleksibilitas + "/10<br>";
+                        formasiHTML += "• Kesulitan Eksekusi: " + formationData.kesulitanEksekusi + "/10";
+                        formasiHTML += "</div>";
+                    }
+                    
+                    formasiUtamaElement.innerHTML = formasiHTML;
+                }
                 
                 // Show required sections
-                document.getElementById('kondisiTimInfo').style.display = 'block';
-                document.getElementById('teamSuitabilitySection').style.display = 'block';
+                const kondisiTimInfo = document.getElementById('kondisiTimInfo');
+                const teamSuitabilitySection = document.getElementById('teamSuitabilitySection');
+                if (kondisiTimInfo) kondisiTimInfo.style.display = 'block';
+                if (teamSuitabilitySection) teamSuitabilitySection.style.display = 'block';
+                
+                // Set default alternative formation
+                const formasiAlternatifElement = document.getElementById('formasiAlternatif');
+                if (formasiAlternatifElement) {
+                    const alternativeFormations = {
+                        '4-3-3': '4-2-3-1 (Balanced Alternative)',
+                        '4-2-3-1': '4-3-3 (Attacking Alternative)', 
+                        '3-5-2': '4-4-2 (Classic Alternative)',
+                        '4-4-2': '3-5-2 (Wingback Alternative)',
+                        '4-1-4-1': '4-2-3-1 (Flexible Alternative)',
+                        '3-4-3': '4-3-3 (Wing-focused Alternative)',
+                        '5-3-2': '3-5-2 (Balanced Alternative)',
+                        '4-5-1': '4-4-2 (Direct Alternative)',
+                        '3-4-2-1': '4-2-3-1 (Modern Alternative)',
+                        '4-3-2-1': '4-3-3 (Width Alternative)',
+                        '5-4-1': '4-5-1 (Counter Alternative)',
+                        '3-3-4': '4-3-3 (Structured Alternative)'
+                    };
+                    formasiAlternatifElement.textContent = alternativeFormations[selectedFormation] || '4-2-3-1 (Flexible Alternative)';
+                }
+                
             }
+            
+            // NOTE: substitutionPlan, risikoHint, and pengaruhKondisi will be generated 
+            // by updateTacticalInstructionsForFormation() using the SAME functions as recommendations
             
             // Update instruksi khusus berdasarkan formasi yang dipilih
             updateTacticalInstructionsForFormation(selectedFormation);
@@ -3803,153 +4691,184 @@
         }
 
         function updateTacticalInstructionsForFormation(formation) {
-            const tacticalInstructions = {
-                '4-3-3': {
-                    instruksi: "Fokus serangan sayap dengan full-back menyerang, gelandang tengah kontrol tempo, striker tengah sebagai target man",
-                    tempo: "Tinggi - Pressing intensif dan transisi cepat",
-                    pemainKunci: "Winger dan Full-back sebagai sumber kreativitas utama",
-                    outOfPossession: "High pressing dengan line pertahanan tinggi",
-                    defensiveLine: "Tinggi (75-80m dari gawang)",
-                    markingStrategy: "Zonal marking dengan man-marking pada striker lawan",
-                    pressingStrategy: "Gegenpressing - tekan langsung saat kehilangan bola",
-                    setPieces: "Banyak pemain masuk kotak penalti, manfaatkan tinggi badan"
-                },
-                '4-2-3-1': {
-                    instruksi: "Seimbang antara serangan dan pertahanan, CAM sebagai playmaker utama, double pivot untuk stabilitas",
-                    tempo: "Sedang - Kontrol permainan dengan transisi terukur",
-                    pemainKunci: "CAM dan CM untuk distribusi bola, striker sebagai finisher",
-                    outOfPossession: "Medium block dengan pressing selektif",
-                    defensiveLine: "Medium (65-70m dari gawang)",
-                    markingStrategy: "Hybrid - kombinasi zonal dan man-marking",
-                    pressingStrategy: "Structured pressing - tekan di area tertentu",
-                    setPieces: "Fokus pada kombinasi pendek dan crossing dari sayap"
-                },
-                '3-5-2': {
-                    instruksi: "Dominasi lini tengah dengan wingback serang, CB tengah sebagai libero, duo striker saling melengkapi",
-                    tempo: "Variabel - Sesuaikan dengan momentum permainan",
-                    pemainKunci: "Wingback untuk lebar, CM untuk kontrol, duo striker",
-                    outOfPossession: "Compact defense dengan transisi cepat ke counter-attack",
-                    defensiveLine: "Medium-Rendah (60-65m dari gawang)",
-                    markingStrategy: "Man-marking ketat pada striker, zonal di lini tengah",
-                    pressingStrategy: "Mid-block pressing dengan jebakan offside",
-                    setPieces: "Manfaatkan kekuatan fisik CB dan heading ability striker"
-                },
-                '4-4-2': {
-                    instruksi: "Permainan langsung dan fisik, duo striker saling mendukung, lini tengah kompak dan solid",
-                    tempo: "Sedang-Tinggi - Serangan langsung ke kotak penalti",
-                    pemainKunci: "Duo striker dan gelandang box-to-box",
-                    outOfPossession: "Solid defensive shape dengan pressing terkoordinasi",
-                    defensiveLine: "Medium (65-70m dari gawang)",
-                    markingStrategy: "Man-marking konsisten di seluruh lini",
-                    pressingStrategy: "Team pressing - seluruh tim bergerak bersama",
-                    setPieces: "Power play dengan banyak pemain tinggi di kotak penalti"
-                },
-                '4-1-4-1': {
-                    instruksi: "Kontrol total lini tengah dengan diamond shape, DM sebagai anchor, AM sebagai playmaker kreatif",
-                    tempo: "Rendah-Sedang - Possession-based dengan passing akurat",
-                    pemainKunci: "DM untuk intercept, AM untuk kreativitas, striker sebagai focal point",
-                    outOfPossession: "Compact central defense dengan pressing trap",
-                    defensiveLine: "Medium-Tinggi (68-73m dari gawang)",
-                    markingStrategy: "Zonal marking dengan double-teaming di tengah",
-                    pressingStrategy: "Central pressing - paksa lawan ke sayap",
-                    setPieces: "Kombinasi pendek dengan finishing dari jarak dekat"
-                },
-                'recommended': {
-                    instruksi: "Menggunakan rekomendasi sistem berdasarkan analisis kondisi pertandingan",
-                    tempo: "Disesuaikan dengan situasi pertandingan",
-                    pemainKunci: "Berdasarkan analisis kekuatan tim",
-                    outOfPossession: "Strategi adaptif sesuai kondisi lawan",
-                    defensiveLine: "Fleksibel berdasarkan rekomendasi sistem",
-                    markingStrategy: "Disesuaikan dengan formasi dan gaya lawan",
-                    pressingStrategy: "Adaptif berdasarkan momentum pertandingan",
-                    setPieces: "Optimized berdasarkan komposisi pemain"
+            // Get user inputs - USE CORRECT IDs SAME AS RECOMMENDATION SYSTEM
+            const situasiGame = document.getElementById('situasiGame')?.value || '';
+            const kondisiKita = document.getElementById('kondisiKita')?.value || '';
+            const kondisiLawan = document.getElementById('kondisiLawan')?.value || '';
+            const jenisLawan = document.getElementById('jenisLawan')?.value || '';
+            const gayaLawan = document.getElementById('gayaLawan')?.value || '';
+            const formasiLawan = document.getElementById('formasiLawan')?.value || '';
+            
+            // Debug: Log nilai-nilai yang diambil
+            console.log('🔍 Manual Formation Parameters:', {
+                formation,
+                situasiGame,
+                kondisiKita,
+                kondisiLawan,
+                jenisLawan,
+                gayaLawan,
+                formasiLawan
+            });
+            
+            // Generate instructions using SAME function as recommendations
+            const instruksiKhususHTML = generateInstructionsForFormation(
+                formation, 
+                situasiGame, 
+                gayaLawan, 
+                kondisiKita, 
+                kondisiLawan,
+                formasiLawan
+            );
+            
+            // Generate tempo using the SAME function as recommendations
+            const tempoHTML = generateTempo(situasiGame, kondisiKita, jenisLawan, gayaLawan, formation);
+            
+            // Generate key players using the SAME function as recommendations
+            const keyPlayersHTML = generateKeyPlayers(formation, situasiGame);
+            
+            // Get formation characteristics
+            const formationData = formasiCharacteristics[formation];
+            
+            // DIRECTLY UPDATE DOM - SAME AS RECOMMENDATION SYSTEM
+            // Update Instruksi Khusus
+            const instruksiKhususElement = document.getElementById('instruksiKhusus');
+            if (instruksiKhususElement) {
+                instruksiKhususElement.innerHTML = `<strong>Formasi ${formation}:</strong><br>${instruksiKhususHTML}`;
+            }
+            
+            // Update Tempo Permainan - USE innerHTML because it contains HTML
+            const tempoPermainanElement = document.getElementById('tempoPermainan');
+            if (tempoPermainanElement) {
+                tempoPermainanElement.innerHTML = tempoHTML;
+            }
+            
+            // Update Pemain Kunci - USE innerHTML because it contains HTML
+            const pemainKunciElement = document.getElementById('pemainKunci');
+            if (pemainKunciElement) {
+                pemainKunciElement.innerHTML = keyPlayersHTML;
+            }
+            
+            // Update Player Role Optimizer
+            const playerRoleOptimizerElement = document.getElementById('playerRoleOptimizer');
+            if (playerRoleOptimizerElement) {
+                playerRoleOptimizerElement.innerHTML = generatePlayerRoleOptimizer(formation);
+            }
+            
+            // Update Out of Possession - SAME AS RECOMMENDATION SYSTEM
+            const outOfPossessionElement = document.getElementById('outOfPossession');
+            if (outOfPossessionElement && formationData) {
+                let oopText = formationData.formasiDefensif + "<br><br>";
+                oopText += "<strong>Perubahan Posisi:</strong><br>" + formationData.perubahanPosisi + "<br><br>";
+                oopText += "<strong>Tugas Utama OOP:</strong><br>" + formationData.tugasKhususOOP;
+                outOfPossessionElement.innerHTML = oopText;
+            }
+            
+            // Generate Defensive Line - SAME FUNCTION AS RECOMMENDATION SYSTEM
+            const defensiveLineHTML = generateDefensiveLine(situasiGame, kondisiKita, gayaLawan, jenisLawan);
+            const defensiveLineElement = document.getElementById('defensiveLine');
+            if (defensiveLineElement) {
+                defensiveLineElement.innerHTML = defensiveLineHTML;
+            }
+            
+            // Generate Marking Strategy - SAME FUNCTION AS RECOMMENDATION SYSTEM
+            const markingStrategyHTML = generateMarkingStrategy(formation, formasiLawan, gayaLawan);
+            const markingStrategyElement = document.getElementById('markingStrategy');
+            if (markingStrategyElement) {
+                markingStrategyElement.innerHTML = markingStrategyHTML;
+            }
+            
+            // Generate Pressing Strategy - SAME FUNCTION AS RECOMMENDATION SYSTEM
+            const pressingStrategyHTML = generatePressingStrategy(formation, kondisiKita, gayaLawan, jenisLawan);
+            const pressingStrategyElement = document.getElementById('pressingStrategy');
+            if (pressingStrategyElement) {
+                pressingStrategyElement.innerHTML = pressingStrategyHTML;
+            }
+            
+            // Get Set Pieces and Substitutions from tacticalDatabase - SAME AS RECOMMENDATION SYSTEM
+            let setPiecesHTML = "🏟️ Standard set piece routines";
+            let substitutionsHTML = "🔄 Tactical substitutions as needed";
+            let risikoHTML = "⚠️ Monitor match closely";
+            
+            // Try multiple key combinations to find matching tactical data - SAME AS RECOMMENDATION SYSTEM
+            let matchingTacticalData = null;
+            
+            // Priority 1: Exact match with formation
+            if (formasiLawan) {
+                let key = `${jenisLawan}|${formasiLawan}|${situasiGame}`;
+                console.log('🔍 Trying key:', key);
+                matchingTacticalData = tacticalDatabase[key];
+            }
+            
+            // Priority 2: Match without formation
+            if (!matchingTacticalData) {
+                let key = `${jenisLawan}|${situasiGame}`;
+                console.log('🔍 Trying key without formation:', key);
+                matchingTacticalData = tacticalDatabase[key];
+            }
+            
+            // Priority 3: Partial match
+            if (!matchingTacticalData) {
+                for (let dbKey in tacticalDatabase) {
+                    if (dbKey.includes(jenisLawan) && dbKey.includes(situasiGame)) {
+                        matchingTacticalData = tacticalDatabase[dbKey];
+                        console.log('🔍 Found partial match:', dbKey);
+                        break;
+                    }
                 }
-            };
+            }
             
-            const instruction = tacticalInstructions[formation] || tacticalInstructions['recommended'];
+            // Extract data if found
+            if (matchingTacticalData) {
+                console.log('✅ Found tactical data:', matchingTacticalData);
+                setPiecesHTML = matchingTacticalData.setpieces || setPiecesHTML;
+                substitutionsHTML = matchingTacticalData.substitutions || substitutionsHTML;
+                risikoHTML = matchingTacticalData.risiko || risikoHTML;
+            } else {
+                console.log('❌ No matching tactical data found');
+            }
             
-            if (formation !== 'recommended') {
-                document.getElementById('instruksiKhusus').innerHTML = `<strong>Formasi ${formation}:</strong><br>${instruction.instruksi}`;
-                document.getElementById('tempoPermainan').textContent = instruction.tempo;
-                document.getElementById('pemainKunci').textContent = instruction.pemainKunci;
-                document.getElementById('outOfPossession').textContent = instruction.outOfPossession;
-                document.getElementById('defensiveLine').textContent = instruction.defensiveLine;
-                document.getElementById('markingStrategy').textContent = instruction.markingStrategy;
-                document.getElementById('pressingStrategy').textContent = instruction.pressingStrategy;
-                document.getElementById('setPieces').textContent = instruction.setPieces;
+            // Update DOM
+            const setPiecesElement = document.getElementById('setPieces');
+            if (setPiecesElement) {
+                setPiecesElement.innerHTML = setPiecesHTML;
+            }
+            
+            const substitutionPlanElement = document.getElementById('substitutionPlan');
+            if (substitutionPlanElement) {
+                substitutionPlanElement.innerHTML = substitutionsHTML;
+            }
+            
+            const risikoHintElement = document.getElementById('risikoHint');
+            if (risikoHintElement) {
+                risikoHintElement.textContent = risikoHTML;
             }
         }
 
         function updatePlayingStyleForFormation(formation) {
-            const playingStyles = {
-                '4-3-3': {
-                    gaya: "Attacking Football - Dominasi sayap dengan pressing tinggi",
-                    filosofiOffensive: "Serangan cepat melalui sayap, overload di final third, finishing dari multiple angle",
-                    filosofiDefensive: "High defensive line, aggressive pressing, quick transition saat regain possession",
-                    intensitas: "Sangat Tinggi (85-90%) - Non-stop pressing dan movement",
-                    karakteristik: "Dominan menyerang, kontrol tempo tinggi, fisik dan teknikal",
-                    riskReward: "High Risk, High Reward - Rentan counter tapi produktif mencetak gol",
-                    strategiPassing: "Direct passing ke sayap, quick passing di tengah, crossing dan cutting inside"
-                },
-                '4-2-3-1': {
-                    gaya: "Balanced Control - Stabilitas dengan kreativitas",
-                    filosofiOffensive: "Build-up patient, kreativitas dari CAM, finishing akurat dari striker",
-                    filosofiDefensive: "Structured defense, cover shadow yang baik, anticipation intercept",
-                    intensitas: "Sedang-Tinggi (70-80%) - Kontrol energi untuk 90 menit",
-                    karakteristik: "Seimbang di semua aspek, adaptable, intelligent positioning",
-                    riskReward: "Medium Risk, Medium-High Reward - Stabil dengan potensi skor tinggi",
-                    strategiPassing: "Progressive passing, combination play di final third, switch play"
-                },
-                '3-5-2': {
-                    gaya: "Dynamic Wingback System - Lebar dengan kekuatan tengah",
-                    filosofiOffensive: "Width dari wingback, overload di tengah, duo striker combination",
-                    filosofiDefensive: "Compact central defense, quick transition, numerical superiority",
-                    intensitas: "Tinggi (75-85%) - Wingback harus energik sepanjang pertandingan",
-                    karakteristik: "Flexible, physically demanding, tactically sophisticated",
-                    riskReward: "Medium-High Risk, High Reward - Dominan jika eksekusi tepat",
-                    strategiPassing: "Wide passing dari wingback, through balls ke striker, switch antar sayap"
-                },
-                '4-4-2': {
-                    gaya: "Classic Direct Football - Simplicity dengan efektivitas",
-                    filosofiOffensive: "Direct play ke target man, support dari second striker, width dari winger",
-                    filosofiDefensive: "Solid defensive shape, disciplined marking, clear defensive roles",
-                    intensitas: "Sedang (65-75%) - Efisiensi energi dengan timing tepat",
-                    karakteristik: "Straightforward, physically strong, mentally tough",
-                    riskReward: "Low-Medium Risk, Medium Reward - Konsisten dan sulit ditaklukkan",
-                    strategiPassing: "Direct passing, long balls ke striker, simple but effective"
-                },
-                '4-1-4-1': {
-                    gaya: "Possession Mastery - Kontrol total bola",
-                    filosofiOffensive: "Patient build-up, creative passing dari AM, clinical finishing",
-                    filosofiDefensive: "Pressing trap, intelligent pressing, quick recovery",
-                    intensitas: "Sedang-Tinggi (70-80%) - Mental focus sangat penting",
-                    karakteristik: "Technical, intelligent, patient but deadly",
-                    riskReward: "Low Risk, Medium-High Reward - Aman tapi bisa mematikan",
-                    strategiPassing: "Short passing network, through balls, precision over power"
-                },
-                'recommended': {
-                    gaya: "Adaptive System - Menyesuaikan dengan kondisi",
-                    filosofiOffensive: "Berdasarkan analisis situasi pertandingan",
-                    filosofiDefensive: "Disesuaikan dengan kekuatan dan kelemahan tim",
-                    intensitas: "Variable - Sesuai kebutuhan pertandingan",
-                    karakteristik: "Fleksibel berdasarkan rekomendasi sistem",
-                    riskReward: "Optimized berdasarkan kondisi",
-                    strategiPassing: "Adaptif sesuai rekomendasi"
-                }
+            // Get user inputs - USE CORRECT IDs SAME AS RECOMMENDATION SYSTEM
+            const situasiGame = document.getElementById('situasiGame')?.value || '';
+            const jenisLawan = document.getElementById('jenisLawan')?.value || '';
+            const gayaLawan = document.getElementById('gayaLawan')?.value || '';
+            
+            // Get formation data
+            const formationData = formasiCharacteristics[formation];
+            
+            // Create recommendation object in EXACT same format as system recommendations
+            const recommendation = {
+                formasi: formation,
+                gaya: formationData ? formationData.tipePermainan : '',
+                instruksi: formationData ? formationData.cocokUntukPemain : '',
+                outOfPossession: formationData ? formationData.formasiDefensif : '',
+                defensiveLine: formationData ? formationData.defensiveLine : '',
+                pressing: formationData ? formationData.pressingStrategy : '',
+                tempo: ''
             };
             
-            const style = playingStyles[formation] || playingStyles['recommended'];
-            
-            if (formation !== 'recommended') {
-                document.getElementById('gayaUtama').innerHTML = `<strong>${style.gaya}</strong>`;
-                document.getElementById('filosofiOffensive').textContent = style.filosofiOffensive;
-                document.getElementById('filosofiDefensive').textContent = style.filosofiDefensive;
-                document.getElementById('intensitasLevel').textContent = style.intensitas;
-                document.getElementById('karakteristikUtama').textContent = style.karakteristik;
-                document.getElementById('riskReward').textContent = style.riskReward;
-                document.getElementById('strategiPassing').textContent = style.strategiPassing;
-            }
+            // Call the EXACT SAME function as recommendations system
+            analyzePlayingStyle(recommendation, situasiGame, jenisLawan);
         }
+
+
 
         function updateTeamSuitabilityForFormation(formation) {
             const suitabilityAnalysis = {
@@ -3978,6 +4897,41 @@
                     weakness: "Memerlukan DM berkelas world-class, bisa isolated striker",
                     suitability: "Terbaik untuk tim dengan pemain teknis dan patient play"
                 },
+                '3-4-3': {
+                    strength: "Excellent untuk tim dengan wingback berstandar tinggi dan trio striker yang fleksibel",
+                    weakness: "Vulnerable di central midfield, memerlukan CB dengan passing range bagus",
+                    suitability: "Ideal untuk tim attacking-minded dengan squad depth yang baik"
+                },
+                '5-3-2': {
+                    strength: "Perfect untuk tim defensive-minded dengan counter-attack weapons",
+                    weakness: "Limited attacking options, memerlukan wingback dengan stamina luar biasa",
+                    suitability: "Cocok untuk tim dengan defensive mentality dan clinical strikers"
+                },
+                '4-5-1': {
+                    strength: "Excellent untuk tim dengan satu striker berkualitas dan midfield solid",
+                    weakness: "Striker bisa isolated, memerlukan midfield dengan box-to-box capabilities",
+                    suitability: "Perfect untuk tim pragmatic dengan strong defensive organization"
+                },
+                '3-4-2-1': {
+                    strength: "Ideal untuk tim dengan duo AM kreatif dan striker clinical",
+                    weakness: "Memerlukan pemain dengan IQ tinggi, vulnerable jika AM tidak perform",
+                    suitability: "Terbaik untuk tim dengan technical players dan creative mindset"
+                },
+                '4-3-2-1': {
+                    strength: "Revolutionary untuk tim dengan striker intelligent yang bisa false 9",
+                    weakness: "Sangat complex, memerlukan pemain dengan tactical understanding tinggi",
+                    suitability: "Exclusive untuk tim dengan elite technical ability dan tactical discipline"
+                },
+                '5-4-1': {
+                    strength: "Fortress untuk tim dengan defensive priorities dan organized structure",
+                    weakness: "Sangat limited attacking threat, bisa boring untuk supporters",
+                    suitability: "Emergency untuk tim yang harus avoid defeat at all costs"
+                },
+                '3-3-4': {
+                    strength: "Maximum entertainment untuk tim dengan 4 attacking players berkualitas",
+                    weakness: "Defensive suicide, memerlukan world-class players di semua lini",
+                    suitability: "Only untuk tim dengan nothing to lose dan attacking superstars"
+                },
                 'recommended': {
                     strength: "Disesuaikan dengan kondisi tim aktual",
                     weakness: "Berdasarkan analisis kelemahan tim",
@@ -3988,9 +4942,16 @@
             const analysis = suitabilityAnalysis[formation] || suitabilityAnalysis['recommended'];
             
             if (formation !== 'recommended') {
-                document.getElementById('teamStrength').textContent = analysis.strength;
-                document.getElementById('teamWeakness').textContent = analysis.weakness;
-                document.getElementById('formationSuitability').textContent = analysis.suitability;
+                // Add null checks for all elements
+                const elements = {
+                    teamStrength: document.getElementById('teamStrength'),
+                    teamWeakness: document.getElementById('teamWeakness'),
+                    formationSuitability: document.getElementById('formationSuitability')
+                };
+                
+                if (elements.teamStrength) elements.teamStrength.textContent = analysis.strength;
+                if (elements.teamWeakness) elements.teamWeakness.textContent = analysis.weakness;
+                if (elements.formationSuitability) elements.formationSuitability.textContent = analysis.suitability;
             }
         }
 
@@ -4006,7 +4967,10 @@
             document.getElementById('karakteristikTim').value = "";
             
             // Reset user formation selection
-            document.getElementById('userFormationSelect').value = "recommended";
+            const userFormationElement = document.getElementById('userFormationSelect');
+            if (userFormationElement) {
+                userFormationElement.value = "recommended";
+            }
             
             // Clear rekomendasi
             clearRecommendations();
@@ -4202,6 +5166,102 @@
                         "4-3-3": { success: 68.2, advantages: ["Three vs Three", "Central"], goalDiff: "+0.3" },
                         "3-5-2": { success: 71.8, advantages: ["Attack Focus", "Wide"], goalDiff: "+0.4" }
                     }
+                },
+                "4-1-4-1": {
+                    baseStats: {
+                        xgFor: 1.7, xgAgainst: 1.2, winRate: 67.3, possession: 59.1,
+                        shots: 13.5, passCompletion: 85.2, defActions: 24.8, setPiece: 20,
+                        goalsPerGame: 1.7, cleanSheetRate: 46
+                    },
+                    strengths: ["Central Control", "Diamond Midfield", "Compact"],
+                    weaknesses: ["Width Limited", "Fullback Dependence"],
+                    vsFormations: {
+                        "4-2-3-1": { success: 70.5, advantages: ["Midfield Diamond", "Central Press"], goalDiff: "+0.4" },
+                        "4-3-3": { success: 66.8, advantages: ["Central Numbers", "Compact"], goalDiff: "+0.2" },
+                        "4-4-2": { success: 72.3, advantages: ["Midfield Dominance", "Diamond"], goalDiff: "+0.5" },
+                        "3-5-2": { success: 64.2, advantages: ["Central Battle", "Technical"], goalDiff: "+0.1" },
+                        "5-4-1": { success: 75.6, advantages: ["Break Down Defense", "Midfield"], goalDiff: "+0.6" }
+                    }
+                },
+                "4-5-1": {
+                    baseStats: {
+                        xgFor: 1.4, xgAgainst: 1.0, winRate: 62.1, possession: 51.3,
+                        shots: 11.2, passCompletion: 82.8, defActions: 29.4, setPiece: 26,
+                        goalsPerGame: 1.4, cleanSheetRate: 55
+                    },
+                    strengths: ["Counter Attack", "Midfield Block", "Defensive"],
+                    weaknesses: ["Limited Attack", "Lone Striker"],
+                    vsFormations: {
+                        "4-3-3": { success: 56.7, advantages: ["Midfield Numbers", "Counter"], goalDiff: "-0.1" },
+                        "4-2-3-1": { success: 54.2, advantages: ["Defensive Block", "Break"], goalDiff: "-0.2" },
+                        "4-4-2": { success: 63.8, advantages: ["Midfield Edge", "Compact"], goalDiff: "+0.2" },
+                        "3-4-3": { success: 52.1, advantages: ["Absorb", "Counter"], goalDiff: "-0.3" },
+                        "5-4-1": { success: 58.9, advantages: ["Like vs Like", "Patience"], goalDiff: "0.0" }
+                    }
+                },
+                "3-4-2-1": {
+                    baseStats: {
+                        xgFor: 1.8, xgAgainst: 1.3, winRate: 66.5, possession: 57.4,
+                        shots: 14.1, passCompletion: 84.6, defActions: 25.3, setPiece: 21,
+                        goalsPerGame: 1.8, cleanSheetRate: 44
+                    },
+                    strengths: ["Creative Hub", "Christmas Tree", "Balanced"],
+                    weaknesses: ["Width Dependency", "Complex"],
+                    vsFormations: {
+                        "4-2-3-1": { success: 69.3, advantages: ["Creative Triangle", "Central"], goalDiff: "+0.3" },
+                        "4-4-2": { success: 71.7, advantages: ["Technical Edge", "Playmakers"], goalDiff: "+0.5" },
+                        "3-5-2": { success: 67.8, advantages: ["Match Formation", "Creative"], goalDiff: "+0.3" },
+                        "4-3-3": { success: 65.4, advantages: ["Central Strength", "Two AMs"], goalDiff: "+0.2" },
+                        "5-3-2": { success: 74.2, advantages: ["Break Defense", "Creative"], goalDiff: "+0.6" }
+                    }
+                },
+                "4-3-2-1": {
+                    baseStats: {
+                        xgFor: 1.9, xgAgainst: 1.4, winRate: 68.7, possession: 60.2,
+                        shots: 15.3, passCompletion: 85.8, defActions: 23.1, setPiece: 19,
+                        goalsPerGame: 1.9, cleanSheetRate: 42
+                    },
+                    strengths: ["False 9", "Technical Play", "Creative"],
+                    weaknesses: ["No Target Man", "Complex System"],
+                    vsFormations: {
+                        "4-2-3-1": { success: 71.6, advantages: ["False 9 Movement", "Overload"], goalDiff: "+0.5" },
+                        "4-3-3": { success: 69.8, advantages: ["Central Creativity", "Drop Deep"], goalDiff: "+0.4" },
+                        "4-4-2": { success: 74.3, advantages: ["Technical Superiority", "False 9"], goalDiff: "+0.6" },
+                        "5-3-2": { success: 76.9, advantages: ["Break Block", "Movement"], goalDiff: "+0.7" },
+                        "3-5-2": { success: 68.5, advantages: ["False 9 vs CBs", "Creative"], goalDiff: "+0.3" }
+                    }
+                },
+                "5-4-1": {
+                    baseStats: {
+                        xgFor: 1.2, xgAgainst: 0.8, winRate: 57.4, possession: 46.8,
+                        shots: 9.4, passCompletion: 78.3, defActions: 37.6, setPiece: 34,
+                        goalsPerGame: 1.2, cleanSheetRate: 68
+                    },
+                    strengths: ["Ultra Defensive", "Low Block", "Resilient"],
+                    weaknesses: ["Very Limited Attack", "Ultra Passive"],
+                    vsFormations: {
+                        "4-3-3": { success: 47.3, advantages: ["Defensive Wall", "Frustrate"], goalDiff: "-0.4" },
+                        "4-2-3-1": { success: 45.8, advantages: ["Low Block", "Absorb"], goalDiff: "-0.5" },
+                        "3-4-3": { success: 42.1, advantages: ["Park Bus", "Counter"], goalDiff: "-0.6" },
+                        "4-4-2": { success: 54.2, advantages: ["Defensive Numbers", "Solid"], goalDiff: "-0.1" },
+                        "3-5-2": { success: 52.7, advantages: ["Defensive Match", "Counter"], goalDiff: "-0.2" }
+                    }
+                },
+                "3-3-4": {
+                    baseStats: {
+                        xgFor: 2.3, xgAgainst: 1.9, winRate: 66.2, possession: 54.3,
+                        shots: 18.7, passCompletion: 80.1, defActions: 19.2, setPiece: 12,
+                        goalsPerGame: 2.3, cleanSheetRate: 32
+                    },
+                    strengths: ["All-Out Attack", "Goals Galore", "Exciting"],
+                    weaknesses: ["Very Vulnerable", "High Risk"],
+                    vsFormations: {
+                        "4-2-3-1": { success: 74.8, advantages: ["Four Forwards", "Overload"], goalDiff: "+0.7" },
+                        "4-3-3": { success: 71.3, advantages: ["Attack Overload", "Risk"], goalDiff: "+0.5" },
+                        "5-3-2": { success: 86.4, advantages: ["Attack vs Defense", "Goals"], goalDiff: "+1.3" },
+                        "5-4-1": { success: 88.9, advantages: ["Attack Ultra Defense", "Score"], goalDiff: "+1.5" },
+                        "4-4-2": { success: 76.5, advantages: ["Four Forwards", "Dominate"], goalDiff: "+0.8" }
+                    }
                 }
             },
             leagueModifiers: {
@@ -4212,6 +5272,12 @@
         };
 
         function updateStatisticalAnalysis() {
+            // Skip if we're currently updating dropdowns programmatically
+            if (isUpdatingDropdowns) {
+                console.log('Skipping updateStatisticalAnalysis - dropdown update in progress');
+                return;
+            }
+            
             const yourForm = document.getElementById('statsYourFormation').value;
             const oppForm = document.getElementById('statsOpponentFormation').value;
             const league = document.getElementById('statsLeagueLevel').value;
@@ -4321,6 +5387,360 @@
             }
             
             document.getElementById('statsRecommendationText').textContent = recommendation;
+            
+            // Update Advanced Metrics Dashboard
+            updateAdvancedMetrics(yourForm, oppForm, formData, matchup);
+        }
+
+        function updateAdvancedMetrics(yourForm, oppForm, formData, matchup) {
+            // 1. Update xG Analysis
+            const yourXG = formData.baseStats.xgFor;
+            const oppXG = formData.baseStats.xgAgainst;
+            const shotQuality = (yourXG / formData.baseStats.shots).toFixed(3);
+            const bigChances = (yourXG * 1.8).toFixed(1);
+            
+            document.getElementById('metricsYourXG').textContent = yourXG.toFixed(1);
+            document.getElementById('metricsOppXG').textContent = oppXG.toFixed(1);
+            document.getElementById('metricsShotQuality').textContent = shotQuality;
+            document.getElementById('metricsBigChances').textContent = bigChances;
+            
+            document.getElementById('metricsYourXGTrend').textContent = 
+                yourXG > 1.8 ? '↑ Above average' : yourXG > 1.5 ? '→ Average' : '↓ Below average';
+            document.getElementById('metricsOppXGTrend').textContent = 
+                oppXG < 1.2 ? '↓ Excellent defense' : oppXG < 1.5 ? '→ Good defense' : '↑ Vulnerable';
+            
+            const winProb = matchup.success;
+            const expectedScore = `${Math.round(yourXG)}-${Math.round(oppXG)}`;
+            document.getElementById('metricsXGPrediction').textContent = 
+                `Expected scoreline: ${expectedScore} (${winProb.toFixed(0)}% win probability)`;
+            
+            // 2. Generate Heat Maps
+            generateHeatMap('metricsYourHeatMap', yourForm, true);
+            generateHeatMap('metricsOppHeatMap', oppForm, false);
+            
+            // 3. Generate Passing Network Suggestions
+            generatePassingNetwork(yourForm);
+            
+            // 4. Generate Defensive Vulnerability Zones
+            generateVulnerabilityZones(yourForm, oppForm, formData);
+            
+            // 5. Generate Player Role Optimizer
+            const playerRoleOptimizerElement = document.getElementById('playerRoleOptimizer');
+            if (playerRoleOptimizerElement) {
+                playerRoleOptimizerElement.innerHTML = generatePlayerRoleOptimizer(yourForm);
+            }
+            
+            // 6. Generate Set Pieces Strategy
+            const setPiecesElement = document.getElementById('setPiecesStrategy');
+            if (setPiecesElement) {
+                setPiecesElement.innerHTML = generateSetPiecesStrategy(yourForm);
+            }
+            
+            // 7. Generate Key Battles
+            const keyBattlesElement = document.getElementById('keyBattles');
+            if (keyBattlesElement) {
+                keyBattlesElement.innerHTML = generateKeyBattles(yourForm, oppForm);
+            }
+        }
+
+        function generateHeatMap(elementId, formation, isAttacking) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            
+            // Define heat zones with explanations and actions
+            const heatZones = {
+                '4-3-3': isAttacking ? [
+                    { zone: 'Left Wing (HOT)', explanation: 'High attacking activity on left flank', action: 'Exploit with inverted winger cutting inside or overlapping fullback' },
+                    { zone: 'Right Wing (HOT)', explanation: 'High attacking activity on right flank', action: 'Use winger pace and crosses, or inside forward for goals' },
+                    { zone: 'Center Forward (WARM)', explanation: 'Moderate central attacking presence', action: 'Support with through balls and maintain pressing trigger point' },
+                    { zone: 'Central Midfield (WARM)', explanation: 'Decent ball circulation in middle', action: 'Control tempo, switch play between flanks' },
+                    { zone: 'Full-backs (COOL)', explanation: 'Lower defensive line activity', action: 'Push forward for overlaps when safe' }
+                ] : [
+                    { zone: 'Wide Areas (WEAK)', explanation: 'Vulnerable to wide attacks', action: 'Target flanks with crosses and overlapping runs' },
+                    { zone: 'Half-spaces (VULNERABLE)', explanation: 'Gaps between defense and midfield', action: 'Attack through inside channels with AMs/IFs' },
+                    { zone: 'Behind Wingers (EXPOSED)', explanation: 'Space when wingers push high', action: 'Exploit with quick switches and diagonal runs' }
+                ],
+                '4-2-3-1': isAttacking ? [
+                    { zone: 'CAM Zone (HOT)', explanation: 'Primary creative hub behind striker', action: 'Feed killer passes, control final third playmaking' },
+                    { zone: 'Wide Areas (WARM)', explanation: 'Good wing presence with width', action: 'Stretch defense and create crossing opportunities' },
+                    { zone: 'Striker Box (HOT)', explanation: 'High activity in penalty area', action: 'Supply with crosses and through balls, focus shooting' },
+                    { zone: 'Double Pivot (COOL)', explanation: 'Deeper midfield positioning', action: 'Recycle possession safely, shield defense' }
+                ] : [
+                    { zone: 'Wing Channels (WEAK)', explanation: 'Fullbacks isolated when pushed high', action: 'Attack wide areas with pace and 1v1 situations' },
+                    { zone: 'Gap between lines (VULNERABLE)', explanation: 'Space between CDMs and defense', action: 'Run into space with late midfield arrivals' }
+                ],
+                '4-4-2': isAttacking ? [
+                    { zone: 'Twin Strikers (HOT)', explanation: 'Two forwards creating constant pressure', action: 'Play direct balls, use striker partnership for link-up' },
+                    { zone: 'Wide Midfield (WARM)', explanation: 'Midfielders providing width', action: 'Deliver crosses and track back for defensive cover' },
+                    { zone: 'Central Pair (COOL)', explanation: 'Two CMs holding middle ground', action: 'Control possession tempo, distribute left and right' }
+                ] : [
+                    { zone: 'Central Areas (WEAK)', explanation: 'Two CMs can be outnumbered', action: 'Overload center with extra midfielder for numerical advantage' },
+                    { zone: 'Behind Midfield (VULNERABLE)', explanation: 'Space between midfield and defense', action: 'Exploit with through balls and late runs' }
+                ],
+                '4-1-4-1': isAttacking ? [
+                    { zone: 'Diamond Midfield (HOT)', explanation: 'Compact midfield dominance', action: 'Play through center, use quick passing combinations' },
+                    { zone: 'Central Zone (WARM)', explanation: 'Strong central presence', action: 'Control possession, dictate game tempo centrally' },
+                    { zone: 'DM Area (COOL)', explanation: 'Anchor holding deep position', action: 'Shield defense and recycle possession safely' }
+                ] : [
+                    { zone: 'Wide Areas (WEAK)', explanation: 'Lack of natural wide players', action: 'Attack flanks with overlapping fullbacks and wingers' },
+                    { zone: 'Behind DM (VULNERABLE)', explanation: 'Space when DM pushed up', action: 'Quick counter through center when DM is forward' }
+                ],
+                '3-5-2': isAttacking ? [
+                    { zone: 'Wing-backs (HOT)', explanation: 'High wing-back attacking activity', action: 'Overlap constantly, deliver crosses into box' },
+                    { zone: 'Central Midfield (WARM)', explanation: 'Solid midfield control', action: 'Dominate possession, switch play side to side' },
+                    { zone: 'Twin Strikers (WARM)', explanation: 'Two strikers working together', action: 'Create space with movement, link-up play' }
+                ] : [
+                    { zone: 'Wide Channels (WEAK)', explanation: 'Exposed when wing-backs attack', action: 'Counter down flanks when wing-backs are high' },
+                    { zone: 'Between CBs (VULNERABLE)', explanation: 'Gaps in three-man defense', action: 'Attack through center with quick forwards' }
+                ],
+                '5-3-2': isAttacking ? [
+                    { zone: 'Counter Routes (WARM)', explanation: 'Set up for quick counters', action: 'Break quickly with long balls to strikers' },
+                    { zone: 'Target Man (WARM)', explanation: 'Physical striker for hold-up', action: 'Play direct to target man, second striker runs off him' },
+                    { zone: 'Wing-backs (COOL)', explanation: 'Defensive-minded wing-backs', action: 'Occasional overlap when counter opportunity arises' }
+                ] : [
+                    { zone: 'Compact Block (STRONG)', explanation: 'Very solid defensive shape', action: 'Patient buildup needed, switch play to stretch them' },
+                    { zone: 'Wide Areas (MODERATE)', explanation: 'Reasonable wide coverage', action: 'Can still find space on flanks with movement' }
+                ],
+                '3-4-3': isAttacking ? [
+                    { zone: 'Three Forwards (HOT)', explanation: 'Maximum attacking threat upfront', action: 'Constant pressure, rotate positions to confuse defense' },
+                    { zone: 'Wide Areas (HOT)', explanation: 'Wingers stretching play wide', action: 'Use width to create crossing chances and cut inside' },
+                    { zone: 'Central Midfield (WARM)', explanation: 'Midfield providing support', action: 'Link defense to attack, maintain possession' }
+                ] : [
+                    { zone: 'Behind Wing-backs (WEAK)', explanation: 'Huge space when WBs attack', action: 'Exploit with fast wingers on the counter' },
+                    { zone: 'Central Gaps (VERY VULNERABLE)', explanation: 'Only two CMs covering center', action: 'Overload center with multiple attacking midfielders' }
+                ],
+                '4-5-1': isAttacking ? [
+                    { zone: 'Lone Striker (COOL)', explanation: 'Isolated striker holding position', action: 'Must hold ball up and bring midfield into play' },
+                    { zone: 'Midfield Block (WARM)', explanation: 'Five midfielders controlling center', action: 'Dominate possession, wear down opponents' },
+                    { zone: 'Counter Zones (WARM)', explanation: 'Set for quick transitions', action: 'Break fast when winning ball in midfield' }
+                ] : [
+                    { zone: 'Deep Block (STRONG)', explanation: 'Compact defensive structure', action: 'Need patient buildup, create overloads wide' },
+                    { zone: 'Compact Shape (MODERATE)', explanation: 'Well-organized defensive unit', action: 'Switch play quickly to find gaps' }
+                ],
+                '3-4-2-1': isAttacking ? [
+                    { zone: 'Two AMs (HOT)', explanation: 'Creative playmakers behind striker', action: 'Feed through balls, make late runs into box' },
+                    { zone: 'Wing-backs (WARM)', explanation: 'Provide width from deep', action: 'Overlap and deliver crosses from wide areas' },
+                    { zone: 'Striker (WARM)', explanation: 'Lone forward getting supply', action: 'Link with AMs, finish chances in box' }
+                ] : [
+                    { zone: 'Wide Channels (WEAK)', explanation: 'Wing-backs caught high', action: 'Fast counter-attacks down the flanks' },
+                    { zone: 'Between AMs and Striker (VULNERABLE)', explanation: 'Gap in final third', action: 'Press aggressively to win ball in dangerous area' }
+                ],
+                '4-3-2-1': isAttacking ? [
+                    { zone: 'False 9 Zone (HOT)', explanation: 'Striker drops deep to create', action: 'Drop off to receive, make space for AM runs' },
+                    { zone: 'Two AMs (HOT)', explanation: 'Advanced midfielders attacking', action: 'Run beyond striker into space, combine in tight areas' },
+                    { zone: 'Midfield Triangle (WARM)', explanation: 'Technical midfield base', action: 'Control possession with short passing' }
+                ] : [
+                    { zone: 'Wide Areas (WEAK)', explanation: 'Narrow setup lacks width', action: 'Attack flanks with wingers and overlapping fullbacks' },
+                    { zone: 'Without striker presence (VULNERABLE)', explanation: 'No target when false 9 drops', action: 'Direct balls behind defense when striker is deep' }
+                ],
+                '5-4-1': isAttacking ? [
+                    { zone: 'Ultra Deep (COOL)', explanation: 'Very defensive positioning', action: 'Rare attacks, mainly long balls forward' },
+                    { zone: 'Counter Outlets (WARM)', explanation: 'Looking for counter chances', action: 'Quick release to lone striker on break' }
+                ] : [
+                    { zone: 'Five-man Defense (VERY STRONG)', explanation: 'Extremely solid back line', action: 'Very hard to break down, need width and patience' },
+                    { zone: 'Extremely Compact (STRONG)', explanation: 'All players behind ball', action: 'Create overloads, shoot from distance' }
+                ],
+                '3-3-4': isAttacking ? [
+                    { zone: 'Four Forwards (VERY HOT)', explanation: 'All-out attacking setup', action: 'Constant pressure, overwhelm defense with numbers' },
+                    { zone: 'Attacking Third (HOT)', explanation: 'Players flooding forward', action: 'Quick combinations, shoot on sight' },
+                    { zone: 'Final Third (WARM)', explanation: 'Maximum presence in final third', action: 'Create chaos, capitalize on mistakes' }
+                ] : [
+                    { zone: 'Defensive Third (VERY WEAK)', explanation: 'Very exposed at the back', action: 'Counter quickly with direct balls, 2v3 situations' },
+                    { zone: 'Central Areas (EXTREMELY VULNERABLE)', explanation: 'Only 3 midfielders vs attackers', action: 'Exploit center with fast breaks and overloads' }
+                ]
+            };
+            
+            const zones = heatZones[formation] || [{ zone: 'General Activity', explanation: 'Standard play', action: 'Maintain balanced approach' }];
+            
+            let html = '<div style="display: flex; flex-direction: column; gap: 10px; font-size: 16px;">';
+            zones.forEach(zoneData => {
+                const zoneName = zoneData.zone;
+                const explanation = zoneData.explanation;
+                const action = zoneData.action;
+                
+                // Determine color based on zone type
+                let color;
+                if (zoneName.includes('WEAK') || zoneName.includes('VULNERABLE') || zoneName.includes('EXPOSED')) {
+                    color = '#ff4444'; // Bright red for weaknesses
+                } else if (zoneName.includes('HOT') || zoneName.includes('VERY HOT')) {
+                    color = '#ff4444'; // Bright red for hot attack zones
+                } else if (zoneName.includes('WARM')) {
+                    color = '#ffaa33'; // Bright orange for warm zones
+                } else if (zoneName.includes('VERY STRONG')) {
+                    color = '#00ff00'; // Bright green for very strong
+                } else if (zoneName.includes('STRONG') || zoneName.includes('MODERATE')) {
+                    color = '#66aaff'; // Bright blue for strong/moderate
+                } else if (zoneName.includes('COOL')) {
+                    color = '#66aaff'; // Bright blue for cool zones
+                } else {
+                    color = '#7fff00'; // Chartreuse default
+                }
+                
+                html += `<div style="padding: 14px 18px; background: ${color}44; border-left: 5px solid ${color}; border-radius: 6px; color: #fff; border: 2px solid ${color}66; line-height: 1.6;">
+                    <div style="font-size: 17px; font-weight: 700; margin-bottom: 6px; color: ${color};">
+                        ${zoneName.replace(/\(.*?\)/g, '<span style="font-weight: bold; font-size: 18px;">($&)</span>')}
+                    </div>
+                    <div style="font-size: 14px; color: #e0e0e0; margin-bottom: 6px; font-style: italic;">
+                        📍 ${explanation}
+                    </div>
+                    <div style="font-size: 15px; color: #ffffff; font-weight: 600;">
+                        ⚡ Action: ${action}
+                    </div>
+                </div>`;
+            });
+            html += '</div>';
+            
+            element.innerHTML = html;
+        }
+
+        function generatePassingNetwork(formation) {
+            const element = document.getElementById('metricsPassingNetwork');
+            if (!element) return;
+            
+            const passingPatterns = {
+                '4-3-3': [
+                    { from: 'CB → CM', strength: 'Strong', advice: 'Build through center' },
+                    { from: 'CM → Wingers', strength: 'Critical', advice: 'Switch play quickly' },
+                    { from: 'FB → Wingers', strength: 'High', advice: 'Wide overloads' },
+                    { from: 'CM → ST', strength: 'Medium', advice: 'Direct vertical passes' }
+                ],
+                '4-2-3-1': [
+                    { from: 'CDM → CAM', strength: 'Critical', advice: 'Key playmaking link' },
+                    { from: 'CAM → Wings', strength: 'High', advice: 'Creative distribution' },
+                    { from: 'FB → CAM', strength: 'Strong', advice: 'Progression from deep' },
+                    { from: 'CAM → ST', strength: 'Medium', advice: 'Final third connection' }
+                ],
+                '4-4-2': [
+                    { from: 'CM → Wingers', strength: 'Strong', advice: 'Width creation' },
+                    { from: 'CM → Strikers', strength: 'Critical', advice: 'Direct supply' },
+                    { from: 'Wingers → Strikers', strength: 'High', advice: 'Crossing opportunities' },
+                    { from: 'CB → CM', strength: 'Medium', advice: 'Build-up play' }
+                ],
+                '4-1-4-1': [
+                    { from: 'DM → AMs', strength: 'Critical', advice: 'Diamond circulation' },
+                    { from: 'AMs → False 9', strength: 'High', advice: 'Central overloads' },
+                    { from: 'FB → AMs', strength: 'Strong', advice: 'Wide progression' },
+                    { from: 'DM → FB', strength: 'Medium', advice: 'Defensive recycling' }
+                ],
+                '3-5-2': [
+                    { from: 'CB → CM', strength: 'Strong', advice: 'Central build-up' },
+                    { from: 'CM → WB', strength: 'Critical', advice: 'Switch to flanks' },
+                    { from: 'WB → Strikers', strength: 'High', advice: 'Cross delivery' },
+                    { from: 'CM → Strikers', strength: 'Medium', advice: 'Direct balls' }
+                ],
+                '5-3-2': [
+                    { from: 'CB → WB', strength: 'Strong', advice: 'Safe progression' },
+                    { from: 'CM → Target Man', strength: 'Critical', advice: 'Long balls' },
+                    { from: 'WB → Strikers', strength: 'Medium', advice: 'Counter attacks' },
+                    { from: 'DM → CM', strength: 'High', advice: 'Defensive stability' }
+                ],
+                '3-4-3': [
+                    { from: 'CB → WM', strength: 'Strong', advice: 'Wide build-up' },
+                    { from: 'CM → Forwards', strength: 'Critical', advice: 'Direct supply' },
+                    { from: 'WM → Wingers', strength: 'High', advice: 'Wide overloads' },
+                    { from: 'CM → Striker', strength: 'Medium', advice: 'Central option' }
+                ],
+                '4-5-1': [
+                    { from: 'CM → Wide Mids', strength: 'Strong', advice: 'Defensive shape' },
+                    { from: 'CM → Target Man', strength: 'Critical', advice: 'Hold-up play' },
+                    { from: 'CB → CM', strength: 'High', advice: 'Safe recycling' },
+                    { from: 'Wide Mids → ST', strength: 'Low', advice: 'Counter opportunities' }
+                ],
+                '3-4-2-1': [
+                    { from: 'CB → WB', strength: 'Strong', advice: 'Wide progression' },
+                    { from: 'CM → AMs', strength: 'Critical', advice: 'Creative hub' },
+                    { from: 'AMs → Striker', strength: 'High', advice: 'Final third link' },
+                    { from: 'WB → AMs', strength: 'Medium', advice: 'Wide-central connection' }
+                ],
+                '4-3-2-1': [
+                    { from: 'CM → AMs', strength: 'Critical', advice: 'Technical build-up' },
+                    { from: 'AMs → False 9', strength: 'High', advice: 'Drop-off movements' },
+                    { from: 'Regista → AMs', strength: 'Strong', advice: 'Deep playmaking' },
+                    { from: 'FB → AMs', strength: 'Medium', advice: 'Wide overloads' }
+                ],
+                '5-4-1': [
+                    { from: 'CB → WB', strength: 'Medium', advice: 'Safe defensive pass' },
+                    { from: 'CM → Target Man', strength: 'Critical', advice: 'Long ball outlet' },
+                    { from: 'CB → CM', strength: 'High', advice: 'Deep recycling' },
+                    { from: 'WB → CM', strength: 'Low', advice: 'Rare attacking option' }
+                ],
+                '3-3-4': [
+                    { from: 'CM → Forwards', strength: 'Critical', advice: 'Direct attacks' },
+                    { from: 'APM → Forwards', strength: 'Very High', advice: 'Creative supply' },
+                    { from: 'CB → CM', strength: 'Strong', advice: 'Quick transition' },
+                    { from: 'CM → Wide Forwards', strength: 'High', advice: 'Spread the play' }
+                ]
+            };
+            
+            const patterns = passingPatterns[formation] || [];
+            
+            let html = '';
+            patterns.forEach(pattern => {
+                const strengthColor = pattern.strength === 'Critical' || pattern.strength === 'Very High' ? '#ff6b6b' :
+                                     pattern.strength === 'High' ? '#ffa94d' :
+                                     pattern.strength === 'Strong' ? '#c3e88d' :
+                                     pattern.strength === 'Medium' ? '#82aaff' : '#999';
+                
+                html += `<div style="padding: 18px; background: rgba(255,255,255,0.15); border-radius: 6px; border-left: 4px solid ${strengthColor}; border: 1px solid rgba(255,255,255,0.2);">
+                    <div style="color: ${strengthColor}; font-weight: bold; font-size: 18px; margin-bottom: 8px;">${pattern.from}</div>
+                    <div style="color: #fff; font-size: 17px; margin-bottom: 6px; font-weight: 600;">Strength: ${pattern.strength}</div>
+                    <div style="color: #ffffff; font-size: 16px;">💡 ${pattern.advice}</div>
+                </div>`;
+            });
+            
+            element.innerHTML = html;
+        }
+
+        function generateVulnerabilityZones(yourForm, oppForm, formData) {
+            const element = document.getElementById('metricsVulnerability');
+            if (!element) return;
+            
+            // Analyze vulnerabilities based on formation characteristics
+            const vulnerabilities = [];
+            
+            if (formData.weaknesses.includes('Central Gaps') || formData.weaknesses.includes('Central Areas')) {
+                vulnerabilities.push({ zone: '⚠️ Central Corridor', level: 'High', advice: 'Add defensive midfielder' });
+            }
+            
+            if (formData.weaknesses.includes('Width') || formData.weaknesses.includes('Wide')) {
+                vulnerabilities.push({ zone: '⚠️ Wide Channels', level: 'High', advice: 'Track back wide players' });
+            }
+            
+            if (formData.weaknesses.includes('Stamina') || formData.weaknesses.includes('Intensive')) {
+                vulnerabilities.push({ zone: '⏱️ Late Game Fatigue', level: 'Medium', advice: 'Rotate at 60-70 minutes' });
+            }
+            
+            if (formData.weaknesses.includes('Vulnerable') || formData.weaknesses.includes('Defensive')) {
+                vulnerabilities.push({ zone: '🛡️ Defensive Structure', level: 'Very High', advice: 'Drop deeper when needed' });
+            }
+            
+            if (formData.baseStats.defActions < 25) {
+                vulnerabilities.push({ zone: '🔄 Counter Attacks', level: 'High', advice: 'Quick transition defense' });
+            }
+            
+            if (formData.baseStats.possession > 60) {
+                vulnerabilities.push({ zone: '⚡ Loss of Possession', level: 'Medium', advice: 'Counter-pressing essential' });
+            }
+            
+            // Add default vulnerability if none detected
+            if (vulnerabilities.length === 0) {
+                vulnerabilities.push({ zone: '✅ Well Balanced', level: 'Low', advice: 'Maintain discipline' });
+            }
+            
+            let html = '';
+            vulnerabilities.forEach(vuln => {
+                const levelColor = vuln.level === 'Very High' ? '#ff4757' :
+                                  vuln.level === 'High' ? '#ff6b6b' :
+                                  vuln.level === 'Medium' ? '#ffa94d' : '#51cf66';
+                
+                html += `<div style="padding: 18px; background: rgba(255,255,255,0.15); border-radius: 6px; border-left: 4px solid ${levelColor}; border: 1px solid rgba(255,255,255,0.2);">
+                    <div style="color: #fff; font-weight: bold; font-size: 18px; margin-bottom: 8px;">${vuln.zone}</div>
+                    <div style="color: ${levelColor}; font-size: 17px; margin-bottom: 6px; font-weight: 600;">Risk: ${vuln.level}</div>
+                    <div style="color: #ffffff; font-size: 16px; font-weight: 600;">💡 ${vuln.advice}</div>
+                </div>`;
+            });
+            
+            element.innerHTML = html;
         }
 
         // Wrap main initialization in try-catch
