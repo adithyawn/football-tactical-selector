@@ -2435,83 +2435,158 @@
                 // Distribution summary with context
                 html += `<p><strong>Vertical Progression:</strong> Defensive Third ${defensiveThird}% | Build-Up ${buildUpZones}% | Opp Middle ${oppMiddle}% | Attacking ${attackingZones}%</p>`;
                 
-                // Deep analysis of vertical build-up patterns
+                html += `<br>`;
+                
+                // Deep analysis of vertical build-up patterns - Defensive Third
+                html += `<p><strong>🔵 DEFENSIVE THIRD ANALYSIS (${defensiveThird}%)</strong> `;
                 if (defensiveThird > 38) {
-                    html += `<p><strong>PATIENT BUILD-UP PATTERN (${defensiveThird}% from defensive third)</strong><br>`;
-                    html += `High defensive third usage indicates methodical build-up from the back. Research shows this approach works best with technically superior players and high pass completion rates (>85%). `;
-                    html += `<strong>Risk:</strong> Vulnerable to high press and slower transitions. Consider increasing tempo in build-up zones.</p>`;
-                } else if (defensiveThird < 22) {
-                    html += `<p><strong>DIRECT TRANSITION STYLE (${defensiveThird}% from defensive third)</strong><br>`;
-                    html += `Low defensive third usage indicates quick transitions and counter-attacking approach. Studies show direct teams achieve 0.12 more goals/game when combined with pace (Sarmento et al., 2018). `;
-                    html += `<strong>Optimal for:</strong> Teams with fast forwards and strong physical presence in transitions.</p>`;
+                    html += `<br><strong style="color: #e67e22;">⚠️ VERY SLOW BUILD-UP</strong> <span style="color: #999; cursor: help;" title="Range: >38% of total passes">[>38%]</span> - High defensive third usage (>38%) indicates patient, possession-based approach. `;
+                    html += `<strong>Strengths:</strong> Maintains control, tires opposition press. <strong>Risks:</strong> Vulnerable to high press, slow transitions, turnovers in dangerous areas. `;
+                    html += `<strong>FM Recommendations:</strong> (1) Ball-Playing Defenders (Support/Defend), (2) "Distribute to Centre-Backs" instruction, (3) Pass completion must be >85%, (4) Consider "Higher Tempo" to speed up progression. `;
+                    html += `Best with: Technical superiority, patient possession gameplan, opposition sitting deep.</p>`;
+                } else if (defensiveThird >= 22 && defensiveThird <= 38) {
+                    html += `<strong style="color: #27ae60;">✓ OPTIMAL BALANCE</strong> <span style="color: #999; cursor: help;" title="Range: 22-38% of total passes">[22-38%]</span> - Standard build-up usage (22-38%) allows tactical flexibility. `;
+                    html += `You can switch between patient possession and quick transitions based on game state. `;
+                    html += `<strong>FM Recommendations:</strong> (1) Mix of Ball-Playing Defender and Central Defender roles, (2) Flexible "Distribute to Centre-Backs/Fullbacks" based on opposition press, (3) This balance works in most tactical systems. `;
+                    html += `Elite teams (Barcelona 28-32%, Liverpool 26-30%) operate in this range.</p>`;
+                } else if (defensiveThird >= 15 && defensiveThird < 22) {
+                    html += `<strong style="color: #3498db;">⚡ DIRECT STYLE</strong> <span style="color: #999; cursor: help;" title="Range: 15-22% of total passes">[15-22%]</span> - Low defensive third usage (15-22%) shows quick progression and counter-attacking approach. `;
+                    html += `Studies show direct teams achieve 0.12 more goals/game when combined with pace (Sarmento et al., 2018). `;
+                    html += `<strong>FM Recommendations:</strong> (1) "Counter" or "Counter-Press" team instruction, (2) "More Direct Passing", (3) Fast forwards with "Get In Behind", (4) Lower defensive line for compactness. `;
+                    html += `Optimal for: Teams with pace, physical presence, and strong transition play.</p>`;
                 } else {
-                    html += `<p><strong>BALANCED PROGRESSION (${defensiveThird}% from defensive third)</strong><br>`;
-                    html += `Good balance - allows tactical flexibility. Can adapt between patient possession and quick transitions based on game state.</p>`;
+                    html += `<strong style="color: #e74c3c;">⚠️ VERY DIRECT</strong> <span style="color: #999; cursor: help;" title="Range: <15% of total passes">[<15%]</span> - Extremely low defensive third usage (<15%) bypasses build-up entirely. `;
+                    html += `<strong>Risk:</strong> Loss of midfield control, vulnerable to organized defenses. `;
+                    html += `<strong>FM Recommendations:</strong> If intentional: Long-ball tactics, target man striker, "Hit Early Crosses". If not: Check passing range settings and encourage shorter passes from defenders.</p>`;
                 }
                 
-                // Build-up zone analysis
-                if (buildUpZones > 40) {
-                    html += `<p><strong>HIGH BUILD-UP EMPHASIS (${buildUpZones}% in transition zones)</strong><br>`;
-                    html += `Significant focus on controlled progression through middle zones. This indicates patient, methodical approach. `;
-                    html += `Works best with technically gifted midfielders who can resist press and progress ball safely.</p>`;
-                } else if (buildUpZones < 25) {
-                    html += `<p><strong>BYPASS BUILD-UP (${buildUpZones}% in transition zones)</strong><br>`;
-                    html += `Direct approach - minimal time in transition zones. Characteristic of counter-attacking or long-ball systems. `;
-                    html += `<strong>Note:</strong> This can be effective but may limit control against compact defenses.</p>`;
+                html += `<hr style="border: none; border-top: 1px solid #ddd; margin: 16px 0;">`;
+                
+                // Build-up zone analysis (Transition + Before Halfway)
+                html += `<p style="margin-top: 20px;"><strong>🟢 BUILD-UP ZONES ANALYSIS (${buildUpZones}%)</strong> <small>(Transition ${transition}% + Before Halfway ${beforeHalf}%)</small> `;
+                if (buildUpZones > 45) {
+                    html += `<br><strong style="color: #e67e22;">⚠️ EXCESSIVE BUILD-UP EMPHASIS</strong> <span style="color: #999; cursor: help;" title="Range: >45% of total passes">[>45%]</span> - Very high usage (>45%) in transition zones indicates slow, patient progression. `;
+                    html += `<strong>Risk:</strong> Stagnant play, too much sideways passing, vulnerable to counter-press. `;
+                    html += `<strong>FM Recommendations:</strong> (1) Reduce "Work Ball Into Box" if active, (2) Add "Play Through Centre" or "Hit Early Crosses" to speed up progression, (3) Use Mezzala or Box-to-Box midfielder with "Get Further Forward", (4) Consider "Higher Tempo" instruction. `;
+                    html += `Target: 25-40% for better balance.</p>`;
+                } else if (buildUpZones >= 25 && buildUpZones <= 45) {
+                    html += `<strong style="color: #27ae60;">✓ OPTIMAL BUILD-UP BALANCE</strong> <span style="color: #999; cursor: help;" title="Range: 25-45% of total passes">[25-45%]</span> - Good emphasis (25-45%) on controlled progression through middle zones. `;
+                    html += `This indicates methodical approach with technical midfielders who can resist press and progress ball safely (Lago-Peñas et al., 2017). `;
+                    html += `<strong>FM Recommendations:</strong> (1) Deep-Lying Playmaker or Regista for distribution, (2) Box-to-Box or Mezzala for progression, (3) "Play Out of Defence" instruction, (4) Halfbacks/Carrileros for recycling possession. `;
+                    html += `Best suited for: Possession-based systems, technical midfields, controlled tempo.</p>`;
+                } else if (buildUpZones >= 20 && buildUpZones < 25) {
+                    html += `<strong style="color: #3498db;">⚡ DIRECT PROGRESSION</strong> <span style="color: #999; cursor: help;" title="Range: 20-25% of total passes">[20-25%]</span> - Low build-up usage (20-25%) shows quick bypass of middle areas. `;
+                    html += `<strong>FM Recommendations:</strong> (1) Ball-Winning Midfielder or Segundo Volante to win and release quickly, (2) "More Direct Passing" + "Higher Tempo", (3) Advanced Playmaker to receive in space, (4) Useful against teams that press high.</p>`;
                 } else {
-                    html += `<p><strong>BALANCED BUILD-UP (${buildUpZones}% in transition zones)</strong><br>`;
-                    html += `Good progression tempo through midfield areas. Allows for tactical variation based on opposition setup.</p>`;
+                    html += `<strong style="color: #e74c3c;">⚠️ MINIMAL BUILD-UP</strong> <span style="color: #999; cursor: help;" title="Range: <20% of total passes">[<20%]</span> - Very low usage (<20%) bypasses transition zones entirely. `;
+                    html += `Characteristic of extreme counter-attacking or long-ball systems. `;
+                    html += `<strong>FM Recommendations:</strong> If intentional: Route One tactics work. If not: Encourage shorter passing, add playmakers in midfield, reduce "More Direct Passing".</p>`;
                 }
+                
+                html += `<hr style="border: none; border-top: 1px solid #ddd; margin: 16px 0;">`;
                 
                 // Opponent middle zone penetration
-                if (oppMiddle > 25) {
-                    html += `<p><strong>DOMINANT MIDDLE ZONE CONTROL (${oppMiddle}%)</strong><br>`;
-                    html += `Exceptional penetration into opponent's middle third. This indicates strong positional play and ability to progress through organized defenses. `;
-                    html += `Teams with >25% opponent middle zone presence average 1.6+ goals per game (Lago-Peñas et al., 2017).</p>`;
-                } else if (oppMiddle < 15 && oppMiddle > 0) {
-                    html += `<p><strong>LIMITED MIDDLE PENETRATION (${oppMiddle}%)</strong><br>`;
-                    html += `Low presence in opponent's middle third suggests either: (1) Direct playing style bypassing midfield, or (2) Difficulty progressing against organized defenses. `;
-                    html += `Consider: More progressive passes, advanced midfielders, or overloads in half-spaces.</p>`;
+                html += `<p style="margin-top: 20px;"><strong>🟡 OPPONENT MIDDLE THIRD (${oppMiddle}%)</strong> `;
+                if (oppMiddle > 30) {
+                    html += `<br><strong style="color: #27ae60;">⭐ ELITE PENETRATION</strong> <span style="color: #999; cursor: help;" title="Range: >30% of total passes">[>30%]</span> - Exceptional presence (>30%) in opponent's middle third! `;
+                    html += `This indicates dominant positional play and ability to progress through organized defenses consistently. `;
+                    html += `Research shows teams with >25% opponent middle presence average 1.6+ goals per game (Lago-Peñas et al., 2017). `;
+                    html += `<strong>FM Strategy:</strong> You're dominating this zone - maintain current approach. Consider: (1) Advanced Playmaker in this zone, (2) "Play Through Centre", (3) Half-space overloads with Inside Forwards/Inverted Wingers. `;
+                    html += `This is where elite teams control games and create chances.</p>`;
+                } else if (oppMiddle >= 20 && oppMiddle <= 30) {
+                    html += `<strong style="color: #27ae60;">✓ STRONG PENETRATION</strong> <span style="color: #999; cursor: help;" title="Range: 20-30% of total passes">[20-30%]</span> - Good presence (20-30%) in opponent's middle third shows effective progression. `;
+                    html += `<strong>FM Recommendations:</strong> (1) Shadow Striker or Attacking Midfielder to occupy this zone, (2) Mezzala or Box-to-Box arriving from deep, (3) "Overlap Left/Right" to create space, (4) Width from wingers to stretch defense. `;
+                    html += `To reach elite level: Encourage more risks in progressive passing, add runs from deep.</p>`;
+                } else if (oppMiddle >= 15 && oppMiddle < 20) {
+                    html += `<strong style="color: #f39c12;">➜ MODERATE PENETRATION</strong> <span style="color: #999; cursor: help;" title="Range: 15-20% of total passes">[15-20%]</span> - Average presence (15-20%) in opponent's middle third. `;
+                    html += `<strong>FM Recommendations:</strong> (1) Deploy Advanced Playmaker or Attacking Midfielder, (2) "Pass Into Space" instruction, (3) Full-backs with "Get Further Forward" to create numerical advantage, (4) Inside Forwards cutting in to occupy half-spaces. `;
+                    html += `Target: 20-25% for more consistent threat.</p>`;
+                } else if (oppMiddle > 0) {
+                    html += `<strong style="color: #e74c3c;">⚠️ LIMITED PENETRATION</strong> <span style="color: #999; cursor: help;" title="Range: <15% of total passes">[<15%]</span> - Low presence (<15%) in opponent's middle third suggests: (1) Direct style bypassing midfield, or (2) Difficulty progressing against organized defenses. `;
+                    html += `<strong>FM Solutions:</strong> (1) Add creative midfielders: Attacking Midfielder, Advanced Playmaker, (2) "Take More Risks" instruction, (3) Overlapping fullbacks for width, (4) "Higher Tempo" + "Pass Into Space", (5) Consider formation change to add midfield presence (e.g., 4-2-3-1, 4-3-3). `;
+                    html += `Critical issue if possession-based team.</p>`;
                 }
+                
+                html += `<hr style="border: none; border-top: 1px solid #ddd; margin: 16px 0;">`;
                 
                 // Attacking zones analysis (Final Third + Penalty Box)
-                if (attackingZones >= 20) {
-                    html += `<p><strong>ELITE ATTACKING PRESENCE (${attackingZones}%)</strong><br>`;
-                    html += `Outstanding penetration into final third and penalty box. This level (>20%) is characteristic of top attacking teams. `;
-                    html += `Research shows teams with >20% attacking zone presence average 2+ goals per game (Castellano et al., 2012).</p>`;
-                } else if (attackingZones >= 10 && attackingZones < 20) {
-                    html += `<p><strong>GOOD ATTACKING PENETRATION (${attackingZones}%)</strong><br>`;
-                    html += `Solid presence in dangerous areas. Above average for most leagues. `;
-                    html += `To reach elite level (>20%): Increase vertical passes, use attacking midfielders with "Get Further Forward", encourage overlapping runs.</p>`;
-                } else if (attackingZones > 0 && attackingZones < 10) {
-                    html += `<p><strong>WARNING: LIMITED ATTACKING THREAT (${attackingZones}%)</strong><br>`;
-                    html += `Low penetration into final zones. Teams with <10% attacking presence struggle to create high-quality chances. `;
-                    html += `<strong>Solutions:</strong> (1) Push team mentality higher, (2) Use "Pass Into Space" instruction, (3) Deploy more attackers in final third, (4) Increase tempo to speed up progression.</p>`;
+                html += `<p style="margin-top: 20px;"><strong>🔴 ATTACKING ZONES (${attackingZones}%)</strong> <small>(Final Third ${finalThird}% + Penalty Box ${penaltyBox}%)</small> `;
+                if (attackingZones >= 22) {
+                    html += `<br><strong style="color: #27ae60;">⭐ ELITE ATTACKING PRESENCE</strong> <span style="color: #999; cursor: help;" title="Range: ≥22% of total passes">[≥22%]</span> - Outstanding penetration (>22%) into final third and penalty box! `;
+                    html += `This level is characteristic of top attacking teams in elite leagues. Research shows teams with >20% attacking zone presence average 2+ goals per game (Castellano et al., 2012). `;
+                    html += `<strong>FM Strategy:</strong> You're creating excellent chances. Maintain: (1) Current attacking roles and movement, (2) High tempo in final third, (3) Ensure clinical finishers to convert chances. `;
+                    html += `Focus on: Shot quality over quantity, movement in penalty box, and finishing training.</p>`;
+                } else if (attackingZones >= 16 && attackingZones < 22) {
+                    html += `<strong style="color: #27ae60;">✓ VERY GOOD PENETRATION</strong> <span style="color: #999; cursor: help;" title="Range: 16-22% of total passes">[16-22%]</span> - Strong presence (16-22%) in dangerous areas, above average for most leagues. `;
+                    html += `<strong>FM Recommendations to reach elite (>22%):</strong> (1) Advanced Forward or Poacher for penalty box presence, (2) Inside Forwards with "Get In Behind", (3) "Overlap Left/Right" for crossing opportunities, (4) Shadow Striker arriving late into box, (5) "Look For Overlap" instruction, (6) Higher mentality (Attacking/Positive). `;
+                    html += `You're close to elite level - small tactical tweaks needed.</p>`;
+                } else if (attackingZones >= 12 && attackingZones < 16) {
+                    html += `<strong style="color: #f39c12;">➜ DECENT PENETRATION</strong> <span style="color: #999; cursor: help;" title="Range: 12-16% of total passes">[12-16%]</span> - Moderate presence (12-16%) in attacking zones, average for competitive leagues. `;
+                    html += `<strong>FM Recommendations:</strong> (1) Complete Forward or Target Man for focal point, (2) Attacking Midfielder "Get Further Forward", (3) "Pass Into Space" + "Higher Tempo", (4) Attacking Fullbacks/Wing-Backs for width and crosses, (5) Increase attacking width to stretch defense. `;
+                    html += `Target: 16-20% for consistent goal threat.</p>`;
+                } else if (attackingZones >= 8 && attackingZones < 12) {
+                    html += `<strong style="color: #e67e22;">⚠️ LIMITED PENETRATION</strong> <span style="color: #999; cursor: help;" title="Range: 8-12% of total passes">[8-12%]</span> - Low presence (8-12%) in attacking zones indicates difficulty reaching dangerous areas. `;
+                    html += `<strong>FM Solutions:</strong> (1) Change mentality to Positive/Attacking, (2) "Take More Risks" + "Pass Into Space", (3) Reduce "Work Ball Into Box" (creates too much sideways passing), (4) Add more attackers: 4-2-3-1 or 4-3-3, (5) Encourage fullbacks forward, (6) Use "Higher Tempo" and "Counter" for quicker transitions. `;
+                    html += `Critical for scoring goals consistently.</p>`;
+                } else if (attackingZones > 0) {
+                    html += `<strong style="color: #e74c3c;">🚨 CRITICAL ISSUE</strong> <span style="color: #999; cursor: help;" title="Range: <8% of total passes">[<8%]</span> - Very low penetration (<8%) into attacking zones. Teams with <10% presence struggle to create quality chances and average <1 goal/game. `;
+                    html += `<strong>URGENT FM FIXES:</strong> (1) Formation change: Add attackers (4-2-4, 4-3-3, 3-4-3), (2) Attacking mentality, (3) "Much More Direct Passing", (4) Remove "Work Ball Into Box", (5) Fast forwards with "Get In Behind", (6) "Pass Into Space" + "Run At Defence", (7) Consider tactical overhaul - current approach not creating chances. `;
+                    html += `This requires immediate attention to be competitive.</p>`;
                 }
                 
-                // Penalty box penetration specifically
+                html += `<hr style="border: none; border-top: 1px solid #ddd; margin: 16px 0;">`;
+                
+                // Penalty box penetration - detailed breakdown
+                html += `<p style="margin-top: 20px;"><strong>🎯 PENALTY BOX DETAIL (${penaltyBox}%)</strong> `;
                 if (penaltyBox >= 6) {
-                    html += `<p><strong>EXCELLENT PENALTY BOX ENTRIES (${penaltyBox}%)</strong><br>`;
-                    html += `Elite level - consistently getting into most dangerous zone. This correlates with high xG and goal conversion. `;
-                    html += `Maintain this by protecting key creative players and ensuring striker movement creates space.</p>`;
-                } else if (penaltyBox > 0 && penaltyBox < 4) {
-                    html += `<p><strong>LOW PENALTY BOX PRESENCE (${penaltyBox}%)</strong><br>`;
-                    html += `Difficulty penetrating final zone. Consider: More crosses, through balls, off-ball runs from attackers. `;
-                    html += `Target: 4-6% for competitive level.</p>`;
+                    html += `<br><strong style="color: #27ae60;">⭐ ELITE BOX ENTRIES</strong> <span style="color: #999; cursor: help;" title="Range: ≥6% of total passes">[≥6%]</span> - Consistently getting into most dangerous zone (>6%). This correlates with high xG and goal conversion rates. `;
+                    html += `<strong>FM Maintain:</strong> (1) Protect key creative players (playmakers, wingers), (2) Striker movement: Poacher/Advanced Forward roles, (3) Late runs from midfield, (4) Quality crossing from wide areas. `;
+                    html += `Focus training on: Finishing, Composure, Decisions in box.</p>`;
+                } else if (penaltyBox >= 4 && penaltyBox < 6) {
+                    html += `<strong style="color: #27ae60;">✓ GOOD BOX PRESENCE</strong> <span style="color: #999; cursor: help;" title="Range: 4-6% of total passes">[4-6%]</span> - Solid penetration (4-6%) into penalty area. Competitive level for most leagues. `;
+                    html += `<strong>FM Improvements:</strong> (1) More crosses from wide areas, (2) Through balls from playmakers, (3) Striker "Move Into Channels" to create space, (4) Inside Forwards cutting in to shoot. `;
+                    html += `Target 6%+ for elite penetration.</p>`;
+                } else if (penaltyBox >= 2.5 && penaltyBox < 4) {
+                    html += `<strong style="color: #f39c12;">➜ MODERATE BOX PRESENCE</strong> <span style="color: #999; cursor: help;" title="Range: 2.5-4% of total passes">[2.5-4%]</span> - Below average (2.5-4%) penetration into penalty area. `;
+                    html += `<strong>FM Recommendations:</strong> (1) "Hit Early Crosses" instruction, (2) Fullbacks/Wing-Backs "Get Further Forward", (3) Advanced Forward or Poacher for box presence, (4) "Look For Overlap" for crossing opportunities, (5) Shadow Striker arriving late. `;
+                    html += `Need more final ball quality and box movement.</p>`;
+                } else if (penaltyBox > 0) {
+                    html += `<strong style="color: #e74c3c;">⚠️ LOW BOX PENETRATION</strong> <span style="color: #999; cursor: help;" title="Range: <2.5% of total passes">[<2.5%]</span> - Difficulty reaching most dangerous zone (<2.5%). Critical weakness limiting goals. `;
+                    html += `<strong>FM Solutions:</strong> (1) Width: Wingers/Inside Forwards with crossing, (2) Target Man to win aerial balls, (3) "Whipped Crosses" or "Low Crosses" based on striker height, (4) Attacking Midfielder with "Get Further Forward", (5) Remove "Work Ball Into Box" if active (may cause over-passing), (6) Direct passing into box area. `;
+                    html += `Target minimum 4% for competitive scoring.</p>`;
                 }
+                
+                html += `<hr style="border: none; border-top: 1px solid #ddd; margin: 16px 0;">`;
                 
                 // Vertical progression efficiency
                 const backZones = defensiveThird + buildUpZones;
                 const forwardZones = oppMiddle + attackingZones;
                 const progressionRatio = backZones > 0 ? parseFloat((forwardZones / backZones).toFixed(2)) : 0;
                 
-                html += `<p><strong>VERTICAL PROGRESSION RATIO: ${progressionRatio}</strong><br>`;
-                if (progressionRatio > 1.0) {
-                    html += `Excellent forward emphasis - your team spends more time in opponent's half than own half. Characteristic of dominant, attacking teams.`;
-                } else if (progressionRatio < 0.7) {
-                    html += `Defensive emphasis - more time in own half. This can indicate defensive style or difficulty progressing against opposition.`;
+                html += `<p style="margin-top: 20px;"><strong>📊 VERTICAL PROGRESSION EFFICIENCY: ${progressionRatio}</strong></p>`;
+                html += `<p style="margin-top: 4px;"><small style="opacity: 0.8;">Formula: (Opponent Middle + Attacking Zones) ÷ (Defensive Third + Build-Up Zones)</small>`;
+                html += `<br><small style="opacity: 0.8;">Calculation: (${oppMiddle}% + ${attackingZones.toFixed(1)}%) ÷ (${defensiveThird}% + ${buildUpZones.toFixed(1)}%) = ${forwardZones.toFixed(1)}% ÷ ${backZones.toFixed(1)}% = ${progressionRatio}</small></p>`;
+                html += `<p style="margin-top: 8px;">`;
+                if (progressionRatio >= 1.2) {
+                    html += `<strong style="color: #27ae60;">⭐ DOMINANT ATTACKING TEAM</strong> <span style="color: #999; cursor: help;" title="Range: ≥1.2 ratio">[≥1.2]</span> - Ratio >1.2 shows your team spends significantly more time in opponent's half (${forwardZones.toFixed(1)}%) than own half (${backZones.toFixed(1)}%). `;
+                    html += `Characteristic of elite attacking teams that control games in opposition territory. `;
+                    html += `<strong>FM Strategy:</strong> Continue current approach. Ensure defensive stability during transitions and protect against counter-attacks with "Regroup" or defensive midfielder.</p>`;
+                } else if (progressionRatio >= 0.9 && progressionRatio < 1.2) {
+                    html += `<strong style="color: #27ae60;">✓ BALANCED ATTACKING</strong> <span style="color: #999; cursor: help;" title="Range: 0.9-1.2 ratio">[0.9-1.2]</span> - Ratio 0.9-1.2 shows good forward emphasis with roughly equal time in both halves. `;
+                    html += `This indicates attacking intent while maintaining defensive structure. `;
+                    html += `<strong>FM Recommendations:</strong> To push higher (if desired): Increase mentality, add "Higher Defensive Line" + "Play Out of Defence", more attacking roles in midfield.</p>`;
+                } else if (progressionRatio >= 0.7 && progressionRatio < 0.9) {
+                    html += `<strong style="color: #f39c12;">➜ SLIGHTLY DEFENSIVE</strong> <span style="color: #999; cursor: help;" title="Range: 0.7-0.9 ratio">[0.7-0.9]</span> - Ratio 0.7-0.9 shows more time in own half (${backZones.toFixed(1)}%) than opponent's half (${forwardZones.toFixed(1)}%). `;
+                    html += `This can be intentional (defensive/counter-attacking style) or indicate difficulty progressing. `;
+                    html += `<strong>FM Adjustments:</strong> If unintentional: (1) Higher mentality (Positive/Attacking), (2) "Higher Defensive Line", (3) More attacking roles, (4) "Pass Into Space" + "Higher Tempo" for quicker progression.</p>`;
+                } else if (progressionRatio >= 0.5 && progressionRatio < 0.7) {
+                    html += `<strong style="color: #e67e22;">⚠️ DEFENSIVE EMPHASIS</strong> <span style="color: #999; cursor: help;" title="Range: 0.5-0.7 ratio">[0.5-0.7]</span> - Ratio <0.7 shows team spending much more time in own half (${backZones.toFixed(1)}%) than opponent's half (${forwardZones.toFixed(1)}%). `;
+                    html += `Either: (1) Intentional defensive/counter strategy, or (2) Struggling to progress ball forward. `;
+                    html += `<strong>FM Solutions if unintentional:</strong> (1) Change to Positive mentality minimum, (2) "Higher Defensive Line" + "Higher Line of Engagement", (3) Add attacking players, (4) "Counter-Press" to win ball higher, (5) Technical midfielders for progression.</p>`;
                 } else {
-                    html += `Balanced distribution between defensive and attacking zones. Shows tactical flexibility.`;
+                    html += `<strong style="color: #e74c3c;">🚨 VERY DEFENSIVE</strong> <span style="color: #999; cursor: help;" title="Range: <0.5 ratio">[<0.5]</span> - Ratio <0.5 shows team heavily pinned in own half. `;
+                    html += `<strong>URGENT:</strong> This indicates serious difficulty progressing or extremely deep defensive block. `;
+                    html += `<strong>FM Overhaul needed:</strong> (1) Formation change to add midfielders, (2) Attacking mentality, (3) Much higher defensive line, (4) "Counter-Press" and "Get Stuck In", (5) Review player quality and roles - may need tactical reset.</p>`;
                 }
                 html += `</p>`;
                 
