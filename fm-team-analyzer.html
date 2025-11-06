@@ -2575,19 +2575,19 @@
                 // Penalty box penetration - detailed breakdown
                 html += `<p style="margin-top: 20px;"><strong>🎯 PENALTY BOX DETAIL (${penaltyBox}%)</strong> `;
                 if (penaltyBox >= 6) {
-                    html += `<br><strong style="color: #27ae60;">⭐ ELITE BOX ENTRIES</strong> <span style="color: #999; cursor: help;" title="Range: ≥6% of total passes">[≥6%]</span> - Consistently getting into most dangerous zone (>6%). This correlates with high xG and goal conversion rates. `;
+                    html += `<br><strong style="color: #27ae60; cursor: help;" title="Range: ≥6% of total passes">⭐ ELITE BOX ENTRIES</strong> - Consistently getting into most dangerous zone (>6%). This correlates with high xG and goal conversion rates. `;
                     html += `<strong>FM Maintain:</strong> (1) Protect key creative players (playmakers, wingers), (2) Striker movement: Poacher/Advanced Forward roles, (3) Late runs from midfield, (4) Quality crossing from wide areas. `;
                     html += `Focus training on: Finishing, Composure, Decisions in box.</p>`;
                 } else if (penaltyBox >= 4 && penaltyBox < 6) {
-                    html += `<strong style="color: #27ae60;">✓ GOOD BOX PRESENCE</strong> <span style="color: #999; cursor: help;" title="Range: 4-6% of total passes">[4-6%]</span> - Solid penetration (4-6%) into penalty area. Competitive level for most leagues. `;
+                    html += `<strong style="color: #27ae60; cursor: help;" title="Range: 4-6% of total passes">✓ GOOD BOX PRESENCE</strong> - Solid penetration (4-6%) into penalty area. Competitive level for most leagues. `;
                     html += `<strong>FM Improvements:</strong> (1) More crosses from wide areas, (2) Through balls from playmakers, (3) Striker "Move Into Channels" to create space, (4) Inside Forwards cutting in to shoot. `;
                     html += `Target 6%+ for elite penetration.</p>`;
                 } else if (penaltyBox >= 2.5 && penaltyBox < 4) {
-                    html += `<strong style="color: #f39c12;">➜ MODERATE BOX PRESENCE</strong> <span style="color: #999; cursor: help;" title="Range: 2.5-4% of total passes">[2.5-4%]</span> - Below average (2.5-4%) penetration into penalty area. `;
+                    html += `<strong style="color: #f39c12; cursor: help;" title="Range: 2.5-4% of total passes">➜ MODERATE BOX PRESENCE</strong> - Below average (2.5-4%) penetration into penalty area. `;
                     html += `<strong>FM Recommendations:</strong> (1) "Hit Early Crosses" instruction, (2) Fullbacks/Wing-Backs "Get Further Forward", (3) Advanced Forward or Poacher for box presence, (4) "Look For Overlap" for crossing opportunities, (5) Shadow Striker arriving late. `;
                     html += `Need more final ball quality and box movement.</p>`;
                 } else if (penaltyBox > 0) {
-                    html += `<strong style="color: #e74c3c;">⚠️ LOW BOX PENETRATION</strong> <span style="color: #999; cursor: help;" title="Range: <2.5% of total passes">[<2.5%]</span> - Difficulty reaching most dangerous zone (<2.5%). Critical weakness limiting goals. `;
+                    html += `<strong style="color: #e74c3c; cursor: help;" title="Range: <2.5% of total passes">⚠️ LOW BOX PENETRATION</strong> - Difficulty reaching most dangerous zone (<2.5%). Critical weakness limiting goals. `;
                     html += `<strong>FM Solutions:</strong> (1) Width: Wingers/Inside Forwards with crossing, (2) Target Man to win aerial balls, (3) "Whipped Crosses" or "Low Crosses" based on striker height, (4) Attacking Midfielder with "Get Further Forward", (5) Remove "Work Ball Into Box" if active (may cause over-passing), (6) Direct passing into box area. `;
                     html += `Target minimum 4% for competitive scoring.</p>`;
                 }
@@ -2604,23 +2604,23 @@
                 html += `<br><small style="opacity: 0.8;">Calculation: (${oppMiddle}% + ${attackingZones.toFixed(1)}%) ÷ (${defensiveThird}% + ${buildUpZones.toFixed(1)}%) = ${forwardZones.toFixed(1)}% ÷ ${backZones.toFixed(1)}% = ${progressionRatio}</small></p>`;
                 html += `<p style="margin-top: 8px;">`;
                 if (progressionRatio >= 1.2) {
-                    html += `<strong style="color: #27ae60;">⭐ DOMINANT ATTACKING TEAM</strong> <span style="color: #999; cursor: help;" title="Range: ≥1.2 ratio">[≥1.2]</span> - Ratio >1.2 shows your team spends significantly more time in opponent's half (${forwardZones.toFixed(1)}%) than own half (${backZones.toFixed(1)}%). `;
+                    html += `<strong style="color: #27ae60; cursor: help;" title="Range: ≥1.2 ratio">⭐ DOMINANT ATTACKING TEAM</strong> - Ratio >1.2 shows your team spends significantly more time in opponent's half (${forwardZones.toFixed(1)}%) than own half (${backZones.toFixed(1)}%). `;
                     html += `Characteristic of elite attacking teams that control games in opposition territory. `;
                     html += `<strong>FM Strategy:</strong> Continue current approach. Ensure defensive stability during transitions and protect against counter-attacks with "Regroup" or defensive midfielder.</p>`;
                 } else if (progressionRatio >= 0.9 && progressionRatio < 1.2) {
-                    html += `<strong style="color: #27ae60;">✓ BALANCED ATTACKING</strong> <span style="color: #999; cursor: help;" title="Range: 0.9-1.2 ratio">[0.9-1.2]</span> - Ratio 0.9-1.2 shows good forward emphasis with roughly equal time in both halves. `;
+                    html += `<strong style="color: #27ae60; cursor: help;" title="Range: 0.9-1.2 ratio">✓ BALANCED ATTACKING</strong> - Ratio 0.9-1.2 shows good forward emphasis with roughly equal time in both halves. `;
                     html += `This indicates attacking intent while maintaining defensive structure. `;
                     html += `<strong>FM Recommendations:</strong> To push higher (if desired): Increase mentality, add "Higher Defensive Line" + "Play Out of Defence", more attacking roles in midfield.</p>`;
                 } else if (progressionRatio >= 0.7 && progressionRatio < 0.9) {
-                    html += `<strong style="color: #f39c12;">➜ SLIGHTLY DEFENSIVE</strong> <span style="color: #999; cursor: help;" title="Range: 0.7-0.9 ratio">[0.7-0.9]</span> - Ratio 0.7-0.9 shows more time in own half (${backZones.toFixed(1)}%) than opponent's half (${forwardZones.toFixed(1)}%). `;
+                    html += `<strong style="color: #f39c12; cursor: help;" title="Range: 0.7-0.9 ratio">➜ SLIGHTLY DEFENSIVE</strong> - Ratio 0.7-0.9 shows more time in own half (${backZones.toFixed(1)}%) than opponent's half (${forwardZones.toFixed(1)}%). `;
                     html += `This can be intentional (defensive/counter-attacking style) or indicate difficulty progressing. `;
                     html += `<strong>FM Adjustments:</strong> If unintentional: (1) Higher mentality (Positive/Attacking), (2) "Higher Defensive Line", (3) More attacking roles, (4) "Pass Into Space" + "Higher Tempo" for quicker progression.</p>`;
                 } else if (progressionRatio >= 0.5 && progressionRatio < 0.7) {
-                    html += `<strong style="color: #e67e22;">⚠️ DEFENSIVE EMPHASIS</strong> <span style="color: #999; cursor: help;" title="Range: 0.5-0.7 ratio">[0.5-0.7]</span> - Ratio <0.7 shows team spending much more time in own half (${backZones.toFixed(1)}%) than opponent's half (${forwardZones.toFixed(1)}%). `;
+                    html += `<strong style="color: #e67e22; cursor: help;" title="Range: 0.5-0.7 ratio">⚠️ DEFENSIVE EMPHASIS</strong> - Ratio <0.7 shows team spending much more time in own half (${backZones.toFixed(1)}%) than opponent's half (${forwardZones.toFixed(1)}%). `;
                     html += `Either: (1) Intentional defensive/counter strategy, or (2) Struggling to progress ball forward. `;
                     html += `<strong>FM Solutions if unintentional:</strong> (1) Change to Positive mentality minimum, (2) "Higher Defensive Line" + "Higher Line of Engagement", (3) Add attacking players, (4) "Counter-Press" to win ball higher, (5) Technical midfielders for progression.</p>`;
                 } else {
-                    html += `<strong style="color: #e74c3c;">🚨 VERY DEFENSIVE</strong> <span style="color: #999; cursor: help;" title="Range: <0.5 ratio">[<0.5]</span> - Ratio <0.5 shows team heavily pinned in own half. `;
+                    html += `<strong style="color: #e74c3c; cursor: help;" title="Range: <0.5 ratio">🚨 VERY DEFENSIVE</strong> - Ratio <0.5 shows team heavily pinned in own half. `;
                     html += `<strong>URGENT:</strong> This indicates serious difficulty progressing or extremely deep defensive block. `;
                     html += `<strong>FM Overhaul needed:</strong> (1) Formation change to add midfielders, (2) Attacking mentality, (3) Much higher defensive line, (4) "Counter-Press" and "Get Stuck In", (5) Review player quality and roles - may need tactical reset.</p>`;
                 }
