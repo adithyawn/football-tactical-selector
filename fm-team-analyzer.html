@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="id">
 <head>
     <meta charset="UTF-8">
@@ -2456,21 +2456,14 @@
                     html += `<p><strong>LIMITED FINAL THIRD PENETRATION (${finalThirdPenetration.toFixed(1)}%)</strong><br>`;
                     html += `Low attacking threat - need more vertical progression. Immediate actions: (1) Encourage riskier forward passes, (2) Push higher defensive line, (3) Use "Pass Into Space" instructions.</p>`;
                 }
-                
-                // Additional zone analysis if available
-                if (zoneAtt && zoneAtt > 8) {
-                    html += `<p><strong>EXCELLENT ATTACKING PENETRATION (${zoneAtt}%)</strong><br>`;
                     html += `Target: 8-10% for top-level competition.</p>`;
-                } else if (zoneAtt && zoneAtt > 0 && zoneAtt < 6) {
+                } else if (zoneAtt > 0 && zoneAtt < 6) {
                     html += `<p><strong>WARNING: LOW PENETRATION (${zoneAtt}%)</strong><br>`;
                     html += `Critical weakness - below 75th percentile even for defensive teams. Teams with <6% final third presence average only 0.9 goals/game (Sarmento et al., 2014). `;
                     html += `<strong>Immediate actions:</strong> (1) Reduce passing in middle third (currently ${midThird.toFixed(1)}%), (2) Encourage riskier passes forward, (3) Push defensive line higher to compress space, (4) Use "Pass Into Space" and "Take More Risks" instructions.</p>`;
                 }
                 
                 // Central vs Wide analysis
-                const zoneMidLeft = parseInt(document.getElementById('zoneMidLeft').value) || 0;
-                const zoneMidRight = parseInt(document.getElementById('zoneMidRight').value) || 0;
-                const totalWingPlay = zoneMidLeft + zoneMidRight;
                 const centralDominance = parseFloat((zoneMidCenter / midThird * 100).toFixed(1));
                 if (zoneMidCenter > 38) {
                     html += `<p><strong>CRITICAL: OVER-CENTRALIZATION (${zoneMidCenter.toFixed(1)}% of middle third = ${centralDominance.toFixed(0)}% centrality)</strong><br>`;
