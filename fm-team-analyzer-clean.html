@@ -1,0 +1,1451 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>âš½ FM Team Analysis Dashboard - Complete Performance Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
+            padding: 20px;
+            color: #2c3e50;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-bottom: 3px solid #3498db;
+            position: relative;
+        }
+
+        .back-button {
+            position: absolute;
+            left: 30px;
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 10px 20px;
+            background: #95a5a6;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .back-button:hover {
+            background: #7f8c8d;
+            transform: translateY(-50%) translateX(-2px);
+        }
+
+        .header h1 {
+            font-size: 2em;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 0.95em;
+            color: #7f8c8d;
+        }
+
+        .input-section {
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .tab-nav {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e1e8ed;
+            padding-bottom: 0;
+        }
+
+        .tab-button {
+            padding: 12px 20px;
+            background: transparent;
+            border: none;
+            border-bottom: 3px solid transparent;
+            color: #7f8c8d;
+            font-size: 0.9em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .tab-button:hover {
+            color: #3498db;
+            background: #f8fafc;
+        }
+
+        .tab-button.active {
+            color: #3498db;
+            border-bottom-color: #3498db;
+            background: transparent;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .section-title {
+            font-size: 1.1em;
+            margin-bottom: 16px;
+            color: #2c3e50;
+            border-bottom: 1px solid #e1e8ed;
+            padding-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .input-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .input-group {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-group label {
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 0.85em;
+            color: #5a6c7d;
+        }
+
+        .input-group input {
+            padding: 10px 12px;
+            border: 1px solid #d1d8e0;
+            border-radius: 4px;
+            background: #ffffff;
+            color: #2c3e50;
+            font-size: 0.95em;
+            transition: border-color 0.2s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #3498db;
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+
+        .category-section {
+            margin-bottom: 20px;
+            padding: 16px;
+            background: #f8fafc;
+            border-radius: 4px;
+            border-left: 3px solid #3498db;
+        }
+
+        .category-title {
+            font-size: 1em;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 12px;
+        }
+
+        .analyze-button {
+            width: 100%;
+            padding: 14px;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 16px;
+        }
+
+        .analyze-button:hover {
+            background: #2980b9;
+        }
+
+        .analyze-button:active {
+            background: #21618c;
+        }
+
+        .results-section {
+            display: none;
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 8px;
+            margin-top: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        }
+
+        .results-section.show {
+            display: block;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+
+        .stat-card {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 4px;
+            text-align: center;
+            border: 1px solid #e1e8ed;
+            transition: box-shadow 0.2s;
+        }
+
+        .stat-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .stat-card.success {
+            border-left: 3px solid #27ae60;
+        }
+
+        .stat-card.warning {
+            border-left: 3px solid #f39c12;
+        }
+
+        .stat-card.danger {
+            border-left: 3px solid #e74c3c;
+        }
+
+        .stat-card h4 {
+            font-size: 0.85em;
+            margin-bottom: 8px;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+
+        .stat-card .value {
+            font-size: 2em;
+            font-weight: 600;
+            margin-bottom: 4px;
+            color: #2c3e50;
+        }
+
+        .stat-card .comparison {
+            font-size: 0.8em;
+            color: #95a5a6;
+        }
+
+        .pitch {
+            width: 100%;
+            height: 400px;
+            background: #2d8659;
+            border-radius: 10px;
+            position: relative;
+            margin: 20px 0;
+            box-shadow: inset 0 2px 10px rgba(0,0,0,0.3);
+            border: 3px solid rgba(255,255,255,0.8);
+        }
+
+        .pitch::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: rgba(255,255,255,0.6);
+        }
+
+        .pitch-zone {
+            position: absolute;
+            border: 1px dashed rgba(255,255,255,0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+            transition: all 0.2s;
+        }
+
+        .insight-box {
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 4px;
+            margin-bottom: 12px;
+            color: #2c3e50;
+            line-height: 1.6;
+            border-left: 3px solid #7f8c8d;
+        }
+
+        .insight-box.defensive {
+            border-left-color: #3498db;
+            background: #eaf4fb;
+        }
+
+        .insight-box.attacking {
+            border-left-color: #e74c3c;
+            background: #fdeaea;
+        }
+
+        .insight-box.creative {
+            border-left-color: #f39c12;
+            background: #fef5e7;
+        }
+
+        .insight-box.success {
+            border-left-color: #27ae60;
+            background: #eafaf1;
+        }
+
+        .insight-box.warning {
+            border-left-color: #f39c12;
+            background: #fef5e7;
+        }
+
+        .insight-box strong {
+            display: block;
+            font-size: 1em;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .comparison-bars {
+            margin-top: 16px;
+        }
+
+        .comparison-row {
+            margin-bottom: 16px;
+        }
+
+        .comparison-row label {
+            display: block;
+            margin-bottom: 6px;
+            font-weight: 500;
+            font-size: 0.9em;
+            color: #5a6c7d;
+        }
+
+        .bar-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .bar {
+            flex: 1;
+            height: 24px;
+            background: #e8ecf1;
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bar-fill {
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 8px;
+            font-weight: 500;
+            color: white;
+            font-size: 0.85em;
+            transition: width 0.6s ease-out;
+        }
+
+        .bar-value {
+            min-width: 80px;
+            font-weight: 600;
+            font-size: 0.9em;
+            color: #2c3e50;
+        }
+
+        .analysis-section {
+            margin-bottom: 30px;
+        }
+
+        .analysis-section h3 {
+            color: #3498db;
+            margin-bottom: 20px;
+            font-size: 1.3em;
+            border-bottom: 2px solid rgba(52, 152, 219, 0.3);
+            padding-bottom: 10px;
+        }
+        
+        /* Hide print data summary on screen */
+        .print-data-summary {
+            display: none;
+        }
+
+        /* Tooltip styles */
+        .info-tooltip {
+            display: inline-block;
+            position: relative;
+            margin-left: 6px;
+            cursor: help;
+        }
+
+        .info-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            background: #3498db;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+
+        .info-icon:hover {
+            background: #2980b9;
+            transform: scale(1.1);
+        }
+
+        .tooltip-content {
+            visibility: hidden;
+            opacity: 0;
+            position: absolute;
+            bottom: 125%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #2c3e50 !important;
+            color: #ffffff !important;
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 0.85em;
+            line-height: 1.5;
+            width: 320px;
+            max-width: 90vw;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+            z-index: 99999;
+            transition: all 0.2s;
+            pointer-events: none;
+            white-space: normal;
+            word-wrap: break-word;
+        }
+        
+        .tooltip-content * {
+            color: #ffffff !important;
+        }
+        
+        .tooltip-content strong {
+            color: #ffffff !important;
+            font-weight: 600;
+        }
+
+        .tooltip-content::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 6px solid transparent;
+            border-top-color: #2c3e50;
+        }
+
+        .info-tooltip:hover .tooltip-content {
+            visibility: visible;
+            opacity: 1;
+            pointer-events: auto;
+        }
+        
+        /* Fallback positioning if tooltip goes off screen */
+        .stats-card .info-tooltip .tooltip-content {
+            bottom: auto;
+            top: 125%;
+            margin-top: 8px;
+        }
+        
+        .stats-card .info-tooltip .tooltip-content::after {
+            top: auto;
+            bottom: 100%;
+            border-top-color: transparent;
+            border-bottom-color: #2c3e50;
+        }
+
+        .tooltip-table {
+            width: 100%;
+            margin-top: 8px;
+            border-collapse: collapse;
+        }
+
+        .tooltip-table td {
+            padding: 4px 8px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            color: #ffffff !important;
+        }
+
+        .tooltip-table td:first-child {
+            font-weight: 600;
+            color: #3498db !important;
+        }
+
+        .tooltip-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .tooltip-content div {
+            color: #ffffff !important;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .input-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tab-nav {
+                flex-direction: column;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            @page {
+                margin: 0.8cm;
+                size: A4;
+            }
+
+            body {
+                background: white;
+                font-size: 10.5pt;
+                line-height: 1.4;
+                color: #333;
+            }
+
+            .container {
+                max-width: 100%;
+            }
+
+            .print-button {
+                display: none !important;
+            }
+
+            .input-section {
+                display: none !important;
+            }
+            
+            /* Print summary - compact view of input data */
+            .print-data-summary {
+                display: block !important;
+                background: #f8f9fa;
+                padding: 10px 12px;
+                margin-bottom: 12px;
+                border: 1px solid #ddd;
+                border-left: 4px solid #3498db;
+                page-break-inside: avoid;
+            }
+            
+            .print-data-summary h3 {
+                font-size: 11pt;
+                margin: 0 0 8px 0;
+                color: #2c3e50;
+                font-weight: 600;
+            }
+            
+            .print-data-summary .data-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 6px 12px;
+                font-size: 9pt;
+                line-height: 1.3;
+            }
+            
+            .print-data-summary .data-item {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .print-data-summary .data-label {
+                font-weight: 600;
+                font-size: 8pt;
+                color: #666;
+                margin-bottom: 1px;
+            }
+            
+            .print-data-summary .data-value {
+                font-size: 9.5pt;
+                color: #2c3e50;
+                font-weight: 500;
+            }
+            
+            .print-data-summary .section-divider {
+                margin: 8px 0;
+                padding: 4px 0;
+                border-top: 1px solid #ddd;
+                font-weight: 600;
+                font-size: 9.5pt;
+                color: #3498db;
+            }
+
+            .header {
+                box-shadow: none;
+                border-bottom: 2px solid #3498db;
+                page-break-after: avoid;
+                padding: 10px 0;
+                margin-bottom: 10px;
+            }
+
+            .header h1 {
+                font-size: 16pt;
+                margin-bottom: 4px;
+                color: #2c3e50;
+            }
+
+            .header p {
+                font-size: 9.5pt;
+                color: #555;
+                margin: 0;
+            }
+
+            .header-actions {
+                display: none !important;
+            }
+
+            .results-section {
+                box-shadow: none;
+                border: none;
+                padding: 0;
+            }
+
+            .section-title {
+                font-size: 12pt;
+                font-weight: 600;
+                margin: 10px 0 6px 0;
+                color: #2c3e50;
+            }
+
+            .analysis-section {
+                page-break-inside: avoid;
+                margin-bottom: 10px;
+            }
+
+            .analysis-section h3 {
+                font-size: 11pt;
+                font-weight: 600;
+                margin: 8px 0 6px 0;
+                color: #2c3e50;
+            }
+
+            .stats-card {
+                page-break-inside: avoid;
+                margin-bottom: 7px;
+                padding: 8px 10px;
+                border: 1px solid #e1e8ed;
+                border-left: 3px solid #3498db;
+                background: #fafafa;
+            }
+
+            .stats-card h4 {
+                font-size: 10.5pt;
+                font-weight: 600;
+                margin-bottom: 5px;
+                color: #2c3e50;
+            }
+
+            .stats-card p {
+                margin: 3px 0;
+                line-height: 1.4;
+            }
+
+            .insight-box {
+                page-break-inside: avoid;
+                margin-bottom: 8px;
+                padding: 10px 12px;
+                border-left: 4px solid;
+                line-height: 1.4;
+            }
+
+            .insight-box strong {
+                font-size: 10.5pt;
+                display: block;
+                margin-bottom: 5px;
+            }
+
+            .insight-box p {
+                margin: 4px 0;
+                line-height: 1.5;
+            }
+
+            .insight-box ul {
+                margin: 4px 0 4px 18px;
+                padding: 0;
+            }
+
+            .insight-box li {
+                margin: 3px 0;
+                line-height: 1.4;
+            }
+
+            /* Stats grid - use flexbox for better print compatibility */
+            .stats-grid {
+                display: flex !important;
+                flex-wrap: wrap;
+                gap: 7px;
+                margin-bottom: 10px;
+            }
+            
+            /* Stat cards - ensure visible in print */
+            .stat-card {
+                display: block !important;
+                flex: 0 1 calc(25% - 7px);
+                min-width: 120px;
+                background: #ffffff;
+                padding: 10px 12px;
+                border-radius: 3px;
+                text-align: center;
+                border: 1px solid #e1e8ed;
+                page-break-inside: avoid;
+                box-sizing: border-box;
+            }
+            
+            .stat-card.success {
+                border-left: 3px solid #27ae60;
+            }
+            
+            .stat-card.warning {
+                border-left: 3px solid #f39c12;
+            }
+            
+            .stat-card.danger {
+                border-left: 3px solid #e74c3c;
+            }
+            
+            .stat-card h4 {
+                font-size: 9pt;
+                margin-bottom: 4px;
+                color: #666;
+                font-weight: 600;
+            }
+            
+            .stat-card .value {
+                font-size: 16pt;
+                font-weight: 700;
+                margin: 4px 0;
+                color: #2c3e50;
+            }
+            
+            .stat-card .comparison {
+                font-size: 8pt;
+                color: #555;
+                line-height: 1.3;
+            }
+            
+            /* Force display Overall Ratings section */
+            #overallRatings {
+                display: flex !important;
+                flex-wrap: wrap;
+                gap: 7px;
+            }
+            
+            #overallRatings .stat-card {
+                display: block !important;
+                visibility: visible !important;
+                opacity: 1 !important;
+            }
+
+            .pitch {
+                margin: 8px 0;
+                page-break-inside: avoid;
+                display: grid !important;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+
+            .pitch-zone {
+                padding: 6px;
+                font-size: 9.5pt;
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+            
+            /* Ensure pitch elements are visible */
+            #defensivePitch,
+            #passingHeatMap {
+                display: grid !important;
+            }
+            
+            /* Ensure stats grids in these sections are visible */
+            #passingStats,
+            #defensiveStats {
+                display: grid !important;
+            }
+
+            /* Typography */
+            h2 {
+                font-size: 12pt;
+                margin: 10px 0 6px 0;
+                color: #2c3e50;
+            }
+
+            h3 {
+                font-size: 11pt;
+                margin: 8px 0 5px 0;
+                color: #2c3e50;
+            }
+
+            h4 {
+                font-size: 10.5pt;
+                margin: 6px 0 4px 0;
+                color: #2c3e50;
+            }
+
+            p {
+                margin: 3px 0;
+                line-height: 1.4;
+            }
+
+            ul, ol {
+                margin: 4px 0 4px 18px;
+                padding: 0;
+            }
+
+            li {
+                margin: 3px 0;
+                line-height: 1.4;
+            }
+
+            strong {
+                color: #2c3e50;
+            }
+
+            br {
+                line-height: 1.4;
+            }
+
+            .tab-nav {
+                display: none !important;
+            }
+
+            /* Hide empty sections */
+            .analysis-section:empty,
+            .stats-card:empty,
+            div:empty {
+                display: none !important;
+            }
+
+            /* Force display all analysis sections in print (JS will populate them before print) */
+            #passingSection,
+            #defensiveSection,
+            #tacticalSection {
+                display: block !important;
+                page-break-inside: avoid;
+            }
+            
+            /* Only hide if explicitly empty after JS processing */
+            #passingSection:empty,
+            #defensiveSection:empty,
+            #tacticalSection:empty {
+                display: none !important;
+            }
+
+            /* Hide sections that only have heading but no content */
+            .analysis-section:not(:has(p)):not(:has(ul)):not(:has(.stats-card)):not(:has(.stat-card)):not(:has(.insight-box)):not(:has(.pitch)) {
+                display: none !important;
+            }
+
+            /* Hide empty sections */
+            .analysis-section:empty,
+            #recommendationsSection:empty,
+            #tacticalInsightsSection:empty {
+                display: none !important;
+            }
+
+            /* If section only contains whitespace, hide it */
+            .analysis-section:not(:has(*)) {
+                display: none !important;
+            }
+            
+            /* NEVER hide Overall Performance Ratings section */
+            .analysis-section:has(#overallRatings) {
+                display: block !important;
+            }
+
+            /* Hide tooltips completely in print */
+            .info-tooltip {
+                display: none !important;
+            }
+            
+            .info-icon {
+                display: none !important;
+            }
+            
+            .tooltip-content {
+                display: none !important;
+            }
+        }
+
+        /* Print Button Styles */
+        .print-button {
+            background: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            font-size: 0.95em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-left: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .print-button:hover {
+            background: #2980b9;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+        }
+
+        .print-button:active {
+            transform: translateY(0);
+        }
+
+        .header-actions {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="index.html" class="back-button">
+                â† Back to Home
+            </a>
+            <h1>âš½ FM Team Analysis Dashboard</h1>
+            <p>Analisis lengkap performa tim: Passing Patterns, Performance Metrics, dan Defensive Structure</p>
+            <div class="header-actions">
+                <button class="print-button" onclick="window.print()">
+                    ðŸ–¨ï¸ Print Report
+                </button>
+            </div>
+        </div>
+
+        <!-- Input Section -->
+        <div class="input-section">
+            <h2 class="section-title">ðŸ“ Input Data Tim</h2>
+
+            <!-- Tab Navigation -->
+            <div class="tab-nav">
+                <button class="tab-button active" onclick="switchTab('basic')">
+                    Basic Info
+                </button>
+                <button class="tab-button" onclick="switchTab('general')">
+                    General Performance
+                </button>
+                <button class="tab-button" onclick="switchTab('attacking')">
+                    Team Attacking
+                </button>
+                <button class="tab-button" onclick="switchTab('defending')">
+                    Team Defending
+                </button>
+                <button class="tab-button" onclick="switchTab('creativity')">
+                    Creativity
+                </button>
+                <button class="tab-button" onclick="switchTab('passing')">
+                    ðŸ“ Passes Attempted
+                </button>
+            </div>
+
+            <!-- Tab: Basic Info -->
+            <div id="basicTab" class="tab-content active">
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>ðŸ† Team Name:</label>
+                        <input type="text" id="teamName" placeholder="e.g., Everton">
+                    </div>
+                    <div class="input-group">
+                        <label>ðŸ“‹ Formation:</label>
+                        <select id="formation" style="padding: 10px; border: 1px solid #ddd; border-radius: 5px; font-size: 14px; width: 100%;">
+                            <option value="">-- Select Formation --</option>
+                            <option value="4-4-2">4-4-2</option>
+                            <option value="4-4-1-1">4-4-1-1</option>
+                            <option value="4-3-3">4-3-3</option>
+                            <option value="4-2-3-1">4-2-3-1</option>
+                            <option value="4-1-4-1">4-1-4-1</option>
+                            <option value="4-3-2-1">4-3-2-1</option>
+                            <option value="4-1-2-3">4-1-2-3</option>
+                            <option value="3-5-2">3-5-2</option>
+                            <option value="3-4-3">3-4-3</option>
+                            <option value="3-4-2-1">3-4-2-1</option>
+                            <option value="5-4-1">5-4-1</option>
+                            <option value="5-3-2">5-3-2</option>
+                            <option value="5-2-3">5-2-3</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label>ðŸ´ Competition (Optional):</label>
+                        <input type="text" id="competition" placeholder="e.g., Premier League">
+                    </div>
+                    <div class="input-group">
+                        <label>ðŸŽ® Matches Played This Season:</label>
+                        <input type="number" id="matchesPlayed" min="1" max="60" placeholder="e.g., 20">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: General Performance -->
+            <div id="generalTab" class="tab-content">
+                <h3 style="margin-bottom: 15px; color: #3498db;">ï¿½ General Performance</h3>
+                <p style="margin-bottom: 20px; opacity: 0.8; font-size: 0.9em;">Data dari FM > Data Hub > General Performance</p>
+                
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>Pass Completion Ratio (%):</label>
+                        <input type="number" id="possession" step="0.1" placeholder="e.g., 88.6">
+                    </div>
+                    <div class="input-group">
+                        <label>Shot % (Shots on Target %):</label>
+                        <input type="number" id="shotPercent" step="0.1" placeholder="e.g., 36.4">
+                    </div>
+                    <div class="input-group">
+                        <label>Tck % (Tackles Won Ratio %):</label>
+                        <input type="number" id="tacklesWonRatio" step="0.1" placeholder="e.g., 75.1">
+                    </div>
+                    <div class="input-group">
+                        <label>Sh/Gm (Shots per Game):</label>
+                        <input type="number" id="shotsPerGame" step="0.1" placeholder="e.g., 12.6">
+                    </div>
+                    <div class="input-group">
+                        <label>Gl/Gm (Goals per Game):</label>
+                        <input type="number" id="goalsPerGame" step="0.1" placeholder="e.g., 1.3">
+                    </div>
+                    <div class="input-group">
+                        <label>xGA/Gm (Expected Goals Against):</label>
+                        <input type="number" id="xGAPerGame" step="0.1" placeholder="e.g., 1.4">
+                    </div>
+                    <div class="input-group">
+                        <label>Np-xG/90 (Non-Penalty xG per 90):</label>
+                        <input type="number" id="npXG90" step="0.1" placeholder="e.g., 1.2">
+                    </div>
+                    <div class="input-group">
+                        <label>Conc/Gm (Conceded per Game):</label>
+                        <input type="number" id="concededPerGame" step="0.1" placeholder="e.g., 1.2">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Team Attacking -->
+            <div id="attackingTab" class="tab-content">
+                <h3 style="margin-bottom: 15px; color: #e74c3c;">âš”ï¸ Team Attacking</h3>
+                <p style="margin-bottom: 20px; opacity: 0.8; font-size: 0.9em;">Data dari FM > Data Hub > Team Attacking</p>
+                
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>Pass Completion Ratio (%):</label>
+                        <input type="number" id="attackingPoss" step="0.1" placeholder="e.g., 88.6">
+                    </div>
+                    <div class="input-group">
+                        <label>Cr % (Cross Completion %):</label>
+                        <input type="number" id="crossCompletion" step="0.1" placeholder="e.g., 16.5">
+                    </div>
+                    <div class="input-group">
+                        <label>Drb/Gm (Dribbles per Game):</label>
+                        <input type="number" id="dribblesPerGame" step="0.1" placeholder="e.g., 18.4">
+                    </div>
+                    <div class="input-group">
+                        <label>Fcl/Gm (Fouls Against per Game):</label>
+                        <input type="number" id="foulsAgainst" step="0.1" placeholder="e.g., 9.1">
+                    </div>
+                    <div class="input-group">
+                        <label>Shot % (Shots on Target %):</label>
+                        <input type="number" id="attackingShotPercent" step="0.1" placeholder="e.g., 36.4">
+                    </div>
+                    <div class="input-group">
+                        <label>Gl/Gm (Goals per Game):</label>
+                        <input type="number" id="attackingGoals" step="0.1" placeholder="e.g., 1.3">
+                    </div>
+                    <div class="input-group">
+                        <label>Sh/Gm (Shots per Game):</label>
+                        <input type="number" id="attackingShots" step="0.1" placeholder="e.g., 12.6">
+                    </div>
+                    <div class="input-group">
+                        <label>Np-xG/90 (Non-Penalty xG per 90):</label>
+                        <input type="number" id="attackingNpXG" step="0.1" placeholder="e.g., 1.2">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Team Defending -->
+            <div id="defendingTab" class="tab-content">
+                <h3 style="margin-bottom: 15px; color: #3498db;">ðŸ›¡ï¸ Team Defending</h3>
+                <p style="margin-bottom: 20px; opacity: 0.8; font-size: 0.9em;">Data dari FM > Data Hub > Team Defending</p>
+                
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>F'Srd Pa... (Final Third Passes Against):</label>
+                        <input type="number" id="finalThirdPasses" step="0.1" placeholder="e.g., 108.6">
+                    </div>
+                    <div class="input-group">
+                        <label>Psn W/... (Possession Won per Game):</label>
+                        <input type="number" id="possessionWon" step="0.1" placeholder="e.g., 81.2">
+                    </div>
+                    <div class="input-group">
+                        <label>OppPPDA (Opposition Passes per Defensive Action):</label>
+                        <input type="number" id="ppda" step="0.1" placeholder="e.g., 26.7">
+                    </div>
+                    <div class="input-group">
+                        <label>Fls/Gm (Fouls Made per Game):</label>
+                        <input type="number" id="foulsMade" step="0.1" placeholder="e.g., 11.2">
+                    </div>
+                    <div class="input-group">
+                        <label>Conc/Gm (Conceded per Game):</label>
+                        <input type="number" id="defendingConceded" step="0.1" placeholder="e.g., 1.2">
+                    </div>
+                    <div class="input-group">
+                        <label>Tck % (Tackles Won Ratio %):</label>
+                        <input type="number" id="defendingTackles" step="0.1" placeholder="e.g., 75.1">
+                    </div>
+                    <div class="input-group">
+                        <label>Cln Sh (Clean Sheets):</label>
+                        <input type="number" id="cleanSheets" step="0.1" placeholder="e.g., 9.0">
+                    </div>
+                    <div class="input-group">
+                        <label>xGA/Gm (Expected Goals Against per Game):</label>
+                        <input type="number" id="defendingXGA" step="0.1" placeholder="e.g., 1.4">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Creativity -->
+            <div id="creativityTab" class="tab-content">
+                <h3 style="margin-bottom: 15px; color: #f39c12;">âœ¨ Creativity</h3>
+                <p style="margin-bottom: 20px; opacity: 0.8; font-size: 0.9em;">Data dari FM > Data Hub > Team > Attacking & Defending</p>
+                
+                <!-- Attacking Creativity -->
+                <h4 style="margin-top: 20px; margin-bottom: 12px; color: #e74c3c; font-size: 1.1em;">âš¡ Attacking Creativity</h4>
+                <p style="margin-bottom: 15px; opacity: 0.8; font-size: 0.85em;">Variasi & kebebasan ide serangan saat memegang bola (dari Attackers/Midfielders)</p>
+                
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>Pass Completion % (Rata-rata):</label>
+                        <input type="number" id="passCompletionRatio" step="0.1" placeholder="e.g., 88.6">
+                    </div>
+                    <div class="input-group">
+                        <label>Key Passes/90:</label>
+                        <input type="number" id="keyPasses" step="0.1" placeholder="e.g., 1.5">
+                    </div>
+                    <div class="input-group">
+                        <label>Open Play xA/90 (Expected Assists):</label>
+                        <input type="number" id="openPlayXA" step="0.1" placeholder="e.g., 0.2">
+                    </div>
+                    <div class="input-group">
+                        <label>Progressive Passes/90:</label>
+                        <input type="number" id="progressivePasses" step="0.1" placeholder="e.g., 6.7">
+                    </div>
+                    <div class="input-group">
+                        <label>Dribbles/90:</label>
+                        <input type="number" id="creativityDribbles" step="0.1" placeholder="e.g., 6.3">
+                    </div>
+                    <div class="input-group">
+                        <label>Conversion Rate % (Goals/Shots):</label>
+                        <input type="number" id="conversionRate" step="0.1" placeholder="e.g., 8.7">
+                    </div>
+                </div>
+                
+                <!-- Defensive Creativity -->
+                <h4 style="margin-top: 25px; margin-bottom: 12px; color: #3498db; font-size: 1.1em;">ðŸ›¡ï¸ Defensive Creativity</h4>
+                <p style="margin-bottom: 15px; opacity: 0.8; font-size: 0.85em;">Variasi reaksi & keputusan saat bertahan + transisi (dari Defenders/Midfielders)</p>
+                
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>Interceptions/90:</label>
+                        <input type="number" id="interceptions" step="0.1" placeholder="e.g., 3.0">
+                    </div>
+                    <div class="input-group">
+                        <label>Pass Completion % (Defenders):</label>
+                        <input type="number" id="defPassCompletion" step="0.1" placeholder="e.g., 89.6">
+                    </div>
+                    <div class="input-group">
+                        <label>Progressive Passes/90 (Defenders):</label>
+                        <input type="number" id="defProgressivePasses" step="0.1" placeholder="e.g., 6.0">
+                    </div>
+                    <div class="input-group">
+                        <label>Dribbles/90 (Defenders):</label>
+                        <input type="number" id="defDribbles" step="0.1" placeholder="e.g., 0.9">
+                    </div>
+                    <div class="input-group">
+                        <label>Assists/90 (Defenders):</label>
+                        <input type="number" id="defAssists" step="0.1" placeholder="e.g., 0.1">
+                    </div>
+                    <div class="input-group">
+                        <label>Cross Completion % (Fullbacks):</label>
+                        <input type="number" id="defCrossCompletion" step="0.1" placeholder="e.g., 22.2">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Passes Attempted -->
+            <div id="passingTab" class="tab-content">
+                <h3 style="margin-bottom: 15px; color: #27ae60;">ðŸ“ Passes Attempted</h3>
+                <p style="margin-bottom: 20px; opacity: 0.8; font-size: 0.9em;">Distribusi passes attempted per zona vertikal dari defensive third ke kotak penalti - Total harus 100%</p>
+                
+                <div class="input-grid">
+                    <div class="input-group">
+                        <label>ðŸ”µ Defensive Third (%):</label>
+                        <input type="number" id="zoneDefThird" min="0" max="100" placeholder="e.g., 13">
+                        <small style="color: #666; font-size: 0.75em;">Build-up dari CB, DM</small>
+                    </div>
+                    <div class="input-group">
+                        <label>ï¿½ Transition Area (%):</label>
+                        <input type="number" id="zoneTransition" min="0" max="100" placeholder="e.g., 17">
+                        <small style="color: #666; font-size: 0.75em;">Transisi awal, posisi DM/FB</small>
+                    </div>
+                    <div class="input-group">
+                        <label>ðŸŸ¢ Before Halfway (%):</label>
+                        <input type="number" id="zoneBeforeHalf" min="0" max="100" placeholder="e.g., 28">
+                        <small style="color: #666; font-size: 0.75em;">Circulation di tengah, DLP atau CM</small>
+                    </div>
+                    <div class="input-group">
+                        <label>ï¿½ Opponent Middle (%):</label>
+                        <input type="number" id="zoneOppMiddle" min="0" max="100" placeholder="e.g., 24">
+                        <small style="color: #666; font-size: 0.75em;">Progresi serangan</small>
+                    </div>
+                    <div class="input-group">
+                        <label>ï¿½ Final Third (%):</label>
+                        <input type="number" id="zoneFinalThird" min="0" max="100" placeholder="e.g., 13">
+                        <small style="color: #666; font-size: 0.75em;">Final third entries</small>
+                    </div>
+                    <div class="input-group">
+                        <label>âš« Penalty Box (%):</label>
+                        <input type="number" id="zonePenaltyBox" min="0" max="100" placeholder="e.g., 4">
+                        <small style="color: #666; font-size: 0.75em;">Area finishing</small>
+                    </div>
+                </div>
+
+                <div style="margin-top: 12px; padding: 12px; background: #eaf4fb; border-radius: 4px; border-left: 3px solid #3498db;">
+                    <strong style="color: #2c3e50;">Tips:</strong> <span style="color: #5a6c7d;">Lihat di FM passes attempted distribution untuk setiap zona vertikal. Total semua zona harus = 100%</span>
+                </div>
+            </div>
+
+            <div style="display: flex; justify-content: center; gap: 12px; margin-top: 20px;">
+                <button class="analyze-button" onclick="fillSampleData()" style="background: #95a5a6; border: 1px solid #7f8c8d;">
+                    Test with Sample Data
+                </button>
+                <button class="analyze-button" onclick="analyzeTeamData()">
+                    Analyze Team Performance
+                </button>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="results-section" id="results">
+            <!-- Print Data Summary (only visible in print) -->
+            <div class="print-data-summary" id="printDataSummary"></div>
+            
+            <h2 class="section-title">Analysis Results</h2>
+
+            <!-- Overall Ratings -->
+            <div class="analysis-section">
+                <h3 style="font-size: 1.1em; color: #2c3e50; margin-bottom: 16px; font-weight: 600;">Overall Performance Ratings</h3>
+                <div class="stats-grid" id="overallRatings"></div>
+            </div>
+
+            <!-- Attacking Creativity -->
+            <div class="analysis-section" id="attackingCreativitySection" style="display: none;">
+                <h3 style="color: #e74c3c; margin-bottom: 10px; border-bottom: 2px solid #e74c3c; padding-bottom: 8px;">âš¡ Attacking Creativity Analysis</h3>
+                <p style="font-size: 0.85em; opacity: 0.8; margin-bottom: 15px;">Variasi & improvisasi serangan dari Attackers/Midfielders</p>
+                <div class="stats-grid" id="attackingCreativityCards"></div>
+            </div>
+
+            <!-- Defensive Creativity -->
+            <div class="analysis-section" id="defensiveCreativitySection" style="display: none;">
+                <h3 style="color: #3498db; margin-bottom: 10px; border-bottom: 2px solid #3498db; padding-bottom: 8px;">ðŸ›¡ï¸ Defensive Creativity Analysis</h3>
+                <p style="font-size: 0.85em; opacity: 0.8; margin-bottom: 15px;">Reaksi cerdas & transisi dari Defenders/Midfielders</p>
+                <div class="stats-grid" id="defensiveCreativityCards"></div>
+            </div>
+
+            <!-- Passes Attempted -->
+            <div class="analysis-section" id="passingSection" style="display: none;">
+                <h3 style="font-size: 1.1em; color: #2c3e50; margin-bottom: 16px; font-weight: 600;">Passes Attempted Analysis</h3>
+                <div class="pitch" id="passingHeatMap"></div>
+                <div class="stats-grid" id="passingStats"></div>
+            </div>
+
+            <!-- Defensive Structure -->
+            <div class="analysis-section" id="defensiveSection" style="display: none;">
+                <h3 style="font-size: 1.1em; color: #2c3e50; margin-bottom: 16px; font-weight: 600;">Defensive Structure Analysis</h3>
+                <div class="stats-grid" id="defensiveStats"></div>
+                <div class="pitch" id="defensivePitch"></div>
+                <div class="comparison-bars" id="defActionsBars"></div>
+            </div>
+
+            <!-- Strengths & Weaknesses -->
+            <div class="analysis-section">
+                <h3 style="font-size: 1.1em; color: #2c3e50; margin-bottom: 16px; font-weight: 600;">Strengths & Weaknesses</h3>
+                <div id="strengthsWeaknesses"></div>
+            </div>
+
+            <!-- Tactical Insights -->
+            <div class="analysis-section">
+                <h3 style="font-size: 1.1em; color: #2c3e50; margin-bottom: 16px; font-weight: 600;">Tactical Insights</h3>
+                <div id="tacticalInsights"></div>
+            </div>
+
+            <!-- League Comparison -->
+            <div class="analysis-section" id="leagueComparisonSection" style="display: none;">
+                <h3 style="font-size: 1.1em; color: #2c3e50; margin-bottom: 16px; font-weight: 600;">League Comparison</h3>
+                <div class="comparison-bars" id="leagueComparisonBars"></div>
+            </div>
+
+            <!-- Recommendations -->
+            <div class="analysis-section" id="recommendationsSection">
+                <div id="recommendations"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function fillSampleData() {
+            // Basic Info
+            document.getElementById('teamName').value = 'Everton';
+            document.getElementById('formation').value = '4-3-3'; // Dropdown selection
+            document.getElementById('competition').value = 'Premier League';
+            document.getElementById('matchesPlayed').value = '20';
+            
+            // General Performance
+            document.getElementById('possession').value = '88.6';
+            document.getElementById('shotPercent').value = '36.4';
+            document.getElementById('tacklesWonRatio').value = '75.1';
+            document.getElementById('shotsPerGame').value = '12.6';
+            document.getElementById('goalsPerGame').value = '1.3';
+            document.getElementById('xGAPerGame').value = '1.4';
+            document.getElementById('npXG90').value = '1.2';
+            document.getElementById('concededPerGame').value = '1.2';
+            
+            // Team Attacking
+            document.getElementById('attackingPoss').value = '58.6';
+            document.getElementById('crossCompletion').value = '16.5';
+            document.getElementById('dribblesPerGame').value = '18.4';
+            document.getElementById('foulsAgainst').value = '9.1';
+            document.getElementById('attackingShotPercent').value = '36.4';
+            document.getElementById('attackingGoals').value = '1.3';
+            document.getElementById('attackingShots').value = '12.6';
+            document.getElementById('attackingNpXG').value = '1.2';
+            
+            // Team Defending
+            document.getElementById('finalThirdPasses').value = '108.6';
+            document.getElementById('possessionWon').value = '81.2';
+            document.getElementById('ppda').value = '26.7';
+            document.getElementById('foulsMade').value = '11.2';
+            document.getElementById('defendingConceded').value = '1.2';
+            document.getElementById('defendingTackles').value = '75.1';
+            document.getElementById('cleanSheets').value = '9';
+            document.getElementById('defendingXGA').value = '1.4';
+            
+            // Creativity - Attacking
+            document.getElementById('passCompletionRatio').value = '88.6';
+            document.getElementById('keyPasses').value = '1.5';
+            document.getElementById('openPlayXA').value = '0.2';
+            document.getElementById('progressivePasses').value = '6.7';
+            document.getElementById('creativityDribbles').value = '6.3';
+            if (document.getElementById('conversionRate')) document.getElementById('conversionRate').value = '8.7';
+            
+            // Creativity - Defensive
+            document.getElementById('interceptions').value = '3.0'; // Average range - triggers AVERAGE analysis
+            if (document.getElementById('defPassCompletion')) document.getElementById('defPassCompletion').value = '89.6';
+            if (document.getElementById('defProgressivePasses')) document.getElementById('defProgressivePasses').value = '3.8'; // Changed to trigger Priority 2B
+            if (document.getElementById('defDribbles')) document.getElementById('defDribbles').value = '0.9';
+            if (document.getElementById('defAssists')) document.getElementById('defAssists').value = '0.1';
+            if (document.getElementById('defCrossCompletion')) document.getElementById('defCrossCompletion').value = '22.2';
+            
+            // Passes Attempted (6 vertical zones)
+            document.getElementById('zoneDefThird').value = '13';
+            document.getElementById('zoneTransition').value = '17';
+            document.getElementById('zoneBeforeHalf').value = '28';
+            document.getElementById('zoneOppMiddle').value = '24';
+            document.getElementById('zoneFinalThird').value = '13';
+            document.getElementById('zonePenaltyBox').value = '4';
+            
+            alert('Sample data loaded! Click "Analyze Team Performance" to see results.');
+        }
+    
+        function switchTab(tab) {
+            // Hide all tabs
+            const tabs = ['basic', 'general', 'attacking', 'defending', 'creativity', 'passing'];
+            tabs.forEach(t => {
+                document.getElementById(t + 'Tab').classList.remove('active');
+            });
+
+            // Remove active class from all buttons
+            document.querySelectorAll('.tab-button').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            // Show selected tab
+            document.getElementById(tab + 'Tab').classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        // Helper function to create info tooltip
+        function createTooltip(title, data, reference = null) {
+            let tableHtml = '<table class="tooltip-table">';
+            data.forEach(row => {
+                tableHtml += `<tr><td>${row.range}</td><td>${row.description}</td></tr>`;
+            });
+            tableHtml += '</table>';
+            
+            let refHtml = '';
+            if (reference) {
+                refHtml = `<div style="margin-top: 8px; padding-top: 6px; border-top: 1px solid rgba(255,255,255,0.2); font-size: 0.75em; opacity: 0.7; font-style: italic;">${reference}</div>`;
+            }
+            
+            return `<span class="info-tooltip">
+                <span class="info-icon">i</span>
+                <div class="tooltip-content">
+                    <strong>${title}</strong>
+                    ${tableHtml}
+                    ${refHtml}
+                </div>

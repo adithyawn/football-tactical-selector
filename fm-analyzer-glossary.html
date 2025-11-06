@@ -214,6 +214,7 @@
         <div class="header">
             <h1>📚 FM Team Analyzer</h1>
             <p>Complete Glossary & Analysis Logic Documentation</p>
+            <p style="font-size: 0.9em; margin-top: 10px; opacity: 0.95;">Updated: Legend Box System - All metrics now display benchmarks as visible legend boxes with academic source references</p>
         </div>
 
         <div class="content">
@@ -221,14 +222,112 @@
             <div class="toc">
                 <h3>📋 Table of Contents</h3>
                 <ul>
+                    <li><a href="#legend-system">0. Legend Box System (New UI)</a></li>
                     <li><a href="#attacking-creativity">1. Attacking Creativity Metrics</a></li>
                     <li><a href="#defensive-creativity">2. Defensive Creativity Metrics</a></li>
                     <li><a href="#general-performance">3. General Performance Metrics</a></li>
                     <li><a href="#pressing-defense">4. Pressing & Defensive Metrics</a></li>
                     <li><a href="#passing-patterns">5. Passing Patterns & Heat Map</a></li>
-                    <li><a href="#analysis-logic">6. Analysis Logic & Conditions</a></li>
-                    <li><a href="#research-references">7. Research References</a></li>
+                    <li><a href="#vertical-progression">6. Vertical Progression Analysis</a></li>
+                    <li><a href="#formation-analysis">7. Formation Analysis</a></li>
+                    <li><a href="#analysis-logic">8. Analysis Logic & Conditions</a></li>
+                    <li><a href="#research-references">9. Research References</a></li>
                 </ul>
+            </div>
+
+            <!-- 0. LEGEND BOX SYSTEM -->
+            <div class="section" id="legend-system">
+                <h2>🎨 0. Legend Box System (New UI)</h2>
+                
+                <div class="metric-card" style="border-left-color: #27ae60;">
+                    <h4>What Are Legend Boxes?</h4>
+                    <p><strong>Definition:</strong> Legend boxes are visible information panels that display category benchmarks and performance ranges directly below each analysis section title.</p>
+                    <p><strong>Purpose:</strong> Replaced previous tooltip system (hover icons) to provide immediate, visible reference information without requiring user interaction.</p>
+                    
+                    <h4 style="margin-top: 20px;">Visual Design:</h4>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>Location:</strong> Positioned directly below section titles in all Tactical Recommendations and Vertical Progression Analysis sections</li>
+                        <li><strong>Format:</strong> White background with colored left border (3px) indicating analysis type</li>
+                        <li><strong>Content:</strong> Category ranges separated by pipes (|), followed by source reference citation</li>
+                        <li><strong>Font Size:</strong> 0.75em for readability without overwhelming the interface</li>
+                    </ul>
+                    
+                    <h4 style="margin-top: 20px;">Color Coding System:</h4>
+                    <table class="benchmark-table">
+                        <tr>
+                            <th>Border Color</th>
+                            <th>Hex Code</th>
+                            <th>Usage</th>
+                        </tr>
+                        <tr style="border-left: 4px solid #3498db;">
+                            <td>Blue</td>
+                            <td>#3498db</td>
+                            <td>Defensive analysis, neutral metrics, efficiency calculations</td>
+                        </tr>
+                        <tr style="border-left: 4px solid #27ae60;">
+                            <td>Green</td>
+                            <td>#27ae60</td>
+                            <td>Strengths, elite performance categories</td>
+                        </tr>
+                        <tr style="border-left: 4px solid #e74c3c;">
+                            <td>Red</td>
+                            <td>#e74c3c</td>
+                            <td>Weaknesses, critical issues requiring attention</td>
+                        </tr>
+                        <tr style="border-left: 4px solid #f39c12;">
+                            <td>Orange</td>
+                            <td>#f39c12</td>
+                            <td>Average performance, room for improvement</td>
+                        </tr>
+                        <tr style="border-left: 4px solid #9b59b6;">
+                            <td>Purple</td>
+                            <td>#9b59b6</td>
+                            <td>Penalty Box specific analysis</td>
+                        </tr>
+                    </table>
+                    
+                    <h4 style="margin-top: 20px;">Academic Source References:</h4>
+                    <p>All legend boxes now include source citations from peer-reviewed research papers, UEFA Technical Reports, and authoritative analytics sources (Caley 2015, Sarmento et al. 2014, Fernandez-Navarro et al. 2018, etc.).</p>
+                    <p><strong>Example Format:</strong> "Source: Oberstone, 2009; Rein & Memmert, 2016"</p>
+                    
+                    <h4 style="margin-top: 20px;">Implementation:</h4>
+                    <p><code>createLegendBox(title, data, reference, borderColor)</code> function generates consistent legend boxes across all sections.</p>
+                    <p><strong>Benefits:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>✅ Immediate visibility - no hover required</li>
+                        <li>✅ Academic credibility - all benchmarks cited</li>
+                        <li>✅ Clean interface - no cluttering brackets or icons</li>
+                        <li>✅ Consistent styling - same design language throughout</li>
+                        <li>✅ Color-coded context - visual hierarchy by analysis type</li>
+                    </ul>
+                </div>
+                
+                <div class="logic-box">
+                    <h4>Sections Using Legend Boxes:</h4>
+                    <p><strong>Tactical Recommendations (17+ sections):</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Formation Analysis (3-back, 4-back, 5-back formations)</li>
+                        <li>Shot Accuracy Analysis</li>
+                        <li>Elite Shot Quality</li>
+                        <li>Key Passes & Creativity</li>
+                        <li>Elite Attacking Creativity</li>
+                        <li>Defender Progressive Passes</li>
+                        <li>Elite Defensive Creativity</li>
+                        <li>Interceptions (3 levels: Low, Average, Elite)</li>
+                        <li>PPDA (Pressing Intensity)</li>
+                        <li>Final Third Penetration</li>
+                        <li>Clean Sheets (3 levels: Solid, Elite, Pass Completion)</li>
+                    </ul>
+                    <p><strong>Vertical Progression Analysis (6 zones):</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Defensive Third Dominance</li>
+                        <li>Build-Up Zones Balance</li>
+                        <li>Opponent Middle Third Control</li>
+                        <li>Attacking Zones Penetration</li>
+                        <li>Penalty Box Detail</li>
+                        <li>Vertical Progression Efficiency (formula-based)</li>
+                    </ul>
+                </div>
             </div>
 
             <!-- 1. ATTACKING CREATIVITY -->
@@ -239,6 +338,7 @@
                     <h4>Pass Completion Ratio (%)</h4>
                     <p><strong>Definition:</strong> Percentage of successful passes compared to total passes attempted by the team.</p>
                     <p><strong>Why Important:</strong> Indicates ball retention and passing accuracy. Higher pass completion enables possession-based play and reduces turnovers.</p>
+                    <p><strong>Legend Box Display:</strong> Shows in Tactical Recommendations with blue border (#3498db)</p>
                     <table class="benchmark-table">
                         <tr>
                             <th>Range</th>
@@ -266,40 +366,42 @@
                             <td>Exceptional ball retention (Man City, Barcelona level)</td>
                         </tr>
                     </table>
+                    <p><strong>Source Reference:</strong> UEFA Technical Reports 2008-2012</p>
                 </div>
 
                 <div class="metric-card">
                     <h4>Key Passes per 90 Minutes</h4>
                     <p><strong>Definition:</strong> Number of passes that directly lead to a shot attempt.</p>
                     <p><strong>Why Important:</strong> Primary indicator of chance creation quality. Teams with high key passes create more goal-scoring opportunities.</p>
+                    <p><strong>Legend Box Display:</strong> Red border (#e74c3c) for deficit, Green border (#27ae60) for elite</p>
                     <table class="benchmark-table">
                         <tr>
                             <th>Range</th>
                             <th>Rating</th>
                             <th>Description</th>
+                            <th>Analysis Shown</th>
                         </tr>
                         <tr class="rating-poor">
-                            <td>&lt; 6</td>
-                            <td>Very Low</td>
-                            <td>Lacking creativity - teams score 35% fewer goals (Oberstone, 2009)</td>
+                            <td>&lt; 7</td>
+                            <td>Deficit</td>
+                            <td>Lacking creativity - PRIORITY 2A recommendation</td>
+                            <td>PRIORITY: Attacking Creativity Deficit</td>
                         </tr>
                         <tr class="rating-average">
-                            <td>6-10</td>
+                            <td>7-11.9</td>
                             <td>Average</td>
-                            <td>Competitive level chance creation</td>
-                        </tr>
-                        <tr class="rating-good">
-                            <td>10-12</td>
-                            <td>Good</td>
-                            <td>Solid chance creation capability</td>
+                            <td>Competitive level chance creation (no specific recommendation)</td>
+                            <td>(No display)</td>
                         </tr>
                         <tr class="rating-excellent">
-                            <td>&gt; 12</td>
+                            <td>&gt;= 12</td>
                             <td>Elite</td>
                             <td>Top 15% of teams (Man City 2018: 18.3, De Bruyne: 3.8 individual)</td>
+                            <td>STRENGTH: Elite Attacking Creativity</td>
                         </tr>
                     </table>
-                    <p><strong>Research:</strong> Rein & Memmert (2016) - Key passes correlate with +0.18 goals/game per additional key pass</p>
+                    <p><strong>Source Reference:</strong> Oberstone, 2009; Rein & Memmert, 2016</p>
+                    <p><strong>Research:</strong> Key passes correlate with +0.18 goals/game per additional key pass</p>
                 </div>
 
                 <div class="metric-card">
@@ -447,6 +549,7 @@
                     <h4>Interceptions per 90 Minutes</h4>
                     <p><strong>Definition:</strong> Number of times defenders intercept opponent passes per 90 minutes.</p>
                     <p><strong>Why Important:</strong> Indicates defensive awareness and proactive defending. High interceptions prevent attacks before they develop.</p>
+                    <p><strong>Legend Box Display:</strong> Three separate legends with color-coded borders (Red for weakness, Orange for average, Green for elite)</p>
                     <table class="benchmark-table">
                         <tr>
                             <th>Range</th>
@@ -473,7 +576,8 @@
                             <td>STRENGTH: Elite Defensive Anticipation</td>
                         </tr>
                     </table>
-                    <p><strong>Research:</strong> Mackenzie & Cushion (2013), UEFA Technical Reports - Teams with &lt;2.5 interceptions/game face 35% more dangerous attacks</p>
+                    <p><strong>Source Reference:</strong> Mackenzie & Cushion, 2013; UEFA Technical Reports</p>
+                    <p><strong>Research:</strong> Teams with &lt;2.5 interceptions/game face 35% more dangerous attacks</p>
                 </div>
 
                 <div class="metric-card">
@@ -514,6 +618,7 @@
                     <h4>Defender Progressive Passes per 90</h4>
                     <p><strong>Definition:</strong> Number of progressive passes (10+ yards toward goal) made by defenders per 90 minutes.</p>
                     <p><strong>Why Important:</strong> Key metric for build-up play quality. Defenders who can progress the ball bypass opponent press effectively.</p>
+                    <p><strong>Legend Box Display:</strong> Red border (#e74c3c) for deficit, Green border (#27ae60) for elite</p>
                     <table class="benchmark-table">
                         <tr>
                             <th>Range</th>
@@ -523,24 +628,25 @@
                         </tr>
                         <tr class="rating-poor">
                             <td>&lt; 4.5</td>
-                            <td>Poor</td>
-                            <td>Limited buildup capability, 28% more long balls</td>
-                            <td>PRIORITY 2B: Defensive Creativity Deficit</td>
+                            <td>Deficit</td>
+                            <td>Limited buildup capability - PRIORITY 2B recommendation</td>
+                            <td>PRIORITY: Defensive Creativity Deficit</td>
                         </tr>
                         <tr class="rating-average">
-                            <td>4.5-6.5</td>
+                            <td>4.5-6.4</td>
                             <td>Average</td>
-                            <td>Decent ball progression from back</td>
-                            <td>(No specific recommendation)</td>
+                            <td>Decent ball progression from back (no specific recommendation)</td>
+                            <td>(No display)</td>
                         </tr>
                         <tr class="rating-excellent">
-                            <td>&gt; 6.5</td>
+                            <td>&gt;= 6.5</td>
                             <td>Elite</td>
                             <td>Top 15% buildup capability (Van Dijk: 7.2, Stones: 7.9)</td>
                             <td>STRENGTH: Elite Defensive Creativity</td>
                         </tr>
                     </table>
-                    <p><strong>Research:</strong> Power et al. (2017), Fernandez-Navarro et al. (2018) - Defender progressive passes correlate with +0.18 goals/game</p>
+                    <p><strong>Source Reference:</strong> Power et al., 2017; Fernandez-Navarro et al., 2018</p>
+                    <p><strong>Research:</strong> Defender progressive passes correlate with +0.18 goals/game</p>
                 </div>
 
                 <div class="metric-card">
@@ -709,6 +815,7 @@
                     <h4>Shots on Target %</h4>
                     <p><strong>Definition:</strong> Percentage of total shots that are on target (would go in if not saved).</p>
                     <p><strong>Why Important:</strong> Indicates shot selection quality. Higher percentage means better shooting positions and decision-making.</p>
+                    <p><strong>Legend Box Display:</strong> Two legends - Red for poor accuracy, Green for elite quality</p>
                     <table class="benchmark-table">
                         <tr>
                             <th>Range</th>
@@ -721,55 +828,61 @@
                             <td>Poor shot selection, shooting from low-probability areas</td>
                         </tr>
                         <tr class="rating-average">
-                            <td>30-36%</td>
-                            <td>Average</td>
-                            <td>Standard shot accuracy</td>
-                        </tr>
-                        <tr class="rating-good">
-                            <td>36-42%</td>
-                            <td>Good</td>
-                            <td>Good shot selection and positioning</td>
+                            <td>30-42%</td>
+                            <td>Average-Good</td>
+                            <td>Standard to good shot accuracy</td>
                         </tr>
                         <tr class="rating-excellent">
-                            <td>&gt; 42%</td>
+                            <td>&gt;= 42%</td>
                             <td>Elite</td>
                             <td>Exceptional shot quality (Barcelona 2011: 43.8%)</td>
                         </tr>
                     </table>
-                    <p><strong>Research:</strong> Hughes & Franks (2005), Sarmento et al. (2014)</p>
+                    <p><strong>Source References:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Poor accuracy: Caley, 2015; Anderson & Sally, 2013</li>
+                        <li>Elite quality: Hughes & Franks, 2005; Sarmento et al., 2014</li>
+                    </ul>
                 </div>
 
                 <div class="metric-card">
                     <h4>Clean Sheets %</h4>
                     <p><strong>Definition:</strong> Percentage of matches where team concedes zero goals.</p>
                     <p><strong>Why Important:</strong> Strong indicator of defensive organization and consistency. Winning teams average 40%+ clean sheets.</p>
+                    <p><strong>Legend Box Display:</strong> Three separate legends with color-coded borders (Green for solid/elite, Blue for pass completion context)</p>
                     <table class="benchmark-table">
                         <tr>
                             <th>Range</th>
                             <th>Rating</th>
                             <th>Description</th>
-                        </tr>
-                        <tr class="rating-poor">
-                            <td>&lt; 25%</td>
-                            <td>Poor</td>
-                            <td>Defensive fragility</td>
+                            <th>Analysis Shown</th>
                         </tr>
                         <tr class="rating-average">
-                            <td>25-35%</td>
-                            <td>Average</td>
-                            <td>Mid-table defensive record</td>
-                        </tr>
-                        <tr class="rating-good">
                             <td>35-45%</td>
-                            <td>Good</td>
-                            <td>Solid defensive organization</td>
+                            <td>Solid</td>
+                            <td>Good defensive organization</td>
+                            <td>STRENGTH: Solid Defensive Record</td>
                         </tr>
                         <tr class="rating-excellent">
-                            <td>&gt; 45%</td>
+                            <td>&gt;= 45%</td>
                             <td>Elite</td>
                             <td>Exceptional defensive record (Chelsea 2005: 55%)</td>
+                            <td>STRENGTH: Elite Defensive Record</td>
+                        </tr>
+                        <tr>
+                            <td>Variable</td>
+                            <td>Context</td>
+                            <td>Pass completion thresholds for tactical recommendations</td>
+                            <td>Pass Completion legend (various ranges)</td>
                         </tr>
                     </table>
+                    <p><strong>Source References:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li>Clean sheets: UEFA Technical Reports 2015-2020</li>
+                        <li>Solid defense: Premier League Average 2015-2023</li>
+                        <li>Elite defense: Man City 2017-19: 52%, Liverpool 2018-19: 54%</li>
+                        <li>Pass completion: UEFA Technical Reports 2008-2012</li>
+                    </ul>
                 </div>
             </div>
 
@@ -781,6 +894,7 @@
                     <h4>PPDA (Passes Allowed Per Defensive Action)</h4>
                     <p><strong>Definition:</strong> Number of opponent passes allowed before making a defensive action (tackle, interception, foul). Lower = more aggressive pressing.</p>
                     <p><strong>Why Important:</strong> Key metric for pressing intensity. Shows how high and aggressively team defends.</p>
+                    <p><strong>Legend Box Display:</strong> Blue border (#3498db), shows in Tactical Recommendations when PPDA &gt; 18</p>
                     <table class="benchmark-table">
                         <tr>
                             <th>Range</th>
@@ -788,27 +902,23 @@
                             <th>Description</th>
                         </tr>
                         <tr class="rating-excellent">
-                            <td>&lt; 8</td>
+                            <td>&lt; 10</td>
                             <td>Ultra-aggressive</td>
                             <td>High press - Liverpool 2018-20: 7.2, Leeds 2020-21: 8.9</td>
                         </tr>
                         <tr class="rating-good">
-                            <td>8-15</td>
+                            <td>10-18</td>
                             <td>Balanced</td>
                             <td>Mid-block pressing - sustainable and effective</td>
                         </tr>
-                        <tr class="rating-average">
-                            <td>15-20</td>
-                            <td>Low block</td>
-                            <td>Defensive setup, counter-attacking style</td>
-                        </tr>
                         <tr class="rating-poor">
-                            <td>&gt; 20</td>
+                            <td>&gt; 18</td>
                             <td>Passive</td>
                             <td>Very deep defending, face 4.2+ more shots/game</td>
                         </tr>
                     </table>
-                    <p><strong>Research:</strong> Fernandez-Navarro et al. (2016, 2018) - Teams with PPDA &gt;18 concede 0.31 more goals/game</p>
+                    <p><strong>Source Reference:</strong> Fernandez-Navarro et al., 2016; Rein & Memmert, 2016</p>
+                    <p><strong>Research:</strong> Teams with PPDA &gt;18 concede 0.31 more goals/game</p>
                 </div>
 
                 <div class="metric-card">
@@ -883,6 +993,8 @@
             <div class="section" id="passing-patterns">
                 <h2>🗺️ 5. Passing Patterns & Heat Map</h2>
                 
+                <p><strong>Note:</strong> Passing heat maps do not use legend boxes as they display dynamic percentage-based visualizations rather than fixed benchmark categories.</p>
+                
                 <div class="metric-card">
                     <h4>Passing Zone Distribution</h4>
                     <p><strong>Definition:</strong> Percentage breakdown of where team completes passes across the pitch.</p>
@@ -952,9 +1064,154 @@
                 </div>
             </div>
 
-            <!-- 6. ANALYSIS LOGIC -->
+            <!-- 6. VERTICAL PROGRESSION -->
+            <div class="section" id="vertical-progression">
+                <h2>📈 6. Vertical Progression Analysis</h2>
+                
+                <div class="metric-card">
+                    <h4>Overview</h4>
+                    <p><strong>Purpose:</strong> Analyzes how effectively the team advances the ball through different pitch zones from defense to attack.</p>
+                    <p><strong>Legend Boxes:</strong> All 6 zones display performance benchmarks with colored borders and academic source citations.</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h4>1. Defensive Third Dominance</h4>
+                    <p><strong>Definition:</strong> Percentage of passes completed in own defensive third (0-35 yards from goal).</p>
+                    <p><strong>Legend Categories:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>&lt;15%:</strong> Excellent - Minimal time in danger zone</li>
+                        <li><strong>15-25%:</strong> Balanced - Controlled buildup</li>
+                        <li><strong>25-35%:</strong> Cautious - Safe approach</li>
+                        <li><strong>&gt;35%:</strong> Excessive - Stuck in own half</li>
+                    </ul>
+                    <p><strong>Source:</strong> UEFA Technical Reports; Tenga et al., 2010</p>
+                    <p><strong>Border Color:</strong> Blue (#3498db)</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h4>2. Build-Up Zones (Defensive Flanks)</h4>
+                    <p><strong>Definition:</strong> Left + Right defensive zone percentages combined.</p>
+                    <p><strong>Legend Categories:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>&lt;12%:</strong> Narrow buildup - Central focus</li>
+                        <li><strong>12-20%:</strong> Balanced - Good width</li>
+                        <li><strong>&gt;20%:</strong> Wide buildup - Heavy flank usage</li>
+                    </ul>
+                    <p><strong>Source:</strong> Lago-Peñas et al., 2017; Sarmento et al., 2018</p>
+                    <p><strong>Border Color:</strong> Blue (#3498db)</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h4>3. Opponent Middle Third Control</h4>
+                    <p><strong>Definition:</strong> Percentage of passes in opponent's middle third (35-70 yards).</p>
+                    <p><strong>Legend Categories:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>&lt;25%:</strong> Weak control - Bypassed midfield</li>
+                        <li><strong>25-35%:</strong> Standard - Decent presence</li>
+                        <li><strong>35-45%:</strong> Dominant - Strong control</li>
+                        <li><strong>&gt;45%:</strong> Excessive - Stuck in middle</li>
+                    </ul>
+                    <p><strong>Source:</strong> Lago-Peñas et al., 2017</p>
+                    <p><strong>Border Color:</strong> Blue (#3498db)</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h4>4. Attacking Zones Penetration</h4>
+                    <p><strong>Definition:</strong> Sum of Left + Center + Right attacking third zones.</p>
+                    <p><strong>Legend Categories:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>&lt;15%:</strong> Poor - Failing to reach final third</li>
+                        <li><strong>15-22%:</strong> Average - Standard penetration</li>
+                        <li><strong>22-30%:</strong> Good - Strong final third presence</li>
+                        <li><strong>&gt;30%:</strong> Excellent - Elite attacking dominance</li>
+                    </ul>
+                    <p><strong>Source:</strong> Castellano et al., 2012; Tenga et al., 2010</p>
+                    <p><strong>Border Color:</strong> Blue (#3498db)</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h4>5. Penalty Box Detail</h4>
+                    <p><strong>Definition:</strong> Percentage of passes inside opponent's 18-yard box.</p>
+                    <p><strong>Legend Categories:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>&lt;2%:</strong> Very Low - Limited box entry</li>
+                        <li><strong>2-4%:</strong> Average - Standard box presence</li>
+                        <li><strong>4-6%:</strong> Good - Frequent box entry</li>
+                        <li><strong>&gt;6%:</strong> Excellent - Dominant box control</li>
+                    </ul>
+                    <p><strong>Source:</strong> UEFA Technical Reports; Tenga et al., 2010</p>
+                    <p><strong>Border Color:</strong> Purple (#9b59b6)</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h4>6. Vertical Progression Efficiency</h4>
+                    <p><strong>Definition:</strong> Calculated metric showing how effectively team moves ball from defense to attack.</p>
+                    <p><strong>Formula:</strong> (Attacking Zones % / Defensive Third %) × 100</p>
+                    <p><strong>Interpretation:</strong></p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>&lt;0.6:</strong> Inefficient - Ball stuck in defensive areas</li>
+                        <li><strong>0.6-1.0:</strong> Balanced progression</li>
+                        <li><strong>&gt;1.0:</strong> Efficient - Strong vertical advancement</li>
+                    </ul>
+                    <p><strong>Border Color:</strong> Blue (#3498db)</p>
+                    <p><strong>Note:</strong> Source citation included inline in formula explanation</p>
+                </div>
+            </div>
+
+            <!-- 7. FORMATION ANALYSIS -->
+            <div class="section" id="formation-analysis">
+                <h2>⚽ 7. Formation Analysis</h2>
+                
+                <div class="metric-card">
+                    <h4>Overview</h4>
+                    <p><strong>Purpose:</strong> Recommends formations based on team's defensive approach (number of center-backs).</p>
+                    <p><strong>Legend Box:</strong> Single legend displaying 3 formation categories with tactical philosophy explanations.</p>
+                </div>
+                
+                <div class="metric-card">
+                    <h4>Formation Categories</h4>
+                    <table class="benchmark-table">
+                        <tr>
+                            <th>Formation Type</th>
+                            <th>Description</th>
+                            <th>Philosophy</th>
+                        </tr>
+                        <tr>
+                            <td><strong>3-Back</strong></td>
+                            <td>3 center-backs + wing-backs</td>
+                            <td>Width via wing-backs, extra CB for buildup security</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4-Back</strong></td>
+                            <td>Traditional back four</td>
+                            <td>Most balanced, versatile for possession or counter-attack</td>
+                        </tr>
+                        <tr>
+                            <td><strong>5-Back</strong></td>
+                            <td>Defensive five with wingbacks</td>
+                            <td>Maximum defensive stability, transitions to 3 when attacking</td>
+                        </tr>
+                    </table>
+                    <p><strong>Source Reference:</strong> Fernandez-Navarro et al., 2018; UEFA Tactical Reports 2016-2020</p>
+                    <p><strong>Border Color:</strong> Blue (#3498db)</p>
+                    <p><strong>Display Location:</strong> Shows in all three formation recommendation branches</p>
+                </div>
+                
+                <div class="logic-box">
+                    <h4>Formation Selection Logic</h4>
+                    <p>Analyzer evaluates number of center-backs in squad and recommends formations accordingly:</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>3+ CBs:</strong> 3-back formations (3-4-3, 3-5-2, 3-4-1-2)</li>
+                        <li><strong>2 CBs:</strong> 4-back formations (4-2-3-1, 4-3-3, 4-4-2)</li>
+                        <li><strong>Else:</strong> 5-back defensive formations (5-4-1, 5-3-2)</li>
+                    </ul>
+                    <p>Each branch includes the formation legend box for consistent reference across all recommendations.</p>
+                </div>
+            </div>
+
+            <!-- 8. ANALYSIS LOGIC -->
             <div class="section" id="analysis-logic">
-                <h2>🔍 6. Analysis Logic & Conditions</h2>
+                <h2>🔍 8. Analysis Logic & Conditions</h2>
                 
                 <h3>Priority 1: Critical Defensive Issues</h3>
                 <div class="logic-box">
@@ -1045,9 +1302,9 @@
                 </div>
             </div>
 
-            <!-- 7. RESEARCH REFERENCES -->
+            <!-- 9. RESEARCH REFERENCES -->
             <div class="section" id="research-references">
-                <h2>📚 7. Research References</h2>
+                <h2>📚 9. Research References</h2>
                 
                 <div class="reference-section">
                     <h3>Academic Papers & Industry Research</h3>
