@@ -995,7 +995,7 @@
                     Creativity
                 </button>
                 <button class="tab-button" onclick="switchTab('passing')">
-                    Passing Heat Map
+                    Passes Attempted per Zone
                 </button>
             </div>
 
@@ -1227,9 +1227,9 @@
                 </div>
             </div>
 
-            <!-- Tab: Passing Heat Map -->
+            <!-- Tab: Passes Attempted per Zone -->
             <div id="passingTab" class="tab-content">
-                <h3 style="margin-bottom: 15px; color: #27ae60;">📍 Passing Heat Map - Vertical Progression</h3>
+                <h3 style="margin-bottom: 15px; color: #27ae60;">📍 Passes Attempted per Zone - Vertical Progression</h3>
                 <p style="margin-bottom: 20px; opacity: 0.8; font-size: 0.9em;">Distribusi passes attempted per zona vertikal dari defensive third ke kotak penalti - Total harus 100%</p>
                 
                 <div class="input-grid">
@@ -1307,9 +1307,9 @@
                 <div class="stats-grid" id="defensiveCreativityCards"></div>
             </div>
 
-            <!-- Passing Heat Map -->
+            <!-- Passes Attempted per Zone -->
             <div class="analysis-section" id="passingSection" style="display: none;">
-                <h3 style="font-size: 1.1em; color: #2c3e50; margin-bottom: 16px; font-weight: 600;">Passing Heat Map</h3>
+                <h3 style="font-size: 1.1em; color: #2c3e50; margin-bottom: 16px; font-weight: 600;">Passes Attempted per Zone</h3>
                 <div class="pitch" id="passingHeatMap"></div>
                 <div class="stats-grid" id="passingStats"></div>
             </div>
@@ -1401,13 +1401,13 @@
             if (document.getElementById('defAssists')) document.getElementById('defAssists').value = '0.1';
             if (document.getElementById('defCrossCompletion')) document.getElementById('defCrossCompletion').value = '22.2';
             
-            // Passing Heat Map - Vertical Zones
-            document.getElementById('zoneDefThird').value = '30';
-            document.getElementById('zoneTransition').value = '18';
-            document.getElementById('zoneBeforeHalf').value = '16';
-            document.getElementById('zoneOppMiddle').value = '20';
-            document.getElementById('zoneFinalThird').value = '12';
-            document.getElementById('zonePenaltyBox').value = '4';
+            // Passes Attempted per Zone - Vertical Zones
+            document.getElementById('zoneDefThird').value = '13.1';
+            document.getElementById('zoneTransition').value = '17.2';
+            document.getElementById('zoneBeforeHalf').value = '28.3';
+            document.getElementById('zoneOppMiddle').value = '24.2';
+            document.getElementById('zoneFinalThird').value = '13.1';
+            document.getElementById('zonePenaltyBox').value = '4.0';
             
             alert('Sample data loaded! Click "Analyze Team Performance" to see results.');
         }
