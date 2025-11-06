@@ -5,12 +5,19 @@
 ![CSS3](https://img.shields.io/badge/CSS3-1572B6?logo=css3&logoColor=white)
 ![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=black)
 
-## 🎯 Description
+## � Live Demo
+
+**🚀 [Launch Football Tactical Selector](https://adithyawn.github.io/football-tactical-selector/)**
+
+**📊 [FM Team Analyzer](https://adithyawn.github.io/football-tactical-selector/fm-team-analyzer.html)** - Advanced team performance analysis tool
+
+## �🎯 Description
 
 Football Tactical Selector adalah aplikasi web interaktif yang membantu pelatih dan penggemar sepak bola dalam memilih strategi taktik yang tepat berdasarkan kondisi pertandingan.
 
 ## ✨ Features
 
+### 🎯 Football Tactical Selector
 - **🔢 Smart Formation Selector**: Rekomendasi formasi berdasarkan karakteristik tim dan lawan
 - **⚡ Real-time Recommendations**: Rekomendasi taktik yang berubah secara real-time
 - **🎮 Interactive Interface**: Interface yang mudah digunakan dengan dropdown selector
@@ -22,6 +29,16 @@ Football Tactical Selector adalah aplikasi web interaktif yang membantu pelatih 
   - Analisis pemain kunci
   - Set pieces strategy
   - Substitution planning
+
+### 📊 FM Team Analyzer (NEW!)
+- **📈 Advanced Performance Metrics**: Analisis mendalam performa tim dengan 20+ metrik
+- **🎨 Legend Box System**: Benchmarks visible dengan color-coded borders
+- **📚 Academic References**: Semua metrik dilengkapi source citations dari penelitian peer-reviewed
+- **🗺️ Vertical Progression Analysis**: 6 zona analisis dari defense ke attack
+- **⚽ Formation Analysis**: Rekomendasi formasi berdasarkan 3-back, 4-back, 5-back systems
+- **🎯 Tactical Recommendations**: 17+ kategori rekomendasi dengan priority levels
+- **📖 Complete Glossary**: Dokumentasi lengkap dengan 500+ baris penjelasan
+- **🔬 Research-Based**: Menggunakan data dari UEFA Technical Reports, Sarmento et al., Fernandez-Navarro et al., dan lainnya
 
 ## 🎛️ Available Options
 
