@@ -1457,15 +1457,19 @@
             const formation = document.getElementById('formation').value || 'N/A';
 
             // Check what data is available
-            const hasGeneralData = parseFloat(document.getElementById('possession').value) > 0 ||
-                                  parseFloat(document.getElementById('goalsPerGame').value) > 0;
-            const hasAttackingData = parseFloat(document.getElementById('attackingGoals').value) > 0 ||
-                                    parseFloat(document.getElementById('dribblesPerGame').value) > 0;
-            const hasDefendingData = parseFloat(document.getElementById('ppda').value) > 0 ||
-                                    parseFloat(document.getElementById('cleanSheets').value) > 0;
-            const hasCreativityData = parseFloat(document.getElementById('keyPasses').value) > 0 ||
-                                     parseFloat(document.getElementById('passCompletionRatio').value) > 0;
-            const hasPassingData = parseInt(document.getElementById('zoneDefThird').value) > 0;
+            const hasGeneralData = (document.getElementById('possession').value.trim() !== '' && parseFloat(document.getElementById('possession').value) > 0) ||
+                                  (document.getElementById('goalsPerGame').value.trim() !== '' && parseFloat(document.getElementById('goalsPerGame').value) > 0);
+            const hasAttackingData = (document.getElementById('attackingGoals').value.trim() !== '' && parseFloat(document.getElementById('attackingGoals').value) > 0) ||
+                                    (document.getElementById('dribblesPerGame').value.trim() !== '' && parseFloat(document.getElementById('dribblesPerGame').value) > 0);
+            const hasDefendingData = (document.getElementById('ppda').value.trim() !== '' && parseFloat(document.getElementById('ppda').value) > 0) ||
+                                    (document.getElementById('cleanSheets').value.trim() !== '' && parseFloat(document.getElementById('cleanSheets').value) > 0);
+            const hasCreativityData = (document.getElementById('keyPasses').value.trim() !== '' && parseFloat(document.getElementById('keyPasses').value) > 0) ||
+                                     (document.getElementById('progressivePasses').value.trim() !== '' && parseFloat(document.getElementById('progressivePasses').value) > 0) ||
+                                     (document.getElementById('openPlayXA').value.trim() !== '' && parseFloat(document.getElementById('openPlayXA').value) > 0) ||
+                                     (document.getElementById('creativityDribbles').value.trim() !== '' && parseFloat(document.getElementById('creativityDribbles').value) > 0) ||
+                                     (document.getElementById('interceptions').value.trim() !== '' && parseFloat(document.getElementById('interceptions').value) > 0) ||
+                                     (document.getElementById('defPassCompletion').value.trim() !== '' && parseFloat(document.getElementById('defPassCompletion').value) > 0);
+            const hasPassingData = document.getElementById('zoneDefThird').value.trim() !== '' && parseInt(document.getElementById('zoneDefThird').value) > 0;
 
             if (!hasGeneralData && !hasAttackingData && !hasDefendingData && !hasCreativityData && !hasPassingData) {
                 alert('Please enter at least some team data!');
@@ -1691,6 +1695,9 @@
 
             if (html) {
                 document.getElementById('overallRatings').innerHTML = html;
+                document.getElementById('generalSection').style.display = 'block';
+            } else {
+                document.getElementById('generalSection').style.display = 'none';
             }
         }
 
@@ -1746,6 +1753,18 @@
             const conceded = parseFloat(document.getElementById('defendingConceded').value) || 0;
             const possWon = parseFloat(document.getElementById('possessionWon').value) || 0;
             const tackles = parseFloat(document.getElementById('defendingTackles').value) || 0;
+
+            // Check if any defending data was actually entered
+            const hasAnyDefendingData = (document.getElementById('ppda').value.trim() !== '' && ppda > 0) ||
+                                         (document.getElementById('cleanSheets').value.trim() !== '' && cleanSheets > 0) ||
+                                         (document.getElementById('defendingConceded').value.trim() !== '' && conceded > 0) ||
+                                         (document.getElementById('possessionWon').value.trim() !== '' && possWon > 0) ||
+                                         (document.getElementById('defendingTackles').value.trim() !== '' && tackles > 0);
+
+            if (!hasAnyDefendingData) {
+                document.getElementById('defensiveSection').style.display = 'none';
+                return;
+            }
 
             document.getElementById('defensiveSection').style.display = 'block';
 
@@ -1851,11 +1870,16 @@
             const defCrossComp = parseFloat(document.getElementById('defCrossCompletion').value) || 0;
 
             // ========== ATTACKING CREATIVITY ANALYSIS ==========
-            const hasAttackingData = keyPasses > 0 || progPasses > 0 || openPlayXA > 0 || dribbles > 0;
+            const hasAttackingData = (document.getElementById('keyPasses').value.trim() !== '' && keyPasses > 0) || 
+                                      (document.getElementById('progressivePasses').value.trim() !== '' && progPasses > 0) || 
+                                      (document.getElementById('openPlayXA').value.trim() !== '' && openPlayXA > 0) || 
+                                      (document.getElementById('creativityDribbles').value.trim() !== '' && dribbles > 0);
             let attackingHTML = '';
             
             if (hasAttackingData) {
                 document.getElementById('attackingCreativitySection').style.display = 'block';
+            } else {
+                document.getElementById('attackingCreativitySection').style.display = 'none';
             }
 
             if (keyPasses > 0) {
@@ -1930,11 +1954,17 @@
             document.getElementById('attackingCreativityCards').innerHTML = attackingHTML;
 
             // ========== DEFENSIVE CREATIVITY ANALYSIS ==========
-            const hasDefensiveData = interceptions > 0 || defPassComp > 0 || defProgPasses > 0 || defDribbles > 0 || defAssists > 0;
+            const hasDefensiveData = (document.getElementById('interceptions').value.trim() !== '' && interceptions > 0) || 
+                                      (document.getElementById('defPassCompletion').value.trim() !== '' && defPassComp > 0) || 
+                                      (document.getElementById('defProgressivePasses').value.trim() !== '' && defProgPasses > 0) || 
+                                      (document.getElementById('defDribbles').value.trim() !== '' && defDribbles > 0) || 
+                                      (document.getElementById('defAssists').value.trim() !== '' && defAssists > 0);
             let defensiveHTML = '';
             
             if (hasDefensiveData) {
                 document.getElementById('defensiveCreativitySection').style.display = 'block';
+            } else {
+                document.getElementById('defensiveCreativitySection').style.display = 'none';
             }
 
             if (interceptions > 0) {
@@ -2021,7 +2051,10 @@
 
             const total = Object.values(zones).reduce((a, b) => a + b, 0);
             
-            if (total === 0) return; // No passing data entered
+            if (total === 0) {
+                document.getElementById('passingSection').style.display = 'none';
+                return; // No passing data entered
+            }
 
             // Normalize zones if not exactly 100%
             let normalizedZones = zones;
