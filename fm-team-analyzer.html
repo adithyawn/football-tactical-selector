@@ -2456,10 +2456,6 @@
                     html += `<p><strong>LIMITED FINAL THIRD PENETRATION (${finalThirdPenetration.toFixed(1)}%)</strong><br>`;
                     html += `Low attacking threat - need more vertical progression. Immediate actions: (1) Encourage riskier forward passes, (2) Push higher defensive line, (3) Use "Pass Into Space" instructions.</p>`;
                 }
-                
-                // Additional zone analysis
-                if (zoneAtt > 8) {
-                    html += `<p><strong>EXCELLENT ATTACKING PENETRATION (${zoneAtt}%)</strong><br>`;
                     html += `Target: 8-10% for top-level competition.</p>`;
                 } else if (zoneAtt > 0 && zoneAtt < 6) {
                     html += `<p><strong>WARNING: LOW PENETRATION (${zoneAtt}%)</strong><br>`;
