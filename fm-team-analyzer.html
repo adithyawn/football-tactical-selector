@@ -1452,6 +1452,20 @@
             </span>`;
         }
 
+        // Helper function to create legend box (for recommendations section)
+        function createLegendBox(title, data, reference = null, borderColor = '#3498db') {
+            let legendText = data.map(row => `${row.range}: ${row.description}`).join(' | ');
+            
+            let refText = '';
+            if (reference) {
+                refText = `<br><em style="font-size: 0.9em; opacity: 0.8;">${reference}</em>`;
+            }
+            
+            return `<div style="font-size: 0.75em; color: #666; margin: 8px 0 10px 0; padding: 6px 10px; background-color: #fff; border-radius: 4px; border-left: 3px solid ${borderColor};">
+                <strong>${title}:</strong> ${legendText}${refText}
+            </div>`;
+        }
+
         function analyzeTeamData() {
             const teamName = document.getElementById('teamName').value || 'Your Team';
             const formation = document.getElementById('formation').value || 'N/A';
@@ -2474,7 +2488,11 @@
                 html += `<br>`;
                 
                 // Deep analysis of vertical build-up patterns - Defensive Third
-                html += `<p><strong>🔵 DEFENSIVE THIRD ANALYSIS (${defensiveThird}%)</strong> `;
+                html += `<p><strong>🔵 DEFENSIVE THIRD ANALYSIS (${defensiveThird}%)</strong></p>`;
+                html += `<p style="font-size: 0.75em; color: #666; margin: 5px 0 10px 0; padding: 6px 10px; background-color: #fff; border-radius: 4px; border-left: 3px solid #3498db;">`;
+                html += `<strong>Ranges:</strong> >38% Slow | 22-38% Optimal | 15-22% Direct | <15% Very Direct`;
+                html += `</p>`;
+                html += `<p>`;
                 if (defensiveThird > 38) {
                     html += `<br><strong style="color: #e67e22; cursor: help;" title="Range: >38% of total passes">⚠️ VERY SLOW BUILD-UP</strong> - High defensive third usage (>38%) indicates patient, possession-based approach. `;
                     html += `<strong>Strengths:</strong> Maintains control, tires opposition press. <strong>Risks:</strong> Vulnerable to high press, slow transitions, turnovers in dangerous areas. `;
@@ -2499,7 +2517,11 @@
                 html += `<hr style="border: none; border-top: 1px solid #ddd; margin: 16px 0;">`;
                 
                 // Build-up zone analysis (Transition + Before Halfway)
-                html += `<p style="margin-top: 20px;"><strong>🟢 BUILD-UP ZONES ANALYSIS (${buildUpZones}%)</strong> <small>(Transition ${transition}% + Before Halfway ${beforeHalf}%)</small> `;
+                html += `<p style="margin-top: 20px;"><strong>🟢 BUILD-UP ZONES ANALYSIS (${buildUpZones}%)</strong> <small>(Transition ${transition}% + Before Halfway ${beforeHalf}%)</small></p>`;
+                html += `<p style="font-size: 0.75em; color: #666; margin: 5px 0 10px 0; padding: 6px 10px; background-color: #fff; border-radius: 4px; border-left: 3px solid #27ae60;">`;
+                html += `<strong>Ranges:</strong> >45% Excessive | 25-45% Optimal | 20-25% Direct | <20% Minimal`;
+                html += `</p>`;
+                html += `<p>`;
                 if (buildUpZones > 45) {
                     html += `<br><strong style="color: #e67e22; cursor: help;" title="Range: >45% of total passes">⚠️ EXCESSIVE BUILD-UP EMPHASIS</strong> - Very high usage (>45%) in transition zones indicates slow, patient progression. `;
                     html += `<strong>Risk:</strong> Stagnant play, too much sideways passing, vulnerable to counter-press. `;
@@ -2522,7 +2544,11 @@
                 html += `<hr style="border: none; border-top: 1px solid #ddd; margin: 16px 0;">`;
                 
                 // Opponent middle zone penetration
-                html += `<p style="margin-top: 20px;"><strong>🟡 OPPONENT MIDDLE THIRD (${oppMiddle}%)</strong> `;
+                html += `<p style="margin-top: 20px;"><strong>🟡 OPPONENT MIDDLE THIRD (${oppMiddle}%)</strong></p>`;
+                html += `<p style="font-size: 0.75em; color: #666; margin: 5px 0 10px 0; padding: 6px 10px; background-color: #fff; border-radius: 4px; border-left: 3px solid #f39c12;">`;
+                html += `<strong>Ranges:</strong> >30% Elite | 20-30% Strong | 15-20% Moderate | <15% Limited`;
+                html += `</p>`;
+                html += `<p>`;
                 if (oppMiddle > 30) {
                     html += `<br><strong style="color: #27ae60; cursor: help;" title="Range: >30% of total passes">⭐ ELITE PENETRATION</strong> - Exceptional presence (>30%) in opponent's middle third! `;
                     html += `This indicates dominant positional play and ability to progress through organized defenses consistently. `;
@@ -2546,7 +2572,11 @@
                 html += `<hr style="border: none; border-top: 1px solid #ddd; margin: 16px 0;">`;
                 
                 // Attacking zones analysis (Final Third + Penalty Box)
-                html += `<p style="margin-top: 20px;"><strong>🔴 ATTACKING ZONES (${attackingZones}%)</strong> <small>(Final Third ${finalThird}% + Penalty Box ${penaltyBox}%)</small> `;
+                html += `<p style="margin-top: 20px;"><strong>🔴 ATTACKING ZONES (${attackingZones}%)</strong> <small>(Final Third ${finalThird}% + Penalty Box ${penaltyBox}%)</small></p>`;
+                html += `<p style="font-size: 0.75em; color: #666; margin: 5px 0 10px 0; padding: 6px 10px; background-color: #fff; border-radius: 4px; border-left: 3px solid #e74c3c;">`;
+                html += `<strong>Ranges:</strong> ≥22% Elite | 16-22% Very Good | 12-16% Decent | 8-12% Limited | <8% Critical`;
+                html += `</p>`;
+                html += `<p>`;
                 if (attackingZones >= 22) {
                     html += `<br><strong style="color: #27ae60; cursor: help;" title="Range: ≥22% of total passes">⭐ ELITE ATTACKING PRESENCE</strong> - Outstanding penetration (>22%) into final third and penalty box! `;
                     html += `This level is characteristic of top attacking teams in elite leagues. Research shows teams with >20% attacking zone presence average 2+ goals per game (Castellano et al., 2012). `;
@@ -2573,7 +2603,11 @@
                 html += `<hr style="border: none; border-top: 1px solid #ddd; margin: 16px 0;">`;
                 
                 // Penalty box penetration - detailed breakdown
-                html += `<p style="margin-top: 20px;"><strong>🎯 PENALTY BOX DETAIL (${penaltyBox}%)</strong> `;
+                html += `<p style="margin-top: 20px;"><strong>🎯 PENALTY BOX DETAIL (${penaltyBox}%)</strong></p>`;
+                html += `<p style="font-size: 0.75em; color: #666; margin: 5px 0 10px 0; padding: 6px 10px; background-color: #fff; border-radius: 4px; border-left: 3px solid #9b59b6;">`;
+                html += `<strong>Ranges:</strong> ≥6% Elite | 4-6% Good | 2.5-4% Moderate | <2.5% Low`;
+                html += `</p>`;
+                html += `<p>`;
                 if (penaltyBox >= 6) {
                     html += `<br><strong style="color: #27ae60; cursor: help;" title="Range: ≥6% of total passes">⭐ ELITE BOX ENTRIES</strong> - Consistently getting into most dangerous zone (>6%). This correlates with high xG and goal conversion rates. `;
                     html += `<strong>FM Maintain:</strong> (1) Protect key creative players (playmakers, wingers), (2) Striker movement: Poacher/Advanced Forward roles, (3) Late runs from midfield, (4) Quality crossing from wide areas. `;
@@ -2600,6 +2634,9 @@
                 const progressionRatio = backZones > 0 ? parseFloat((forwardZones / backZones).toFixed(2)) : 0;
                 
                 html += `<p style="margin-top: 20px;"><strong>📊 VERTICAL PROGRESSION EFFICIENCY: ${progressionRatio}</strong></p>`;
+                html += `<p style="font-size: 0.75em; color: #666; margin: 5px 0 10px 0; padding: 6px 10px; background-color: #fff; border-radius: 4px; border-left: 3px solid #3498db;">`;
+                html += `<strong>Ranges:</strong> ≥1.2 Dominant Attacking | 0.9-1.2 Balanced | 0.7-0.9 Slightly Defensive | 0.5-0.7 Defensive | <0.5 Very Defensive`;
+                html += `</p>`;
                 html += `<p style="margin-top: 4px;"><small style="opacity: 0.8;">Formula: (Opponent Middle + Attacking Zones) ÷ (Defensive Third + Build-Up Zones)</small>`;
                 html += `<br><small style="opacity: 0.8;">Calculation: (${oppMiddle}% + ${attackingZones.toFixed(1)}%) ÷ (${defensiveThird}% + ${buildUpZones.toFixed(1)}%) = ${forwardZones.toFixed(1)}% ÷ ${backZones.toFixed(1)}% = ${progressionRatio}</small></p>`;
                 html += `<p style="margin-top: 8px;">`;
@@ -2667,13 +2704,13 @@
                 html += '<h3 style="font-size: 1.1em; color: #2c3e50; margin-bottom: 12px; font-weight: 600;">Advanced Tactical Recommendations</h3>';
                 html += '<p style="font-size: 0.85em; color: #7f8c8d; margin-bottom: 16px;">Evidence-based tactical adjustments from performance analysis literature</p>';
                 
-                const formationTooltip = createTooltip('Formation Structure Analysis', [
+                const formationLegend = createLegendBox('Formation Structure', [
                     { range: '4-back', description: 'Balanced - good width and solidity' },
                     { range: '3-back', description: 'Offensive - requires disciplined wing-backs' },
                     { range: '5-back', description: 'Defensive - needs creative wing-backs' }
-                ], 'Source: Fernandez-Navarro et al., 2018; UEFA Tactical Reports 2016-2020');
+                ], 'Source: Fernandez-Navarro et al., 2018; UEFA Tactical Reports 2016-2020', '#3498db');
                 
-                let formationText = '';
+                let formationText = formationLegend;
                 let formationStyle = '';
                 
                 if (formation.startsWith('3-')) {
@@ -2770,9 +2807,9 @@
                     formationStyle = 'background: #fef5e7; color: #2c3e50; border-left: 4px solid #f39c12;';
                 }
                 
-                if (formationText !== '') {
+                if (formationText !== formationLegend) {
                     recommendations.push({
-                        title: 'Formation Analysis: ' + formation + ' ' + formationTooltip,
+                        title: 'Formation Analysis: ' + formation,
                         text: formationText,
                         style: formationStyle
                     });
@@ -2781,17 +2818,17 @@
 
             // Shot quality analysis - Elite benchmark comparison
             if (shotPercent > 0 && shotPercent < 28) {
-                const shotTooltip = createTooltip('Shot Accuracy Benchmarks', [
+                const shotLegend = createLegendBox('Shot Accuracy Benchmarks', [
                     { range: '< 25%', description: 'Very poor - speculative shooting' },
                     { range: '25-30%', description: 'Below average - needs improvement' },
                     { range: '30-35%', description: 'Average - competitive level' },
                     { range: '35-40%', description: 'Good - creating quality chances' },
                     { range: '> 40%', description: 'Elite - exceptional shot selection' }
-                ]);
+                ], null, '#e74c3c');
                 
                 recommendations.push({
-                    title: 'PRIORITY 1: Shot Selection Crisis ' + shotTooltip,
-                    text: `<strong>Current:</strong> ${shotPercent.toFixed(1)}% shots on target (Elite benchmark: >35%)<br><br>` +
+                    title: 'PRIORITY 1: Shot Selection Crisis',
+                    text: shotLegend + `<strong>Current:</strong> ${shotPercent.toFixed(1)}% shots on target (Elite benchmark: >35%)<br><br>` +
                           `<strong>Analysis:</strong> Research indicates teams with <30% shot accuracy generate 0.08-0.12 lower xG per shot (Caley, 2015). Your team is taking low-quality shots from poor positions.<br><br>` +
                           `<strong>Tactical Instructions:</strong><ul style="margin: 8px 0; padding-left: 20px;">` +
                           `<li><strong>Work Ball Into Box:</strong> Forces players to seek better positions before shooting</li>` +
@@ -2802,16 +2839,16 @@
                     style: 'background: #fdeaea; color: #2c3e50; border-left: 4px solid #e74c3c;'
                 });
             } else if (shotPercent >= 35) {
-                const eliteShotTooltip = createTooltip('Elite Shot Quality Benchmarks', [
+                const eliteShotLegend = createLegendBox('Elite Shot Quality Benchmarks', [
                     { range: '35-38%', description: 'Excellent - High-quality chance creation' },
                     { range: '38-40%', description: 'Elite - Top 10% of teams globally' },
                     { range: '40-42%', description: 'World-class - Champions League level' },
                     { range: '> 42%', description: 'Exceptional - Historical elite (Barcelona 2011: 43.8%)' }
-                ], 'Source: Hughes & Franks, 2005; Sarmento et al., 2014');
+                ], 'Source: Hughes & Franks, 2005; Sarmento et al., 2014', '#27ae60');
                 
                 recommendations.push({
-                    title: 'STRENGTH: Elite Shot Quality ' + eliteShotTooltip,
-                    text: `${shotPercent.toFixed(1)}% shots on target indicates excellent chance creation. Your team consistently shoots from high-probability zones. Maintain current attacking approach.`,
+                    title: 'STRENGTH: Elite Shot Quality',
+                    text: eliteShotLegend + `${shotPercent.toFixed(1)}% shots on target indicates excellent chance creation. Your team consistently shoots from high-probability zones. Maintain current attacking approach.`,
                     style: 'background: #eafaf1; color: #2c3e50; border-left: 4px solid #27ae60;'
                 });
             }
@@ -2819,17 +2856,17 @@
             // ========== ATTACKING CREATIVITY ANALYSIS ==========
             // Advanced attacking creativity analysis with role recommendations
             if (keyPasses < 7) {
-                const keyPassTooltip = createTooltip('Key Passes Benchmarks', [
+                const keyPassLegend = createLegendBox('Key Passes Benchmarks', [
                     { range: '< 6', description: 'Very low - lacking creativity' },
                     { range: '6-8', description: 'Below average - room for improvement' },
                     { range: '8-10', description: 'Average - competitive level' },
                     { range: '10-12', description: 'Good - solid chance creation' },
                     { range: '> 12', description: 'Elite - top tier creativity' }
-                ]);
+                ], null, '#e74c3c');
                 
                 recommendations.push({
-                    title: 'PRIORITY 2A: Attacking Creativity Deficit ' + keyPassTooltip,
-                    text: `<strong>Current:</strong> ${keyPasses.toFixed(1)} key passes/game (Top teams: 12-15+)<br><br>` +
+                    title: 'PRIORITY 2A: Attacking Creativity Deficit',
+                    text: keyPassLegend + `<strong>Current:</strong> ${keyPasses.toFixed(1)} key passes/game (Top teams: 12-15+)<br><br>` +
                           `<strong>Analysis:</strong> Teams averaging <8 key passes/game score 35% fewer goals (Oberstone, 2009). You lack players making penetrative final balls.<br><br>` +
                           `<strong>Role Recommendations:</strong><ul style="margin: 8px 0; padding-left: 20px;">` +
                           `<li><strong>Advanced Playmaker (Attack):</strong> +2.8 key passes/game on average, operates in half-spaces</li>` +
@@ -2840,16 +2877,16 @@
                     style: 'background: #ffe6e6; color: #2c3e50; border-left: 4px solid #e74c3c;'
                 });
             } else if (keyPasses >= 12) {
-                const eliteCreativityTooltip = createTooltip('Elite Chance Creation Benchmarks', [
+                const eliteCreativityLegend = createLegendBox('Elite Chance Creation Benchmarks', [
                     { range: '12-13', description: 'Very good - Consistent creativity' },
                     { range: '13-15', description: 'Elite - Top quartile attacking teams' },
                     { range: '15-17', description: 'World-class - Champions League quality' },
                     { range: '> 17', description: 'Exceptional - Historic elite (Man City 2018: 18.3)' }
-                ], 'Source: Pena & Touchette, 2012; Rein & Memmert, 2016');
+                ], 'Source: Pena & Touchette, 2012; Rein & Memmert, 2016', '#27ae60');
                 
                 recommendations.push({
-                    title: 'STRENGTH: Elite Attacking Creativity ' + eliteCreativityTooltip,
-                    text: `${keyPasses.toFixed(1)} key passes/game places you in top 15% of teams. Your creative players are consistently finding attackers in dangerous positions.`,
+                    title: 'STRENGTH: Elite Attacking Creativity',
+                    text: eliteCreativityLegend + `${keyPasses.toFixed(1)} key passes/game places you in top 15% of teams. Your creative players are consistently finding attackers in dangerous positions.`,
                     style: 'background: #eafaf1; color: #2c3e50; border-left: 4px solid #27ae60;'
                 });
             }
@@ -2870,17 +2907,17 @@
 
             // Analyze defender progressive passing (build-up from back)
             if (defProgressivePasses > 0 && defProgressivePasses < 4.5) {
-                const defProgPassTooltip = createTooltip('Defender Progressive Passes Benchmarks', [
+                const defProgPassLegend = createLegendBox('Defender Progressive Passes Benchmarks', [
                     { range: '< 3', description: 'Very low - defensive discomfort on ball' },
                     { range: '3-4.5', description: 'Below average - limited buildup capability' },
                     { range: '4.5-6', description: 'Average - decent ball progression' },
                     { range: '6-7.5', description: 'Good - confident buildup from back' },
                     { range: '> 7.5', description: 'Elite - modern ball-playing defenders' }
-                ], 'Source: Power et al., 2017; Fernandez-Navarro et al., 2018');
+                ], 'Source: Power et al., 2017; Fernandez-Navarro et al., 2018', '#e74c3c');
                 
                 recommendations.push({
-                    title: 'PRIORITY 2B: Defensive Creativity Deficit ' + defProgPassTooltip,
-                    text: `<strong>Current:</strong> ${defProgressivePasses.toFixed(1)} progressive passes/90 from defenders (Elite teams: 6-8+)<br><br>` +
+                    title: 'PRIORITY 2B: Defensive Creativity Deficit',
+                    text: defProgPassLegend + `<strong>Current:</strong> ${defProgressivePasses.toFixed(1)} progressive passes/90 from defenders (Elite teams: 6-8+)<br><br>` +
                           `<strong>Analysis:</strong> Research by Fernandez-Navarro et al. (2018) shows teams with <4.5 defender progressive passes/game struggle to bypass press, resulting in 28% more long balls and lower build-up efficiency.<br><br>` +
                           `<strong>Impact:</strong> Your defenders can't progress play effectively, forcing reliance on risky long balls or goalkeeper distribution.<br><br>` +
                           `<strong>Role Recommendations:</strong><ul style="margin: 8px 0; padding-left: 20px;">` +
@@ -2897,16 +2934,16 @@
                     style: 'background: #e8f4fd; color: #2c3e50; border-left: 4px solid #3498db;'
                 });
             } else if (defProgressivePasses >= 6.5) {
-                const eliteDefCreativityTooltip = createTooltip('Elite Defender Ball Progression Benchmarks', [
+                const eliteDefCreativityLegend = createLegendBox('Elite Defender Ball Progression Benchmarks', [
                     { range: '6.5-7', description: 'Very good - Confident ball-playing defense' },
                     { range: '7-8', description: 'Elite - Top quartile buildup capability' },
                     { range: '8-9', description: 'World-class - Champions League quality' },
                     { range: '> 9', description: 'Exceptional - Elite modern defenders (Stones, TAA from CB)' }
-                ], 'Source: Power et al., 2017; Fernandez-Navarro et al., 2018');
+                ], 'Source: Power et al., 2017; Fernandez-Navarro et al., 2018', '#27ae60');
                 
                 recommendations.push({
-                    title: 'STRENGTH: Elite Defensive Creativity ' + eliteDefCreativityTooltip,
-                    text: `<strong>Current:</strong> ${defProgressivePasses.toFixed(1)} progressive passes/90 from defenders - Elite level<br><br>` +
+                    title: 'STRENGTH: Elite Defensive Creativity',
+                    text: eliteDefCreativityLegend + `<strong>Current:</strong> ${defProgressivePasses.toFixed(1)} progressive passes/90 from defenders - Elite level<br><br>` +
                           `Your defenders are comfortable on the ball and excellent at initiating attacks. This places you in the top 15% of teams for build-up play from the back (Fernandez-Navarro et al., 2018).<br><br>` +
                           `<strong>Strategic Advantage:</strong> High defender progressive passing correlates with 0.18 more goals/game and +8.3% possession (Power et al., 2017). Maintain this strength.`,
                     style: 'background: #eafaf1; color: #2c3e50; border-left: 4px solid #27ae60;'
@@ -2915,17 +2952,17 @@
 
             // Analyze interception capability (defensive awareness + positioning)
             if (interceptions > 0 && interceptions < 2.5) {
-                const interceptTooltip = createTooltip('Interceptions Benchmarks', [
+                const interceptLegend = createLegendBox('Interceptions Benchmarks', [
                     { range: '< 2', description: 'Very low - passive defending' },
                     { range: '2-2.5', description: 'Below average - limited reading of game' },
                     { range: '2.5-3.5', description: 'Average - decent defensive awareness' },
                     { range: '3.5-4.5', description: 'Good - proactive defending' },
                     { range: '> 4.5', description: 'Elite - exceptional anticipation' }
-                ], 'Source: Mackenzie & Cushion, 2013; UEFA Technical Reports');
+                ], 'Source: Mackenzie & Cushion, 2013; UEFA Technical Reports', '#e74c3c');
                 
                 recommendations.push({
-                    title: 'WEAKNESS: Low Defensive Interception Rate ' + interceptTooltip,
-                    text: `<strong>Current:</strong> ${interceptions.toFixed(1)} interceptions/90 (Elite: 3.5-5+)<br><br>` +
+                    title: 'WEAKNESS: Low Defensive Interception Rate',
+                    text: interceptLegend + `<strong>Current:</strong> ${interceptions.toFixed(1)} interceptions/90 (Elite: 3.5-5+)<br><br>` +
                           `<strong>Analysis:</strong> Research by Mackenzie & Cushion (2013) shows teams averaging <2.5 interceptions/game face 35% more dangerous attacks and concede 0.23 more goals/game.<br><br>` +
                           `<strong>Diagnosis:</strong> Your defenders are reactive rather than proactive - waiting for opponent actions instead of reading passes.<br><br>` +
                           `<strong>Tactical Solutions:</strong><ul style="margin: 8px 0; padding-left: 20px;">` +
@@ -2938,15 +2975,15 @@
                     style: 'background: #fdeaea; color: #2c3e50; border-left: 4px solid #e74c3c;'
                 });
             } else if (interceptions >= 2.5 && interceptions < 4) {
-                const averageInterceptTooltip = createTooltip('Average Interception Range', [
+                const averageInterceptLegend = createLegendBox('Average Interception Range', [
                     { range: '2.5-3', description: 'Low-average - Basic defensive reading' },
                     { range: '3-3.5', description: 'Average - Decent anticipation' },
                     { range: '3.5-4', description: 'Good - Approaching proactive defending' }
-                ], 'Source: Mackenzie & Cushion, 2013');
+                ], 'Source: Mackenzie & Cushion, 2013', '#f39c12');
                 
                 recommendations.push({
-                    title: 'AVERAGE: Defensive Interception - Room for Improvement ' + averageInterceptTooltip,
-                    text: `<strong>Current:</strong> ${interceptions.toFixed(1)} interceptions/90 - Average range (Elite: 4+)<br><br>` +
+                    title: 'AVERAGE: Defensive Interception - Room for Improvement',
+                    text: averageInterceptLegend + `<strong>Current:</strong> ${interceptions.toFixed(1)} interceptions/90 - Average range (Elite: 4+)<br><br>` +
                           `<strong>Analysis:</strong> Your defensive reading is decent but not yet elite. You're intercepting passes at an average rate, showing some proactive defending but missing opportunities to break up attacks earlier.<br><br>` +
                           `<strong>Improvement Potential:</strong> Increasing to 4+ interceptions/90 (elite level) could reduce opponent dangerous attacks by 22% and improve possession recovery (Mackenzie & Cushion, 2013).<br><br>` +
                           `<strong>How to Improve:</strong><ul style="margin: 8px 0; padding-left: 20px;">` +
@@ -2959,33 +2996,33 @@
                     style: 'background: #fef9e7; color: #2c3e50; border-left: 4px solid #f39c12;'
                 });
             } else if (interceptions >= 4) {
-                const eliteInterceptTooltip = createTooltip('Elite Defensive Interception Benchmarks', [
+                const eliteInterceptLegend = createLegendBox('Elite Defensive Interception Benchmarks', [
                     { range: '4-4.5', description: 'Very good - Proactive defending' },
                     { range: '4.5-5', description: 'Elite - Top defensive awareness' },
                     { range: '5-6', description: 'World-class - Exceptional reading of game' },
                     { range: '> 6', description: 'Historic - Elite anticipation (Kanté 2016: 6.4)' }
-                ], 'Source: Mackenzie & Cushion, 2013; UEFA');
+                ], 'Source: Mackenzie & Cushion, 2013; UEFA', '#27ae60');
                 
                 recommendations.push({
-                    title: 'STRENGTH: Elite Defensive Anticipation ' + eliteInterceptTooltip,
-                    text: `${interceptions.toFixed(1)} interceptions/90 indicates exceptional defensive awareness. Your players read the game excellently and proactively break up opposition attacks before they develop.`,
+                    title: 'STRENGTH: Elite Defensive Anticipation',
+                    text: eliteInterceptLegend + `${interceptions.toFixed(1)} interceptions/90 indicates exceptional defensive awareness. Your players read the game excellently and proactively break up opposition attacks before they develop.`,
                     style: 'background: #eafaf1; color: #2c3e50; border-left: 4px solid #27ae60;'
                 });
             }
 
             // Deep PPDA pressing analysis with strategic context
             if (ppda > 18) {
-                const ppdaTooltip = createTooltip('PPDA Benchmarks (Fernandez-Navarro 2016)', [
+                const ppdaLegend = createLegendBox('PPDA Benchmarks (Fernandez-Navarro 2016)', [
                     { range: '< 8', description: 'Ultra-aggressive - Liverpool/Leeds style' },
                     { range: '8-10', description: 'High press - requires elite fitness' },
                     { range: '11-15', description: 'Mid-block - balanced approach' },
                     { range: '16-20', description: 'Low block - defensive setup' },
                     { range: '> 20', description: 'Passive - counter-attacking only' }
-                ]);
+                ], null, '#3498db');
                 
                 recommendations.push({
-                    title: 'PRIORITY 3: Passive Pressing - High Risk Strategy ' + ppdaTooltip,
-                    text: `<strong>Current PPDA:</strong> ${ppda.toFixed(1)} (Elite pressing: 6-10 | Mid-block: 11-15 | Deep block: 16-25)<br><br>` +
+                    title: 'PRIORITY 3: Passive Pressing - High Risk Strategy',
+                    text: ppdaLegend + `<strong>Current PPDA:</strong> ${ppda.toFixed(1)} (Elite pressing: 6-10 | Mid-block: 11-15 | Deep block: 16-25)<br><br>` +
                           `<strong>Analysis:</strong> Research by Fernandez-Navarro et al. (2016) shows teams with PPDA >18 face 4.2 more shots/game and concede 0.31 more goals/game than high-pressing teams.<br><br>` +
                           `<strong>If Deliberate Low Block:</strong><ul style="margin: 8px 0; padding-left: 20px;">` +
                           `<li>Ensure compact defensive shape (Defensive Width: Narrow)</li>` +
@@ -3021,13 +3058,13 @@
 
             // Final third penetration with pass completion context
             if (attZone > 0 && attZone < 6) {
-                const penetrationTooltip = createTooltip('Final Third Penetration (Sarmento 2014)', [
+                const penetrationLegend = createLegendBox('Final Third Penetration (Sarmento 2014)', [
                     { range: '< 4%', description: 'Critical - stuck in midfield' },
                     { range: '4-6%', description: 'Below average - low threat' },
                     { range: '6-8%', description: 'Average - decent penetration' },
                     { range: '8-10%', description: 'Good - consistent chances' },
                     { range: '> 10%', description: 'Elite - dominant attacking play' }
-                ]);
+                ], null, '#e74c3c');
                 
                 const passAccuracyType = passCompletionRatio >= 85 ? "high" : passCompletionRatio >= 75 ? "average" : "low";
                 let penetrationText = `<strong>Current:</strong> ${attZone}% attacking third passes with ${passCompletionRatio > 0 ? passCompletionRatio.toFixed(1) + '% pass completion (' + passAccuracyType + ')' : 'no pass completion data'}<br><br>` +
@@ -3053,8 +3090,8 @@
                 penetrationText += `<br><br><strong>Expected Impact:</strong> These changes should increase final third penetration to 7-9% within 3-4 matches (+0.4 goals/game expected)`;
                 
                 recommendations.push({
-                    title: 'CRITICAL: Final Third Penetration Failure ' + penetrationTooltip,
-                    text: penetrationText,
+                    title: 'CRITICAL: Final Third Penetration Failure',
+                    text: penetrationLegend + penetrationText,
                     style: 'background: #fdeaea; color: #2c3e50; border-left: 4px solid #e74c3c;'
                 });
             }
@@ -3065,15 +3102,15 @@
             const cleanSheetPercentage = (cleanSheets / matchesPlayed) * 100;
             
             if (xGA > 0 && cleanSheetPercentage < 25) {
-                const cleanSheetTooltip = createTooltip('Clean Sheet Benchmarks', [
+                const cleanSheetLegend = createLegendBox('Clean Sheet Benchmarks', [
                     { range: '< 20%', description: 'Poor - defensive issues' },
                     { range: '20-25%', description: 'Below average - needs work' },
                     { range: '25-30%', description: 'Average - competitive level' },
                     { range: '30-40%', description: 'Good - solid defense' },
                     { range: '> 40%', description: 'Elite - exceptional defense' }
-                ], 'Source: UEFA Technical Reports 2015-2020');
+                ], 'Source: UEFA Technical Reports 2015-2020', '#e74c3c');
                 
-                let defensiveText = `<strong>Current:</strong> ${cleanSheets} clean sheets in ${matchesPlayed} games (${cleanSheetPercentage.toFixed(1)}%) | xGA: ${xGA.toFixed(2)}/game<br><br>` +
+                let defensiveText = cleanSheetLegend + `<strong>Current:</strong> ${cleanSheets} clean sheets in ${matchesPlayed} games (${cleanSheetPercentage.toFixed(1)}%) | xGA: ${xGA.toFixed(2)}/game<br><br>` +
                       `<strong>Analysis:</strong> Teams with <25% clean sheet rate concede 12% more goals than expected (Unterberger & Caley, 2015).<br><br>`;
                 
                 let rootCauseItems = [];
@@ -3113,20 +3150,20 @@
                       `<strong>Target:</strong> ${targetCleanSheets}+ clean sheets (30%+ rate for ${matchesPlayed} games, requires 3-4 match improvement period)`;
                 
                 recommendations.push({
-                    title: 'Defensive Organization Priority ' + cleanSheetTooltip,
+                    title: 'Defensive Organization Priority',
                     text: defensiveText,
                     style: 'background: #f4ecf7; color: #2c3e50; border-left: 4px solid #9b59b6;'
                 });
             } else if (cleanSheetPercentage >= 25 && cleanSheetPercentage < 40 && cleanSheets > 0) {
                 const matchesPlayed = parseInt(document.getElementById('matchesPlayed').value) || 38;
-                const solidDefenseTooltip = createTooltip('Solid Defense Benchmarks', [
+                const solidDefenseLegend = createLegendBox('Solid Defense Benchmarks', [
                     { range: '25-30%', description: 'Average - Competitive level' },
                     { range: '30-35%', description: 'Good - Solid defensive foundation' },
                     { range: '35-40%', description: 'Very good - Strong defense, near elite' },
                     { range: '> 40%', description: 'Elite - Top tier defensive stability' }
-                ], 'Source: Premier League Average 2015-2023: 29.3%, Top 6 Average: 38.7%');
+                ], 'Source: Premier League Average 2015-2023: 29.3%, Top 6 Average: 38.7%', '#f39c12');
                 
-                let solidDefenseText = `<strong>Current:</strong> ${cleanSheets} clean sheets in ${matchesPlayed} games (${cleanSheetPercentage.toFixed(1)}%)<br><br>`;
+                let solidDefenseText = solidDefenseLegend + `<strong>Current:</strong> ${cleanSheets} clean sheets in ${matchesPlayed} games (${cleanSheetPercentage.toFixed(1)}%)<br><br>`;
                 
                 if (cleanSheetPercentage >= 35) {
                     solidDefenseText += `<strong>Analysis:</strong> Very good defensive record - you're approaching elite level (40%+). Your defense is in the top 25% of teams. Just 2-3 more clean sheets would put you in elite territory.<br><br>` +
@@ -3170,39 +3207,39 @@
                 }
                 
                 recommendations.push({
-                    title: 'Solid Defensive Foundation ' + solidDefenseTooltip,
+                    title: 'Solid Defensive Foundation',
                     text: solidDefenseText,
                     style: 'background: #e8f4f8; color: #2c3e50; border-left: 4px solid #3498db;'
                 });
             } else if (cleanSheetPercentage >= 40 && cleanSheets > 0) {
                 const matchesPlayed = parseInt(document.getElementById('matchesPlayed').value) || 38;
-                const eliteDefenseTooltip = createTooltip('Elite Clean Sheet Benchmarks', [
+                const eliteDefenseLegend = createLegendBox('Elite Clean Sheet Benchmarks', [
                     { range: '40-45%', description: 'Excellent - Top tier defense' },
                     { range: '45-50%', description: 'Outstanding - Elite level' },
                     { range: '50-55%', description: 'World-class - Exceptional' },
                     { range: '> 55%', description: 'Historic - Legendary defense' }
-                ], 'Source: Man City 2017-19: 52%, Liverpool 2018-19: 54%');
+                ], 'Source: Man City 2017-19: 52%, Liverpool 2018-19: 54%', '#27ae60');
                 
                 recommendations.push({
-                    title: 'STRENGTH: Elite Defensive Stability ' + eliteDefenseTooltip,
-                    text: `${cleanSheets} clean sheets in ${matchesPlayed} games (${cleanSheetPercentage.toFixed(1)}%) is exceptional - top 10% of teams. Your defensive structure and organization are working excellently.`,
+                    title: 'STRENGTH: Elite Defensive Stability',
+                    text: eliteDefenseLegend + `${cleanSheets} clean sheets in ${matchesPlayed} games (${cleanSheetPercentage.toFixed(1)}%) is exceptional - top 10% of teams. Your defensive structure and organization are working excellently.`,
                     style: 'background: #eafaf1; color: #2c3e50; border-left: 4px solid #27ae60;'
                 });
             }
 
             // Pass completion efficiency check
             if (passCompletionRatio > 0 && passCompletionRatio < 75) {
-                const passCompTooltip = createTooltip('Pass Completion % Standards', [
+                const passCompLegend = createLegendBox('Pass Completion % Standards', [
                     { range: '< 70%', description: 'Very low - technical issues' },
                     { range: '70-75%', description: 'Below average - risky play' },
                     { range: '75-80%', description: 'Average - competitive' },
                     { range: '80-85%', description: 'Good - controlled possession' },
                     { range: '> 85%', description: 'Elite - Barcelona-level passing' }
-                ]);
+                ], null, '#f39c12');
                 
                 recommendations.push({
-                    title: 'Low Pass Completion Rate ' + passCompTooltip,
-                    text: `<strong>Current:</strong> ${passCompletionRatio.toFixed(1)}% pass completion - below competitive standard<br><br>` +
+                    title: 'Low Pass Completion Rate',
+                    text: passCompLegend + `<strong>Current:</strong> ${passCompletionRatio.toFixed(1)}% pass completion - below competitive standard<br><br>` +
                           `<strong>Analysis:</strong> Pass completion below 75% indicates technical or tactical issues. Elite teams maintain >85% (Barcelona 2008-2012: 87-91%). Possible causes:<br>` +
                           `• Playing too high-risk passes without technical quality<br>` +
                           `• Lacking tactical familiarity causing misplaced passes<br>` +
