@@ -1411,6 +1411,20 @@
             
             alert('Sample data loaded! Click "Analyze Team Performance" to see results.');
         }
+
+        // Helper function to normalize decimal input (accept both , and .)
+        function normalizeDecimal(value) {
+            if (typeof value === 'string') {
+                // Replace comma with dot for parseFloat
+                return value.replace(',', '.');
+            }
+            return value;
+        }
+
+        // Helper function to parse float with comma support
+        function parseDecimal(value) {
+            return parseFloat(normalizeDecimal(value)) || 0;
+        }
     
         function switchTab(tab) {
             // Hide all tabs
@@ -1635,13 +1649,13 @@
         }
 
         function analyzeGeneralPerformance(teamName) {
-            const passCompletion = parseFloat(document.getElementById('possession').value) || 0;
-            const shotPercent = parseFloat(document.getElementById('shotPercent').value) || 0;
-            const tacklesWon = parseFloat(document.getElementById('tacklesWonRatio').value) || 0;
-            const shotsPerGame = parseFloat(document.getElementById('shotsPerGame').value) || 0;
-            const goalsPerGame = parseFloat(document.getElementById('goalsPerGame').value) || 0;
-            const xGAPerGame = parseFloat(document.getElementById('xGAPerGame').value) || 0;
-            const conceded = parseFloat(document.getElementById('concededPerGame').value) || 0;
+            const passCompletion = parseDecimal(document.getElementById('possession').value);
+            const shotPercent = parseDecimal(document.getElementById('shotPercent').value);
+            const tacklesWon = parseDecimal(document.getElementById('tacklesWonRatio').value);
+            const shotsPerGame = parseDecimal(document.getElementById('shotsPerGame').value);
+            const goalsPerGame = parseDecimal(document.getElementById('goalsPerGame').value);
+            const xGAPerGame = parseDecimal(document.getElementById('xGAPerGame').value);
+            const conceded = parseDecimal(document.getElementById('concededPerGame').value);
 
             let html = '';
 
@@ -1719,11 +1733,11 @@
         }
 
         function analyzeAttackingPerformance(teamName) {
-            const goals = parseFloat(document.getElementById('attackingGoals').value) || 0;
-            const shots = parseFloat(document.getElementById('attackingShots').value) || 0;
-            const shotPercent = parseFloat(document.getElementById('attackingShotPercent').value) || 0;
-            const dribbles = parseFloat(document.getElementById('dribblesPerGame').value) || 0;
-            const crossComp = parseFloat(document.getElementById('crossCompletion').value) || 0;
+            const goals = parseDecimal(document.getElementById('attackingGoals').value);
+            const shots = parseDecimal(document.getElementById('attackingShots').value);
+            const shotPercent = parseDecimal(document.getElementById('attackingShotPercent').value);
+            const dribbles = parseDecimal(document.getElementById('dribblesPerGame').value);
+            const crossComp = parseDecimal(document.getElementById('crossCompletion').value);
 
             let html = document.getElementById('overallRatings').innerHTML || '';
 
@@ -1765,11 +1779,11 @@
         }
 
         function analyzeDefendingPerformance(teamName) {
-            const ppda = parseFloat(document.getElementById('ppda').value) || 0;
-            const cleanSheets = parseFloat(document.getElementById('cleanSheets').value) || 0;
-            const conceded = parseFloat(document.getElementById('defendingConceded').value) || 0;
-            const possWon = parseFloat(document.getElementById('possessionWon').value) || 0;
-            const tackles = parseFloat(document.getElementById('defendingTackles').value) || 0;
+            const ppda = parseDecimal(document.getElementById('ppda').value);
+            const cleanSheets = parseDecimal(document.getElementById('cleanSheets').value);
+            const conceded = parseDecimal(document.getElementById('defendingConceded').value);
+            const possWon = parseDecimal(document.getElementById('possessionWon').value);
+            const tackles = parseDecimal(document.getElementById('defendingTackles').value);
 
             // Check if any defending data was actually entered
             const hasAnyDefendingData = (document.getElementById('ppda').value.trim() !== '') ||
@@ -1871,20 +1885,20 @@
 
         function analyzeCreativityPerformance(teamName) {
             // Attacking Creativity Data
-            const passCompletionRatio = parseFloat(document.getElementById('possession').value) || 0;
-            const keyPasses = parseFloat(document.getElementById('keyPasses').value) || 0;
-            const progPasses = parseFloat(document.getElementById('progressivePasses').value) || 0;
-            const openPlayXA = parseFloat(document.getElementById('openPlayXA').value) || 0;
-            const dribbles = parseFloat(document.getElementById('creativityDribbles').value) || 0;
-            const conversionRate = parseFloat(document.getElementById('conversionRate').value) || 0;
+            const passCompletionRatio = parseDecimal(document.getElementById('possession').value);
+            const keyPasses = parseDecimal(document.getElementById('keyPasses').value);
+            const progPasses = parseDecimal(document.getElementById('progressivePasses').value);
+            const openPlayXA = parseDecimal(document.getElementById('openPlayXA').value);
+            const dribbles = parseDecimal(document.getElementById('creativityDribbles').value);
+            const conversionRate = parseDecimal(document.getElementById('conversionRate').value);
             
             // Defensive Creativity Data
-            const interceptions = parseFloat(document.getElementById('interceptions').value) || 0;
-            const defPassComp = parseFloat(document.getElementById('defPassCompletion').value) || 0;
-            const defProgPasses = parseFloat(document.getElementById('defProgressivePasses').value) || 0;
-            const defDribbles = parseFloat(document.getElementById('defDribbles').value) || 0;
-            const defAssists = parseFloat(document.getElementById('defAssists').value) || 0;
-            const defCrossComp = parseFloat(document.getElementById('defCrossCompletion').value) || 0;
+            const interceptions = parseDecimal(document.getElementById('interceptions').value);
+            const defPassComp = parseDecimal(document.getElementById('defPassCompletion').value);
+            const defProgPasses = parseDecimal(document.getElementById('defProgressivePasses').value);
+            const defDribbles = parseDecimal(document.getElementById('defDribbles').value);
+            const defAssists = parseDecimal(document.getElementById('defAssists').value);
+            const defCrossComp = parseDecimal(document.getElementById('defCrossCompletion').value);
 
             // ========== ATTACKING CREATIVITY ANALYSIS ==========
             const hasAttackingData = (document.getElementById('keyPasses').value.trim() !== '') || 
