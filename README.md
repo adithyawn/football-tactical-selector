@@ -21,6 +21,7 @@ Football Tactical Selector adalah aplikasi web interaktif yang membantu pelatih 
 - **🔢 Smart Formation Selector**: Rekomendasi formasi berdasarkan karakteristik tim dan lawan
 - **⚡ Real-time Recommendations**: Rekomendasi taktik yang berubah secara real-time
 - **🎮 Interactive Interface**: Interface yang mudah digunakan dengan dropdown selector
+- **⚡ Auto Fill Test Data (NEW!)**: Tombol untuk auto-fill data testing dengan 8+ skenario predefined
 - **📊 Comprehensive Analysis**: Analisis mendalam termasuk:
   - Formasi utama dan alternatif
   - Instruksi taktik spesifik
@@ -81,12 +82,32 @@ Football Tactical Selector adalah aplikasi web interaktif yang membantu pelatih 
 
 ## 🚀 Usage
 
+### Manual Input
 1. Pilih jenis lawan yang akan dihadapi
 2. Tentukan formasi lawan jika diketahui
 3. Pilih gaya bermain lawan
 4. Tentukan situasi game saat ini
 5. Pilih karakteristik tim Anda
 6. Sistem akan memberikan rekomendasi taktik secara otomatis
+
+### Quick Testing (NEW! ⚡)
+1. Klik tombol **"⚡ Auto Fill Test Data"**
+2. Sistem akan otomatis mengisi semua field dengan skenario testing random
+3. Lihat rekomendasi yang muncul
+4. Klik lagi untuk skenario berbeda
+5. Gunakan **"🔄 Refresh / Reset All"** untuk reset
+
+**Available Test Scenarios:**
+- 🔥 Derby Match - Mengejar Skor
+- 🛡️ Melawan Tim Kuat - Bertahan
+- ⚡ Dominasi vs Tim Lemah
+- ⚖️ Pertandingan Seimbang
+- 🎯 Tim Promosi - Harus Menang
+- ⏱️ Injury Time - Desperate
+- 🏆 Final Match - Protect Lead
+- 🎲 Random Testing
+
+📖 **[Read Full Documentation](AUTO_FILL_FEATURE.md)**
 
 ## 🔧 Technical Features
 
