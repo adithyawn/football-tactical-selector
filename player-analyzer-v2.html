@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>? Player Analyzer - Analisis Performa Detail</title>
+    <title>&#9917; Player Analyzer - Analisis Performa Detail</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
         * {
@@ -336,7 +336,7 @@
 
         <div class="upload-section">
             <div class="upload-box" id="uploadBox">
-                <div class="upload-icon">??</div>
+                <div class="upload-icon">&#128193;</div>
                 <h2>Upload File Excel Data Pemain</h2>
                 <p style="margin: 15px 0; color: #666;">
                     Drag & drop file Excel atau klik untuk memilih<br>
@@ -347,15 +347,15 @@
                     Pilih File Excel
                 </button>
                 <button class="btn btn-secondary" onclick="loadTestData()">
-                    ?? Load Test Data (Everton)
+                    &#9889; Load Test Data (Everton)
                 </button>
                 <button class="btn btn-secondary" onclick="resetData()" style="background: #dc3545;">
-                    ?? Reset
+                    &#10060; Reset
                 </button>
             </div>
             <div id="fileInfo" class="hidden" style="margin-top: 15px; text-align: center;">
                 <div class="alert alert-success">
-                    ? File berhasil dimuat: <strong id="fileName"></strong>
+                    &#9989; File berhasil dimuat: <strong id="fileName"></strong>
                     <br>
                     <small id="playerCount"></small>
                 </div>
@@ -363,7 +363,7 @@
             
             <!-- Data Preview Table -->
             <div id="dataPreview" class="hidden" style="margin-top: 20px;">
-                <h3 style="text-align: center; color: #2c3e50; margin-bottom: 15px;">?? Preview Data Imported</h3>
+                <h3 style="text-align: center; color: #2c3e50; margin-bottom: 15px;">&#128065; Preview Data Imported</h3>
                 <div style="overflow: auto; max-height: 400px; border: 2px solid #e1e8ed; border-radius: 8px; background: white;">
                     <table id="previewTable" style="width: 100%; border-collapse: collapse; font-size: 0.85em;">
                         <thead style="position: sticky; top: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; z-index: 10;">
@@ -397,13 +397,13 @@
                     </div>
                     
                     <button class="btn btn-primary" onclick="showTeamTacticalRecommendation()" 
-                            style="background: #3498db; color: white; border: none;
+                            style="background: #27ae60; color: white; border: none;
                                    padding: 8px 16px; font-size: 0.9em; font-weight: 500; 
                                    border-radius: 6px; cursor: pointer;">
                         ? Lihat Rekomendasi Taktik Berdasarkan Performa Individu
                     </button>
-                    <p style="margin-top: 10px; color: #2c3e50; font-size: 0.9em; font-weight: 600;">
-                        atau Pilih Pemain di bawah untuk Analisa Performa Individu Player
+                    <p style="margin-top: 10px; color: red; font-size: 1.1em; font-weight: 600;">
+                        Atau Pilih Pemain Di Bawah Ini Untuk Langsung Analisis Performa Individu
                     </p>
                 </div>
             </div>
@@ -415,13 +415,13 @@
                 <div style="text-align: right; margin-bottom: 10px;">
                     <button class="btn btn-secondary" onclick="closeTeamTacticalRecommendation()" 
                             style="background: #95a5a6; padding: 8px 20px;">
-                        ?? Tutup Rekomendasi
+                        &#10006; Tutup Rekomendasi
                     </button>
                 </div>
                 
                 <div class="card" style="background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);">
                     <div class="card-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
-                        <div class="card-icon">?</div>
+                        <div class="card-icon">&#9881;</div>
                         <div class="card-title">Rekomendasi Taktik Tim</div>
                     </div>
                     <div id="tacticalRecommendationContent" style="padding: 20px;"></div>
@@ -429,7 +429,7 @@
             </div>
             
             <div class="player-selector">
-                <label for="playerSelect">?? Pilih Pemain untuk Dianalisis:</label>
+                <label for="playerSelect">&#128100; Pilih Pemain untuk Dianalisis:</label>
                 <select id="playerSelect" onchange="analyzePlayer()">
                     <option value="">-- Pilih Pemain --</option>
                 </select>
@@ -449,7 +449,7 @@
                 <!-- Key Stats -->
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-icon">??</div>
+                        <div class="card-icon">&#128202;</div>
                         <div class="card-title">Statistik Dasar</div>
                     </div>
                     <div class="stats-grid" id="basicStats"></div>
@@ -457,7 +457,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-icon">??</div>
+                        <div class="card-icon">&#127912;</div>
                         <div class="card-title">Passing & Kreativitas (per 90')</div>
                     </div>
                     <div class="stats-grid" id="passingStats"></div>
@@ -466,7 +466,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-icon">??</div>
+                        <div class="card-icon">&#128257;</div>
                         <div class="card-title">Penguasaan Bola & Duel (per 90')</div>
                     </div>
                     <div class="stats-grid" id="possessionStats"></div>
@@ -475,7 +475,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-icon">?</div>
+                        <div class="card-icon">&#9876;</div>
                         <div class="card-title">Menyerang (per 90')</div>
                     </div>
                     <div class="stats-grid" id="attackingStats"></div>
@@ -484,7 +484,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-icon">???</div>
+                        <div class="card-icon">&#128737;</div>
                         <div class="card-title">Defensif (per 90')</div>
                     </div>
                     <div class="stats-grid" id="defensiveStats"></div>
@@ -493,7 +493,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-icon">??</div>
+                        <div class="card-icon">&#128170;</div>
                         <div class="card-title">Mobilitas & Fisik (per 90')</div>
                     </div>
                     <div class="stats-grid" id="physicalStats"></div>
@@ -502,7 +502,7 @@
 
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-icon">??</div>
+                        <div class="card-icon">&#129516;</div>
                         <div class="card-title">Goalkeeper / GK Metrics</div>
                     </div>
                     <div class="stats-grid" id="goalkeeperStats"></div>
@@ -512,7 +512,7 @@
                 <!-- Insights Section -->
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-icon">??</div>
+                        <div class="card-icon">&#128161;</div>
                         <div class="card-title">Analisis Mendalam</div>
                     </div>
                     <ul class="insight-list" id="insightsList"></ul>
@@ -521,7 +521,7 @@
                 <!-- Recommendations -->
                 <div class="card">
                     <div class="card-header">
-                        <div class="card-icon">??</div>
+                        <div class="card-icon">&#127891;</div>
                         <div class="card-title">Kesimpulan & Rekomendasi Training</div>
                     </div>
                     <div id="recommendations"></div>
@@ -1369,7 +1369,7 @@
         // Team Tactical Recommendation Functions
         function showTeamTacticalRecommendation() {
             if (!playersData || playersData.length === 0) {
-                alert('?? Tidak ada data pemain. Silakan upload file terlebih dahulu.');
+                alert('&#9888; Tidak ada data pemain. Silakan upload file terlebih dahulu.');
                 return;
             }
             
@@ -1877,7 +1877,7 @@
             let html = `
                 ${compBadge}
                 <div style="margin-bottom: 25px;">
-                    <h3 style="color: #2c3e50; margin-bottom: 15px;">?? Analisis Squad</h3>
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">&#128202; Analisis Squad</h3>
                     <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-bottom: 20px;">
                         <div style="background: white; padding: 15px; border-radius: 8px; border-left: 4px solid #3498db;">
                             <div style="font-size: 0.9em; color: #7f8c8d;">Total Pemain</div>
@@ -1927,18 +1927,18 @@
                 </div>
                 
                 <div style="margin-bottom: 25px;">
-                    <h3 style="color: #2c3e50; margin-bottom: 15px;">?? Kekuatan Tim</h3>
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">&#128170; Kekuatan Tim</h3>
                     <div style="background: white; padding: 20px; border-radius: 8px;">
             `;
             
             // Display strength bars
             const strengthLabels = {
-                attacking: '?? Attacking',
-                creativity: '?? Creativity',
-                possession: '?? Possession',
-                pressing: '?? Pressing',
-                defensive: '??? Defensive',
-                physical: '?? Physical'
+                attacking: '&#9876; Attacking',
+                creativity: '&#127912; Creativity',
+                possession: '&#128257; Possession',
+                pressing: '&#128293; Pressing',
+                defensive: '&#128737; Defensive',
+                physical: '&#128170; Physical'
             };
             
             sortedStrengths.forEach(([key, value]) => {
@@ -1989,31 +1989,31 @@
                         </div>
                         
                         <div style="margin-bottom: 15px;">
-                            <div style="font-weight: 600; color: #7f8c8d; margin-bottom: 8px;">?? Formasi yang Disarankan:</div>
+                            <div style="font-weight: 600; color: #7f8c8d; margin-bottom: 8px;">&#9881; Formasi yang Disarankan:</div>
                             <div style="color: #2c3e50; font-size: 1.1em; font-weight: 600;">${rec.formations.join(' / ')}</div>
                         </div>
                         
                         <div style="margin-bottom: 15px;">
-                            <div style="font-weight: 600; color: #7f8c8d; margin-bottom: 8px;">?? Gaya Bermain:</div>
+                            <div style="font-weight: 600; color: #7f8c8d; margin-bottom: 8px;">&#9917; Gaya Bermain:</div>
                             <div style="color: #2c3e50;">${rec.style}</div>
                         </div>
                         
                         <div style="margin-bottom: 15px;">
-                            <div style="font-weight: 600; color: #7f8c8d; margin-bottom: 8px;">?? Instruksi Taktik:</div>
+                            <div style="font-weight: 600; color: #7f8c8d; margin-bottom: 8px;">&#128221; Instruksi Taktik:</div>
                             <ul style="margin: 5px 0; padding-left: 20px; color: #2c3e50;">
                                 ${rec.instructions.map(inst => `<li>${inst}</li>`).join('')}
                             </ul>
                         </div>
                         
                         <div style="margin-bottom: 15px;">
-                            <div style="font-weight: 600; color: #7f8c8d; margin-bottom: 8px;">? Kelebihan:</div>
+                            <div style="font-weight: 600; color: #7f8c8d; margin-bottom: 8px;">&#9989; Kelebihan:</div>
                             <ul style="margin: 5px 0; padding-left: 20px; color: #27ae60;">
                                 ${rec.strengths.map(str => `<li>${str}</li>`).join('')}
                             </ul>
                         </div>
                         
                         <div>
-                            <div style="font-weight: 600; color: #7f8c8d; margin-bottom: 8px;">?? Perhatian:</div>
+                            <div style="font-weight: 600; color: #7f8c8d; margin-bottom: 8px;">&#9888; Perhatian:</div>
                             <ul style="margin: 5px 0; padding-left: 20px; color: #e67e22;">
                                 ${rec.warnings.map(warn => `<li>${warn}</li>`).join('')}
                             </ul>
@@ -2026,11 +2026,11 @@
                 </div>
                 
                 <div style="margin-top: 30px; padding: 15px; background: #e3f2fd; border-left: 4px solid #2196f3; border-radius: 6px;">
-                    <div style="font-weight: 600; color: #1565c0; margin-bottom: 12px;">?? Penjelasan Perhitungan Kekuatan Tim:</div>
+                    <div style="font-weight: 600; color: #1565c0; margin-bottom: 12px;">&#128220; Penjelasan Perhitungan Kekuatan Tim:</div>
                     <div style="background: white; padding: 12px; border-radius: 6px; margin-bottom: 12px;">
                         <div style="color: #1976d2; font-size: 0.9em; line-height: 1.6;">
                             <div style="margin-bottom: 8px;">
-                                <strong>?? Attacking:</strong> (xG/90 � 4) + (xA/90 � 2) + (SoT% � 8) + (Goal/xG � 2)<br>
+                                <strong>&#9876; Attacking:</strong> (xG/90 &times; 4) + (xA/90 &times; 2) + (SoT% &times; 8) + (Goal/xG &times; 2)<br>
                                 <span style="color: #666; font-size: 0.9em;">
                                     Mengukur <em>attack potential</em> (xG, xA, SoT%) + <em>finishing efficiency</em> (Goal/xG ratio)<br>
                                     <strong>Goal/xG:</strong> &lt;1.0 = finishing buruk | 1.0 = sesuai ekspektasi | &gt;1.0 = klinikal
@@ -2043,12 +2043,12 @@
                                     Score Anda: ${analysis.strengths.attacking.toFixed(2)}
                                 </span>
                                 <div style="margin-top: 6px; padding: 6px; background: #f0f8ff; border-left: 3px solid #2196f3; border-radius: 3px; font-size: 0.85em;">
-                                    ?? <strong>Interpretasi:</strong> Score dinormalisasi ke skala 0-10. Bobot realistis mencegah inflasi skor.
+                                    &#128161; <strong>Interpretasi:</strong> Score dinormalisasi ke skala 0-10. Bobot realistis mencegah inflasi skor.
                                 </div>
                             </div>
                             
                             <div style="margin-bottom: 8px;">
-                                <strong>?? Creativity:</strong> (KeyP/90 � 1.8) + (xA/90 � 3) + (ProgP/90 � 0.2) + (Drb/90 � 0.3)<br>
+                                <strong>&#127912; Creativity:</strong> (KeyP/90 &times; 1.8) + (xA/90 &times; 3) + (ProgP/90 &times; 0.2) + (Drb/90 &times; 0.3)<br>
                                 <span style="color: #666; font-size: 0.9em;">
                                     Menciptakan peluang melalui <em>passing</em> (KeyP, xA, ProgP) + <em>ball-carrying</em> (Dribbles)<br>
                                     <strong>Bedakan:</strong> Playmaker statis vs creator yang membawa bola
@@ -2063,7 +2063,7 @@
                             </div>
                             
                             <div style="margin-bottom: 8px;">
-                                <strong>?? Possession:</strong> (PassAcc � 12) + (ProgP/90 � 0.6) + (Tch/90 � 20) + (PossWon/90 � 0.4)<br>
+                                <strong>&#128257; Possession:</strong> (PassAcc &divide; 12) + (ProgP/90 &times; 0.6) + (Tch/90 &divide; 20) + (PossWon/90 &times; 0.4)<br>
                                 <span style="color: #666; font-size: 0.9em;">
                                     Kontrol bola + build-up + <em>counter-press</em> (Poss Won = kemampuan rewin ball)<br>
                                     <strong>Man City/Brighton-style:</strong> Mempertahankan penguasaan setelah kehilangan
@@ -2078,7 +2078,7 @@
                             </div>
                             
                             <div style="margin-bottom: 8px;">
-                                <strong>? Pressing:</strong> (Press Attempts/90 � 0.25) + (Press Success % � 10) + (Distance/90 � 200)<br>
+                                <strong>&#128293; Pressing:</strong> (Press Attempts/90 &times; 0.25) + (Press Success % &divide; 10) + (Distance/90 &divide; 200)<br>
                                 <span style="color: #666; font-size: 0.9em;">Volume, efektivitas pressing, dan integrasi kerja fisik</span><br>
                                 <span style="color: #27ae60; font-weight: 600;">Elite: =9.0</span> | 
                                 <span style="color: #3498db; font-weight: 600;">Good: 5.0-7.0</span> | 
@@ -2090,7 +2090,7 @@
                             </div>
                             
                             <div style="margin-bottom: 8px;">
-                                <strong>??? Defensive:</strong> (Tck/90 � 1.2) + (Int/90 � 1.1) + (Blk/90 � 0.8) + (Clr/90 � 0.5) + (AerWin% � 20)<br>
+                                <strong>&#128737; Defensive:</strong> (Tck/90 &times; 1.2) + (Int/90 &times; 1.1) + (Blk/90 &times; 0.8) + (Clr/90 &times; 0.5) + (AerWin% &divide; 20)<br>
                                 <span style="color: #666; font-size: 0.9em;">
                                     Efisiensi bertahan untuk <em>semua gaya blok</em><br>
                                     <strong>High block:</strong> Tackles+Int tinggi | <strong>Low block:</strong> Blocks+Clearances tinggi
@@ -2105,7 +2105,7 @@
                             </div>
                             
                             <div style="margin-bottom: 0;">
-                                <strong>?? Physical:</strong> (Dist/90 � 90) + (Sprints/90 � 0.5) + (Duels/90 � 0.2) + (Tck/90 � 0.2)<br>
+                                <strong>&#128170; Physical:</strong> (Dist/90 &divide; 90) + (Sprints/90 &times; 0.5) + (Duels/90 &times; 0.2) + (Tck/90 &times; 0.2)<br>
                                 <span style="color: #666; font-size: 0.9em;">
                                     Work rate + <em>physical contact strength</em> + aggressiveness<br>
                                     <strong>Bukan cuma jarak:</strong> Kombinasi stamina, duel, dan tackles
@@ -2188,7 +2188,7 @@
             // High attacking strength
             if (primaryStrength === 'attacking') {
                 recommendations.push({
-                    title: '?? Gegenpressing & Vertical Tiki-Taka',
+                    title: '&#9876;&#128293; Gegenpressing & Vertical Tiki-Taka',
                     formations: ['4-3-3', '4-2-3-1', '4-1-4-1'],
                     style: 'Attacking football dengan transisi cepat, pressing tinggi, dan build-up bermain pendek. Fokus pada serangan vertikal dan ekspolitasi ruang di belakang lini pertahanan lawan.',
                     instructions: [
@@ -2217,7 +2217,7 @@
             // High possession/creativity
             if (primaryStrength === 'possession' || primaryStrength === 'creativity') {
                 recommendations.push({
-                    title: '?? Tiki-Taka Possession Based',
+                    title: '&#127912;&#128257; Tiki-Taka Possession Based',
                     formations: ['4-3-3 DM Wide', '4-1-4-1 DM Wide', '3-4-3'],
                     style: 'Kontrol permainan dengan possession tinggi, passing pendek, dan pergerakan konstan. Membangun serangan dengan sabar dan mencari celah melalui kombinasi passing.',
                     instructions: [
@@ -2247,7 +2247,7 @@
             // High pressing
             if (primaryStrength === 'pressing' || secondaryStrength === 'pressing') {
                 recommendations.push({
-                    title: '?? High Press Gegenpressing',
+                    title: '&#128293;&#9889; High Press Gegenpressing',
                     formations: ['4-4-2', '4-2-3-1', '4-3-3'],
                     style: 'Pressing agresif untuk memaksa error lawan dan memenangkan bola di area berbahaya. Transisi cepat dari defence ke attack.',
                     instructions: [
@@ -2277,7 +2277,7 @@
             // High defensive strength
             if (primaryStrength === 'defensive') {
                 recommendations.push({
-                    title: '??? Solid Defence Counter-Attack',
+                    title: '&#128737;&#128170; Solid Defence Counter-Attack',
                     formations: ['4-5-1', '5-4-1', '4-4-1-1'],
                     style: 'Pertahanan solid dan kompak, fokus pada defensive stability dan eksploitasi ruang lewat counter-attack cepat.',
                     instructions: [
@@ -2307,7 +2307,7 @@
             // High physical strength
             if (primaryStrength === 'physical') {
                 recommendations.push({
-                    title: '?? Direct & Physical Football',
+                    title: '&#128170;&#9889; Direct & Physical Football',
                     formations: ['4-4-2', '3-5-2', '4-2-3-1'],
                     style: 'Permainan langsung dengan memanfaatkan kekuatan fisik. Bola panjang ke striker, second balls, dan dominasi aerial duels.',
                     instructions: [
@@ -2337,7 +2337,7 @@
             // Balanced approach if no clear dominance
             if (sortedStrengths[0][1] - sortedStrengths[2][1] < 1.0) {
                 recommendations.push({
-                    title: '?? Balanced Flexible Approach',
+                    title: '&#9881;&#128079; Balanced Flexible Approach',
                     formations: ['4-2-3-1', '4-3-3', '4-1-2-3'],
                     style: 'Pendekatan seimbang yang bisa beradaptasi dengan situasi. Solid di defence, kreatif di midfield, dan threat di attack.',
                     instructions: [
@@ -2367,7 +2367,7 @@
             // Ensure at least 2 recommendations
             if (recommendations.length < 2) {
                 recommendations.push({
-                    title: '?? Standard Structured Approach',
+                    title: '&#128221;&#9881; Standard Structured Approach',
                     formations: ['4-2-3-1', '4-3-3'],
                     style: 'Pendekatan terstruktur dengan balance antara defence dan attack. Solid foundation dengan fleksibilitas dalam execution.',
                     instructions: [
@@ -2693,7 +2693,7 @@
             const isWinger = pos.includes('W') || pos.includes('AML') || pos.includes('AMR');
             const isStriker = pos.includes('ST') || pos.includes('CF');
             
-            let analysis = '<strong>?? Analisis Passing & Kreativitas:</strong><br><br>';
+            let analysis = '<strong>&#127912;&#128257; Analisis Passing & Kreativitas:</strong><br><br>';
             
             // Pass completion rate with position context
             if (psA > 0) {
@@ -2759,38 +2759,38 @@
                     }
                 }
                 
-                analysis += `&nbsp;&nbsp;? ${benchmarkMsg}<br><br>`;
+                analysis += `&nbsp;&nbsp;&#9989; ${benchmarkMsg}<br><br>`;
             }
             
             // Progressive Passes - Position-specific benchmarks
             if (prPasses > 0) {
-                analysis += `? <strong>Progressive Passes:</strong> ${prPasses.toFixed(1)}/90<br>`;
+                analysis += `&#128640; <strong>Progressive Passes:</strong> ${prPasses.toFixed(1)}/90<br>`;
                 
                 if (isGK) {
                     if (prPasses >= 3) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">ELITE Sweeper-Keeper</span> - Ederson/Alisson level (3+ prog passes).<br>`;
+                        analysis += `&nbsp;&nbsp;&#9989; <span style="color: #28a745;">ELITE Sweeper-Keeper</span> - Ederson/Alisson level (3+ prog passes).<br>`;
                     } else if (prPasses >= 1.5) {
-                        analysis += `&nbsp;&nbsp;? Modern GK - Aktif dalam memulai serangan dari belakang.<br>`;
+                        analysis += `&nbsp;&nbsp;&#128293; Modern GK - Aktif dalam memulai serangan dari belakang.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? Traditional GK - Focus pada shot-stopping over distribution.<br>`;
+                        analysis += `&nbsp;&nbsp;&#128737; Traditional GK - Focus pada shot-stopping over distribution.<br>`;
                     }
                 } else if (isCB) {
                     if (prPasses >= 6) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">WORLD-CLASS Ball-Playing CB</span> (6+). Van Dijk/R�ben Dias level.<br>`;
+                        analysis += `&nbsp;&nbsp;&#9989; <span style="color: #28a745;">WORLD-CLASS Ball-Playing CB</span> (6+). Van Dijk/Rúben Dias level.<br>`;
                     } else if (prPasses >= 4) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">EXCELLENT</span> - Top-tier progressive CB (4-6).<br>`;
+                        analysis += `&nbsp;&nbsp;&#9989; <span style="color: #28a745;">EXCELLENT</span> - Top-tier progressive CB (4-6).<br>`;
                     } else if (prPasses >= 2.5) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD</span> - Modern CB dengan comfortable on ball.<br>`;
+                        analysis += `&nbsp;&nbsp;&#128077; <span style="color: #17a2b8;">GOOD</span> - Modern CB dengan comfortable on ball.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? Traditional stopper - Safe passing, minimal risk.<br>`;
+                        analysis += `&nbsp;&nbsp;&#128737; Traditional stopper - Safe passing, minimal risk.<br>`;
                     }
                 } else if (isFB) {
                     if (prPasses >= 4) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">ELITE</span> - Robertson/Cancelo type FB (4+). Key playmaker dari flank.<br>`;
+                        analysis += `&nbsp;&nbsp;&#9989; <span style="color: #28a745;">ELITE</span> - Robertson/Cancelo type FB (4+). Key playmaker dari flank.<br>`;
                     } else if (prPasses >= 2.5) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD</span> - Modern attacking full-back (2.5-4).<br>`;
+                        analysis += `&nbsp;&nbsp;&#128077; <span style="color: #17a2b8;">GOOD</span> - Modern attacking full-back (2.5-4).<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? Traditional FB - Crossing > progressive passing.<br>`;
+                        analysis += `&nbsp;&nbsp;&#9917; Traditional FB - Crossing > progressive passing.<br>`;
                     }
                 } else if (isDM) {
                     if (prPasses >= 8) {
@@ -2976,7 +2976,7 @@
             // Add Benchmark Box at the bottom
             analysis += `
                 <div style="background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e1e8ed; margin-top: 15px;">
-                    <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">?? Benchmark:</div>
+                    <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">&#128220; Benchmark:</div>
                     <div style="font-size: 0.8em; color: #5a6c7d; line-height: 1.6;">
                         <strong>Pass Accuracy:</strong> =85% Elite | 80-85% Excellent | 75-80% Good | &lt;75% Below Par<br>
                         <strong>Progressive Passes/90:</strong> =6 World-Class | 4-6 Excellent | 2-4 Good | &lt;2 Limited<br>
@@ -2998,7 +2998,7 @@
             const presC = parseFloat(findAttribute(p, ['Pres C/90'])) || 0;
             const presA = parseFloat(findAttribute(p, ['Pres A/90'])) || 0;
             
-            let analysis = '<strong>?? Analisis Penguasaan Bola & Pressing:</strong><br><br>';
+            let analysis = '<strong>&#128257;&#128293; Analisis Penguasaan Bola & Pressing:</strong><br><br>';
             
             // Possession Won/Lost Ratio
             if (possWon > 0 || possLost > 0) {
@@ -3058,7 +3058,7 @@
             // Add Benchmark Box at the bottom
             analysis += `
                 <div style="background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e1e8ed; margin-top: 15px;">
-                    <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">?? Benchmark:</div>
+                    <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">&#128220; Benchmark:</div>
                     <div style="font-size: 0.8em; color: #5a6c7d; line-height: 1.6;">
                         <strong>Poss Won/Lost Ratio:</strong> =1.2 Excellent | 1.0-1.2 Balanced | 0.8-1.0 Turnover Risk | &lt;0.8 Concern<br>
                         <strong>Pressing Success %:</strong> =40% Elite | 35-40% Excellent | 30-35% Good | 25-30% Average | &lt;25% Inefficient<br>
@@ -3084,7 +3084,7 @@
             const goals = parseInt(findAttribute(p, ['Goals', 'Gls'])) || 0;
             const assists = parseInt(findAttribute(p, ['Assists', 'Asts'])) || 0;
             
-            let analysis = '<strong>?? Analisis Menyerang:</strong><br><br>';
+            let analysis = '<strong>&#9876; Analisis Menyerang:</strong><br><br>';
             
             // xG/90 Analysis - Overall goal threat
             if (xg90 > 0) {
@@ -3097,7 +3097,7 @@
                 // DUAL ASSESSMENT untuk Striker & Winger (untuk semua pemain menyerang)
                 if (isStriker || isWinger || isAM) {
                     // Assessment sebagai STRIKER
-                    analysis += `&nbsp;&nbsp;<strong>?? Sebagai STRIKER:</strong><br>`;
+                    analysis += `&nbsp;&nbsp;<strong>&#9876; Sebagai STRIKER:</strong><br>`;
                     if (xg90 >= 0.70) {
                         analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <span style="color: #28a745;">? ELITE</span> (0.7+ xG/90). World-class finisher material.<br>`;
                         analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? Referensi: Haaland (~1.0), Kane (~0.8), Lewandowski (~0.75).<br>`;
@@ -3106,12 +3106,12 @@
                     } else if (xg90 >= 0.35) {
                         analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <span style="color: #17a2b8;">? GOOD</span> (0.35-0.5). Solid goal threat (~12-16 goals/season).<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <span style="color: #ffc107;">?? BELOW PAR</span> untuk striker murni. Perlu improve movement & positioning.<br>`;
+                        analysis += &nbsp;&nbsp;&nbsp;&nbsp;&#9888; <span style="color: #ffc107;">&#128680; BELOW PAR</span> untuk striker murni. Perlu improve movement & positioning.<br>`;
                         analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? Cocok untuk role support striker, target man, atau false nine.<br>`;
                     }
                     
                     // Assessment sebagai WINGER
-                    analysis += `&nbsp;&nbsp;<strong>?? Sebagai WINGER:</strong><br>`;
+                    analysis += `&nbsp;&nbsp;<strong>&#127942; Sebagai WINGER:</strong><br>`;
                     if (xg90 >= 0.40) {
                         analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <span style="color: #28a745;">? ELITE</span> goal-scoring winger (0.4+). Salah/Saka/Son level.<br>`;
                         analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? Referensi: Salah (~0.65), Saka (~0.45), Son (~0.50).<br>`;
@@ -3122,14 +3122,14 @@
                     } else if (xg90 >= 0.20) {
                         analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <span style="color: #17a2b8;">? GOOD</span> (0.2-0.3). Balanced winger (goals + assists).<br>`;
                     } else if (xg90 >= 0.10) {
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <span style="color: #ffc107;">?? MODERATE</span> threat. More creator/dribbler than finisher.<br>`;
+                        analysis += &nbsp;&nbsp;&nbsp;&nbsp;&#128681; <span style="color: #ffc107;">&#128221; MODERATE</span> threat. More creator/dribbler than finisher.<br>`;
                         analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? Traditional winger atau wide playmaker role.<br>`;
                     } else {
                         analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <span style="color: #dc3545;">? LIMITED</span> finishing threat. Fokus: Width, crossing, assists.<br>`;
                     }
                     
                     // REKOMENDASI ROLE berdasarkan xG/90
-                    analysis += `&nbsp;&nbsp;<strong>?? Rekomendasi:</strong><br>`;
+                    analysis += `&nbsp;&nbsp;<strong>&#128161; Rekomendasi:</strong><br>`;
                     if (xg90 >= 0.50) {
                         analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <strong>Striker lebih cocok</strong> - Elite goal threat layak main central.<br>`;
                     } else if (xg90 >= 0.30 && xg90 < 0.50) {
@@ -3241,7 +3241,7 @@
                 
                 // Context warning untuk winger dengan dribbling rendah
                 if (isWinger && dribbles < 1.5) {
-                    analysis += `&nbsp;&nbsp;? ?? Low dribbling untuk winger - More sistem player atau crosser style.<br>`;
+                    analysis += &nbsp;&nbsp;&#9888; &#128681; Low dribbling untuk winger - More sistem player atau crosser style.<br>`;
                 }
                 
                 analysis += '<br>';
@@ -3296,7 +3296,7 @@
                 
                 // Warning untuk volume tinggi dengan accuracy rendah
                 if ((isWinger || isFB) && parseFloat(crossAcc) < 20 && crosses >= 2.5) {
-                    analysis += `&nbsp;&nbsp;? ?? <strong>High volume + Low accuracy</strong> = Wasteful possession.<br>`;
+                    analysis += &nbsp;&nbsp;&#9888; &#128165; <strong>High volume + Low accuracy</strong> = Wasteful possession.<br>`;
                     if (isWinger) {
                         analysis += `&nbsp;&nbsp;? Saran: Consider cutting inside more atau improve crossing technique.<br>`;
                     }
@@ -3308,7 +3308,7 @@
             // Add Benchmark Box at the bottom
             analysis += `
                 <div style="background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e1e8ed; margin-top: 15px;">
-                    <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">?? Benchmark:</div>
+                    <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">&#128220; Benchmark:</div>
                     <div style="font-size: 0.8em; color: #5a6c7d; line-height: 1.6;">
                         <strong>xG/90 (Striker):</strong> =0.7 Elite | 0.5-0.7 Excellent | 0.35-0.5 Good | &lt;0.35 Limited<br>
                         <strong>xG/90 (Winger):</strong> =0.4 Elite | 0.3-0.4 Excellent | 0.2-0.3 Good | &lt;0.2 Limited<br>
@@ -3336,7 +3336,7 @@
             const isDefender = pos.includes('D') || pos.includes('CB') || pos.includes('B');
             const isDM = pos.includes('DM') || pos.includes('CDM');
             
-            let analysis = '<strong>?? Analisis Defensif:</strong><br><br>';
+            let analysis = '<strong>&#128737; Analisis Defensif:</strong><br><br>';
             
             // Aerial Duels - StatsBomb research
             if (hdrsW > 0) {
@@ -3429,7 +3429,7 @@
             // Add Benchmark Box at the bottom
             analysis += `
                 <div style="background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e1e8ed; margin-top: 15px;">
-                    <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">?? Benchmark:</div>
+                    <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">&#128220; Benchmark:</div>
                     <div style="font-size: 0.8em; color: #5a6c7d; line-height: 1.6;">
                         <strong>Aerial Duels/90:</strong> =4.0 Dominant | 3.0-4.0 Strong | 2.0-3.0 Good | 1.0-2.0 Moderate | &lt;1.0 Weak<br>
                         <strong>Interceptions/90:</strong> =3.0 Elite | 2.5-3.0 Excellent | 2.0-2.5 Very Good | 1.5-2.0 Good | &lt;1.5 Limited<br>
@@ -3450,7 +3450,7 @@
             const distance = parseFloat(findAttribute(p, ['Dist/90'])) || 0;
             const sprints = parseFloat(findAttribute(p, ['Sprints/90'])) || 0;
             
-            let analysis = '<strong>?? Analisis Mobilitas & Fisik:</strong><br><br>';
+            let analysis = '<strong>&#128170;&#9889; Analisis Mobilitas & Fisik:</strong><br><br>';
             
             // Distance covered - Sports science research (Bangsbo, Mohr et al.)
             if (distance > 0) {
@@ -3514,7 +3514,7 @@
                 analysis += '<br>';
             }
             
-            analysis += '<strong>?? Profil Fisik:</strong><br>';
+            analysis += '<strong>&#128170; Profil Fisik:</strong><br>';
             if (distance >= 11 && sprints >= 25) {
                 analysis += '? <strong>Elite Athlete</strong> - Complete physical package. Box-to-box specialist.<br>';
             } else if (distance >= 11) {
@@ -3527,19 +3527,19 @@
                 analysis += '? <strong>Balanced</strong> - Standard physical output untuk posisinya.<br>';
             }
             
-            analysis += '<br><strong>?? Implikasi Taktis:</strong><br>';
+            analysis += '<br><strong>&#128221; Implikasi Taktis:</strong><br>';
             if (distance >= 11 || sprints >= 20) {
                 analysis += '? Cocok untuk <strong>high-press, counter-press</strong> system (Klopp/Guardiola style).<br>';
                 analysis += '? Dapat maintain intensity sepanjang 90 menit.<br>';
             } else if (distance < 10 && sprints < 15) {
-                analysis += '?? Lebih cocok untuk <strong>possession-based, slower tempo</strong> game.<br>';
-                analysis += '?? Consider rotasi atau substitusi di menit 60-70.<br>';
+                analysis += '&#128161; Lebih cocok untuk <strong>possession-based, slower tempo</strong> game.<br>';
+                analysis += '&#128681; Consider rotasi atau substitusi di menit 60-70.<br>';
             }
             
             // Add Benchmark Box at the bottom
             analysis += `
                 <div style="background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e1e8ed; margin-top: 15px;">
-                    <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">?? Benchmark:</div>
+                    <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">&#128220; Benchmark:</div>
                     <div style="font-size: 0.8em; color: #5a6c7d; line-height: 1.6;">
                         <strong>Distance/90 (km):</strong> =12 Exceptional | 11-12 Excellent | 10-11 Good | 9-10 Average | &lt;9 Low<br>
                         <strong>Sprints/90:</strong> =30 Elite Pace | 25-30 Excellent | 20-25 Very Good | 15-20 Good | 10-15 Moderate | &lt;10 Low<br>
@@ -3564,7 +3564,7 @@
             const shutouts = parseInt(findAttribute(p, ['Shutouts'])) || 0;
             const conceded90 = parseFloat(findAttribute(p, ['All/90'])) || 0;
 
-            let analysis = '<strong>?? Analisis Goalkeeper:</strong><br><br>';
+            let analysis = '<strong>&#129516; Analisis Goalkeeper:</strong><br><br>';
 
             // Goals Conceded Analysis
             if (conceded90 > 0) {
@@ -3653,7 +3653,7 @@
             }
 
             // Overall Goalkeeper Profile
-            analysis += '<strong>?? Profil GK:</strong><br>';
+            analysis += '<strong>&#129516; Profil GK:</strong><br>';
             if (conceded90 <= 1.0 && xgp90 >= 0.2 && svPerc >= 75 && cln90 >= 0.35) {
                 analysis += '? <strong>Elite Shot-Stopper</strong> - World-class reflexes, commanding presence, defensive anchor.<br>';
                 analysis += '&nbsp;&nbsp;� Goals conceded minimal, clean sheets tinggi, saves above expectation.<br>';
@@ -3672,7 +3672,7 @@
             }
 
             // Tactical implications & Performance Summary
-            analysis += '<br><strong>?? Implikasi Taktis & Rekomendasi:</strong><br>';
+            analysis += '<br><strong>&#128221; Implikasi Taktis & Rekomendasi:</strong><br>';
             
             if (conceded90 <= 1.0 && xgp90 >= 0.15) {
                 analysis += '? <strong>Defensive Anchor</strong> - Can play in high line system, confident shot-stopper.<br>';
@@ -3681,13 +3681,13 @@
                 analysis += '? <strong>Low-block Specialist</strong> - Excellent untuk defensive organization.<br>';
                 analysis += '? Cocok untuk <strong>defensive setup</strong>, protect 1-0 leads, park the bus tactics.<br>';
             } else if (conceded90 >= 1.5) {
-                analysis += '?? <strong>Defensive Overhaul Needed</strong> - High goals conceded is major concern.<br>';
-                analysis += '?? Focus: <strong>Positioning drills</strong>, 1v1 situations, communication dengan defenders.<br>';
+                analysis += '&#9888; <strong>Defensive Overhaul Needed</strong> - High goals conceded is major concern.<br>';
+                analysis += '&#128161; Focus: <strong>Positioning drills</strong>, 1v1 situations, communication dengan defenders.<br>';
             }
             
             if (svPerc < 70 || xgp90 < 0) {
-                analysis += '?? <strong>Shot-stopping Training</strong> - Perlu improve reflex & decision making.<br>';
-                analysis += '?? Latihan: Reaction saves, shot-stopping dari berbagai angles, handling under pressure.<br>';
+                analysis += '&#127891; <strong>Shot-stopping Training</strong> - Perlu improve reflex & decision making.<br>';
+                analysis += '&#127891; Latihan: Reaction saves, shot-stopping dari berbagai angles, handling under pressure.<br>';
             }
             
             if (cln90 >= 0.30) {
@@ -3697,13 +3697,13 @@
             // Performance vs Expectation
             if (conceded90 > 0 && xgp90 !== 0) {
                 const expectedConceded = conceded90 - xgp90;
-                analysis += `<br><strong>?? Performance vs Expectation:</strong><br>`;
+                analysis += `<br><strong>&#128202; Performance vs Expectation:</strong><br>`;
                 analysis += `� Actual: ${conceded90.toFixed(2)} goals conceded/90<br>`;
                 analysis += `� Expected (based on shots faced): ~${expectedConceded.toFixed(2)}/90<br>`;
                 if (xgp90 > 0) {
-                    analysis += `� <span style="color: #28a745;">OVERPERFORMING</span> - Preventing ${Math.abs(xgp90).toFixed(2)} goals/90 above expectation! ??<br>`;
+                    analysis += `� <span style="color: #28a745;">OVERPERFORMING</span> - Preventing ${Math.abs(xgp90).toFixed(2)} goals/90 above expectation! &#127942;<br>`;
                 } else if (xgp90 < -0.05) {
-                    analysis += `� <span style="color: #dc3545;">UNDERPERFORMING</span> - Conceding ${Math.abs(xgp90).toFixed(2)} goals/90 more than expected. ??<br>`;
+                    analysis += `� <span style="color: #dc3545;">UNDERPERFORMING</span> - Conceding ${Math.abs(xgp90).toFixed(2)} goals/90 more than expected. &#128680;<br>`;
                 } else {
                     analysis += `� <span style="color: #17a2b8;">MEETING EXPECTATION</span> - Performance sesuai dengan quality shots faced.<br>`;
                 }
@@ -3712,7 +3712,7 @@
             // Add Benchmark Box at the bottom
             analysis += `
                 <div style="background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e1e8ed; margin-top: 15px;">
-                    <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">?? Benchmark:</div>
+                    <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">&#128220; Benchmark:</div>
                     <div style="font-size: 0.8em; color: #5a6c7d; line-height: 1.6;">
                         <strong>Goals Conceded/90:</strong> =0.8 Excellent | 0.8-1.0 Very Good | 1.0-1.2 Good | 1.2-1.5 Average | &gt;1.5 Concern<br>
                         <strong>Save %:</strong> =75% Elite | 72-75% Excellent | 68-72% Good | 65-68% Average | &lt;65% Poor<br>
@@ -3872,31 +3872,31 @@
             const mom = parseInt(findAttribute(p, ['MoM'])) || 0;
 
             if (apps === 0) {
-                insights.push({ type: 'neutral', icon: '??', text: 'Belum ada data pertandingan yang cukup.' });
+                insights.push({ type: 'neutral', icon: '&#128681;', text: 'Belum ada data pertandingan yang cukup.' });
                 return insights;
             }
 
             // Overall Rating
             if (avgRat >= 7.5) {
-                insights.push({ type: 'strength', icon: '?', text: `Performa EXCELLENT (${avgRat.toFixed(2)}). Pemain kunci dengan dampak besar.` });
+                insights.push({ type: 'strength', icon: '&#11088;', text: Performa EXCELLENT (${avgRat.toFixed(2)}). Pemain kunci dengan dampak besar.` });
             } else if (avgRat >= 7.0) {
-                insights.push({ type: 'strength', icon: '??', text: `Performa SOLID (${avgRat.toFixed(2)}). Kontributor andalan tim.` });
+                insights.push({ type: 'strength', icon: '&#128077;', text: Performa SOLID (${avgRat.toFixed(2)}). Kontributor andalan tim.` });
             } else if (avgRat > 0 && avgRat < 6.5) {
-                insights.push({ type: 'weakness', icon: '??', text: `Rating ${avgRat.toFixed(2)} di bawah standar. Perlu evaluasi role atau adaptasi.` });
+                insights.push({ type: 'weakness', icon: '&#9888;', text: Rating ${avgRat.toFixed(2)} di bawah standar. Perlu evaluasi role atau adaptasi.` });
             }
 
             // Passing & Build-up
             if (psC >= 40 && psA > 0) {
                 const accuracy = ((psC / psA) * 100).toFixed(1);
-                insights.push({ type: 'strength', icon: '??', text: `Passing tinggi (${psC.toFixed(1)}/90, ${accuracy}% akurasi). ${prPasses >= 5 ? 'Progresif dalam build-up (' + prPasses.toFixed(1) + ' pr passes).' : ''}` });
+                insights.push({ type: 'strength', icon: '&#127912;', text: Passing tinggi (${psC.toFixed(1)}/90, ${accuracy}% akurasi). ${prPasses >= 5 ? 'Progresif dalam build-up (' + prPasses.toFixed(1) + ' pr passes).' : ''}` });
             }
             if (prPasses >= 5) {
-                insights.push({ type: 'strength', icon: '??', text: `Progressive passes excellent (${prPasses.toFixed(1)}/90). Efektif membawa bola ke area berbahaya.` });
+                insights.push({ type: 'strength', icon: '&#128640;', text: Progressive passes excellent (${prPasses.toFixed(1)}/90). Efektif membawa bola ke area berbahaya.` });
             }
 
             // Creativity
             if (chCreated >= 2.0) {
-                insights.push({ type: 'strength', icon: '??', text: `Kreator utama: ${chCreated.toFixed(1)} peluang/90. ${keyPasses >= 1.5 ? 'Key passes produktif (' + keyPasses.toFixed(1) + ').' : ''}` });
+                insights.push({ type: 'strength', icon: '&#127775;', text: Kreator utama: ${chCreated.toFixed(1)} peluang/90. ${keyPasses >= 1.5 ? 'Key passes produktif (' + keyPasses.toFixed(1) + ').' : ''}` });
             }
 
             // Goal Contributions
@@ -3908,25 +3908,25 @@
 
             // Dribbling & Mobility
             if (dribbles >= 1.5) {
-                insights.push({ type: 'strength', icon: '?', text: `Dribbler aktif (${dribbles.toFixed(1)}/90). ${sprints >= 20 ? 'Sprint tinggi (' + sprints.toFixed(0) + '/90) - ancaman transisi.' : ''}` });
+                insights.push({ type: 'strength', icon: '&#128293;', text: Dribbler aktif (${dribbles.toFixed(1)}/90). ${sprints >= 20 ? 'Sprint tinggi (' + sprints.toFixed(0) + '/90) - ancaman transisi.' : ''}` });
             }
             if (distance >= 11) {
-                insights.push({ type: 'strength', icon: '??', text: `Work rate tinggi (${distance.toFixed(1)} km/90). Excellent untuk box-to-box role.` });
+                insights.push({ type: 'strength', icon: '&#128170;', text: Work rate tinggi (${distance.toFixed(1)} km/90). Excellent untuk box-to-box role.` });
             }
 
             // Crossing
             if (crosses >= 2) {
                 const crossAcc = crosses > 0 ? ((crossesC / crosses) * 100).toFixed(1) : 0;
-                insights.push({ type: crosses >= 3 ? 'strength' : 'neutral', icon: '??', text: `Outlet sayap (${crosses.toFixed(1)} crosses/90, ${crossAcc}% sukses). ${crosses >= 3 ? 'Cocok wing-play dominan.' : ''}` });
+                insights.push({ type: crosses >= 3 ? 'strength' : 'neutral', icon: '&#128640;', text: Outlet sayap (${crosses.toFixed(1)} crosses/90, ${crossAcc}% sukses). ${crosses >= 3 ? 'Cocok wing-play dominan.' : ''}` });
             }
 
             // Possession
             if (possWon > 0 && possLost > 0) {
                 const ratio = (possWon / possLost).toFixed(2);
                 if (parseFloat(ratio) >= 1.1) {
-                    insights.push({ type: 'strength', icon: '???', text: `Ball security bagus (won ${possWon.toFixed(1)} vs lost ${possLost.toFixed(1)}). Aman dalam possession.` });
+                    insights.push({ type: 'strength', icon: '&#128737;', text: Ball security bagus (won ${possWon.toFixed(1)} vs lost ${possLost.toFixed(1)}). Aman dalam possession.` });
                 } else if (possLost >= 10) {
-                    insights.push({ type: 'weakness', icon: '??', text: `Turnover tinggi (${possLost.toFixed(1)} lost/90). ${pos.includes('W') || pos.includes('F') ? 'Wajar untuk attacker, tapi tetap perlu hati-hati.' : 'Perlu improve decision making.'}` });
+                    insights.push({ type: 'weakness', icon: '&#9888;', text: Turnover tinggi (${possLost.toFixed(1)} lost/90). ${pos.includes('W') || pos.includes('F') ? 'Wajar untuk attacker, tapi tetap perlu hati-hati.' : 'Perlu improve decision making.'}` });
                 }
             }
 
@@ -3934,25 +3934,25 @@
             const isDef = pos.includes('D') || pos.includes('DM');
             if (isDef) {
                 if (hdrsW >= 3) {
-                    insights.push({ type: 'strength', icon: '??', text: `Dominasi udara (${hdrsW.toFixed(1)} headers won/90). Ancaman set-piece & solid defensif.` });
+                    insights.push({ type: 'strength', icon: '&#128170;', text: Dominasi udara (${hdrsW.toFixed(1)} headers won/90). Ancaman set-piece & solid defensif.` });
                 }
                 if (interceptions >= 2.5) {
-                    insights.push({ type: 'strength', icon: '??', text: `Game reading bagus (${interceptions.toFixed(1)} int/90). Positioning & anticipation strong.` });
+                    insights.push({ type: 'strength', icon: '&#128065;', text: Game reading bagus (${interceptions.toFixed(1)} int/90). Positioning & anticipation strong.` });
                 }
                 if (tackles > 0 && tackleRate >= 75) {
-                    insights.push({ type: 'strength', icon: '??', text: `Tackling efisien (${tackles.toFixed(1)}/90, ${tackleRate.toFixed(0)}% sukses). Reliable dalam duel.` });
+                    insights.push({ type: 'strength', icon: '&#128737;', text: Tackling efisien (${tackles.toFixed(1)}/90, ${tackleRate.toFixed(0)}% sukses). Reliable dalam duel.` });
                 }
             }
 
             // Pressing
             if (presC >= 3) {
-                insights.push({ type: 'strength', icon: '??', text: `Pressing efektif (${presC.toFixed(1)} sukses/90). Kontribusi recovery bola tinggi.` });
+                insights.push({ type: 'strength', icon: '&#128293;', text: Pressing efektif (${presC.toFixed(1)} sukses/90). Kontribusi recovery bola tinggi.` });
             }
 
             // Man of the Match
             if (mom > 0) {
                 const momRate = ((mom / apps) * 100).toFixed(1);
-                insights.push({ type: 'strength', icon: '??', text: `${mom}x MoM (${momRate}%). Sering jadi game changer!` });
+                insights.push({ type: 'strength', icon: '&#11088;', text: ${mom}x MoMRate}%). Sering jadi game changer!` });
             }
 
             return insights;
@@ -4312,7 +4312,7 @@
             // Display breakdown explanation
             if (breakdown) {
                 let breakdownHTML = '<div style="margin-top: 15px; padding: 15px; background: #f8fafc; border-radius: 6px; font-size: 0.9em; color: #2c3e50; border: 1px solid #e1e8ed;">';
-                breakdownHTML += '<strong style="color: #2c3e50;">?? Detail Penilaian Rating:</strong><br><br>';
+                breakdownHTML += '<strong style="color: #2c3e50;">&#128220; Detail Penilaian Rating:</strong><br><br>';
                 
                 // Base score
                 breakdownHTML += `<strong style="color: #2c3e50;">Base Performance:</strong> ${breakdown.baseScore.toFixed(1)}/2.5 poin<br>`;
@@ -4386,10 +4386,10 @@
                 html += `<span style="color: #3498db; font-size: 1.05em;">? ROTASI/BACKUP</span> - Performa standar (Rating: ${rating.toFixed(1)}/5.0)<br>`;
                 html += `? Squad player yang berguna. Training focus untuk develop jadi starter.<br>`;
             } else if (rating >= 2.5) {
-                html += `<span style="color: #f39c12; font-size: 1.05em;">?? PERLU DEVELOPMENT</span> - Performa di bawah standar (Rating: ${rating.toFixed(1)}/5.0)<br>`;
+                html += `<span style="color: #f39c12; font-size: 1.05em;">&#9888; PERLU DEVELOPMENT</span> - Performa di bawah standar (Rating: ${rating.toFixed(1)}/5.0)<br>`;
                 html += `? Butuh intensive training atau loan untuk match experience.<br>`;
             } else {
-                html += `<span style="color: #e74c3c; font-size: 1.05em;">?? CONCERN</span> - Performa kurang (Rating: ${rating.toFixed(1)}/5.0)<br>`;
+                html += `<span style="color: #e74c3c; font-size: 1.05em;">&#128680; CONCERN</span> - Performa kurang (Rating: ${rating.toFixed(1)}/5.0)<br>`;
                 html += `? Pertimbangkan role change, loan, atau development di level lebih rendah.<br>`;
             }
             html += `</div>`;
