@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>&#9917; Player Analyzer - Analisis Performa Detail</title>
+    <title>&#9917; Player Analysis - Analisis Performa Detail</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
         * {
@@ -323,12 +323,12 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>&#9917; Player Analyzer</h1>
-            <p>Analisis Performa Detail Berdasarkan Data Pertandingan</p>
+            <h1>&#9917; Player Analysis</h1>
+            <p>Analisis Pemain Berdasarkan Data Performa Dalam Pertandingan</p>
             <div style="margin-top: 15px;">
                 <a href="index.html" style="text-decoration: none;">
                     <button class="btn btn-secondary" style="background: #95a5a6; padding: 8px 20px;">
-                        ← Kembali ke Home
+                        ← Back to Home
                     </button>
                 </a>
             </div>
@@ -338,21 +338,35 @@
             <div class="upload-box" id="uploadBox">
                 <div class="upload-icon">&#128193;</div>
                 <h2>Upload File Excel Data Pemain</h2>
-                <p style="margin: 15px 0; color: #666;">
-                    Drag & drop file Excel atau klik untuk memilih<br>
-                    <small>(Format: .xlsx, .xls - Data diproses di browser, tidak disimpan)</small>
-                </p>
+                
                 <input type="file" id="fileInput" class="file-input" accept=".xlsx,.xls">
                 <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
-                    Pilih File Excel
+                    Upload File Excel
                 </button>
                 <button class="btn btn-secondary" onclick="loadTestData()">
-                    &#9889; Load Test Data (Everton)
+                    Load Test Data (Everton)
                 </button>
                 <button class="btn btn-secondary" onclick="resetData()" style="background: #dc3545;">
-                    &#128260; Reset
+                     Reset
                 </button>
+                <div style="margin-top: 15px;">
+                    <a href="Template Data Pemain.xlsx" download style="color: #667eea; text-decoration: none; font-weight: 600; font-size: 0.95em;">
+                        &#128190; Klik Disini Untuk Download Template Excel Data Pemain
+                    </a>
+                </div>
             </div>
+            
+            <!-- Petunjuk Penggunaan -->
+            <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 12px; margin: 15px 0; font-size: 0.85em; text-align: left;">
+                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">📝 Petunjuk:</div>
+                <ul style="margin: 0; padding-left: 20px; color: #555; text-align: left;">
+                    <li>Drag & drop file Excel atau klik tombol "Upload File Excel"</li>
+                    <li>Format: .xlsx, .xls (Data diproses di browser, tidak disimpan)</li>
+                    <li>💡 Klik "Load Test Data" untuk mencoba analisa data sample</li>
+                    <li>Download template Excel di bawah jika belum punya format yang sesuai</li>
+                </ul>
+            </div>
+            
             <div id="fileInfo" class="hidden" style="margin-top: 15px; text-align: center;">
                 <div class="alert alert-success">
                     &#9989; File berhasil dimuat: <strong id="fileName"></strong>

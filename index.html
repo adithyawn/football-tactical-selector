@@ -604,7 +604,7 @@
                     </div>
 
                     <div class="dropdown-group">
-                        <label for="karakteristikTim">⚽ Karakteristik Tim Kita:</label>
+                        <label for="karakteristikTim">Karakteristik Tim Kita:</label>
                         <select id="karakteristikTim" onchange="updateRecommendations()">
                             <option value="">-- Pilih Karakteristik Tim --</option>
                             <option value="Tim Balanced">Tim Balanced</option>
@@ -624,11 +624,22 @@
 
             <div class="refresh-section">
                 <button onclick="autoFillTestData()" class="refresh-button" title="Auto fill test data for quick testing" style="background: #95a5a6; margin-right: 10px;">
-                    ⚡ Auto Fill Test Data
+                    Test With Sample Data
                 </button>
                 <button onclick="refreshAll()" class="refresh-button" title="Reset all dropdowns and recommendations (Ctrl+R)">
-                    🔄 Refresh / Reset All
+                    🔄 Reset Input
                 </button>
+            </div>
+
+            <!-- Petunjuk Penggunaan -->
+            <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 12px; margin: 15px 0; font-size: 0.85em;">
+                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">📝 Petunjuk Penggunaan:</div>
+                <ul style="margin: 0; padding-left: 20px; color: #555;">
+                    <li>Pilih dropdown sesuai kondisi pertandingan Anda</li>
+                    <li>Rekomendasi akan tampil otomatis di bawah ini</li>
+                    <li>Sesuaikan formasi dengan kekuatan tim Anda</li>
+                    <li>Perhatikan kondisi pemain dan stamina tim</li>
+                </ul>
             </div>
 
             <!-- Analisis Kesesuaian Tim -->
@@ -766,16 +777,6 @@
                         <p id="riskReward">-</p>
                     </div>
                 </div>
-            </div>
-
-            <div class="instructions">
-                <h3>📝 Petunjuk Penggunaan:</h3>
-                <ul>
-                    <li>Pilih dropdown sesuai kondisi pertandingan Anda</li>
-                    <li>Rekomendasi akan muncul otomatis di area hijau</li>
-                    <li>Sesuaikan formasi dengan kekuatan tim Anda</li>
-                    <li>Perhatikan kondisi pemain dan stamina tim</li>
-                </ul>
             </div>
 
             <!-- Referensi Dasar Penentuan Rekomendasi -->

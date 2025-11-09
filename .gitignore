@@ -1,30 +1,13 @@
-# Kecuali file-file ini yang dibutuhkan untuk GitHub Pages
-# !.gitignore (automatically included)
-# !football_tactical_selector.html (automatically included)
-# !index.html (automatically included)
-# !README.md (automatically included)
+# Ignore everything
+*
 
-# Ignore file Python
-*.py
-*.pyc
-__pycache__/
-
-# Ignore file Markdown test
-TEST_*.md
-
-# Ignore backup files
-*.bak
-*.backup
-*~
+# Except these files
+!.gitignore
+!*.html
+!Template Data Pemain.xlsx
+!README.md
 
 # Ignore OS files
 .DS_Store
 Thumbs.db
 desktop.ini
-
-# Ignore log files
-*.log
-
-# Ignore temporary files
-*.tmp
-*.temp

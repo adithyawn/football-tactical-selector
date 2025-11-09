@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚽ FM Team Analysis Dashboard - Complete Performance Analysis</title>
+    <title>⚽ Team Analyzer Dashboard - Complete Performance Analysis</title>
     <style>
         * {
             margin: 0;
@@ -36,10 +36,6 @@
         }
 
         .back-button {
-            position: absolute;
-            left: 30px;
-            top: 50%;
-            transform: translateY(-50%);
             padding: 10px 20px;
             background: #95a5a6;
             color: white;
@@ -54,7 +50,7 @@
 
         .back-button:hover {
             background: #7f8c8d;
-            transform: translateY(-50%) translateX(-2px);
+            transform: translateX(-2px);
         }
 
         .header h1 {
@@ -928,15 +924,15 @@
             background: #3498db;
             color: white;
             border: none;
-            padding: 12px 24px;
-            border-radius: 6px;
-            font-size: 0.95em;
-            font-weight: 600;
+            padding: 14px 24px;
+            border-radius: 4px;
+            font-size: 1em;
+            font-weight: 500;
             cursor: pointer;
             transition: all 0.2s;
-            margin-left: 15px;
             display: inline-flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
         }
 
@@ -951,7 +947,7 @@
         }
 
         .header-actions {
-            margin-top: 15px;
+            margin-top: 20px;
             display: flex;
             justify-content: center;
             gap: 10px;
@@ -961,15 +957,14 @@
 <body>
     <div class="container">
         <div class="header">
-            <a href="index.html" class="back-button">
-                ← Back to Home
-            </a>
-            <h1>⚽ FM Team Analysis Dashboard</h1>
-            <p>Analisis lengkap performa tim: Passing Patterns, Performance Metrics, dan Defensive Structure</p>
-            <div class="header-actions">
-                <button class="print-button" onclick="window.print()">
-                    🖨️ Print Report
-                </button>
+            <h1>⚽ Team Analysis</h1>
+            <p>Analisis lengkap performa tim: Passing Patterns, Performance Metrics, dan Attacking & Defensive Structure</p>
+            <div style="margin-top: 15px;">
+                <a href="index.html" style="text-decoration: none;">
+                    <button class="analyze-button" style="background: #95a5a6; padding: 8px 20px; display: inline-block; width: auto; max-width: none;">
+                        ← Back to Home
+                    </button>
+                </a>
             </div>
         </div>
 
@@ -1162,7 +1157,7 @@
             <!-- Tab: Creativity -->
             <div id="creativityTab" class="tab-content">
                 <h3 style="margin-bottom: 15px; color: #f39c12;">✨ Creativity</h3>
-                <p style="margin-bottom: 20px; opacity: 0.8; font-size: 0.9em;">Data dari FM > Data Hub > Team > Attacking & Defending</p>
+                <p style="margin-bottom: 20px; opacity: 0.8; font-size: 0.9em;">Data dari FM > Data Hub > Creativity - Attackers or Creativity - Defenders</p>
                 
                 <!-- Attacking Creativity -->
                 <h4 style="margin-top: 20px; margin-bottom: 12px; color: #e74c3c; font-size: 1.1em;">⚡ Attacking Creativity</h4>
@@ -1230,6 +1225,7 @@
             <!-- Tab: Passes Attempted per Zone -->
             <div id="passingTab" class="tab-content">
                 <h3 style="margin-bottom: 15px; color: #27ae60;">📍 Passes Attempted per Zone - Vertical Progression</h3>
+                <p style="margin-bottom: 20px; opacity: 0.8; font-size: 0.9em;">Data dari FM > Data Hub > Map Passes Attempted</p>
                 <p style="margin-bottom: 20px; opacity: 0.8; font-size: 0.9em;">Distribusi passes attempted per zona vertikal dari defensive third ke kotak penalti - Total harus 100%</p>
                 
                 <div class="input-grid">
@@ -1270,13 +1266,27 @@
                 </div>
             </div>
 
-            <div style="display: flex; justify-content: center; gap: 12px; margin-top: 20px;">
-                <button class="analyze-button" onclick="fillSampleData()" style="background: #95a5a6; border: 1px solid #7f8c8d;">
+            <div style="display: flex; justify-content: center; gap: 12px; margin-top: 20px; align-items: stretch;">
+                <button class="analyze-button" onclick="fillSampleData()" style="background: #95a5a6; border: none; flex: 1; max-width: 280px;">
                     Test with Sample Data
                 </button>
-                <button class="analyze-button" onclick="analyzeTeamData()">
+                <button class="analyze-button" onclick="analyzeTeamData()" style="flex: 1; max-width: 280px; border: none;">
                     Analyze Team Performance
                 </button>
+                <button class="analyze-button" onclick="window.print()" style="background: #3498db; flex: 1; max-width: 280px; border: none;">
+                    🖨️ Print Report
+                </button>
+            </div>
+
+            <!-- Petunjuk Penggunaan -->
+            <div style="background: #f8f9fa; border: 1px solid #dee2e6; border-radius: 6px; padding: 12px; margin-top: 15px; font-size: 0.85em;">
+                <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">📝 Petunjuk Penggunaan:</div>
+                <ul style="margin: 0; padding-left: 20px; color: #555;">
+                    <li>Isi data tim di tab-tab yang tersedia (Basic Info, General, Attacking, dll). Isi data yang disediakan di Datahub saja, kalau tidak ada kosongkan.</li>
+                    <li>Atau klik "Test with Sample Data" untuk mencoba Autofill dengan data contoh</li>
+                    <li>Klik "Analyze Team Performance" untuk melihat analisis lengkap</li>
+                    <li>Hasil analisis akan muncul di bawah dengan berbagai metrik performa</li>
+                </ul>
             </div>
         </div>
 
