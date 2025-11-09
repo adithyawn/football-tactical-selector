@@ -323,12 +323,12 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>? Player Analyzer</h1>
+            <h1>&#9917; Player Analyzer</h1>
             <p>Analisis Performa Detail Berdasarkan Data Pertandingan</p>
             <div style="margin-top: 15px;">
                 <a href="index.html" style="text-decoration: none;">
                     <button class="btn btn-secondary" style="background: #95a5a6; padding: 8px 20px;">
-                        ? Kembali ke Home
+                        ← Kembali ke Home
                     </button>
                 </a>
             </div>
@@ -350,7 +350,7 @@
                     &#9889; Load Test Data (Everton)
                 </button>
                 <button class="btn btn-secondary" onclick="resetData()" style="background: #dc3545;">
-                    &#10060; Reset
+                    &#128260; Reset
                 </button>
             </div>
             <div id="fileInfo" class="hidden" style="margin-top: 15px; text-align: center;">
@@ -400,7 +400,7 @@
                             style="background: #27ae60; color: white; border: none;
                                    padding: 8px 16px; font-size: 0.9em; font-weight: 500; 
                                    border-radius: 6px; cursor: pointer;">
-                        ? Lihat Rekomendasi Taktik Berdasarkan Performa Individu
+                        &#128161; Lihat Rekomendasi Taktik Berdasarkan Performa Individu
                     </button>
                     <p style="margin-top: 10px; color: red; font-size: 1.1em; font-weight: 600;">
                         Atau Pilih Pemain Di Bawah Ini Untuk Langsung Analisis Performa Individu
@@ -420,7 +420,7 @@
                 </div>
                 
                 <div class="card" style="background: linear-gradient(135deg, #667eea15 0%, #764ba215 100%);">
-                    <div class="card-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white;">
+                    <div class="card-header" style="color: #2c3e50; margin-bottom: 15px;"">
                         <div class="card-icon">&#9881;</div>
                         <div class="card-title">Rekomendasi Taktik Tim</div>
                     </div>
@@ -1969,7 +1969,7 @@
             
             html += `
                 <div style="margin-bottom: 25px;">
-                    <h3 style="color: #2c3e50; margin-bottom: 15px;">? Rekomendasi Taktik</h3>
+                    <h3 style="color: #2c3e50; margin-bottom: 15px;">Rekomendasi Taktik</h3>
             `;
             
             // Generate tactical recommendations based on analysis
@@ -2698,7 +2698,7 @@
             // Pass completion rate with position context
             if (psA > 0) {
                 const passAccuracy = ((psC / psA) * 100).toFixed(1);
-                analysis += `? <strong>Pass Accuracy:</strong> ${passAccuracy}% (${psC.toFixed(1)}/${psA.toFixed(1)})<br>`;
+                analysis += `&#128202; <strong>Pass Accuracy:</strong> ${passAccuracy}% (${psC.toFixed(1)}/${psA.toFixed(1)})<br>`;
                 
                 // Position-specific benchmarks (Opta/Stats Perform data)
                 let benchmarkMsg = '';
@@ -2759,7 +2759,7 @@
                     }
                 }
                 
-                analysis += `&nbsp;&nbsp;&#9989; ${benchmarkMsg}<br><br>`;
+                analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; ${benchmarkMsg}<br><br>`;
             }
             
             // Progressive Passes - Position-specific benchmarks
@@ -2768,65 +2768,65 @@
                 
                 if (isGK) {
                     if (prPasses >= 3) {
-                        analysis += `&nbsp;&nbsp;&#9989; <span style="color: #28a745;">ELITE Sweeper-Keeper</span> - Ederson/Alisson level (3+ prog passes).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">ELITE Sweeper-Keeper</span> - Ederson/Alisson level (3+ prog passes).<br>`;
                     } else if (prPasses >= 1.5) {
-                        analysis += `&nbsp;&nbsp;&#128293; Modern GK - Aktif dalam memulai serangan dari belakang.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Modern GK - Aktif dalam memulai serangan dari belakang.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;&#128737; Traditional GK - Focus pada shot-stopping over distribution.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Traditional GK - Focus pada shot-stopping over distribution.<br>`;
                     }
                 } else if (isCB) {
                     if (prPasses >= 6) {
-                        analysis += `&nbsp;&nbsp;&#9989; <span style="color: #28a745;">WORLD-CLASS Ball-Playing CB</span> (6+). Van Dijk/Rúben Dias level.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">WORLD-CLASS Ball-Playing CB</span> (6+). Van Dijk/Rúben Dias level.<br>`;
                     } else if (prPasses >= 4) {
-                        analysis += `&nbsp;&nbsp;&#9989; <span style="color: #28a745;">EXCELLENT</span> - Top-tier progressive CB (4-6).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">EXCELLENT</span> - Top-tier progressive CB (4-6).<br>`;
                     } else if (prPasses >= 2.5) {
-                        analysis += `&nbsp;&nbsp;&#128077; <span style="color: #17a2b8;">GOOD</span> - Modern CB dengan comfortable on ball.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> - Modern CB dengan comfortable on ball.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;&#128737; Traditional stopper - Safe passing, minimal risk.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Traditional stopper - Safe passing, minimal risk.<br>`;
                     }
                 } else if (isFB) {
                     if (prPasses >= 4) {
-                        analysis += `&nbsp;&nbsp;&#9989; <span style="color: #28a745;">ELITE</span> - Robertson/Cancelo type FB (4+). Key playmaker dari flank.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">ELITE</span> - Robertson/Cancelo type FB (4+). Key playmaker dari flank.<br>`;
                     } else if (prPasses >= 2.5) {
-                        analysis += `&nbsp;&nbsp;&#128077; <span style="color: #17a2b8;">GOOD</span> - Modern attacking full-back (2.5-4).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> - Modern attacking full-back (2.5-4).<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;&#9917; Traditional FB - Crossing > progressive passing.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Traditional FB - Crossing > progressive passing.<br>`;
                     }
                 } else if (isDM) {
                     if (prPasses >= 8) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">ELITE REGISTA</span> (8+). Rodri/Busquets level - Deep-lying dictator.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">ELITE REGISTA</span> (8+). Rodri/Busquets level - Deep-lying dictator.<br>`;
                     } else if (prPasses >= 6) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">EXCELLENT</span> DLP (6-8). Main distributor dari base.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">EXCELLENT</span> DLP (6-8). Main distributor dari base.<br>`;
                     } else if (prPasses >= 4) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">SOLID</span> - Balance antara defensive work & progression.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">SOLID</span> - Balance antara defensive work & progression.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? Defensive-oriented DM - Fokus ball-winning > playmaking.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Defensive-oriented DM - Fokus ball-winning > playmaking.<br>`;
                     }
                 } else if (isCM) {
                     if (prPasses >= 7) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">ELITE</span> Box-to-box playmaker (7+). Frenkie de Jong level.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">ELITE</span> Box-to-box playmaker (7+). Frenkie de Jong level.<br>`;
                     } else if (prPasses >= 5) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">EXCELLENT</span> - Progressive midfielder (5-7). Engine room.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">EXCELLENT</span> - Progressive midfielder (5-7). Engine room.<br>`;
                     } else if (prPasses >= 3) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">OK</span> - Contributing ke build-up play.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">OK</span> - Contributing ke build-up play.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? More destroyer/runner - Bukan primary creator.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; More destroyer/runner - Bukan primary creator.<br>`;
                     }
                 } else if (isAM) {
                     if (prPasses >= 5) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">EXCELLENT</span> - Deep-lying AM (5+). Drop deep untuk dictate.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">EXCELLENT</span> - Deep-lying AM (5+). Drop deep untuk dictate.<br>`;
                     } else if (prPasses >= 3) {
-                        analysis += `&nbsp;&nbsp;? Balanced AM - Connect midfield & attack.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Balanced AM - Connect midfield & attack.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? Final third specialist - Stay high, create chances.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Final third specialist - Stay high, create chances.<br>`;
                     }
                 } else if (isWinger || isStriker) {
                     if (prPasses >= 3) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">BONUS TRAIT</span> - False nine/deep-lying forward (3+).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">BONUS TRAIT</span> - False nine/deep-lying forward (3+).<br>`;
                     } else if (prPasses >= 1.5) {
-                        analysis += `&nbsp;&nbsp;? Dapat drop deep untuk link-up play.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Dapat drop deep untuk link-up play.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? Stay high - Focus finish moves, bukan build them.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Stay high - Focus finish moves, bukan build them.<br>`;
                     }
                 }
                 analysis += '<br>';
@@ -2836,7 +2836,7 @@
             if (keyPasses > 0 || chCreated > 0) {
                 const xa90 = parseFloat(findAttribute(p, ['xA/90'])) || 0;
                 
-                analysis += `? <strong>Kreativitas:</strong> ${chCreated.toFixed(1)} peluang (${keyPasses.toFixed(1)} key passes)/90`;
+                analysis += `&#127912; <strong>Kreativitas:</strong> ${chCreated.toFixed(1)} peluang (${keyPasses.toFixed(1)} key passes)/90`;
                 if (xa90 > 0) analysis += ` | <strong>xA/90:</strong> ${xa90.toFixed(2)}`;
                 analysis += '<br>';
                 
@@ -2845,39 +2845,39 @@
                     if (isAM || isWinger) {
                         // AM/Winger: Primary creators
                         if (xa90 >= 0.30) {
-                            analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">ELITE CREATOR</span> - xA 0.3+/90. Top assist provider.<br>`;
-                            analysis += `&nbsp;&nbsp;? Referensi: De Bruyne (~0.4), Saka (~0.3), Odegaard (~0.35).<br>`;
+                            analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">ELITE CREATOR</span> - xA 0.3+/90. Top assist provider.<br>`;
+                            analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Referensi: De Bruyne (~0.4), Saka (~0.3), Odegaard (~0.35).<br>`;
                         } else if (xa90 >= 0.20) {
-                            analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">EXCELLENT</span> - xA 0.2-0.3. High-quality chance creator.<br>`;
+                            analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">EXCELLENT</span> - xA 0.2-0.3. High-quality chance creator.<br>`;
                         } else if (xa90 >= 0.12) {
-                            analysis += `&nbsp;&nbsp;? <span style="color: #ffc107;">GOOD</span> - xA 0.12-0.2. Decent creative output.<br>`;
+                            analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #ffc107;">GOOD</span> - xA 0.12-0.2. Decent creative output.<br>`;
                         } else {
-                            analysis += `&nbsp;&nbsp;? Limited creative output (xA <0.12). Focus on other aspects.<br>`;
+                            analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Limited creative output (xA <0.12). Focus on other aspects.<br>`;
                         }
                     } else if (isFB) {
                         // Full-backs: Bonus creativity
                         if (xa90 >= 0.20) {
-                            analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">ELITE ATTACKING FB</span> - xA 0.2+. TAA/Cancelo level (~0.25).<br>`;
+                            analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">ELITE ATTACKING FB</span> - xA 0.2+. TAA/Cancelo level (~0.25).<br>`;
                         } else if (xa90 >= 0.12) {
-                            analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD</span> attacking threat (xA 0.12-0.2).<br>`;
+                            analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> attacking threat (xA 0.12-0.2).<br>`;
                         } else if (xa90 >= 0.06) {
-                            analysis += `&nbsp;&nbsp;? Occasional creative contribution.<br>`;
+                            analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Occasional creative contribution.<br>`;
                         }
                     } else if (isStriker) {
                         // Strikers: Link-up play
                         if (xa90 >= 0.20) {
-                            analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">COMPLETE FORWARD</span> - xA 0.2+. Kane/Benzema style.<br>`;
+                            analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">COMPLETE FORWARD</span> - xA 0.2+. Kane/Benzema style.<br>`;
                         } else if (xa90 >= 0.10) {
-                            analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD</span> link-up (xA 0.1-0.2). Bukan pure poacher.<br>`;
+                            analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> link-up (xA 0.1-0.2). Bukan pure poacher.<br>`;
                         } else if (xa90 > 0) {
-                            analysis += `&nbsp;&nbsp;? Occasional assist - Primary focus tetap scoring.<br>`;
+                            analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Occasional assist - Primary focus tetap scoring.<br>`;
                         }
                     } else {
                         // Generic benchmark
                         if (xa90 >= 0.15) {
-                            analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">HIGH CREATIVE OUTPUT</span> (xA 0.15+).<br>`;
+                            analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">HIGH CREATIVE OUTPUT</span> (xA 0.15+).<br>`;
                         } else if (xa90 >= 0.08) {
-                            analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">MODERATE</span> creative contribution (xA 0.08-0.15).<br>`;
+                            analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">MODERATE</span> creative contribution (xA 0.08-0.15).<br>`;
                         }
                     }
                     analysis += '<br>';
@@ -2887,87 +2887,87 @@
                 if (isAM) {
                     // AM: Primary creator - highest expectations
                     if (chCreated >= 3) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">WORLD-CLASS AM</span> (3+). De Bruyne/�degaard level (3-4/90).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">WORLD-CLASS AM</span> (3+). De Bruyne/Odegaard level (3-4/90).<br>`;
                     } else if (chCreated >= 2) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">ELITE</span> playmaker (2-3). Top-tier creative output.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">ELITE</span> playmaker (2-3). Top-tier creative output.<br>`;
                     } else if (chCreated >= 1.5) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD</span> untuk AM. Consistent creator.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> untuk AM. Consistent creator.<br>`;
                     } else if (chCreated >= 1) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #ffc107;">BELOW PAR</span> untuk AM. Perlu more influence.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #ffc107;">BELOW PAR</span> untuk AM. Perlu more influence.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #dc3545;">CONCERN</span> - AM harus jadi main creator.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #dc3545;">CONCERN</span> - AM harus jadi main creator.<br>`;
                     }
                 } else if (isWinger) {
                     // Wingers: Good creator = 1.5+
                     if (chCreated >= 2.5) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">ELITE WINGER</span> (2.5+). Saka/Vinicius level creativity.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">ELITE WINGER</span> (2.5+). Saka/Vinicius level creativity.<br>`;
                     } else if (chCreated >= 1.5) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">CREATIVE WINGER</span> (1.5-2.5). Bukan hanya pace merchant.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">CREATIVE WINGER</span> (1.5-2.5). Bukan hanya pace merchant.<br>`;
                     } else if (chCreated >= 0.8) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">BALANCED</span> - Mix dribbling, shooting, & creating.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">BALANCED</span> - Mix dribbling, shooting, & creating.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? Direct winger - Focus dribble & shoot daripada create.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Direct winger - Focus dribble & shoot daripada create.<br>`;
                     }
                 } else if (isCM) {
                     // CM: Supporting creator
                     if (chCreated >= 2) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">CREATOR CM</span> (2+). Rare - creative box-to-box.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">CREATOR CM</span> (2+). Rare - creative box-to-box.<br>`;
                     } else if (chCreated >= 1.2) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD</span> contribution untuk CM (1.2-2).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> contribution untuk CM (1.2-2).<br>`;
                     } else if (chCreated >= 0.5) {
-                        analysis += `&nbsp;&nbsp;? Supporting role - Bukan main creator.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Supporting role - Bukan main creator.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? Destroyer/runner - Focus defensive work & carrying.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Destroyer/runner - Focus defensive work & carrying.<br>`;
                     }
                 } else if (isFB) {
                     // Full-backs: Bonus if creative
                     if (chCreated >= 1.5) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">ELITE ATTACKING FB</span> (1.5+). TAA/Cancelo level.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">ELITE ATTACKING FB</span> (1.5+). TAA/Cancelo level.<br>`;
                     } else if (chCreated >= 0.8) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD</span> offensive contribution (0.8-1.5).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> offensive contribution (0.8-1.5).<br>`;
                     } else if (chCreated >= 0.3) {
-                        analysis += `&nbsp;&nbsp;? Occasional attacking threat.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Occasional attacking threat.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? Defensive-oriented FB - Stay back & support.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Defensive-oriented FB - Stay back & support.<br>`;
                     }
                 } else if (isStriker) {
                     // Strikers: Link-up play bonus
                     if (chCreated >= 1.5) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">COMPLETE FORWARD</span> (1.5+). Kane/Benzema style.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">COMPLETE FORWARD</span> (1.5+). Kane/Benzema style.<br>`;
                     } else if (chCreated >= 0.8) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD link-up</span> - Bukan hanya finisher.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD link-up</span> - Bukan hanya finisher.<br>`;
                     } else if (chCreated >= 0.3) {
-                        analysis += `&nbsp;&nbsp;? Occasional assist - Primary job tetap scoring.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Occasional assist - Primary job tetap scoring.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? Pure finisher - Off-ball movement > playmaking.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Pure finisher - Off-ball movement > playmaking.<br>`;
                     }
                 } else if (isDM) {
                     // DM: Not expected to create much
                     if (chCreated >= 1) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">BONUS</span> - Rare creative DM (1+).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">BONUS</span> - Rare creative DM (1+).<br>`;
                     } else if (chCreated >= 0.5) {
-                        analysis += `&nbsp;&nbsp;? Occasional final ball contribution.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Occasional final ball contribution.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? Standard DM - Focus shield defense, recycle possession.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Standard DM - Focus shield defense, recycle possession.<br>`;
                     }
                 } else if (isCB) {
                     // CB: Very rare to create
                     if (chCreated >= 0.5) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">UNIQUE</span> - CB yang join attack (set-pieces?).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">UNIQUE</span> - CB yang join attack (set-pieces?).<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? Defensive focus - Normal untuk CB.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Defensive focus - Normal untuk CB.<br>`;
                     }
                 } else {
                     // Generic benchmark
                     if (chCreated >= 2.5) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">ELITE CREATOR</span> - Top 10% di posisinya.<br>`;
-                        analysis += `&nbsp;&nbsp;? Referensi: Level De Bruyne, Odegaard, Maddison (2.5-3.5/90).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">ELITE CREATOR</span> - Top 10% di posisinya.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Referensi: Level De Bruyne, Odegaard, Maddison (2.5-3.5/90).<br>`;
                     } else if (chCreated >= 1.5) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">CREATOR SOLID</span> - Above average.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">CREATOR SOLID</span> - Above average.<br>`;
                     } else if (chCreated >= 0.8) {
-                        analysis += `&nbsp;&nbsp;? Kreativitas moderate. Supporting cast.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Kreativitas moderate. Supporting cast.<br>`;
                     } else if (chCreated > 0) {
-                        analysis += `&nbsp;&nbsp;? Bukan natural creator.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Bukan natural creator.<br>`;
                     }
                 }
                 analysis += '<br>';
@@ -3003,24 +3003,24 @@
             // Possession Won/Lost Ratio
             if (possWon > 0 || possLost > 0) {
                 const ratio = possWon > 0 && possLost > 0 ? (possWon / possLost).toFixed(2) : 0;
-                analysis += `? <strong>Ball Security:</strong> Won ${possWon.toFixed(1)} vs Lost ${possLost.toFixed(1)} (Ratio: ${ratio})<br>`;
+                analysis += `&#128274; <strong>Ball Security:</strong> Won ${possWon.toFixed(1)} vs Lost ${possLost.toFixed(1)} (Ratio: ${ratio})<br>`;
                 
                 // Research shows elite ball carriers have 1.2+ ratio (CIES Football Observatory)
                 if (parseFloat(ratio) >= 1.2) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">EXCELLENT</span> - Ball retention superior. Cocok carry bola under pressure.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">EXCELLENT</span> - Ball retention superior. Cocok carry bola under pressure.<br>`;
                 } else if (parseFloat(ratio) >= 1.0) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">BALANCED</span> - Win/loss seimbang. Standar untuk posisinya.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">BALANCED</span> - Win/loss seimbang. Standar untuk posisinya.<br>`;
                 } else if (parseFloat(ratio) >= 0.8) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #ffc107;">TURNOVER RISK</span> - Kehilangan bola lebih sering. Normal untuk risk-taker.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #ffc107;">TURNOVER RISK</span> - Kehilangan bola lebih sering. Normal untuk risk-taker.<br>`;
                     
                     // Context by position
                     if (pos.includes('W') || pos.includes('F')) {
-                        analysis += `&nbsp;&nbsp;? Acceptable untuk winger/forward - high risk/reward style.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Acceptable untuk winger/forward - high risk/reward style.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? Perlu improve decision making untuk ${pos}.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Perlu improve decision making untuk ${pos}.<br>`;
                     }
                 } else {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #dc3545;">MASALAH</span> - Terlalu banyak kehilangan bola. Review first touch & composure.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #dc3545;">MASALAH</span> - Terlalu banyak kehilangan bola. Review first touch & composure.<br>`;
                 }
                 analysis += '<br>';
             }
@@ -3028,29 +3028,29 @@
             // Pressing - Benchmark dari CIES Football Observatory
             if (presC > 0 || presA > 0) {
                 const presSuccess = presA > 0 ? ((presC / presA) * 100).toFixed(1) : 0;
-                analysis += `? <strong>Pressing:</strong> ${presC.toFixed(1)} sukses dari ${presA.toFixed(1)} attempts (${presSuccess}%)<br>`;
+                analysis += `&#128293; <strong>Pressing:</strong> ${presC.toFixed(1)} sukses dari ${presA.toFixed(1)} attempts (${presSuccess}%)<br>`;
                 
                 // Elite pressers: 35-40% success rate (StatsBomb research)
                 if (parseFloat(presSuccess) >= 40) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">ELITE PRESSER</span> - Success rate luar biasa (>40%). World-class positioning.<br>`;
-                    analysis += `&nbsp;&nbsp;? Referensi: Level Kant�, Gueye, Tchouameni di peak form.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">ELITE PRESSER</span> - Success rate luar biasa (>40%). World-class positioning.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Referensi: Level Kanté, Gueye, Tchouameni di peak form.<br>`;
                 } else if (parseFloat(presSuccess) >= 35) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">EXCELLENT</span> - Above average (35-40%). Pressing sangat efektif.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">EXCELLENT</span> - Above average (35-40%). Pressing sangat efektif.<br>`;
                 } else if (parseFloat(presSuccess) >= 30) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD</span> - Standar liga top (30-35%). Kontribusi solid untuk high press.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> - Standar liga top (30-35%). Kontribusi solid untuk high press.<br>`;
                 } else if (parseFloat(presSuccess) >= 25) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #ffc107;">AVERAGE</span> - Work rate ada, tapi timing perlu improve.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #ffc107;">AVERAGE</span> - Work rate ada, tapi timing perlu improve.<br>`;
                 } else {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #dc3545;">INEFFICIENT</span> - Banyak pressing gagal. Review positioning & timing.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #dc3545;">INEFFICIENT</span> - Banyak pressing gagal. Review positioning & timing.<br>`;
                 }
                 
                 // Volume context
                 if (presA >= 20) {
-                    analysis += `&nbsp;&nbsp;? <strong>High volume presser</strong> (${presA.toFixed(1)} attempts) - Gegenpressing style player.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>High volume presser</strong> (${presA.toFixed(1)} attempts) - Gegenpressing style player.<br>`;
                 } else if (presA >= 10) {
-                    analysis += `&nbsp;&nbsp;? <strong>Moderate pressing</strong> - Selective dalam choose moments.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Moderate pressing</strong> - Selective dalam choose moments.<br>`;
                 } else if (presA < 5) {
-                    analysis += `&nbsp;&nbsp;? <strong>Low pressing</strong> - Lebih reactive defender atau conserve energy untuk attacks.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Low pressing</strong> - Lebih reactive defender atau conserve energy untuk attacks.<br>`;
                 }
                 analysis += '<br>';
             }
@@ -3088,7 +3088,7 @@
             
             // xG/90 Analysis - Overall goal threat
             if (xg90 > 0) {
-                analysis += `? <strong>xG/90 (Expected Goals per 90):</strong> ${xg90.toFixed(2)}<br>`;
+                analysis += `&bull; <strong>xG/90 (Expected Goals per 90):</strong> ${xg90.toFixed(2)}<br>`;
                 
                 const isStriker = pos.includes('ST') || pos.includes('CF');
                 const isWinger = pos.includes('W') || pos.includes('AML') || pos.includes('AMR') || pos.includes('(RL)') || pos.includes('(R)') || pos.includes('(L)');
@@ -3099,53 +3099,53 @@
                     // Assessment sebagai STRIKER
                     analysis += `&nbsp;&nbsp;<strong>&#9876; Sebagai STRIKER:</strong><br>`;
                     if (xg90 >= 0.70) {
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <span style="color: #28a745;">? ELITE</span> (0.7+ xG/90). World-class finisher material.<br>`;
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? Referensi: Haaland (~1.0), Kane (~0.8), Lewandowski (~0.75).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">ELITE</span> (0.7+ xG/90). World-class finisher material.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Referensi: Haaland (~1.0), Kane (~0.8), Lewandowski (~0.75).<br>`;
                     } else if (xg90 >= 0.50) {
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <span style="color: #28a745;">? EXCELLENT</span> (0.5-0.7). Top-tier striker material (~18-22 goals/season).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">EXCELLENT</span> (0.5-0.7). Top-tier striker material (~18-22 goals/season).<br>`;
                     } else if (xg90 >= 0.35) {
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <span style="color: #17a2b8;">? GOOD</span> (0.35-0.5). Solid goal threat (~12-16 goals/season).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> (0.35-0.5). Solid goal threat (~12-16 goals/season).<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&#9888; <span style="color: #ffc107;">&#128680; BELOW PAR</span> untuk striker murni. Perlu improve movement & positioning.<br>`;
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? Cocok untuk role support striker, target man, atau false nine.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #ffc107;">BELOW PAR</span> untuk striker murni. Perlu improve movement & positioning.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Cocok untuk role support striker, target man, atau false nine.<br>`;
                     }
                     
                     // Assessment sebagai WINGER
                     analysis += `&nbsp;&nbsp;<strong>&#127942; Sebagai WINGER:</strong><br>`;
                     if (xg90 >= 0.40) {
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <span style="color: #28a745;">? ELITE</span> goal-scoring winger (0.4+). Salah/Saka/Son level.<br>`;
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? Referensi: Salah (~0.65), Saka (~0.45), Son (~0.50).<br>`;
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? Inverted winger material - suka cut inside & finish.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">ELITE</span> goal-scoring winger (0.4+). Salah/Saka/Son level.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Referensi: Salah (~0.65), Saka (~0.45), Son (~0.50).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Inverted winger material - suka cut inside & finish.<br>`;
                     } else if (xg90 >= 0.30) {
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <span style="color: #28a745;">? EXCELLENT</span> (0.3-0.4). Genuine goal threat dari flank.<br>`;
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? Balance bagus antara scoring & creating.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">EXCELLENT</span> (0.3-0.4). Genuine goal threat dari flank.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Balance bagus antara scoring & creating.<br>`;
                     } else if (xg90 >= 0.20) {
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <span style="color: #17a2b8;">? GOOD</span> (0.2-0.3). Balanced winger (goals + assists).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> (0.2-0.3). Balanced winger (goals + assists).<br>`;
                     } else if (xg90 >= 0.10) {
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&#128681; <span style="color: #ffc107;">&#128221; MODERATE</span> threat. More creator/dribbler than finisher.<br>`;
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? Traditional winger atau wide playmaker role.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #ffc107;">MODERATE</span> threat. More creator/dribbler than finisher.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Traditional winger atau wide playmaker role.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <span style="color: #dc3545;">? LIMITED</span> finishing threat. Fokus: Width, crossing, assists.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #dc3545;">LIMITED</span> finishing threat. Fokus: Width, crossing, assists.<br>`;
                     }
                     
                     // REKOMENDASI ROLE berdasarkan xG/90
                     analysis += `&nbsp;&nbsp;<strong>&#128161; Rekomendasi:</strong><br>`;
                     if (xg90 >= 0.50) {
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <strong>Striker lebih cocok</strong> - Elite goal threat layak main central.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Striker lebih cocok</strong> - Elite goal threat layak main central.<br>`;
                     } else if (xg90 >= 0.30 && xg90 < 0.50) {
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <strong>Versatile</strong> - Bisa main striker atau inverted winger.<br>`;
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? Check dribbling & crossing stats untuk tentukan posisi terbaik.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Versatile</strong> - Bisa main striker atau inverted winger.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Check dribbling & crossing stats untuk tentukan posisi terbaik.<br>`;
                     } else if (xg90 >= 0.20 && xg90 < 0.30) {
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <strong>Winger lebih cocok</strong> - Better dari flank, bisa contribute goals + assists.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Winger lebih cocok</strong> - Better dari flank, bisa contribute goals + assists.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <strong>Traditional winger atau AM</strong> - Creator role lebih cocok daripada finisher.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Traditional winger atau AM</strong> - Creator role lebih cocok daripada finisher.<br>`;
                     }
                 } else {
                     // Midfielder/Defender - Original assessment
                     if (xg90 >= 0.20) {
-                        analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">BONUS THREAT</span> - Unexpected goals dari posisi ini.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">BONUS THREAT</span> - Unexpected goals dari posisi ini.<br>`;
                     } else if (xg90 >= 0.10) {
-                        analysis += `&nbsp;&nbsp;? Occasional goal threat - Late runs into box atau set-pieces.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Occasional goal threat - Late runs into box atau set-pieces.<br>`;
                     }
                 }
                 analysis += '<br>';
@@ -3154,17 +3154,17 @@
             // Shooting Analysis - xG research from Understat/FBref
             if (shots > 0) {
                 const shotAccuracy = shotsOT > 0 ? ((shotsOT / shots) * 100).toFixed(1) : 0;
-                analysis += `? <strong>Shooting:</strong> ${shots.toFixed(1)} shots/90 (${shotAccuracy}% on target)<br>`;
+                analysis += `&#127919; <strong>Shooting:</strong> ${shots.toFixed(1)} shots/90 (${shotAccuracy}% on target)<br>`;
                 
                 // xG per shot quality (Michael Caley research)
                 if (xgShot >= 0.15) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">HIGH QUALITY</span> shots (xG: ${xgShot.toFixed(2)}). Excellent positioning.<br>`;
-                    analysis += `&nbsp;&nbsp;? Indikasi: Shots dari area berbahaya (penalty box), bukan speculative dari jauh.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">HIGH QUALITY</span> shots (xG: ${xgShot.toFixed(2)}). Excellent positioning.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Indikasi: Shots dari area berbahaya (penalty box), bukan speculative dari jauh.<br>`;
                 } else if (xgShot >= 0.10) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD QUALITY</span> (xG: ${xgShot.toFixed(2)}). Above average shot selection.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD QUALITY</span> (xG: ${xgShot.toFixed(2)}). Above average shot selection.<br>`;
                 } else if (xgShot > 0) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #ffc107;">LOW QUALITY</span> (xG: ${xgShot.toFixed(2)}). Banyak long shots atau tight angles.<br>`;
-                    analysis += `&nbsp;&nbsp;? Saran: Improve movement untuk get into better positions.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #ffc107;">LOW QUALITY</span> (xG: ${xgShot.toFixed(2)}). Banyak long shots atau tight angles.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Saran: Improve movement untuk get into better positions.<br>`;
                 }
                 
                 // Shot volume by position - Different expectations for ST vs Winger
@@ -3174,37 +3174,37 @@
                 
                 if (isStriker) {
                     if (shots >= 3.5) {
-                        analysis += `&nbsp;&nbsp;? <strong>Elite volume striker</strong> (3.5+). Main attacking focal point.<br>`;
-                        analysis += `&nbsp;&nbsp;? Referensi: Haaland (~5), Kane (~4), Isak (~3.7).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Elite volume striker</strong> (3.5+). Main attacking focal point.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Referensi: Haaland (~5), Kane (~4), Isak (~3.7).<br>`;
                     } else if (shots >= 2.5) {
-                        analysis += `&nbsp;&nbsp;? <strong>Good volume</strong> (2.5-3.5). Standar striker modern.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Good volume</strong> (2.5-3.5). Standar striker modern.<br>`;
                     } else if (shots >= 1.5) {
-                        analysis += `&nbsp;&nbsp;? <strong>Low volume</strong> (1.5-2.5). Link-up striker atau butuh more service.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Low volume</strong> (1.5-2.5). Link-up striker atau butuh more service.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? <strong>Very low</strong> (<1.5). Target man atau deep-lying forward style.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Very low</strong> (<1.5). Target man atau deep-lying forward style.<br>`;
                     }
                 } else if (isWinger) {
                     if (shots >= 3.0) {
-                        analysis += `&nbsp;&nbsp;? <strong>High-volume winger</strong> (3+). Inverted winger - suka cut inside & shoot.<br>`;
-                        analysis += `&nbsp;&nbsp;? Tipe seperti Salah, Saka, Raphinha (shooting primary weapon).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>High-volume winger</strong> (3+). Inverted winger - suka cut inside & shoot.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Tipe seperti Salah, Saka, Raphinha (shooting primary weapon).<br>`;
                     } else if (shots >= 2.0) {
-                        analysis += `&nbsp;&nbsp;? <strong>Good volume</strong> untuk winger (2-3). Balance shoot & create.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Good volume</strong> untuk winger (2-3). Balance shoot & create.<br>`;
                     } else if (shots >= 1.0) {
-                        analysis += `&nbsp;&nbsp;? <strong>Moderate</strong> (1-2). More creator/crosser than direct shooter.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Moderate</strong> (1-2). More creator/crosser than direct shooter.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? <strong>Low</strong> (<1). Traditional winger - width & crossing focus, bukan inverted.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Low</strong> (<1). Traditional winger - width & crossing focus, bukan inverted.<br>`;
                     }
                 } else if (isAM) {
                     if (shots >= 2.5) {
-                        analysis += `&nbsp;&nbsp;? <strong>High volume AM</strong> (2.5+). Aggressive #10 - loves to shoot (Bruno style).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>High volume AM</strong> (2.5+). Aggressive #10 - loves to shoot (Bruno style).<br>`;
                     } else if (shots >= 1.5) {
-                        analysis += `&nbsp;&nbsp;? <strong>Balanced AM</strong> (1.5-2.5). Mix antara shoot & create.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Balanced AM</strong> (1.5-2.5). Mix antara shoot & create.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? Pure playmaker - Prefer final pass over shooting.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Pure playmaker - Prefer final pass over shooting.<br>`;
                     }
                 } else {
                     if (shots >= 2) {
-                        analysis += `&nbsp;&nbsp;? <strong>Aggressive shooter</strong> untuk posisinya. Box-to-box threat.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Aggressive shooter</strong> untuk posisinya. Box-to-box threat.<br>`;
                     }
                 }
                 analysis += '<br>';
@@ -3212,36 +3212,36 @@
             
             // Dribbling - CIES Football Observatory data
             if (dribbles > 0) {
-                analysis += `? <strong>Dribbling:</strong> ${dribbles.toFixed(1)} successful dribbles/90<br>`;
+                analysis += `&#128170; <strong>Dribbling:</strong> ${dribbles.toFixed(1)} successful dribbles/90<br>`;
                 
                 const isStriker = pos.includes('ST') || pos.includes('CF');
                 const isWinger = pos.includes('W') || pos.includes('(RL)') || pos.includes('(R)') || pos.includes('(L)');
                 
                 // Elite dribblers: 3+ per 90 (Vinicius Jr ~4.5, Musiala ~3.5, Saka ~3.2)
                 if (dribbles >= 3.0) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">ELITE DRIBBLER</span> (3+). World-class 1v1 specialist.<br>`;
-                    analysis += `&nbsp;&nbsp;? Referensi: Vinicius Jr (~4.5), Saka (~3.2), Musiala (~3.5).<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">ELITE DRIBBLER</span> (3+). World-class 1v1 specialist.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Referensi: Vinicius Jr (~4.5), Saka (~3.2), Musiala (~3.5).<br>`;
                     if (isWinger) {
-                        analysis += `&nbsp;&nbsp;? Core strength - Dapat isolate & beat defenders consistently.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Core strength - Dapat isolate & beat defenders consistently.<br>`;
                     } else if (isStriker) {
-                        analysis += `&nbsp;&nbsp;? Rare trait untuk striker - Can drop deep & dribble (Mbappe style).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Rare trait untuk striker - Can drop deep & dribble (Mbappe style).<br>`;
                     }
                 } else if (dribbles >= 2.0) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">VERY GOOD</span> (2-3). Confident taking on defenders.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">VERY GOOD</span> (2-3). Confident taking on defenders.<br>`;
                     if (isWinger) {
-                        analysis += `&nbsp;&nbsp;? Genuine 1v1 threat - Core weapon untuk beat full-backs.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Genuine 1v1 threat - Core weapon untuk beat full-backs.<br>`;
                     }
                 } else if (dribbles >= 1.0) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD</span> (1-2). Occasionally beats opponents in tight spaces.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> (1-2). Occasionally beats opponents in tight spaces.<br>`;
                 } else if (dribbles >= 0.5) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #ffc107;">LIMITED</span> (0.5-1). Rarely attempts take-ons.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #ffc107;">LIMITED</span> (0.5-1). Rarely attempts take-ons.<br>`;
                 } else {
-                    analysis += `&nbsp;&nbsp;? Bukan dribbler. Prefer quick passing, off-ball movement, atau physicality.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Bukan dribbler. Prefer quick passing, off-ball movement, atau physicality.<br>`;
                 }
                 
                 // Context warning untuk winger dengan dribbling rendah
                 if (isWinger && dribbles < 1.5) {
-                    analysis += `&nbsp;&nbsp;&#9888; &#128681; Low dribbling untuk winger - More sistem player atau crosser style.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Low dribbling untuk winger - More sistem player atau crosser style.<br>`;
                 }
                 
                 analysis += '<br>';
@@ -3250,55 +3250,55 @@
             // Crossing - Wyscout analysis
             if (crosses > 0) {
                 const crossAcc = ((crossesC / crosses) * 100).toFixed(1);
-                analysis += `? <strong>Crossing:</strong> ${crosses.toFixed(1)} attempts (${crossAcc}% completed)<br>`;
+                analysis += `&#129534; <strong>Crossing:</strong> ${crosses.toFixed(1)} attempts (${crossAcc}% completed)<br>`;
                 
                 const isWinger = pos.includes('W') || pos.includes('(RL)') || pos.includes('(R)') || pos.includes('(L)');
                 const isFB = pos.includes('D/WB') || pos.includes('WB') || pos.includes('D (R)') || pos.includes('D (L)');
                 
                 // Good crossing accuracy: 28-35% (WhoScored/Opta research)
                 if (parseFloat(crossAcc) >= 35) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">ELITE</span> crosser (35%+). Pinpoint delivery - TAA/De Bruyne level.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">ELITE</span> crosser (35%+). Pinpoint delivery - TAA/De Bruyne level.<br>`;
                 } else if (parseFloat(crossAcc) >= 28) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">EXCELLENT</span> accuracy (28-35%). Very reliable outlet.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">EXCELLENT</span> accuracy (28-35%). Very reliable outlet.<br>`;
                 } else if (parseFloat(crossAcc) >= 22) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD</span> (22-28%). Above average crosser.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> (22-28%). Above average crosser.<br>`;
                 } else if (parseFloat(crossAcc) >= 18) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #ffc107;">AVERAGE</span> (~18-22%). Standar untuk volume crosser.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #ffc107;">AVERAGE</span> (~18-22%). Standar untuk volume crosser.<br>`;
                 } else {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #dc3545;">POOR</span> accuracy (<18%). Perlu improve timing & technique.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #dc3545;">POOR</span> accuracy (<18%). Perlu improve timing & technique.<br>`;
                 }
                 
                 // Volume context - Different for Wingers vs Full-backs
                 if (isWinger) {
                     if (crosses >= 4) {
-                        analysis += `&nbsp;&nbsp;? <strong>Very high volume</strong> (4+). Traditional winger - crossing primary weapon.<br>`;
-                        analysis += `&nbsp;&nbsp;? Tipe seperti Grealish (Man City), Pedro Neto - Stay wide & deliver.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Very high volume</strong> (4+). Traditional winger - crossing primary weapon.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Tipe seperti Grealish (Man City), Pedro Neto - Stay wide & deliver.<br>`;
                     } else if (crosses >= 2.5) {
-                        analysis += `&nbsp;&nbsp;? <strong>High volume</strong> (2.5-4). Consistent wide threat.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>High volume</strong> (2.5-4). Consistent wide threat.<br>`;
                     } else if (crosses >= 1.5) {
-                        analysis += `&nbsp;&nbsp;? <strong>Moderate</strong> (1.5-2.5). Balanced wide play - mix crossing & cutting inside.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Moderate</strong> (1.5-2.5). Balanced wide play - mix crossing & cutting inside.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? <strong>Low volume</strong> (<1.5). Inverted winger - prefer cutting inside over crossing.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Low volume</strong> (<1.5). Inverted winger - prefer cutting inside over crossing.<br>`;
                     }
                 } else if (isFB) {
                     if (crosses >= 3) {
-                        analysis += `&nbsp;&nbsp;? <strong>Very high volume FB</strong> (3+). Attacking wing-back role - TAA style.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Very high volume FB</strong> (3+). Attacking wing-back role - TAA style.<br>`;
                     } else if (crosses >= 1.5) {
-                        analysis += `&nbsp;&nbsp;? <strong>Good volume</strong> untuk FB (1.5-3). Active dalam build-up.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Good volume</strong> untuk FB (1.5-3). Active dalam build-up.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;? More defensive-oriented FB atau inverted full-back.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; More defensive-oriented FB atau inverted full-back.<br>`;
                     }
                 } else {
                     if (crosses >= 3) {
-                        analysis += `&nbsp;&nbsp;? <strong>High volume</strong> (3+). Wide role dalam sistem.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>High volume</strong> (3+). Wide role dalam sistem.<br>`;
                     }
                 }
                 
                 // Warning untuk volume tinggi dengan accuracy rendah
                 if ((isWinger || isFB) && parseFloat(crossAcc) < 20 && crosses >= 2.5) {
-                    analysis += `&nbsp;&nbsp;&#9888; &#128165; <strong>High volume + Low accuracy</strong> = Wasteful possession.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>High volume + Low accuracy</strong> = Wasteful possession.<br>`;
                     if (isWinger) {
-                        analysis += `&nbsp;&nbsp;? Saran: Consider cutting inside more atau improve crossing technique.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Saran: Consider cutting inside more atau improve crossing technique.<br>`;
                     }
                 }
                 
@@ -3340,88 +3340,88 @@
             
             // Aerial Duels - StatsBomb research
             if (hdrsW > 0) {
-                analysis += `? <strong>Aerial Duels:</strong> ${hdrsW.toFixed(1)} headers won/90<br>`;
+                analysis += `&#9917; <strong>Aerial Duels:</strong> ${hdrsW.toFixed(1)} headers won/90<br>`;
                 
                 // Elite CBs: 3.5+ (Van Dijk ~5, Dias ~4.5)
                 if (hdrsW >= 4) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">DOMINANT</span> in the air (4+). Elite set-piece defender.<br>`;
-                    analysis += `&nbsp;&nbsp;? Referensi: Top 5% CBs di liga Eropa. Dapat jadi target man juga.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">DOMINANT</span> in the air (4+). Elite set-piece defender.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Referensi: Top 5% CBs di liga Eropa. Dapat jadi target man juga.<br>`;
                 } else if (hdrsW >= 3) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">STRONG</span> aerial presence (3-4). Reliable untuk high balls.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">STRONG</span> aerial presence (3-4). Reliable untuk high balls.<br>`;
                 } else if (hdrsW >= 2) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD</span> aerial ability. Kompetitif di udara.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> aerial ability. Kompetitif di udara.<br>`;
                 } else if (hdrsW >= 1) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #ffc107;">MODERATE</span>. Bisa menang aerial duels occasionally.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #ffc107;">MODERATE</span>. Bisa menang aerial duels occasionally.<br>`;
                 } else {
-                    analysis += `&nbsp;&nbsp;? Bukan kekuatan. Hindari target long balls.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Bukan kekuatan. Hindari target long balls.<br>`;
                 }
                 
                 if (isDefender && hdrsW >= 3) {
-                    analysis += `&nbsp;&nbsp;? Big asset untuk set-piece defense + attack.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Big asset untuk set-piece defense + attack.<br>`;
                 }
                 analysis += '<br>';
             }
             
             // Interceptions - FBref Top 5 Leagues
             if (interceptions > 0) {
-                analysis += `? <strong>Interceptions:</strong> ${interceptions.toFixed(1)}/90<br>`;
+                analysis += `&#128683; <strong>Interceptions:</strong> ${interceptions.toFixed(1)}/90<br>`;
                 
                 // Elite interceptors: 2.5+ for CBs, 2+ for DMs
                 if (interceptions >= 3) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">ELITE READER</span> (3+). Exceptional anticipation.<br>`;
-                    analysis += `&nbsp;&nbsp;? Indikasi: Positioning intelligence + reading passing lanes expert.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">ELITE READER</span> (3+). Exceptional anticipation.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Indikasi: Positioning intelligence + reading passing lanes expert.<br>`;
                 } else if (interceptions >= 2) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">EXCELLENT</span> anticipation (2-3). Proactive defender.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">EXCELLENT</span> anticipation (2-3). Proactive defender.<br>`;
                 } else if (interceptions >= 1.5) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD</span> reading of game. Above average positioning.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> reading of game. Above average positioning.<br>`;
                 } else if (interceptions >= 1) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #ffc107;">AVERAGE</span>. Standar untuk posisinya.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #ffc107;">AVERAGE</span>. Standar untuk posisinya.<br>`;
                 } else {
-                    analysis += `&nbsp;&nbsp;? Lebih reactive daripada proactive defender.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Lebih reactive daripada proactive defender.<br>`;
                 }
                 analysis += '<br>';
             }
             
             // Tackling - WhoScored/Opta data
             if (tackles > 0) {
-                analysis += `? <strong>Tackling:</strong> ${tackles.toFixed(1)} tackles/90 (${tackleRate.toFixed(0)}% success)<br>`;
+                analysis += `&#128170; <strong>Tackling:</strong> ${tackles.toFixed(1)} tackles/90 (${tackleRate.toFixed(0)}% success)<br>`;
                 
                 // Elite tackle success: 75%+ (Opta research)
                 if (tackleRate >= 80) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">ELITE EFFICIENCY</span> (80%+). Timing sempurna.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">ELITE EFFICIENCY</span> (80%+). Timing sempurna.<br>`;
                 } else if (tackleRate >= 70) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">EXCELLENT</span> (70-80%). Clean tackler, rarely fouls.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">EXCELLENT</span> (70-80%). Clean tackler, rarely fouls.<br>`;
                 } else if (tackleRate >= 60) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD</span> (60-70%). Standar defensive midfielder.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> (60-70%). Standar defensive midfielder.<br>`;
                 } else if (tackleRate >= 50) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #ffc107;">AVERAGE</span> (~50%). Masih banyak miss tackles.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #ffc107;">AVERAGE</span> (~50%). Masih banyak miss tackles.<br>`;
                 } else if (tackleRate > 0) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #dc3545;">POOR</span> (<50%). Timing issue, sering buat foul.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #dc3545;">POOR</span> (<50%). Timing issue, sering buat foul.<br>`;
                 }
                 
                 // Volume context
                 if (tackles >= 3) {
-                    analysis += `&nbsp;&nbsp;? <strong>High volume tackler</strong> - Aggressive ball-winner style.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>High volume tackler</strong> - Aggressive ball-winner style.<br>`;
                 } else if (tackles >= 1.5) {
-                    analysis += `&nbsp;&nbsp;? <strong>Moderate</strong> - Balanced defensive approach.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Moderate</strong> - Balanced defensive approach.<br>`;
                 } else {
-                    analysis += `&nbsp;&nbsp;? <strong>Low tackles</strong> - Prefer positioning/interceptions over diving in.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Low tackles</strong> - Prefer positioning/interceptions over diving in.<br>`;
                 }
                 analysis += '<br>';
             }
             
             // Clearances & Blocks
             if (clearances >= 3 || blocks > 0) {
-                analysis += `? <strong>Last-ditch Defense:</strong> ${clearances.toFixed(1)} clearances, ${blocks.toFixed(1)} blocks/90<br>`;
+                analysis += `&#128737; <strong>Last-ditch Defense:</strong> ${clearances.toFixed(1)} clearances, ${blocks.toFixed(1)} blocks/90<br>`;
                 
                 if (clearances >= 5) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #ffc107;">HIGH CLEARANCES</span> (5+). Tim sering under pressure atau deep block.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #ffc107;">HIGH CLEARANCES</span> (5+). Tim sering under pressure atau deep block.<br>`;
                 } else if (clearances >= 3) {
-                    analysis += `&nbsp;&nbsp;? Normal untuk CB. Active dalam box defense.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Normal untuk CB. Active dalam box defense.<br>`;
                 }
                 
                 if (blocks >= 1.5) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">SHOT BLOCKER</span>. Brave dan well-positioned untuk block shots.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">SHOT BLOCKER</span>. Brave dan well-positioned untuk block shots.<br>`;
                 }
                 analysis += '<br>';
             }
@@ -3454,20 +3454,20 @@
             
             // Distance covered - Sports science research (Bangsbo, Mohr et al.)
             if (distance > 0) {
-                analysis += `? <strong>Distance Covered:</strong> ${distance.toFixed(1)} km/90<br>`;
+                analysis += `&#128694; <strong>Distance Covered:</strong> ${distance.toFixed(1)} km/90<br>`;
                 
                 // Premier League average: 10-11km (varies by position)
                 if (distance >= 12) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">EXCEPTIONAL</span> work rate (12+ km). Elite endurance.<br>`;
-                    analysis += `&nbsp;&nbsp;? Referensi: Kant�, Henderson, Goretzka level (~12-13km).<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">EXCEPTIONAL</span> work rate (12+ km). Elite endurance.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Referensi: Kante, Henderson, Goretzka level (~12-13km).<br>`;
                 } else if (distance >= 11) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">EXCELLENT</span> (11-12 km). Above average stamina.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">EXCELLENT</span> (11-12 km). Above average stamina.<br>`;
                 } else if (distance >= 10) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD</span> (10-11 km). Standar premier league midfielder.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> (10-11 km). Standar premier league midfielder.<br>`;
                 } else if (distance >= 9) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #ffc107;">AVERAGE</span> (9-10 km). OK untuk forward/CB position.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #ffc107;">AVERAGE</span> (9-10 km). OK untuk forward/CB position.<br>`;
                 } else if (distance > 0) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #dc3545;">LOW</span> (<9 km). Limited mobility atau conserving energy.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #dc3545;">LOW</span> (<9 km). Limited mobility atau conserving energy.<br>`;
                 }
                 
                 // Position-specific context
@@ -3476,64 +3476,64 @@
                 const isForward = pos.includes('F') || pos.includes('ST');
                 
                 if (isMidfielder && distance >= 11) {
-                    analysis += `&nbsp;&nbsp;? Perfect for <strong>box-to-box</strong> atau high-intensity pressing role.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Perfect for <strong>box-to-box</strong> atau high-intensity pressing role.<br>`;
                 } else if (isDefender && distance >= 11) {
-                    analysis += `&nbsp;&nbsp;? Modern <strong>attacking full-back</strong> atau libero material.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Modern <strong>attacking full-back</strong> atau libero material.<br>`;
                 } else if (isForward && distance < 9.5) {
-                    analysis += `&nbsp;&nbsp;? <strong>Target man</strong> atau poacher style - conserve energy for key moments.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Target man</strong> atau poacher style - conserve energy for key moments.<br>`;
                 }
                 analysis += '<br>';
             }
             
             // Sprints - High intensity running research (Ingebrigtsen et al.)
             if (sprints > 0) {
-                analysis += `? <strong>Sprints:</strong> ${sprints.toFixed(0)} high-intensity runs/90<br>`;
+                analysis += `&#9889; <strong>Sprints:</strong> ${sprints.toFixed(0)} high-intensity runs/90<br>`;
                 
                 // Elite: 25-35+ sprints per game (varies by position)
                 if (sprints >= 30) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">EXPLOSIVE</span> player (30+). Constant threat dengan pace.<br>`;
-                    analysis += `&nbsp;&nbsp;? Counter-attack weapon. Transition specialist.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">EXPLOSIVE</span> player (30+). Constant threat dengan pace.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Counter-attack weapon. Transition specialist.<br>`;
                 } else if (sprints >= 20) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #28a745;">HIGH INTENSITY</span> (20-30). Good burst of speed regularly.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">HIGH INTENSITY</span> (20-30). Good burst of speed regularly.<br>`;
                 } else if (sprints >= 15) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #17a2b8;">MODERATE</span> (15-20). Selective sprinting, conserve energy.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">MODERATE</span> (15-20). Selective sprinting, conserve energy.<br>`;
                 } else if (sprints >= 10) {
-                    analysis += `&nbsp;&nbsp;? <span style="color: #ffc107;">LOW</span> intensity (10-15). Pace bukan main asset.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #ffc107;">LOW</span> intensity (10-15). Pace bukan main asset.<br>`;
                 } else {
-                    analysis += `&nbsp;&nbsp;? Minimal sprinting. Positional player atau lacks pace.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Minimal sprinting. Positional player atau lacks pace.<br>`;
                 }
                 
                 // Combined with distance
                 if (distance >= 11 && sprints >= 20) {
-                    analysis += `&nbsp;&nbsp;? <strong>Complete athlete</strong> - Endurance + explosiveness. Rare combination.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Complete athlete</strong> - Endurance + explosiveness. Rare combination.<br>`;
                 } else if (distance >= 11 && sprints < 15) {
-                    analysis += `&nbsp;&nbsp;? <strong>Marathon runner</strong> - High volume, low intensity style.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Marathon runner</strong> - High volume, low intensity style.<br>`;
                 } else if (distance < 10 && sprints >= 20) {
-                    analysis += `&nbsp;&nbsp;? <strong>Explosive athlete</strong> - Burst player, bukan endurance runner.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Explosive athlete</strong> - Burst player, bukan endurance runner.<br>`;
                 }
                 analysis += '<br>';
             }
             
             analysis += '<strong>&#128170; Profil Fisik:</strong><br>';
             if (distance >= 11 && sprints >= 25) {
-                analysis += '? <strong>Elite Athlete</strong> - Complete physical package. Box-to-box specialist.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Elite Athlete</strong> - Complete physical package. Box-to-box specialist.<br>';
             } else if (distance >= 11) {
-                analysis += '? <strong>Workhorse</strong> - Tireless runner, cover a lot of ground consistently.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Workhorse</strong> - Tireless runner, cover a lot of ground consistently.<br>';
             } else if (sprints >= 25) {
-                analysis += '? <strong>Speed Merchant</strong> - Explosive pace, transition threat.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Speed Merchant</strong> - Explosive pace, transition threat.<br>';
             } else if (distance < 10 && sprints < 15) {
-                analysis += '? <strong>Economy Player</strong> - Conserve energy, maximize efficiency. Technical over physical.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Economy Player</strong> - Conserve energy, maximize efficiency. Technical over physical.<br>';
             } else {
-                analysis += '? <strong>Balanced</strong> - Standard physical output untuk posisinya.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Balanced</strong> - Standard physical output untuk posisinya.<br>';
             }
             
             analysis += '<br><strong>&#128221; Implikasi Taktis:</strong><br>';
             if (distance >= 11 || sprints >= 20) {
-                analysis += '? Cocok untuk <strong>high-press, counter-press</strong> system (Klopp/Guardiola style).<br>';
-                analysis += '? Dapat maintain intensity sepanjang 90 menit.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; Cocok untuk <strong>high-press, counter-press</strong> system (Klopp/Guardiola style).<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; Dapat maintain intensity sepanjang 90 menit.<br>';
             } else if (distance < 10 && sprints < 15) {
-                analysis += '&#128161; Lebih cocok untuk <strong>possession-based, slower tempo</strong> game.<br>';
-                analysis += '&#128681; Consider rotasi atau substitusi di menit 60-70.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; Lebih cocok untuk <strong>possession-based, slower tempo</strong> game.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; Consider rotasi atau substitusi di menit 60-70.<br>';
             }
             
             // Add Benchmark Box at the bottom
@@ -3568,86 +3568,86 @@
 
             // Goals Conceded Analysis
             if (conceded90 > 0) {
-                analysis += `? <strong>Goals Conceded/90:</strong> ${conceded90.toFixed(2)}<br>`;
+                analysis += `&bull; <strong>Goals Conceded/90:</strong> ${conceded90.toFixed(2)}<br>`;
                 // Lower is better for GK
                 if (conceded90 <= 0.80) {
-                    analysis += '&nbsp;&nbsp;? <span style="color: #28a745;">EXCELLENT</span> - Very low goals conceded (=0.8). Elite defensive record.<br>';
-                    analysis += '&nbsp;&nbsp;? Referensi: Top 5% GKs di liga. Ederson (~0.7), Alisson (~0.75) level.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; <span style="color: #28a745;">EXCELLENT</span> - Very low goals conceded (=0.8). Elite defensive record.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; Referensi: Top 5% GKs di liga. Ederson (~0.7), Alisson (~0.75) level.<br>';
                 } else if (conceded90 <= 1.00) {
-                    analysis += '&nbsp;&nbsp;? <span style="color: #28a745;">VERY GOOD</span> (0.8-1.0). Strong defensive organization.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; <span style="color: #28a745;">VERY GOOD</span> (0.8-1.0). Strong defensive organization.<br>';
                 } else if (conceded90 <= 1.20) {
-                    analysis += '&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD</span> (~1.0-1.2). Above average defensive stability.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> (~1.0-1.2). Above average defensive stability.<br>';
                 } else if (conceded90 <= 1.50) {
-                    analysis += '&nbsp;&nbsp;? <span style="color: #ffc107;">AVERAGE</span> (~1.2-1.5). Mid-table standard.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; <span style="color: #ffc107;">AVERAGE</span> (~1.2-1.5). Mid-table standard.<br>';
                 } else {
-                    analysis += '&nbsp;&nbsp;? <span style="color: #dc3545;">CONCERN</span> (>1.5). High goals conceded - defensive issues.<br>';
-                    analysis += '&nbsp;&nbsp;? Bisa karena: weak defense, poor positioning, atau shot-stopping issues.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; <span style="color: #dc3545;">CONCERN</span> (>1.5). High goals conceded - defensive issues.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; Bisa karena: weak defense, poor positioning, atau shot-stopping issues.<br>';
                 }
                 analysis += '<br>';
             }
 
             // xG Prevention Analysis
             if (xgp90 > 0 || xgp90 < 0) {
-                analysis += `? <strong>xG Prevented/90:</strong> ${xgp90 > 0 ? '+' : ''}${xgp90.toFixed(2)}<br>`;
+                analysis += `&bull; <strong>xG Prevented/90:</strong> ${xgp90 > 0 ? '+' : ''}${xgp90.toFixed(2)}<br>`;
                 // Context: positive xG prevented is good (prevents goals above expected)
                 if (xgp90 >= 0.25) {
-                    analysis += '&nbsp;&nbsp;? <span style="color: #28a745;">EXCELLENT</span> - Consistently preventing goals above expectation (+0.25).<br>';
-                    analysis += '&nbsp;&nbsp;? Shot-stopping ability kelas dunia. Saves yang seharusnya goal.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; <span style="color: #28a745;">EXCELLENT</span> - Consistently preventing goals above expectation (+0.25).<br>';
+                    analysis += '&nbsp;&nbsp;&bull; Shot-stopping ability kelas dunia. Saves yang seharusnya goal.<br>';
                 } else if (xgp90 >= 0.10) {
-                    analysis += '&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD</span> (+0.1 to +0.25) - Kontribusi positif untuk defensive line.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> (+0.1 to +0.25) - Kontribusi positif untuk defensive line.<br>';
                 } else if (xgp90 >= -0.05) {
-                    analysis += '&nbsp;&nbsp;? <span style="color: #ffc107;">AVERAGE</span> (�0.05) - Neutral impact vs xG baseline.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; <span style="color: #ffc107;">AVERAGE</span> (±0.05) - Neutral impact vs xG baseline.<br>';
                 } else {
-                    analysis += '&nbsp;&nbsp;? <span style="color: #dc3545;">BELOW EXPECTATION</span> (<-0.05) - Conceding more than expected. Perlu improve.<br>';
-                    analysis += '&nbsp;&nbsp;? Indikasi: Positioning errors, slow reactions, atau poor decision making.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; <span style="color: #dc3545;">BELOW EXPECTATION</span> (<-0.05) - Conceding more than expected. Perlu improve.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; Indikasi: Positioning errors, slow reactions, atau poor decision making.<br>';
                 }
                 analysis += '<br>';
             }
 
             // Expected Save % Analysis
             if (xsvPerc > 0) {
-                analysis += `? <strong>Expected Save % (xSv %):</strong> ${xsvPerc.toFixed(0)}%<br>`;
+                analysis += `&bull; <strong>Expected Save % (xSv %):</strong> ${xsvPerc.toFixed(0)}%<br>`;
                 if (xsvPerc >= 70) {
-                    analysis += '&nbsp;&nbsp;? <span style="color: #28a745;">ELITE</span> (70%+) - Saves above expected consistently. World-class reflexes.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; <span style="color: #28a745;">ELITE</span> (70%+) - Saves above expected consistently. World-class reflexes.<br>';
                 } else if (xsvPerc >= 60) {
-                    analysis += '&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD</span> (60-70%) - Above average shot-stopping quality.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> (60-70%) - Above average shot-stopping quality.<br>';
                 } else {
-                    analysis += '&nbsp;&nbsp;? <span style="color: #ffc107;">AVERAGE/BELOW</span> (<60%) - May concede routine shots. Focus training.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; <span style="color: #ffc107;">AVERAGE/BELOW</span> (<60%) - May concede routine shots. Focus training.<br>';
                 }
                 analysis += '<br>';
             }
 
             // Actual Save % Analysis
             if (svPerc > 0) {
-                analysis += `? <strong>Save %:</strong> ${svPerc.toFixed(0)}%<br>`;
+                analysis += `&bull; <strong>Save %:</strong> ${svPerc.toFixed(0)}%<br>`;
                 // Elite keepers: 75%+ (Premier League standard)
                 if (svPerc >= 75) {
-                    analysis += '&nbsp;&nbsp;? <span style="color: #28a745;">EXCELLENT</span> (75%+) - Reliable shot-stopper.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; <span style="color: #28a745;">EXCELLENT</span> (75%+) - Reliable shot-stopper.<br>';
                 } else if (svPerc >= 70) {
-                    analysis += '&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD</span> (70-75%) - Solid saves conversion.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> (70-75%) - Solid saves conversion.<br>';
                 } else if (svPerc >= 65) {
-                    analysis += '&nbsp;&nbsp;? <span style="color: #ffc107;">AVERAGE</span> (65-70%) - Standar league average.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; <span style="color: #ffc107;">AVERAGE</span> (65-70%) - Standar league average.<br>';
                 } else {
-                    analysis += '&nbsp;&nbsp;? <span style="color: #dc3545;">BELOW AVERAGE</span> (<65%) - Room for improvement in handling shots.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; <span style="color: #dc3545;">BELOW AVERAGE</span> (<65%) - Room for improvement in handling shots.<br>';
                 }
                 analysis += '<br>';
             }
 
             // Clean Sheets Analysis
             if (cln90 > 0 || shutouts > 0) {
-                if (shutouts > 0) analysis += `? <strong>Clean Sheets Total:</strong> ${shutouts}<br>`;
-                if (cln90 > 0) analysis += `? <strong>Clean Sheets/90:</strong> ${cln90.toFixed(2)} (${(cln90*100).toFixed(0)}% of games)<br>`;
+                if (shutouts > 0) analysis += `&bull; <strong>Clean Sheets Total:</strong> ${shutouts}<br>`;
+                if (cln90 > 0) analysis += `&bull; <strong>Clean Sheets/90:</strong> ${cln90.toFixed(2)} (${(cln90*100).toFixed(0)}% of games)<br>`;
                 
                 // Clean sheet rate benchmark
                 if (cln90 >= 0.40) {
-                    analysis += '&nbsp;&nbsp;? <span style="color: #28a745;">ELITE</span> clean sheet rate (40%+). Defensive rock.<br>';
-                    analysis += '&nbsp;&nbsp;? Kombinasi: Excellent shot-stopping + defensive organization + command of box.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; <span style="color: #28a745;">ELITE</span> clean sheet rate (40%+). Defensive rock.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; Kombinasi: Excellent shot-stopping + defensive organization + command of box.<br>';
                 } else if (cln90 >= 0.30) {
-                    analysis += '&nbsp;&nbsp;? <span style="color: #17a2b8;">GOOD</span> (30-40%). Reliable untuk defensive teams.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">GOOD</span> (30-40%). Reliable untuk defensive teams.<br>';
                 } else if (cln90 >= 0.20) {
-                    analysis += '&nbsp;&nbsp;? <span style="color: #ffc107;">AVERAGE</span> (~20-30%). Standar untuk mid-table teams.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; <span style="color: #ffc107;">AVERAGE</span> (~20-30%). Standar untuk mid-table teams.<br>';
                 } else if (cln90 > 0) {
-                    analysis += '&nbsp;&nbsp;? Limited clean sheets (<20%). Mungkin defensive line lemah atau high-risk style.<br>';
+                    analysis += '&nbsp;&nbsp;&bull; Limited clean sheets (<20%). Mungkin defensive line lemah atau high-risk style.<br>';
                 }
                 analysis += '<br>';
             }
@@ -3655,57 +3655,57 @@
             // Overall Goalkeeper Profile
             analysis += '<strong>&#129516; Profil GK:</strong><br>';
             if (conceded90 <= 1.0 && xgp90 >= 0.2 && svPerc >= 75 && cln90 >= 0.35) {
-                analysis += '? <strong>Elite Shot-Stopper</strong> - World-class reflexes, commanding presence, defensive anchor.<br>';
-                analysis += '&nbsp;&nbsp;� Goals conceded minimal, clean sheets tinggi, saves above expectation.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Elite Shot-Stopper</strong> - World-class reflexes, commanding presence, defensive anchor.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; Goals conceded minimal, clean sheets tinggi, saves above expectation.<br>';
             } else if (conceded90 <= 1.0 && cln90 >= 0.30) {
-                analysis += '? <strong>Reliable Traditional GK</strong> - Solid shot-stopping, organizational skills, team trust.<br>';
-                analysis += '&nbsp;&nbsp;� Defensive stability excellent, low goals conceded.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Reliable Traditional GK</strong> - Solid shot-stopping, organizational skills, team trust.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; Defensive stability excellent, low goals conceded.<br>';
             } else if (xgp90 >= 0.15 && svPerc >= 70) {
-                analysis += '? <strong>Quality Shot-Stopper</strong> - Saves high-quality chances, prevents expected goals.<br>';
-                analysis += '&nbsp;&nbsp;� Can bail out team dengan crucial saves meski goals conceded moderate.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Quality Shot-Stopper</strong> - Saves high-quality chances, prevents expected goals.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; Can bail out team dengan crucial saves meski goals conceded moderate.<br>';
             } else if (conceded90 >= 1.3 || xgp90 < 0) {
-                analysis += '? <strong>Developing GK</strong> - Perlu fokus pada fundamentals: positioning, handling, decision making.<br>';
-                analysis += '&nbsp;&nbsp;� High goals conceded dan/atau underperforming vs xG expectation.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Developing GK</strong> - Perlu fokus pada fundamentals: positioning, handling, decision making.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; High goals conceded dan/atau underperforming vs xG expectation.<br>';
             } else {
-                analysis += '? <strong>Balanced GK</strong> - Competent di semua aspek, no major weaknesses.<br>';
-                analysis += '&nbsp;&nbsp;� Standard performance untuk level timnya.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Balanced GK</strong> - Competent di semua aspek, no major weaknesses.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&bull; Standard performance untuk level timnya.<br>';
             }
 
             // Tactical implications & Performance Summary
             analysis += '<br><strong>&#128221; Implikasi Taktis & Rekomendasi:</strong><br>';
             
             if (conceded90 <= 1.0 && xgp90 >= 0.15) {
-                analysis += '? <strong>Defensive Anchor</strong> - Can play in high line system, confident shot-stopper.<br>';
-                analysis += '? Cocok untuk <strong>attacking team</strong> yang occasional concede high-quality chances.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Defensive Anchor</strong> - Can play in high line system, confident shot-stopper.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; Cocok untuk <strong>attacking team</strong> yang occasional concede high-quality chances.<br>';
             } else if (conceded90 <= 1.0 && cln90 >= 0.35) {
-                analysis += '? <strong>Low-block Specialist</strong> - Excellent untuk defensive organization.<br>';
-                analysis += '? Cocok untuk <strong>defensive setup</strong>, protect 1-0 leads, park the bus tactics.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Low-block Specialist</strong> - Excellent untuk defensive organization.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; Cocok untuk <strong>defensive setup</strong>, protect 1-0 leads, park the bus tactics.<br>';
             } else if (conceded90 >= 1.5) {
-                analysis += '&#9888; <strong>Defensive Overhaul Needed</strong> - High goals conceded is major concern.<br>';
-                analysis += '&#128161; Focus: <strong>Positioning drills</strong>, 1v1 situations, communication dengan defenders.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Defensive Overhaul Needed</strong> - High goals conceded is major concern.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; Focus: <strong>Positioning drills</strong>, 1v1 situations, communication dengan defenders.<br>';
             }
             
             if (svPerc < 70 || xgp90 < 0) {
-                analysis += '&#127891; <strong>Shot-stopping Training</strong> - Perlu improve reflex & decision making.<br>';
-                analysis += '&#127891; Latihan: Reaction saves, shot-stopping dari berbagai angles, handling under pressure.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Shot-stopping Training</strong> - Perlu improve reflex & decision making.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; Latihan: Reaction saves, shot-stopping dari berbagai angles, handling under pressure.<br>';
             }
             
             if (cln90 >= 0.30) {
-                analysis += '? <strong>Set-piece Specialist</strong> - Excellent command of box, komunikasi dengan defenders.<br>';
+                analysis += '&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Set-piece Specialist</strong> - Excellent command of box, komunikasi dengan defenders.<br>';
             }
             
             // Performance vs Expectation
             if (conceded90 > 0 && xgp90 !== 0) {
                 const expectedConceded = conceded90 - xgp90;
                 analysis += `<br><strong>&#128202; Performance vs Expectation:</strong><br>`;
-                analysis += `� Actual: ${conceded90.toFixed(2)} goals conceded/90<br>`;
-                analysis += `� Expected (based on shots faced): ~${expectedConceded.toFixed(2)}/90<br>`;
+                analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Actual: ${conceded90.toFixed(2)} goals conceded/90<br>`;
+                analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Expected (based on shots faced): ~${expectedConceded.toFixed(2)}/90<br>`;
                 if (xgp90 > 0) {
-                    analysis += `� <span style="color: #28a745;">OVERPERFORMING</span> - Preventing ${Math.abs(xgp90).toFixed(2)} goals/90 above expectation! &#127942;<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #28a745;">OVERPERFORMING</span> - Preventing ${Math.abs(xgp90).toFixed(2)} goals/90 above expectation!<br>`;
                 } else if (xgp90 < -0.05) {
-                    analysis += `� <span style="color: #dc3545;">UNDERPERFORMING</span> - Conceding ${Math.abs(xgp90).toFixed(2)} goals/90 more than expected. &#128680;<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #dc3545;">UNDERPERFORMING</span> - Conceding ${Math.abs(xgp90).toFixed(2)} goals/90 more than expected.<br>`;
                 } else {
-                    analysis += `� <span style="color: #17a2b8;">MEETING EXPECTATION</span> - Performance sesuai dengan quality shots faced.<br>`;
+                    analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <span style="color: #17a2b8;">MEETING EXPECTATION</span> - Performance sesuai dengan quality shots faced.<br>`;
                 }
             }
 
@@ -4294,10 +4294,9 @@
             const hasHalf = (rating % 1) >= 0.5;
             
             let stars = '';
-            for (let i = 0; i < fullStars; i++) stars += '?';
-            if (hasHalf) stars += '?';
-            for (let i = fullStars + (hasHalf ? 1 : 0); i < 5; i++) stars += '?';
-            
+            for (let i = 0; i < fullStars; i++) stars += '★'; // &#11088;
+            if (hasHalf) stars += '½'; // &#189;
+            for (let i = fullStars + (hasHalf ? 1 : 0); i < 5; i++) stars += '☆'; // &#9734;
             document.getElementById('effectivenessStars').textContent = stars;
             
             let text = '';
@@ -4316,16 +4315,15 @@
                 
                 // Base score
                 breakdownHTML += `<strong style="color: #2c3e50;">Base Performance:</strong> ${breakdown.baseScore.toFixed(1)}/2.5 poin<br>`;
-                breakdownHTML += `<span style="margin-left: 15px; color: #5a6c7d;">� ${breakdown.baseDetail}</span><br><br>`;
-                
+                breakdownHTML += `<span style="margin-left: 15px; color: #5a6c7d;">• ${breakdown.baseDetail}</span><br><br>`;
                 // Position-specific score
                 breakdownHTML += `<strong style="color: #2c3e50;">Kontribusi Spesifik Posisi:</strong> ${breakdown.positionScore.toFixed(1)}/2.5 poin<br>`;
                 if (breakdown.positionDetail.length > 0) {
                     breakdown.positionDetail.forEach(detail => {
-                        breakdownHTML += `<span style="margin-left: 15px; color: #5a6c7d;">� ${detail}</span><br>`;
+                        breakdownHTML += `<span style="margin-left: 15px; color: #5a6c7d;">• ${detail}</span><br>`;
                     });
                 } else {
-                    breakdownHTML += `<span style="margin-left: 15px; color: #5a6c7d;">� Tidak ada data metrik posisi</span><br>`;
+                    breakdownHTML += `<span style="margin-left: 15px; color: #5a6c7d;">• Tidak ada data metrik posisi</span><br>`;
                 }
                 
                 breakdownHTML += `<br><strong style="color: #2c3e50;">Total Rating: ${breakdown.total.toFixed(1)}/5.0</strong>`;
@@ -4362,7 +4360,7 @@
             
             // Player Summary
             html += `<div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 12px; margin-bottom: 20px;">`;
-            html += `<h3 style="margin: 0 0 10px 0; font-size: 1.3em;">?? Profil Pemain</h3>`;
+            html += `<h3 style="margin: 0 0 10px 0; font-size: 1.3em;">&#128100; Profil Pemain</h3>`;
             html += `<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 10px; margin-top: 15px;">`;
             html += `<div><strong>Posisi Natural:</strong> ${pos}</div>`;
             if (bestPos) html += `<div><strong>Best Position:</strong> ${bestPos}</div>`;
@@ -4374,29 +4372,29 @@
             
             // Overall Assessment
             html += `<div class="insight-item" style="background: #f8fafc; padding: 15px; border-radius: 6px; margin-bottom: 20px; border-left: 3px solid #3498db;">`;
-            html += `<strong>? Penilaian Keseluruhan:</strong><br><br>`;
+            html += `<strong>&#128736; Penilaian Keseluruhan:</strong><br><br>`;
             
             if (rating >= 4.0) {
-                html += `<span style="color: #27ae60; font-size: 1.05em;">? PEMAIN KUNCI</span> - Wajib starter, performa sangat baik (Rating: ${rating.toFixed(1)}/5.0)<br>`;
-                html += `? Pemain ini adalah asset penting untuk tim. Fokus training untuk maintain & enhance strengths.<br>`;
+                html += `<span style="color: #27ae60; font-size: 1.05em;">&#11088; PEMAIN KUNCI</span> - Wajib starter, performa sangat baik (Rating: ${rating.toFixed(1)}/5.0)<br>`;
+                html += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Pemain ini adalah asset penting untuk tim. Fokus training untuk maintain & enhance strengths.<br>`;
             } else if (rating >= 3.5) {
-                html += `<span style="color: #27ae60; font-size: 1.05em;">? STARTER SOLID</span> - Performa konsisten baik (Rating: ${rating.toFixed(1)}/5.0)<br>`;
-                html += `? Pemain first-choice dengan sedikit area untuk improvement.<br>`;
+                html += `<span style="color: #27ae60; font-size: 1.05em;">&#9989; STARTER SOLID</span> - Performa konsisten baik (Rating: ${rating.toFixed(1)}/5.0)<br>`;
+                html += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Pemain first-choice dengan sedikit area untuk improvement.<br>`;
             } else if (rating >= 3.0) {
-                html += `<span style="color: #3498db; font-size: 1.05em;">? ROTASI/BACKUP</span> - Performa standar (Rating: ${rating.toFixed(1)}/5.0)<br>`;
-                html += `? Squad player yang berguna. Training focus untuk develop jadi starter.<br>`;
+                html += `<span style="color: #3498db; font-size: 1.05em;">&#128260; ROTASI/BACKUP</span> - Performa standar (Rating: ${rating.toFixed(1)}/5.0)<br>`;
+                html += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Squad player yang berguna. Training focus untuk develop jadi starter.<br>`;
             } else if (rating >= 2.5) {
                 html += `<span style="color: #f39c12; font-size: 1.05em;">&#9888; PERLU DEVELOPMENT</span> - Performa di bawah standar (Rating: ${rating.toFixed(1)}/5.0)<br>`;
-                html += `? Butuh intensive training atau loan untuk match experience.<br>`;
+                html += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Butuh intensive training atau loan untuk match experience.<br>`;
             } else {
                 html += `<span style="color: #e74c3c; font-size: 1.05em;">&#128680; CONCERN</span> - Performa kurang (Rating: ${rating.toFixed(1)}/5.0)<br>`;
-                html += `? Pertimbangkan role change, loan, atau development di level lebih rendah.<br>`;
+                html += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; Pertimbangkan role change, loan, atau development di level lebih rendah.<br>`;
             }
             html += `</div>`;
             
             // Training Recommendations
             html += `<div style="background: white; padding: 20px; border-radius: 8px; border: 2px solid #3498db;">`;
-            html += `<h3 style="color: #3498db; margin-top: 0;">?? Rekomendasi Training Spesifik</h3>`;
+            html += `<h3 style="color: #3498db; margin-top: 0;">&#127891; Rekomendasi Training Spesifik</h3>`;
             
             // Position-specific training
             const isGK = pos.includes('GK');
@@ -4505,7 +4503,7 @@
                 let color = item.priority === 'HIGH' ? '#e74c3c' : item.priority === 'MEDIUM' ? '#f39c12' : '#3498db';
                 html += `<div style="margin-bottom: 12px; padding: 12px; background: #f8fafc; border-radius: 6px; border-left: 3px solid ${color};">`;
                 html += `<strong style="color: ${color};">[${item.priority}]</strong> <strong>${item.area}</strong><br>`;
-                html += `<span style="color: #7f8c8d; margin-left: 20px; font-size: 0.9em;">? ${item.detail}</span>`;
+                html += `<span style="color: #7f8c8d; margin-left: 20px; font-size: 0.9em;">&bull; ${item.detail}</span>`;
                 html += `</div>`;
             });
             
@@ -4513,24 +4511,24 @@
             
             // Tactical Usage
             html += `<div style="background: #e8f4f8; padding: 15px; border-radius: 6px; margin-top: 20px; border-left: 3px solid #3498db;">`;
-            html += `<strong style="color: #3498db;">?? Rekomendasi Penggunaan Taktis:</strong><br><br>`;
+            html += `<strong style="color: #3498db;">&#9881; Rekomendasi Penggunaan Taktis:</strong><br><br>`;
             
             if (bestRole) {
-                html += `? <strong>Role Optimal:</strong> ${bestRole}`;
+                html += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Role Optimal:</strong> ${bestRole}`;
                 if (bestPos) html += ` di posisi ${bestPos}`;
                 html += `<br>`;
             }
             
             if (rating >= 3.5) {
-                html += `? <strong>Status:</strong> First-choice starter untuk match penting.<br>`;
+                html += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Status:</strong> First-choice starter untuk match penting.<br>`;
             } else if (rating >= 3.0) {
-                html += `? <strong>Status:</strong> Rotasi player, starter untuk cup games atau vs weaker opposition.<br>`;
+                html += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Status:</strong> Rotasi player, starter untuk cup games atau vs weaker opposition.<br>`;
             } else {
-                html += `?? <strong>Status:</strong> Backup option. Consider loan untuk regular game time & development.<br>`;
+                html += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Status:</strong> Backup option. Consider loan untuk regular game time & development.<br>`;
             }
             
             if (pros) {
-                html += `? <strong>Exploit Strengths:</strong> Tactics harus utilize ${pros.toLowerCase()}.<br>`;
+                html += `&nbsp;&nbsp;&nbsp;&nbsp;&bull; <strong>Exploit Strengths:</strong> Tactics harus utilize ${pros.toLowerCase()}.<br>`;
             }
             
             html += `</div>`;
@@ -4621,6 +4619,7 @@
     </script>
 </body>
 </html>
+
 
 
 
