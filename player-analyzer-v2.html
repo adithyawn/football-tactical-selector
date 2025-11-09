@@ -521,193 +521,772 @@
         }
 
         function loadTestData() {
-            // Hardcoded test data - Sample players from Everton
+            // Real Everton squad data from FM Analytics (representing each position)
             playersData = [
                 {
                     "Player": "Jordan Pickford",
                     "Position": "GK",
-                    "Age": 29,
-                    "Appearances": 15,
-                    "Goals": 0,
-                    "Assists": 0,
-                    "Avg Rat": 7.2,
+                    "Age": 31,
                     "Best Pos": "GK",
-                    "Best Role": "SK(D)",
-                    "Pros": "Command Of Area, Reflexes",
-                    "Preferred Foot": "Left",
-                    "Goals/90": 0,
+                    "Best Role": "BGK",
+                    "Pros": "One On Ones",
+                    "Preferred Foot": "Left-Footed",
+                    "Avg Rat": 7.13,
+                    "Pr passes/90": 0.7,
+                    "Ps A/90": 23.4,
+                    "Ps C/90": 18.7,
+                    "Poss Won/90": 7.8,
+                    "Poss Lost/90": 6.7,
+                    "OP-KP/90": 0,
+                    "Asts/90": 0,
+                    "Ch C/90": 0,
+                    "OP-Crs A/90": 0,
+                    "OP-Crs C/90": 0,
+                    "Drb/90": 0,
+                    "Dist/90": 4.2,
+                    "Sprints/90": 0,
+                    "Shot/90": 0,
+                    "Sht/90": 0,
+                    "xG/shot": 0,
                     "xG/90": 0,
                     "xA/90": 0,
-                    "Assists/90": 0,
-                    "Ch C/90": 0.2,
+                    "Shots From Outside The Box per 90 Minutes": 0,
+                    "Shot %": 0,
+                    "Goals": 0,
+                    "Conv %": "0%",
+                    "Assists": 0,
+                    "Goals From Outside The Box": 0,
+                    "Appearances": 26,
+                    "Hdrs W/90": 0,
+                    "BlK/90": 0,
+                    "Aer A/90": 0,
+                    "Clr/90": 0,
+                    "Int/90": 2.9,
+                    "Pres A/90": 0,
+                    "Pres C/90": 0,
                     "Tck/90": 0.1,
-                    "Int/90": 0.3,
-                    "Hdrs W/90": 0.5,
-                    "Poss Won/90": 2.1,
-                    "Poss Lost/90": 1.2,
-                    "Dist/90": 5.2,
-                    "xGP/90": 0.25,
-                    "xSv %": 78,
-                    "xGP": 3.8,
-                    "Sv %": 73,
-                    "All/90": 0.9,
+                    "Tck R": 100,
+                    "xGP/90": 0.2,
+                    "xSv %": 87,
+                    "xGP": 5.71,
+                    "Sv %": 83,
                     "Cln/90": 0.4,
-                    "Shutouts": 6
+                    "Shutouts": 10,
+                    "All/90": 1.1
+                },
+                {
+                    "Player": "Michael Keane",
+                    "Position": "D (C)",
+                    "Age": 33,
+                    "Best Pos": "D (C)",
+                    "Best Role": "BCB",
+                    "Pros": "Heading",
+                    "Preferred Foot": "Right-Footed",
+                    "Avg Rat": 6.62,
+                    "Pr passes/90": 1.3,
+                    "Ps A/90": 31.6,
+                    "Ps C/90": 30.7,
+                    "Poss Won/90": 3.5,
+                    "Poss Lost/90": 2.2,
+                    "OP-KP/90": 0,
+                    "Asts/90": 0,
+                    "Ch C/90": 0,
+                    "OP-Crs A/90": 0,
+                    "OP-Crs C/90": 0,
+                    "Drb/90": 0,
+                    "Dist/90": 10.2,
+                    "Sprints/90": 3.5,
+                    "Shot/90": 0,
+                    "Sht/90": 0,
+                    "xG/shot": 0,
+                    "xG/90": 0,
+                    "xA/90": 0,
+                    "Shots From Outside The Box per 90 Minutes": 0,
+                    "Shot %": 0,
+                    "Goals": 0,
+                    "Conv %": "0%",
+                    "Assists": 0,
+                    "Goals From Outside The Box": 0,
+                    "Appearances": "2 (6)",
+                    "Hdrs W/90": 0.4,
+                    "BlK/90": 0,
+                    "Aer A/90": 1.3,
+                    "Clr/90": 2.2,
+                    "Int/90": 1.3,
+                    "Pres A/90": 0.9,
+                    "Pres C/90": 0.4,
+                    "Tck/90": 2.2,
+                    "Tck R": 100,
+                    "xGP/90": 0,
+                    "xSv %": 0,
+                    "xGP": 0,
+                    "Sv %": 0,
+                    "Cln/90": 0,
+                    "Shutouts": 0,
+                    "All/90": 0
                 },
                 {
                     "Player": "Jarrad Branthwaite",
-                    "Position": "D(C)",
-                    "Age": 21,
-                    "Appearances": 14,
-                    "Goals": 2,
-                    "Assists": 1,
-                    "Avg Rat": 7.0,
-                    "Best Pos": "D(C)",
-                    "Best Role": "BPD(D)",
-                    "Pros": "Heading, Tackling",
-                    "Preferred Foot": "Left",
-                    "Goals/90": 0.14,
-                    "xG/90": 0.12,
-                    "xA/90": 0.08,
-                    "Assists/90": 0.07,
-                    "Ch C/90": 0.5,
-                    "Tck/90": 2.8,
-                    "Int/90": 3.2,
-                    "Hdrs W/90": 4.5,
-                    "Poss Won/90": 6.2,
-                    "Poss Lost/90": 3.8,
+                    "Position": "D (RLC)",
+                    "Age": 23,
+                    "Best Pos": "D (C)",
+                    "Best Role": "BCB",
+                    "Pros": "Heading",
+                    "Preferred Foot": "Left-Footed",
+                    "Avg Rat": 6.97,
+                    "Pr passes/90": 2.4,
+                    "Ps A/90": 41.3,
+                    "Ps C/90": 38,
+                    "Poss Won/90": 8.7,
+                    "Poss Lost/90": 3.9,
+                    "OP-KP/90": 0.1,
+                    "Asts/90": 0,
+                    "Ch C/90": 0,
+                    "OP-Crs A/90": 0,
+                    "OP-Crs C/90": 0,
+                    "Drb/90": 0.1,
                     "Dist/90": 10.1,
+                    "Sprints/90": 5.3,
+                    "Shot/90": 0.4,
+                    "Sht/90": 0.2,
+                    "xG/shot": 0.075,
+                    "xG/90": 0,
+                    "xA/90": 0,
+                    "Shots From Outside The Box per 90 Minutes": 0,
+                    "Shot %": 42,
+                    "Goals": 0,
+                    "Conv %": "0%",
+                    "Assists": 0,
+                    "Goals From Outside The Box": 0,
+                    "Appearances": "27 (1)",
+                    "Hdrs W/90": 4.2,
+                    "BlK/90": 0.9,
+                    "Aer A/90": 5,
+                    "Clr/90": 1.4,
+                    "Int/90": 2.9,
+                    "Pres A/90": 2.8,
+                    "Pres C/90": 0.6,
+                    "Tck/90": 1.2,
+                    "Tck R": 70,
                     "xGP/90": 0,
                     "xSv %": 0,
                     "xGP": 0,
                     "Sv %": 0,
-                    "All/90": 0,
                     "Cln/90": 0,
-                    "Shutouts": 0
+                    "Shutouts": 0,
+                    "All/90": 0
                 },
                 {
-                    "Player": "Abdoulaye Doucouré",
-                    "Position": "DM/M(C)",
-                    "Age": 30,
-                    "Appearances": 13,
-                    "Goals": 4,
-                    "Assists": 2,
-                    "Avg Rat": 6.8,
-                    "Best Pos": "DM(C)",
-                    "Best Role": "BWM(D)",
-                    "Pros": "Tackling, Work Rate",
-                    "Preferred Foot": "Right",
-                    "Goals/90": 0.31,
-                    "xG/90": 0.25,
-                    "xA/90": 0.15,
-                    "Assists/90": 0.15,
-                    "Ch C/90": 1.2,
-                    "Tck/90": 3.1,
-                    "Int/90": 2.5,
-                    "Hdrs W/90": 2.8,
-                    "Poss Won/90": 7.5,
-                    "Poss Lost/90": 6.2,
-                    "Dist/90": 11.5,
+                    "Player": "Nathan Patterson",
+                    "Position": "D/WB (R)",
+                    "Age": 24,
+                    "Best Pos": "D (R)",
+                    "Best Role": "WB",
+                    "Pros": "Speed",
+                    "Preferred Foot": "Right-Footed",
+                    "Avg Rat": 6.76,
+                    "Pr passes/90": 7.2,
+                    "Ps A/90": 53,
+                    "Ps C/90": 48.1,
+                    "Poss Won/90": 11.1,
+                    "Poss Lost/90": 9,
+                    "OP-KP/90": 1.6,
+                    "Asts/90": 0,
+                    "Ch C/90": 0,
+                    "OP-Crs A/90": 2.5,
+                    "OP-Crs C/90": 0.4,
+                    "Drb/90": 0.8,
+                    "Dist/90": 12.7,
+                    "Sprints/90": 15.2,
+                    "Shot/90": 0.4,
+                    "Sht/90": 0.2,
+                    "xG/shot": 0.165,
+                    "xG/90": 0.1,
+                    "xA/90": 0,
+                    "Shots From Outside The Box per 90 Minutes": 0.2,
+                    "Shot %": 50,
+                    "Goals": 0,
+                    "Conv %": "0%",
+                    "Assists": 0,
+                    "Goals From Outside The Box": 0,
+                    "Appearances": "2 (8)",
+                    "Hdrs W/90": 0.6,
+                    "BlK/90": 0.8,
+                    "Aer A/90": 1.8,
+                    "Clr/90": 1.4,
+                    "Int/90": 2.9,
+                    "Pres A/90": 12.9,
+                    "Pres C/90": 2.9,
+                    "Tck/90": 2.5,
+                    "Tck R": 65,
                     "xGP/90": 0,
                     "xSv %": 0,
                     "xGP": 0,
                     "Sv %": 0,
-                    "All/90": 0,
                     "Cln/90": 0,
-                    "Shutouts": 0
+                    "Shutouts": 0,
+                    "All/90": 0
+                },
+                {
+                    "Player": "Jake O'Brien",
+                    "Position": "D (RC)",
+                    "Age": 24,
+                    "Best Pos": "D (R)",
+                    "Best Role": "IFB",
+                    "Pros": "Heading",
+                    "Preferred Foot": "Right-Footed",
+                    "Avg Rat": 6.73,
+                    "Pr passes/90": 2.7,
+                    "Ps A/90": 40.1,
+                    "Ps C/90": 34.7,
+                    "Poss Won/90": 8.6,
+                    "Poss Lost/90": 6.9,
+                    "OP-KP/90": 0.3,
+                    "Asts/90": 0,
+                    "Ch C/90": 0.1,
+                    "OP-Crs A/90": 0.3,
+                    "OP-Crs C/90": 0,
+                    "Drb/90": 0.3,
+                    "Dist/90": 11,
+                    "Sprints/90": 8.8,
+                    "Shot/90": 0.5,
+                    "Sht/90": 0.1,
+                    "xG/shot": 0.0575,
+                    "xG/90": 0,
+                    "xA/90": 0,
+                    "Shots From Outside The Box per 90 Minutes": 0.2,
+                    "Shot %": 13,
+                    "Goals": 0,
+                    "Conv %": "0%",
+                    "Assists": 0,
+                    "Goals From Outside The Box": 0,
+                    "Appearances": "14 (6)",
+                    "Hdrs W/90": 3.9,
+                    "BlK/90": 0.5,
+                    "Aer A/90": 4.6,
+                    "Clr/90": 2.3,
+                    "Int/90": 2.1,
+                    "Pres A/90": 4.5,
+                    "Pres C/90": 1.4,
+                    "Tck/90": 1.9,
+                    "Tck R": 81,
+                    "xGP/90": 0,
+                    "xSv %": 0,
+                    "xGP": 0,
+                    "Sv %": 0,
+                    "Cln/90": 0,
+                    "Shutouts": 0,
+                    "All/90": 0
+                },
+                {
+                    "Player": "Seamus Coleman",
+                    "Position": "D (RC), WB/M (R)",
+                    "Age": 37,
+                    "Best Pos": "D (R)",
+                    "Best Role": "IWB",
+                    "Pros": "Team Player",
+                    "Preferred Foot": "Right-Footed",
+                    "Avg Rat": 6.86,
+                    "Pr passes/90": 5.9,
+                    "Ps A/90": 49,
+                    "Ps C/90": 43.9,
+                    "Poss Won/90": 10,
+                    "Poss Lost/90": 7.8,
+                    "OP-KP/90": 1.1,
+                    "Asts/90": 0.2,
+                    "Ch C/90": 0.3,
+                    "OP-Crs A/90": 1.3,
+                    "OP-Crs C/90": 0.4,
+                    "Drb/90": 0.9,
+                    "Dist/90": 12.4,
+                    "Sprints/90": 18.4,
+                    "Shot/90": 0.4,
+                    "Sht/90": 0,
+                    "xG/shot": 0.0116,
+                    "xG/90": 0,
+                    "xA/90": 0.2,
+                    "Shots From Outside The Box per 90 Minutes": 0.4,
+                    "Shot %": 0,
+                    "Goals": 0,
+                    "Conv %": "0%",
+                    "Assists": 3,
+                    "Goals From Outside The Box": 0,
+                    "Appearances": "19 (4)",
+                    "Hdrs W/90": 1.3,
+                    "BlK/90": 0.5,
+                    "Aer A/90": 2.8,
+                    "Clr/90": 1,
+                    "Int/90": 2.6,
+                    "Pres A/90": 11.9,
+                    "Pres C/90": 3.3,
+                    "Tck/90": 3.8,
+                    "Tck R": 90,
+                    "xGP/90": 0,
+                    "xSv %": 0,
+                    "xGP": 0,
+                    "Sv %": 0,
+                    "Cln/90": 0,
+                    "Shutouts": 0,
+                    "All/90": 0
+                },
+                {
+                    "Player": "Adam Aznou",
+                    "Position": "D (RL), WB (L)",
+                    "Age": 19,
+                    "Best Pos": "WB (L)",
+                    "Best Role": "AWB",
+                    "Pros": "Speed",
+                    "Preferred Foot": "Left-Footed",
+                    "Avg Rat": 6.97,
+                    "Pr passes/90": 7,
+                    "Ps A/90": 52.9,
+                    "Ps C/90": 48.2,
+                    "Poss Won/90": 8.1,
+                    "Poss Lost/90": 10.5,
+                    "OP-KP/90": 1.5,
+                    "Asts/90": 0.1,
+                    "Ch C/90": 0.4,
+                    "OP-Crs A/90": 3.2,
+                    "OP-Crs C/90": 0.9,
+                    "Drb/90": 3.7,
+                    "Dist/90": 13.2,
+                    "Sprints/90": 19.4,
+                    "Shot/90": 0.5,
+                    "Sht/90": 0.3,
+                    "xG/shot": 0.076,
+                    "xG/90": 0,
+                    "xA/90": 0.2,
+                    "Shots From Outside The Box per 90 Minutes": 0.3,
+                    "Shot %": 60,
+                    "Goals": 1,
+                    "Conv %": "20%",
+                    "Assists": 1,
+                    "Goals From Outside The Box": 0,
+                    "Appearances": "10 (5)",
+                    "Hdrs W/90": 0.7,
+                    "BlK/90": 0.5,
+                    "Aer A/90": 1.6,
+                    "Clr/90": 1.2,
+                    "Int/90": 2.2,
+                    "Pres A/90": 11,
+                    "Pres C/90": 3.7,
+                    "Tck/90": 3.3,
+                    "Tck R": 88,
+                    "xGP/90": 0,
+                    "xSv %": 0,
+                    "xGP": 0,
+                    "Sv %": 0,
+                    "Cln/90": 0,
+                    "Shutouts": 0,
+                    "All/90": 0
+                },
+                {
+                    "Player": "Vitaliy Mykolenko",
+                    "Position": "D/WB (L)",
+                    "Age": 26,
+                    "Best Pos": "D (L)",
+                    "Best Role": "WB",
+                    "Pros": "Speed",
+                    "Preferred Foot": "Left-Footed",
+                    "Avg Rat": 6.76,
+                    "Pr passes/90": 7,
+                    "Ps A/90": 55.1,
+                    "Ps C/90": 48.4,
+                    "Poss Won/90": 9.5,
+                    "Poss Lost/90": 11.8,
+                    "OP-KP/90": 1.2,
+                    "Asts/90": 0.1,
+                    "Ch C/90": 0.4,
+                    "OP-Crs A/90": 3.6,
+                    "OP-Crs C/90": 0.6,
+                    "Drb/90": 1.4,
+                    "Dist/90": 12.6,
+                    "Sprints/90": 18.2,
+                    "Shot/90": 0.3,
+                    "Sht/90": 0,
+                    "xG/shot": 0.07,
+                    "xG/90": 0,
+                    "xA/90": 0.2,
+                    "Shots From Outside The Box per 90 Minutes": 0.2,
+                    "Shot %": 0,
+                    "Goals": 0,
+                    "Conv %": "0%",
+                    "Assists": 1,
+                    "Goals From Outside The Box": 0,
+                    "Appearances": "17 (3)",
+                    "Hdrs W/90": 2.4,
+                    "BlK/90": 0.4,
+                    "Aer A/90": 3.2,
+                    "Clr/90": 1.3,
+                    "Int/90": 2.4,
+                    "Pres A/90": 13,
+                    "Pres C/90": 3.4,
+                    "Tck/90": 2,
+                    "Tck R": 67,
+                    "xGP/90": 0,
+                    "xSv %": 0,
+                    "xGP": 0,
+                    "Sv %": 0,
+                    "Cln/90": 0,
+                    "Shutouts": 0,
+                    "All/90": 0
+                },
+                {
+                    "Player": "Idrissa Gueye",
+                    "Position": "DM, M (C)",
+                    "Age": 36,
+                    "Best Pos": "DM",
+                    "Best Role": "DM",
+                    "Pros": "Team Player",
+                    "Preferred Foot": "Right-Footed",
+                    "Avg Rat": 6.79,
+                    "Pr passes/90": 4.5,
+                    "Ps A/90": 43.3,
+                    "Ps C/90": 39.8,
+                    "Poss Won/90": 7.7,
+                    "Poss Lost/90": 4.9,
+                    "OP-KP/90": 0.7,
+                    "Asts/90": 0,
+                    "Ch C/90": 0,
+                    "OP-Crs A/90": 0.1,
+                    "OP-Crs C/90": 0,
+                    "Drb/90": 0.2,
+                    "Dist/90": 12.4,
+                    "Sprints/90": 10.9,
+                    "Shot/90": 0.6,
+                    "Sht/90": 0.1,
+                    "xG/shot": 0.03,
+                    "xG/90": 0,
+                    "xA/90": 0,
+                    "Shots From Outside The Box per 90 Minutes": 0.6,
+                    "Shot %": 13,
+                    "Goals": 0,
+                    "Conv %": "0%",
+                    "Assists": 0,
+                    "Goals From Outside The Box": 0,
+                    "Appearances": 24,
+                    "Hdrs W/90": 0.3,
+                    "BlK/90": 0.5,
+                    "Aer A/90": 1.2,
+                    "Clr/90": 1.6,
+                    "Int/90": 2.7,
+                    "Pres A/90": 9.3,
+                    "Pres C/90": 2.4,
+                    "Tck/90": 2.6,
+                    "Tck R": 79,
+                    "xGP/90": 0,
+                    "xSv %": 0,
+                    "xGP": 0,
+                    "Sv %": 0,
+                    "Cln/90": 0,
+                    "Shutouts": 0,
+                    "All/90": 0
+                },
+                {
+                    "Player": "Kiernan Dewsbury-Hall",
+                    "Position": "DM, M/AM (C)",
+                    "Age": 27,
+                    "Best Pos": "M (C)",
+                    "Best Role": "MPM",
+                    "Pros": "Athleticism",
+                    "Preferred Foot": "Left-Footed",
+                    "Avg Rat": 6.79,
+                    "Pr passes/90": 3.9,
+                    "Ps A/90": 50,
+                    "Ps C/90": 45.7,
+                    "Poss Won/90": 6.6,
+                    "Poss Lost/90": 7.8,
+                    "OP-KP/90": 1,
+                    "Asts/90": 0.2,
+                    "Ch C/90": 0.3,
+                    "OP-Crs A/90": 0.5,
+                    "OP-Crs C/90": 0.1,
+                    "Drb/90": 0.7,
+                    "Dist/90": 12.5,
+                    "Sprints/90": 12.3,
+                    "Shot/90": 1.1,
+                    "Sht/90": 0.3,
+                    "xG/shot": 0.065,
+                    "xG/90": 0.1,
+                    "xA/90": 0.2,
+                    "Shots From Outside The Box per 90 Minutes": 0.8,
+                    "Shot %": 25,
+                    "Goals": 0,
+                    "Conv %": "0%",
+                    "Assists": 2,
+                    "Goals From Outside The Box": 0,
+                    "Appearances": "10 (4)",
+                    "Hdrs W/90": 0.5,
+                    "BlK/90": 0.1,
+                    "Aer A/90": 2,
+                    "Clr/90": 1.3,
+                    "Int/90": 2,
+                    "Pres A/90": 8,
+                    "Pres C/90": 2.2,
+                    "Tck/90": 2,
+                    "Tck R": 72,
+                    "xGP/90": 0,
+                    "xSv %": 0,
+                    "xGP": 0,
+                    "Sv %": 0,
+                    "Cln/90": 0,
+                    "Shutouts": 0,
+                    "All/90": 0
                 },
                 {
                     "Player": "James Garner",
-                    "Position": "M(C)",
-                    "Age": 22,
-                    "Appearances": 15,
-                    "Goals": 2,
-                    "Assists": 4,
-                    "Avg Rat": 7.1,
-                    "Best Pos": "M(C)",
-                    "Best Role": "DLP(S)",
-                    "Pros": "Passing, Vision",
-                    "Preferred Foot": "Right",
-                    "Goals/90": 0.13,
-                    "xG/90": 0.18,
-                    "xA/90": 0.28,
-                    "Assists/90": 0.27,
-                    "Ch C/90": 2.5,
-                    "Tck/90": 1.8,
-                    "Int/90": 1.5,
-                    "Hdrs W/90": 1.2,
-                    "Poss Won/90": 5.8,
-                    "Poss Lost/90": 4.5,
-                    "Dist/90": 11.2,
+                    "Position": "DM, M (C)",
+                    "Age": 24,
+                    "Best Pos": "M (C)",
+                    "Best Role": "CM",
+                    "Pros": "Team Player",
+                    "Preferred Foot": "Right-Footed",
+                    "Avg Rat": 6.84,
+                    "Pr passes/90": 4.8,
+                    "Ps A/90": 50.1,
+                    "Ps C/90": 45.2,
+                    "Poss Won/90": 8,
+                    "Poss Lost/90": 8.2,
+                    "OP-KP/90": 1.5,
+                    "Asts/90": 0.1,
+                    "Ch C/90": 0.2,
+                    "OP-Crs A/90": 0.3,
+                    "OP-Crs C/90": 0.1,
+                    "Drb/90": 0.5,
+                    "Dist/90": 12.8,
+                    "Sprints/90": 14.7,
+                    "Shot/90": 1.4,
+                    "Sht/90": 0.5,
+                    "xG/shot": 0.05,
+                    "xG/90": 0.1,
+                    "xA/90": 0.1,
+                    "Shots From Outside The Box per 90 Minutes": 1.3,
+                    "Shot %": 32,
+                    "Goals": 1,
+                    "Conv %": "3%",
+                    "Assists": 2,
+                    "Goals From Outside The Box": 0,
+                    "Appearances": 26,
+                    "Hdrs W/90": 1,
+                    "BlK/90": 0.2,
+                    "Aer A/90": 2,
+                    "Clr/90": 1.3,
+                    "Int/90": 2.5,
+                    "Pres A/90": 10.5,
+                    "Pres C/90": 2.9,
+                    "Tck/90": 1.7,
+                    "Tck R": 70,
                     "xGP/90": 0,
                     "xSv %": 0,
                     "xGP": 0,
                     "Sv %": 0,
-                    "All/90": 0,
                     "Cln/90": 0,
-                    "Shutouts": 0
+                    "Shutouts": 0,
+                    "All/90": 0
                 },
                 {
-                    "Player": "Dominic Calvert-Lewin",
-                    "Position": "ST(C)",
-                    "Age": 26,
-                    "Appearances": 12,
-                    "Goals": 7,
-                    "Assists": 2,
-                    "Avg Rat": 7.3,
-                    "Best Pos": "ST(C)",
-                    "Best Role": "TF(A)",
-                    "Pros": "Heading, Off The Ball",
-                    "Preferred Foot": "Right",
-                    "Goals/90": 0.58,
-                    "xG/90": 0.62,
-                    "xA/90": 0.12,
-                    "Assists/90": 0.17,
-                    "Ch C/90": 1.8,
-                    "Tck/90": 0.5,
-                    "Int/90": 0.3,
-                    "Hdrs W/90": 3.8,
-                    "Poss Won/90": 2.5,
-                    "Poss Lost/90": 4.2,
-                    "Dist/90": 9.8,
+                    "Player": "Carlos Alcaraz",
+                    "Position": "M/AM (C)",
+                    "Age": 23,
+                    "Best Pos": "AM (C)",
+                    "Best Role": "AP",
+                    "Pros": "Intelligence",
+                    "Preferred Foot": "Right-Footed",
+                    "Avg Rat": 6.82,
+                    "Pr passes/90": 2.8,
+                    "Ps A/90": 47.5,
+                    "Ps C/90": 41.3,
+                    "Poss Won/90": 5.9,
+                    "Poss Lost/90": 9.6,
+                    "OP-KP/90": 1.8,
+                    "Asts/90": 0.2,
+                    "Ch C/90": 0.7,
+                    "OP-Crs A/90": 0.7,
+                    "OP-Crs C/90": 0.1,
+                    "Drb/90": 2.5,
+                    "Dist/90": 13.1,
+                    "Sprints/90": 14.3,
+                    "Shot/90": 1.6,
+                    "Sht/90": 0.8,
+                    "xG/shot": 0.1655,
+                    "xG/90": 0.3,
+                    "xA/90": 0.2,
+                    "Shots From Outside The Box per 90 Minutes": 0.6,
+                    "Shot %": 52,
+                    "Goals": 4,
+                    "Conv %": "15%",
+                    "Assists": 3,
+                    "Goals From Outside The Box": 0,
+                    "Appearances": "17 (4)",
+                    "Hdrs W/90": 1.9,
+                    "BlK/90": 1.9,
+                    "Aer A/90": 0.2,
+                    "Clr/90": 3.8,
+                    "Int/90": 0.9,
+                    "Pres A/90": 2,
+                    "Pres C/90": 8.1,
+                    "Tck/90": 2.3,
+                    "Tck R": 1,
                     "xGP/90": 0,
                     "xSv %": 0,
                     "xGP": 0,
                     "Sv %": 0,
-                    "All/90": 0,
                     "Cln/90": 0,
-                    "Shutouts": 0
+                    "Shutouts": 0,
+                    "All/90": 0
                 },
                 {
                     "Player": "Dwight McNeil",
-                    "Position": "AM(L), M(L)",
-                    "Age": 24,
-                    "Appearances": 15,
-                    "Goals": 3,
-                    "Assists": 6,
-                    "Avg Rat": 7.0,
-                    "Best Pos": "M(L)",
-                    "Best Role": "W(S)",
-                    "Pros": "Crossing, Dribbling",
-                    "Preferred Foot": "Left",
-                    "Goals/90": 0.2,
-                    "xG/90": 0.25,
-                    "xA/90": 0.35,
-                    "Assists/90": 0.4,
-                    "Ch C/90": 2.8,
-                    "Tck/90": 1.2,
-                    "Int/90": 0.8,
-                    "Hdrs W/90": 0.5,
-                    "Poss Won/90": 4.2,
-                    "Poss Lost/90": 5.5,
-                    "Dist/90": 10.5,
+                    "Position": "M/AM (RL), ST (C)",
+                    "Age": 26,
+                    "Best Pos": "M (L)",
+                    "Best Role": "WM",
+                    "Pros": "Team Player",
+                    "Preferred Foot": "Left-Footed",
+                    "Avg Rat": 6.73,
+                    "Pr passes/90": 5.4,
+                    "Ps A/90": 40.4,
+                    "Ps C/90": 34.9,
+                    "Poss Won/90": 6.2,
+                    "Poss Lost/90": 15.1,
+                    "OP-KP/90": 1.9,
+                    "Asts/90": 0.1,
+                    "Ch C/90": 3.4,
+                    "OP-Crs A/90": 3.4,
+                    "OP-Crs C/90": 0.7,
+                    "Drb/90": 5.9,
+                    "Dist/90": 13.1,
+                    "Sprints/90": 20.3,
+                    "Shot/90": 2,
+                    "Sht/90": 1,
+                    "xG/shot": 0.0731,
+                    "xG/90": 0.1,
+                    "xA/90": 0.2,
+                    "Shots From Outside The Box per 90 Minutes": 1.2,
+                    "Shot %": 47,
+                    "Goals": 4,
+                    "Conv %": "11%",
+                    "Assists": 2,
+                    "Goals From Outside The Box": 3,
+                    "Appearances": "21 (6)",
+                    "Hdrs W/90": 1.4,
+                    "BlK/90": 1.4,
+                    "Aer A/90": 0.2,
+                    "Clr/90": 3.6,
+                    "Int/90": 0.3,
+                    "Pres A/90": 2.1,
+                    "Pres C/90": 13.3,
+                    "Tck/90": 3.3,
+                    "Tck R": 2.3,
                     "xGP/90": 0,
                     "xSv %": 0,
                     "xGP": 0,
                     "Sv %": 0,
-                    "All/90": 0,
                     "Cln/90": 0,
-                    "Shutouts": 0
+                    "Shutouts": 0,
+                    "All/90": 0
+                },
+                {
+                    "Player": "Thierno Barry",
+                    "Position": "AM (RL), ST (C)",
+                    "Age": 23,
+                    "Best Pos": "ST (C)",
+                    "Best Role": "TF",
+                    "Pros": "Heading",
+                    "Preferred Foot": "Right-Footed",
+                    "Avg Rat": 6.92,
+                    "Pr passes/90": 2.2,
+                    "Ps A/90": 30.6,
+                    "Ps C/90": 26.8,
+                    "Poss Won/90": 5.4,
+                    "Poss Lost/90": 9.6,
+                    "OP-KP/90": 1.5,
+                    "Asts/90": 0.4,
+                    "Ch C/90": 2,
+                    "OP-Crs A/90": 2,
+                    "OP-Crs C/90": 0.3,
+                    "Drb/90": 4,
+                    "Dist/90": 13,
+                    "Sprints/90": 16.8,
+                    "Shot/90": 2.5,
+                    "Sht/90": 0.9,
+                    "xG/shot": 0.1407,
+                    "xG/90": 0.3,
+                    "xA/90": 0.2,
+                    "Shots From Outside The Box per 90 Minutes": 0.8,
+                    "Shot %": 38,
+                    "Goals": 4,
+                    "Conv %": "10%",
+                    "Assists": 6,
+                    "Goals From Outside The Box": 1,
+                    "Appearances": "14 (10)",
+                    "Hdrs W/90": 4.1,
+                    "BlK/90": 4.1,
+                    "Aer A/90": 0.2,
+                    "Clr/90": 6.6,
+                    "Int/90": 0.4,
+                    "Pres A/90": 1.8,
+                    "Pres C/90": 7.1,
+                    "Tck/90": 1.4,
+                    "Tck R": 0.9,
+                    "xGP/90": 0,
+                    "xSv %": 0,
+                    "xGP": 0,
+                    "Sv %": 0,
+                    "Cln/90": 0,
+                    "Shutouts": 0,
+                    "All/90": 0
+                },
+                {
+                    "Player": "Iliman N'Diaye",
+                    "Position": "AM (RLC), ST (C)",
+                    "Age": 25,
+                    "Best Pos": "ST (C)",
+                    "Best Role": "CHF",
+                    "Pros": "Skill",
+                    "Preferred Foot": "Right-Footed",
+                    "Avg Rat": 6.76,
+                    "Pr passes/90": 2.9,
+                    "Ps A/90": 37.5,
+                    "Ps C/90": 32.9,
+                    "Poss Won/90": 5.3,
+                    "Poss Lost/90": 11.8,
+                    "OP-KP/90": 2.4,
+                    "Asts/90": 0.3,
+                    "Ch C/90": 2.9,
+                    "OP-Crs A/90": 2.9,
+                    "OP-Crs C/90": 0.5,
+                    "Drb/90": 3.8,
+                    "Dist/90": 12.3,
+                    "Sprints/90": 11.5,
+                    "Shot/90": 1.4,
+                    "Sht/90": 0.9,
+                    "xG/shot": 0.0875,
+                    "xG/90": 0.1,
+                    "xA/90": 0.2,
+                    "Shots From Outside The Box per 90 Minutes": 0.5,
+                    "Shot %": 63,
+                    "Goals": 1,
+                    "Conv %": "13%",
+                    "Assists": 2,
+                    "Goals From Outside The Box": 0,
+                    "Appearances": "7 (3)",
+                    "Hdrs W/90": 0,
+                    "BlK/90": 0,
+                    "Aer A/90": 0.7,
+                    "Clr/90": 2.1,
+                    "Int/90": 0.9,
+                    "Pres A/90": 2.4,
+                    "Pres C/90": 13,
+                    "Tck/90": 3.6,
+                    "Tck R": 1.7,
+                    "xGP/90": 0,
+                    "xSv %": 0,
+                    "xGP": 0,
+                    "Sv %": 0,
+                    "Cln/90": 0,
+                    "Shutouts": 0,
+                    "All/90": 0
                 }
             ];
             
@@ -1347,35 +1926,57 @@
                 analysis += `✓ <strong>xG/90 (Expected Goals per 90):</strong> ${xg90.toFixed(2)}<br>`;
                 
                 const isStriker = pos.includes('ST') || pos.includes('CF');
-                const isWinger = pos.includes('W') || pos.includes('AML') || pos.includes('AMR');
+                const isWinger = pos.includes('W') || pos.includes('AML') || pos.includes('AMR') || pos.includes('(RL)') || pos.includes('(R)') || pos.includes('(L)');
                 const isAM = pos.includes('AM') || pos.includes('CAM');
                 
-                if (isStriker) {
-                    // Striker benchmarks (FBref Top 5 Leagues)
+                // DUAL ASSESSMENT untuk Striker & Winger (untuk semua pemain menyerang)
+                if (isStriker || isWinger || isAM) {
+                    // Assessment sebagai STRIKER
+                    analysis += `&nbsp;&nbsp;<strong>📍 Sebagai STRIKER:</strong><br>`;
                     if (xg90 >= 0.70) {
-                        analysis += `&nbsp;&nbsp;→ <span style="color: #28a745;">ELITE STRIKER</span> (0.7+ xG/90). World-class finisher.<br>`;
-                        analysis += `&nbsp;&nbsp;→ Referensi: Haaland (~1.0), Kane (~0.8), Lewandowski (~0.75).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ <span style="color: #28a745;">✅ ELITE</span> (0.7+ xG/90). World-class finisher material.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ Referensi: Haaland (~1.0), Kane (~0.8), Lewandowski (~0.75).<br>`;
                     } else if (xg90 >= 0.50) {
-                        analysis += `&nbsp;&nbsp;→ <span style="color: #28a745;">EXCELLENT</span> (0.5-0.7). Top-tier striker material.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ <span style="color: #28a745;">✅ EXCELLENT</span> (0.5-0.7). Top-tier striker material (~18-22 goals/season).<br>`;
                     } else if (xg90 >= 0.35) {
-                        analysis += `&nbsp;&nbsp;→ <span style="color: #17a2b8;">GOOD</span> (0.35-0.5). Solid goal threat.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ <span style="color: #17a2b8;">✅ GOOD</span> (0.35-0.5). Solid goal threat (~12-16 goals/season).<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;→ <span style="color: #ffc107;">BELOW EXPECTATION</span> untuk striker. Perlu improve movement & positioning.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ <span style="color: #ffc107;">⚠️ BELOW PAR</span> untuk striker murni. Perlu improve movement & positioning.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ Cocok untuk role support striker, target man, atau false nine.<br>`;
                     }
-                } else if (isWinger || isAM) {
-                    // Winger/AM benchmarks
+                    
+                    // Assessment sebagai WINGER
+                    analysis += `&nbsp;&nbsp;<strong>📍 Sebagai WINGER:</strong><br>`;
                     if (xg90 >= 0.40) {
-                        analysis += `&nbsp;&nbsp;→ <span style="color: #28a745;">ELITE GOAL THREAT</span> untuk winger/AM (0.4+).<br>`;
-                        analysis += `&nbsp;&nbsp;→ Referensi: Salah, Saka, Musiala level (~0.4-0.6).<br>`;
-                    } else if (xg90 >= 0.25) {
-                        analysis += `&nbsp;&nbsp;→ <span style="color: #17a2b8;">GOOD</span> (0.25-0.4). Above average attacking threat.<br>`;
-                    } else if (xg90 >= 0.15) {
-                        analysis += `&nbsp;&nbsp;→ <span style="color: #ffc107;">MODERATE</span> threat. Contribution lebih ke assists/build-up.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ <span style="color: #28a745;">✅ ELITE</span> goal-scoring winger (0.4+). Salah/Saka/Son level.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ Referensi: Salah (~0.65), Saka (~0.45), Son (~0.50).<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ Inverted winger material - suka cut inside & finish.<br>`;
+                    } else if (xg90 >= 0.30) {
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ <span style="color: #28a745;">✅ EXCELLENT</span> (0.3-0.4). Genuine goal threat dari flank.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ Balance bagus antara scoring & creating.<br>`;
+                    } else if (xg90 >= 0.20) {
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ <span style="color: #17a2b8;">✅ GOOD</span> (0.2-0.3). Balanced winger (goals + assists).<br>`;
+                    } else if (xg90 >= 0.10) {
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ <span style="color: #ffc107;">⚠️ MODERATE</span> threat. More creator/dribbler than finisher.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ Traditional winger atau wide playmaker role.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;→ Limited goal threat. Fokus ke playmaking atau defensive duties.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ <span style="color: #dc3545;">❌ LIMITED</span> finishing threat. Fokus: Width, crossing, assists.<br>`;
+                    }
+                    
+                    // REKOMENDASI ROLE berdasarkan xG/90
+                    analysis += `&nbsp;&nbsp;<strong>💡 Rekomendasi:</strong><br>`;
+                    if (xg90 >= 0.50) {
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ <strong>Striker lebih cocok</strong> - Elite goal threat layak main central.<br>`;
+                    } else if (xg90 >= 0.30 && xg90 < 0.50) {
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ <strong>Versatile</strong> - Bisa main striker atau inverted winger.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ Check dribbling & crossing stats untuk tentukan posisi terbaik.<br>`;
+                    } else if (xg90 >= 0.20 && xg90 < 0.30) {
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ <strong>Winger lebih cocok</strong> - Better dari flank, bisa contribute goals + assists.<br>`;
+                    } else {
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;→ <strong>Traditional winger atau AM</strong> - Creator role lebih cocok daripada finisher.<br>`;
                     }
                 } else {
-                    // Midfielder/Defender
+                    // Midfielder/Defender - Original assessment
                     if (xg90 >= 0.20) {
                         analysis += `&nbsp;&nbsp;→ <span style="color: #28a745;">BONUS THREAT</span> - Unexpected goals dari posisi ini.<br>`;
                     } else if (xg90 >= 0.10) {
@@ -1393,7 +1994,7 @@
                 // xG per shot quality (Michael Caley research)
                 if (xgShot >= 0.15) {
                     analysis += `&nbsp;&nbsp;→ <span style="color: #28a745;">HIGH QUALITY</span> shots (xG: ${xgShot.toFixed(2)}). Excellent positioning.<br>`;
-                    analysis += `&nbsp;&nbsp;→ Indikasi: Shots dari area berbahaya, bukan speculative dari jauh.<br>`;
+                    analysis += `&nbsp;&nbsp;→ Indikasi: Shots dari area berbahaya (penalty box), bukan speculative dari jauh.<br>`;
                 } else if (xgShot >= 0.10) {
                     analysis += `&nbsp;&nbsp;→ <span style="color: #17a2b8;">GOOD QUALITY</span> (xG: ${xgShot.toFixed(2)}). Above average shot selection.<br>`;
                 } else if (xgShot > 0) {
@@ -1401,21 +2002,44 @@
                     analysis += `&nbsp;&nbsp;→ Saran: Improve movement untuk get into better positions.<br>`;
                 }
                 
-                // Shot volume by position
+                // Shot volume by position - Different expectations for ST vs Winger
                 const isStriker = pos.includes('ST') || pos.includes('CF');
-                const isWinger = pos.includes('W');
+                const isWinger = pos.includes('W') || pos.includes('(RL)') || pos.includes('(R)') || pos.includes('(L)');
+                const isAM = pos.includes('AM');
                 
                 if (isStriker) {
                     if (shots >= 3.5) {
-                        analysis += `&nbsp;&nbsp;→ High volume striker (3.5+). Referensi: Haaland (~5), Kane (~4).<br>`;
+                        analysis += `&nbsp;&nbsp;→ <strong>Elite volume striker</strong> (3.5+). Main attacking focal point.<br>`;
+                        analysis += `&nbsp;&nbsp;→ Referensi: Haaland (~5), Kane (~4), Isak (~3.7).<br>`;
                     } else if (shots >= 2.5) {
-                        analysis += `&nbsp;&nbsp;→ Moderate volume - standar striker modern.<br>`;
+                        analysis += `&nbsp;&nbsp;→ <strong>Good volume</strong> (2.5-3.5). Standar striker modern.<br>`;
+                    } else if (shots >= 1.5) {
+                        analysis += `&nbsp;&nbsp;→ <strong>Low volume</strong> (1.5-2.5). Link-up striker atau butuh more service.<br>`;
                     } else {
-                        analysis += `&nbsp;&nbsp;→ Low volume untuk striker. Perlu more aggressive positioning.<br>`;
+                        analysis += `&nbsp;&nbsp;→ <strong>Very low</strong> (<1.5). Target man atau deep-lying forward style.<br>`;
                     }
                 } else if (isWinger) {
+                    if (shots >= 3.0) {
+                        analysis += `&nbsp;&nbsp;→ <strong>High-volume winger</strong> (3+). Inverted winger - suka cut inside & shoot.<br>`;
+                        analysis += `&nbsp;&nbsp;→ Tipe seperti Salah, Saka, Raphinha (shooting primary weapon).<br>`;
+                    } else if (shots >= 2.0) {
+                        analysis += `&nbsp;&nbsp;→ <strong>Good volume</strong> untuk winger (2-3). Balance shoot & create.<br>`;
+                    } else if (shots >= 1.0) {
+                        analysis += `&nbsp;&nbsp;→ <strong>Moderate</strong> (1-2). More creator/crosser than direct shooter.<br>`;
+                    } else {
+                        analysis += `&nbsp;&nbsp;→ <strong>Low</strong> (<1). Traditional winger - width & crossing focus, bukan inverted.<br>`;
+                    }
+                } else if (isAM) {
                     if (shots >= 2.5) {
-                        analysis += `&nbsp;&nbsp;→ Inverted winger yang suka cut inside dan shoot.<br>`;
+                        analysis += `&nbsp;&nbsp;→ <strong>High volume AM</strong> (2.5+). Aggressive #10 - loves to shoot (Bruno style).<br>`;
+                    } else if (shots >= 1.5) {
+                        analysis += `&nbsp;&nbsp;→ <strong>Balanced AM</strong> (1.5-2.5). Mix antara shoot & create.<br>`;
+                    } else {
+                        analysis += `&nbsp;&nbsp;→ Pure playmaker - Prefer final pass over shooting.<br>`;
+                    }
+                } else {
+                    if (shots >= 2) {
+                        analysis += `&nbsp;&nbsp;→ <strong>Aggressive shooter</strong> untuk posisinya. Box-to-box threat.<br>`;
                     }
                 }
                 analysis += '<br>';
@@ -1425,17 +2049,36 @@
             if (dribbles > 0) {
                 analysis += `✓ <strong>Dribbling:</strong> ${dribbles.toFixed(1)} successful dribbles/90<br>`;
                 
-                // Elite dribblers: 2.5+ per 90 (Vinicius Jr ~4.5, Musiala ~3.2)
-                if (dribbles >= 2.5) {
-                    analysis += `&nbsp;&nbsp;→ <span style="color: #28a745;">ELITE DRIBBLER</span> (2.5+). 1v1 specialist.<br>`;
-                    analysis += `&nbsp;&nbsp;→ Asset besar untuk break defensive lines. Ball carrier material.<br>`;
-                } else if (dribbles >= 1.5) {
-                    analysis += `&nbsp;&nbsp;→ <span style="color: #17a2b8;">GOOD</span> dribbler. Comfortable taking on defenders.<br>`;
-                } else if (dribbles >= 0.8) {
-                    analysis += `&nbsp;&nbsp;→ <span style="color: #ffc107;">MODERATE</span>. Ocasionally dribbles when needed.<br>`;
+                const isStriker = pos.includes('ST') || pos.includes('CF');
+                const isWinger = pos.includes('W') || pos.includes('(RL)') || pos.includes('(R)') || pos.includes('(L)');
+                
+                // Elite dribblers: 3+ per 90 (Vinicius Jr ~4.5, Musiala ~3.5, Saka ~3.2)
+                if (dribbles >= 3.0) {
+                    analysis += `&nbsp;&nbsp;→ <span style="color: #28a745;">ELITE DRIBBLER</span> (3+). World-class 1v1 specialist.<br>`;
+                    analysis += `&nbsp;&nbsp;→ Referensi: Vinicius Jr (~4.5), Saka (~3.2), Musiala (~3.5).<br>`;
+                    if (isWinger) {
+                        analysis += `&nbsp;&nbsp;→ Core strength - Dapat isolate & beat defenders consistently.<br>`;
+                    } else if (isStriker) {
+                        analysis += `&nbsp;&nbsp;→ Rare trait untuk striker - Can drop deep & dribble (Mbappe style).<br>`;
+                    }
+                } else if (dribbles >= 2.0) {
+                    analysis += `&nbsp;&nbsp;→ <span style="color: #28a745;">VERY GOOD</span> (2-3). Confident taking on defenders.<br>`;
+                    if (isWinger) {
+                        analysis += `&nbsp;&nbsp;→ Genuine 1v1 threat - Core weapon untuk beat full-backs.<br>`;
+                    }
+                } else if (dribbles >= 1.0) {
+                    analysis += `&nbsp;&nbsp;→ <span style="color: #17a2b8;">GOOD</span> (1-2). Occasionally beats opponents in tight spaces.<br>`;
+                } else if (dribbles >= 0.5) {
+                    analysis += `&nbsp;&nbsp;→ <span style="color: #ffc107;">LIMITED</span> (0.5-1). Rarely attempts take-ons.<br>`;
                 } else {
-                    analysis += `&nbsp;&nbsp;→ Bukan dribbler. Prefer quick passing atau off-ball movement.<br>`;
+                    analysis += `&nbsp;&nbsp;→ Bukan dribbler. Prefer quick passing, off-ball movement, atau physicality.<br>`;
                 }
+                
+                // Context warning untuk winger dengan dribbling rendah
+                if (isWinger && dribbles < 1.5) {
+                    analysis += `&nbsp;&nbsp;→ ⚠️ Low dribbling untuk winger - More sistem player atau crosser style.<br>`;
+                }
+                
                 analysis += '<br>';
             }
             
@@ -1444,20 +2087,56 @@
                 const crossAcc = ((crossesC / crosses) * 100).toFixed(1);
                 analysis += `✓ <strong>Crossing:</strong> ${crosses.toFixed(1)} attempts (${crossAcc}% completed)<br>`;
                 
-                // Good crossing accuracy: 30-35% (WhoScored research)
+                const isWinger = pos.includes('W') || pos.includes('(RL)') || pos.includes('(R)') || pos.includes('(L)');
+                const isFB = pos.includes('D/WB') || pos.includes('WB') || pos.includes('D (R)') || pos.includes('D (L)');
+                
+                // Good crossing accuracy: 28-35% (WhoScored/Opta research)
                 if (parseFloat(crossAcc) >= 35) {
-                    analysis += `&nbsp;&nbsp;→ <span style="color: #28a745;">EXCELLENT</span> crosser (35%+). Pinpoint delivery.<br>`;
-                } else if (parseFloat(crossAcc) >= 25) {
-                    analysis += `&nbsp;&nbsp;→ <span style="color: #17a2b8;">GOOD</span> accuracy (25-35%). Reliable outlet.<br>`;
-                } else if (parseFloat(crossAcc) >= 20) {
-                    analysis += `&nbsp;&nbsp;→ <span style="color: #ffc107;">AVERAGE</span> (~20%). Standar untuk volume crosser.<br>`;
+                    analysis += `&nbsp;&nbsp;→ <span style="color: #28a745;">ELITE</span> crosser (35%+). Pinpoint delivery - TAA/De Bruyne level.<br>`;
+                } else if (parseFloat(crossAcc) >= 28) {
+                    analysis += `&nbsp;&nbsp;→ <span style="color: #28a745;">EXCELLENT</span> accuracy (28-35%). Very reliable outlet.<br>`;
+                } else if (parseFloat(crossAcc) >= 22) {
+                    analysis += `&nbsp;&nbsp;→ <span style="color: #17a2b8;">GOOD</span> (22-28%). Above average crosser.<br>`;
+                } else if (parseFloat(crossAcc) >= 18) {
+                    analysis += `&nbsp;&nbsp;→ <span style="color: #ffc107;">AVERAGE</span> (~18-22%). Standar untuk volume crosser.<br>`;
                 } else {
-                    analysis += `&nbsp;&nbsp;→ <span style="color: #dc3545;">POOR</span> accuracy (<20%). Perlu improve timing & technique.<br>`;
+                    analysis += `&nbsp;&nbsp;→ <span style="color: #dc3545;">POOR</span> accuracy (<18%). Perlu improve timing & technique.<br>`;
                 }
                 
-                if (crosses >= 3) {
-                    analysis += `&nbsp;&nbsp;→ <strong>High volume</strong> (3+). Traditional winger/wing-back role.<br>`;
+                // Volume context - Different for Wingers vs Full-backs
+                if (isWinger) {
+                    if (crosses >= 4) {
+                        analysis += `&nbsp;&nbsp;→ <strong>Very high volume</strong> (4+). Traditional winger - crossing primary weapon.<br>`;
+                        analysis += `&nbsp;&nbsp;→ Tipe seperti Grealish (Man City), Pedro Neto - Stay wide & deliver.<br>`;
+                    } else if (crosses >= 2.5) {
+                        analysis += `&nbsp;&nbsp;→ <strong>High volume</strong> (2.5-4). Consistent wide threat.<br>`;
+                    } else if (crosses >= 1.5) {
+                        analysis += `&nbsp;&nbsp;→ <strong>Moderate</strong> (1.5-2.5). Balanced wide play - mix crossing & cutting inside.<br>`;
+                    } else {
+                        analysis += `&nbsp;&nbsp;→ <strong>Low volume</strong> (<1.5). Inverted winger - prefer cutting inside over crossing.<br>`;
+                    }
+                } else if (isFB) {
+                    if (crosses >= 3) {
+                        analysis += `&nbsp;&nbsp;→ <strong>Very high volume FB</strong> (3+). Attacking wing-back role - TAA style.<br>`;
+                    } else if (crosses >= 1.5) {
+                        analysis += `&nbsp;&nbsp;→ <strong>Good volume</strong> untuk FB (1.5-3). Active dalam build-up.<br>`;
+                    } else {
+                        analysis += `&nbsp;&nbsp;→ More defensive-oriented FB atau inverted full-back.<br>`;
+                    }
+                } else {
+                    if (crosses >= 3) {
+                        analysis += `&nbsp;&nbsp;→ <strong>High volume</strong> (3+). Wide role dalam sistem.<br>`;
+                    }
                 }
+                
+                // Warning untuk volume tinggi dengan accuracy rendah
+                if ((isWinger || isFB) && parseFloat(crossAcc) < 20 && crosses >= 2.5) {
+                    analysis += `&nbsp;&nbsp;→ ⚠️ <strong>High volume + Low accuracy</strong> = Wasteful possession.<br>`;
+                    if (isWinger) {
+                        analysis += `&nbsp;&nbsp;→ Saran: Consider cutting inside more atau improve crossing technique.<br>`;
+                    }
+                }
+                
                 analysis += '<br>';
             }
             
