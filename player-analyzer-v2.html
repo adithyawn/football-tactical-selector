@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>⚽ FM Player Analyzer V2 - Analisis Performa Detail</title>
+    <title>⚽ Player Analyzer - Analisis Performa Detail</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <style>
         * {
@@ -13,62 +13,65 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            background: #f5f7fa;
             min-height: 100vh;
             padding: 20px;
+            color: #2c3e50;
         }
 
         .container {
             max-width: 1400px;
             margin: 0 auto;
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
-            overflow: hidden;
         }
 
         .header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: #ffffff;
             padding: 30px;
+            border-radius: 8px;
             text-align: center;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-bottom: 3px solid #3498db;
         }
 
         .header h1 {
-            font-size: 2.5em;
-            margin-bottom: 10px;
-            font-weight: 700;
+            font-size: 2em;
+            margin-bottom: 8px;
+            color: #2c3e50;
+            font-weight: 600;
         }
 
         .header p {
-            font-size: 1.1em;
-            opacity: 0.95;
+            font-size: 0.95em;
+            color: #7f8c8d;
         }
 
         .upload-section {
-            padding: 30px;
-            background: #f8f9fa;
-            border-bottom: 2px solid #e9ecef;
+            background: #ffffff;
+            padding: 24px;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
         .upload-box {
-            border: 3px dashed #667eea;
-            border-radius: 12px;
+            border: 2px dashed #3498db;
+            border-radius: 8px;
             padding: 40px;
             text-align: center;
-            background: white;
+            background: #f8fafc;
             transition: all 0.3s ease;
             cursor: pointer;
         }
 
         .upload-box:hover {
-            border-color: #764ba2;
-            background: #f8f9fa;
+            border-color: #2980b9;
+            background: #e8f4f8;
         }
 
         .upload-icon {
-            font-size: 4em;
+            font-size: 3em;
             margin-bottom: 15px;
         }
 
@@ -77,122 +80,130 @@
         }
 
         .btn {
-            padding: 12px 30px;
+            padding: 10px 24px;
             border: none;
-            border-radius: 8px;
-            font-size: 1em;
-            font-weight: 600;
+            border-radius: 6px;
+            font-size: 0.9em;
+            font-weight: 500;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s ease;
             margin: 5px;
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #3498db;
             color: white;
         }
 
         .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+            background: #2980b9;
+            transform: translateY(-1px);
         }
 
         .btn-secondary {
-            background: #6c757d;
+            background: #95a5a6;
             color: white;
         }
 
         .btn-secondary:hover {
-            background: #5a6268;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(108, 117, 125, 0.4);
+            background: #7f8c8d;
+            transform: translateY(-1px);
         }
 
         .content {
-            padding: 30px;
+            padding: 0;
         }
 
         .player-selector {
-            margin-bottom: 30px;
+            margin-bottom: 24px;
             padding: 20px;
-            background: #f8f9fa;
+            background: #ffffff;
             border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         }
 
         .player-selector label {
             display: block;
             font-weight: 600;
             margin-bottom: 10px;
-            font-size: 1.1em;
-            color: #333;
+            font-size: 1em;
+            color: #2c3e50;
         }
 
         .player-selector select {
             width: 100%;
-            padding: 12px;
-            border: 2px solid #dee2e6;
-            border-radius: 8px;
-            font-size: 1em;
+            padding: 10px 12px;
+            border: 1px solid #dce4ec;
+            border-radius: 6px;
+            font-size: 0.95em;
             background: white;
             cursor: pointer;
+            color: #2c3e50;
+        }
+
+        .player-selector select:focus {
+            outline: none;
+            border-color: #3498db;
         }
 
         .card {
             background: white;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid #e1e8ed;
         }
 
         .card-header {
             display: flex;
             align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 15px;
-            border-bottom: 2px solid #e9ecef;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid #e1e8ed;
         }
 
         .card-icon {
-            font-size: 2em;
-            margin-right: 15px;
+            font-size: 1.5em;
+            margin-right: 12px;
         }
 
         .card-title {
-            font-size: 1.4em;
-            font-weight: 700;
-            color: #333;
+            font-size: 1.1em;
+            font-weight: 600;
+            color: #2c3e50;
         }
 
         .player-header {
             text-align: center;
-            padding: 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 12px;
-            margin-bottom: 30px;
+            padding: 24px;
+            background: #ffffff;
+            border-radius: 8px;
+            margin-bottom: 24px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border-bottom: 3px solid #3498db;
         }
 
         .player-name {
-            font-size: 2.5em;
-            font-weight: 700;
-            margin-bottom: 10px;
+            font-size: 2em;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2c3e50;
         }
 
         .player-info {
-            font-size: 1.2em;
-            opacity: 0.95;
+            font-size: 1em;
+            color: #7f8c8d;
         }
 
         .position-badge {
             display: inline-block;
-            padding: 8px 16px;
-            background: rgba(255,255,255,0.25);
+            padding: 6px 14px;
+            background: #3498db;
             color: white;
-            border-radius: 20px;
-            font-weight: 700;
-            font-size: 1.1em;
+            border-radius: 16px;
+            font-weight: 600;
+            font-size: 0.9em;
             margin: 5px;
         }
 
@@ -201,27 +212,28 @@
         }
 
         .insight-item {
-            padding: 15px;
-            margin-bottom: 12px;
-            background: #f8f9fa;
-            border-radius: 8px;
-            border-left: 4px solid #667eea;
+            padding: 12px;
+            margin-bottom: 10px;
+            background: #f8fafc;
+            border-radius: 6px;
+            border-left: 3px solid #3498db;
             line-height: 1.6;
+            font-size: 0.9em;
         }
 
         .insight-item.strength {
-            border-left-color: #28a745;
-            background: #d4edda;
+            border-left-color: #27ae60;
+            background: #eafaf1;
         }
 
         .insight-item.weakness {
-            border-left-color: #dc3545;
-            background: #f8d7da;
+            border-left-color: #e74c3c;
+            background: #fadbd8;
         }
 
         .insight-item.neutral {
-            border-left-color: #ffc107;
-            background: #fff3cd;
+            border-left-color: #f39c12;
+            background: #fef5e7;
         }
 
         .stats-grid {
@@ -232,38 +244,40 @@
         }
 
         .stat-box {
-            background: #f8f9fa;
+            background: #f8fafc;
             padding: 15px;
-            border-radius: 8px;
+            border-radius: 6px;
             text-align: center;
+            border: 1px solid #e1e8ed;
         }
 
         .stat-label {
-            font-size: 0.9em;
-            color: #666;
+            font-size: 0.85em;
+            color: #7f8c8d;
             margin-bottom: 8px;
+            font-weight: 500;
         }
 
         .stat-value {
-            font-size: 1.8em;
-            font-weight: 700;
-            color: #667eea;
+            font-size: 1.5em;
+            font-weight: 600;
+            color: #3498db;
         }
 
         .rating-excellent {
-            color: #28a745;
+            color: #27ae60;
         }
 
         .rating-good {
-            color: #17a2b8;
+            color: #3498db;
         }
 
         .rating-average {
-            color: #ffc107;
+            color: #f39c12;
         }
 
         .rating-poor {
-            color: #dc3545;
+            color: #e74c3c;
         }
 
         .hidden {
@@ -271,34 +285,37 @@
         }
 
         .alert {
-            padding: 15px;
-            margin-bottom: 20px;
-            border-radius: 8px;
-            font-weight: 500;
+            padding: 12px 16px;
+            margin-bottom: 16px;
+            border-radius: 6px;
+            font-size: 0.9em;
         }
 
         .alert-success {
-            background: #d4edda;
-            color: #155724;
-            border: 1px solid #c3e6cb;
+            background: #eafaf1;
+            color: #27ae60;
+            border: 1px solid #aed9b9;
         }
 
         .effectiveness-rating {
             text-align: center;
             padding: 20px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 12px;
+            background: #ffffff;
+            color: #2c3e50;
+            border-radius: 8px;
             margin-bottom: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+            border: 1px solid #e1e8ed;
         }
 
         .effectiveness-rating h2 {
-            font-size: 2em;
+            font-size: 1.5em;
             margin-bottom: 10px;
+            color: #2c3e50;
         }
 
         .stars {
-            font-size: 2.5em;
+            font-size: 2em;
             letter-spacing: 5px;
         }
     </style>
@@ -306,8 +323,15 @@
 <body>
     <div class="container">
         <div class="header">
-            <h1>⚽ FM Player Analyzer V2</h1>
+            <h1>⚽ Player Analyzer</h1>
             <p>Analisis Performa Detail Berdasarkan Data Pertandingan</p>
+            <div style="margin-top: 15px;">
+                <a href="index.html" style="text-decoration: none;">
+                    <button class="btn btn-secondary" style="background: #95a5a6; padding: 8px 20px;">
+                        ← Kembali ke Home
+                    </button>
+                </a>
+            </div>
         </div>
 
         <div class="upload-section">
@@ -316,11 +340,11 @@
                 <h2>Upload File Excel Data Pemain</h2>
                 <p style="margin: 15px 0; color: #666;">
                     Drag & drop file Excel atau klik untuk memilih<br>
-                    <small>(Format: .xlsx, .xls)</small>
+                    <small>(Format: .xlsx, .xls - Data diproses di browser, tidak disimpan)</small>
                 </p>
                 <input type="file" id="fileInput" class="file-input" accept=".xlsx,.xls">
                 <button class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
-                    Pilih File
+                    Pilih File Excel
                 </button>
                 <button class="btn btn-secondary" onclick="loadTestData()">
                     🧪 Load Test Data (Everton)
@@ -1205,91 +1229,21 @@
                 analysis += '<br>';
             }
             
-            // Overall Passing Profile - Position-specific role identification
-            analysis += '<strong>📋 Profil Passing:</strong><br>';
-            
-            if (isGK) {
-                if (prPasses >= 2 && parseFloat((psC/psA)*100) >= 75) {
-                    analysis += '→ <strong>Sweeper-Keeper</strong> - Modern GK, aktif dalam build-up play.<br>';
-                } else {
-                    analysis += '→ <strong>Traditional Goalkeeper</strong> - Shot-stopping focus.<br>';
-                }
-            } else if (isCB) {
-                if (prPasses >= 5 && parseFloat((psC/psA)*100) >= 88) {
-                    analysis += '→ <strong>Elite Ball-Playing CB</strong> - Dictate dari belakang, libero modern.<br>';
-                } else if (prPasses >= 3) {
-                    analysis += '→ <strong>Modern Centre-Back</strong> - Comfortable on ball, start attacks.<br>';
-                } else {
-                    analysis += '→ <strong>Traditional Stopper</strong> - Defending first, simple distribution.<br>';
-                }
-            } else if (isFB) {
-                if (chCreated >= 1 && prPasses >= 3) {
-                    analysis += '→ <strong>Inverted Full-Back</strong> - Tuck inside, playmaker dari wide.<br>';
-                } else if (chCreated >= 0.8 || prPasses >= 3) {
-                    analysis += '→ <strong>Attacking Wing-Back</strong> - High & wide, creative outlet.<br>';
-                } else {
-                    analysis += '→ <strong>Defensive Full-Back</strong> - Stay back, support defensively.<br>';
-                }
-            } else if (isDM) {
-                if (prPasses >= 7 && parseFloat((psC/psA)*100) >= 88) {
-                    analysis += '→ <strong>Deep-Lying Playmaker (DM)</strong> - Regista, dictate tempo dari base.<br>';
-                } else if (prPasses >= 5) {
-                    analysis += '→ <strong>Ball-Playing DM</strong> - Balance defending & distribution.<br>';
-                } else {
-                    analysis += '→ <strong>Defensive Midfielder</strong> - Destroy & recycle, bukan creator.<br>';
-                }
-            } else if (isCM) {
-                if (prPasses >= 6 && chCreated >= 1.5) {
-                    analysis += '→ <strong>Complete Box-to-Box</strong> - Create, defend, progress - do it all.<br>';
-                } else if (prPasses >= 5) {
-                    analysis += '→ <strong>Progressive CM</strong> - Drive forward, carry bola, transition key.<br>';
-                } else if (chCreated >= 1.5) {
-                    analysis += '→ <strong>Creative CM</strong> - Playmaker dari central midfield.<br>';
-                } else if (parseFloat((psC/psA)*100) >= 85) {
-                    analysis += '→ <strong>Ball Retainer</strong> - Control possession, recycle safely.<br>';
-                } else {
-                    analysis += '→ <strong>Workhorse CM</strong> - Running, pressing, defending > passing.<br>';
-                }
-            } else if (isAM) {
-                if (chCreated >= 2.5) {
-                    analysis += '→ <strong>Elite No. 10</strong> - Primary creator, team revolves around him.<br>';
-                } else if (prPasses >= 4 && chCreated >= 1.5) {
-                    analysis += '→ <strong>Advanced Playmaker</strong> - Dictate final third, unlock defenses.<br>';
-                } else if (chCreated >= 1.5) {
-                    analysis += '→ <strong>Final Third Creator</strong> - High position, create chances.<br>';
-                } else {
-                    analysis += '→ <strong>Shadow Striker</strong> - More runner/finisher than playmaker.<br>';
-                }
-            } else if (isWinger) {
-                if (chCreated >= 2 && prPasses >= 3) {
-                    analysis += '→ <strong>Playmaking Winger</strong> - Creative hub dari flank.<br>';
-                } else if (chCreated >= 1.5) {
-                    analysis += '→ <strong>Creative Winger</strong> - Beat man & create.<br>';
-                } else {
-                    analysis += '→ <strong>Direct Winger</strong> - Pace & dribble > playmaking.<br>';
-                }
-            } else if (isStriker) {
-                if (chCreated >= 1.5 && prPasses >= 2) {
-                    analysis += '→ <strong>Complete Forward</strong> - Score & create, false nine traits.<br>';
-                } else if (chCreated >= 0.8) {
-                    analysis += '→ <strong>Target Forward</strong> - Hold-up, link play, layoff assists.<br>';
-                } else {
-                    analysis += '→ <strong>Poacher/Finisher</strong> - Stay high, get on end of chances.<br>';
-                }
-            } else {
-                // Generic fallback
-                if (psC >= 45 && prPasses >= 5) {
-                    analysis += '→ <strong>Deep-Lying Playmaker</strong> - High volume + progressive.<br>';
-                } else if (chCreated >= 2 && keyPasses >= 1.5) {
-                    analysis += '→ <strong>Advanced Playmaker</strong> - Final third creativity.<br>';
-                } else if (psC >= 40 && parseFloat((psC/psA)*100) >= 85) {
-                    analysis += '→ <strong>Ball Retainer</strong> - Safe possession recycler.<br>';
-                } else {
-                    analysis += '→ <strong>Direct Player</strong> - Bukan dictator, off-ball focus.<br>';
-                }
-            }
-            
-            analysis += '<br><small style="color: #666;">📚 <em>Benchmark: Opta/StatsBomb (Top 5 European Leagues 2023-24)</em></small>';
+            // Add Benchmark Box at the bottom
+            analysis += `
+                <div style="background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e1e8ed; margin-top: 15px;">
+                    <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">📊 Benchmark:</div>
+                    <div style="font-size: 0.8em; color: #5a6c7d; line-height: 1.6;">
+                        <strong>Pass Accuracy:</strong> ≥85% Elite | 80-85% Excellent | 75-80% Good | &lt;75% Below Par<br>
+                        <strong>Progressive Passes/90:</strong> ≥6 World-Class | 4-6 Excellent | 2-4 Good | &lt;2 Limited<br>
+                        <strong>Key Passes/90:</strong> ≥2.0 Elite Creator | 1.5-2.0 Very Good | 1.0-1.5 Good | &lt;1.0 Limited<br>
+                        <strong>Chances Created/90:</strong> ≥3.0 Elite | 2.0-3.0 Excellent | 1.0-2.0 Good | &lt;1.0 Low
+                    </div>
+                    <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #e1e8ed; font-size: 0.75em; color: #7f8c8d; font-style: italic;">
+                        Source: Opta/Stats Perform; Top 5 Leagues Average
+                    </div>
+                </div>
+            `;
             
             document.getElementById('passingAnalysis').innerHTML = analysis;
         }
@@ -1357,17 +1311,20 @@
                 analysis += '<br>';
             }
             
-            analysis += '<strong>📋 Profil Duel:</strong><br>';
-            const totalDuels = possWon + possLost;
-            if (presC >= 3 && totalDuels >= 15) {
-                analysis += '→ <strong>Ball Winner</strong> - Active dalam recovery possession, high intensity player.<br>';
-            } else if (parseFloat(possWon/possLost) >= 1.2) {
-                analysis += '→ <strong>Secure Carrier</strong> - Excellent ball retention, press-resistant.<br>';
-            } else if (presC < 2 && totalDuels < 12) {
-                analysis += '→ <strong>Low Engagement</strong> - Kurang terlibat dalam duels, lebih positional.<br>';
-            }
-            
-            analysis += '<br><small style="color: #666;">📚 <em>Benchmark: CIES Football Observatory & StatsBomb Pressing Research</em></small>';
+            // Add Benchmark Box at the bottom
+            analysis += `
+                <div style="background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e1e8ed; margin-top: 15px;">
+                    <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">📊 Benchmark:</div>
+                    <div style="font-size: 0.8em; color: #5a6c7d; line-height: 1.6;">
+                        <strong>Poss Won/Lost Ratio:</strong> ≥1.2 Excellent | 1.0-1.2 Balanced | 0.8-1.0 Turnover Risk | &lt;0.8 Concern<br>
+                        <strong>Pressing Success %:</strong> ≥40% Elite | 35-40% Excellent | 30-35% Good | 25-30% Average | &lt;25% Inefficient<br>
+                        <strong>Dribbles/90:</strong> ≥3.0 Elite Ball Carrier | 2.0-3.0 Very Good | 1.0-2.0 Good | &lt;1.0 Limited
+                    </div>
+                    <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #e1e8ed; font-size: 0.75em; color: #7f8c8d; font-style: italic;">
+                        Source: CIES Football Observatory; StatsBomb Research
+                    </div>
+                </div>
+            `;
             
             document.getElementById('possessionAnalysis').innerHTML = analysis;
         }
@@ -1504,18 +1461,22 @@
                 analysis += '<br>';
             }
             
-            analysis += '<strong>📋 Profil Attacking:</strong><br>';
-            if (shots >= 3 && xgShot >= 0.12) {
-                analysis += '→ <strong>Goal Threat</strong> - High volume + quality shots. Finisher role.<br>';
-            } else if (dribbles >= 2 && crosses >= 2) {
-                analysis += '→ <strong>Wide Playmaker</strong> - Beat man lalu deliver crosses. Classic winger.<br>';
-            } else if (dribbles >= 2 && shots >= 2) {
-                analysis += '→ <strong>Inside Forward</strong> - Cut inside untuk shoot. Modern inverted winger.<br>';
-            } else if (goals + assists >= 5) {
-                analysis += '→ <strong>Productive</strong> meski stats modest. Efficient di moments penting.<br>';
-            }
-            
-            analysis += '<br><small style="color: #666;">📚 <em>Benchmark: Understat xG model, Wyscout crossing data, CIES dribbling research</em></small>';
+            // Add Benchmark Box at the bottom
+            analysis += `
+                <div style="background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e1e8ed; margin-top: 15px;">
+                    <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">📊 Benchmark:</div>
+                    <div style="font-size: 0.8em; color: #5a6c7d; line-height: 1.6;">
+                        <strong>xG/90 (Striker):</strong> ≥0.7 Elite | 0.5-0.7 Excellent | 0.35-0.5 Good | &lt;0.35 Limited<br>
+                        <strong>xG/90 (Winger):</strong> ≥0.4 Elite | 0.3-0.4 Excellent | 0.2-0.3 Good | &lt;0.2 Limited<br>
+                        <strong>xG per Shot:</strong> ≥0.15 Elite Positioning | 0.12-0.15 Excellent | 0.10-0.12 Good | &lt;0.10 Poor<br>
+                        <strong>Dribbles/90:</strong> ≥3.0 Elite | 2.0-3.0 Very Good | 1.0-2.0 Good | &lt;1.0 Limited<br>
+                        <strong>Crossing Accuracy:</strong> ≥35% Elite | 28-35% Excellent | 22-28% Good | &lt;22% Poor
+                    </div>
+                    <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #e1e8ed; font-size: 0.75em; color: #7f8c8d; font-style: italic;">
+                        Source: FBref Top 5 Leagues; Wyscout Data
+                    </div>
+                </div>
+            `;
             
             document.getElementById('attackingAnalysis').innerHTML = analysis;
         }
@@ -1621,18 +1582,22 @@
                 analysis += '<br>';
             }
             
-            analysis += '<strong>📋 Profil Defensive:</strong><br>';
-            if (interceptions >= 2.5 && tackleRate >= 70) {
-                analysis += '→ <strong>Intelligent Defender</strong> - Reading > tackling. Modern ball-playing defender.<br>';
-            } else if (tackles >= 2.5 && tackleRate >= 65) {
-                analysis += '→ <strong>Aggressive Ball-Winner</strong> - High intensity, gets stuck in.<br>';
-            } else if (hdrsW >= 3.5 && clearances >= 4) {
-                analysis += '→ <strong>Traditional Stopper</strong> - Physical, aerial dominant, no-nonsense CB.<br>';
-            } else if (interceptions < 1.5 && tackles < 1.5) {
-                analysis += '→ <strong>Passive Defender</strong> - Rely on positioning daripada active challenges.<br>';
-            }
-            
-            analysis += '<br><small style="color: #666;">📚 <em>Benchmark: Opta tackling data, StatsBomb defensive actions, FBref Top 5 Leagues</em></small>';
+            // Add Benchmark Box at the bottom
+            analysis += `
+                <div style="background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e1e8ed; margin-top: 15px;">
+                    <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">📊 Benchmark:</div>
+                    <div style="font-size: 0.8em; color: #5a6c7d; line-height: 1.6;">
+                        <strong>Aerial Duels/90:</strong> ≥4.0 Dominant | 3.0-4.0 Strong | 2.0-3.0 Good | 1.0-2.0 Moderate | &lt;1.0 Weak<br>
+                        <strong>Interceptions/90:</strong> ≥3.0 Elite | 2.5-3.0 Excellent | 2.0-2.5 Very Good | 1.5-2.0 Good | &lt;1.5 Limited<br>
+                        <strong>Tackles/90:</strong> ≥3.5 Very High | 2.5-3.5 High | 1.5-2.5 Good | 1.0-1.5 Moderate | &lt;1.0 Low<br>
+                        <strong>Tackle Success %:</strong> ≥75% Elite | 70-75% Excellent | 65-70% Good | 60-65% Average | &lt;60% Poor<br>
+                        <strong>Clearances/90:</strong> ≥5.0 Very High | 3.5-5.0 High | 2.0-3.5 Moderate | &lt;2.0 Low
+                    </div>
+                    <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #e1e8ed; font-size: 0.75em; color: #7f8c8d; font-style: italic;">
+                        Source: StatsBomb; FBref Top 5 Leagues Data
+                    </div>
+                </div>
+            `;
             
             document.getElementById('defensiveAnalysis').innerHTML = analysis;
         }
@@ -1727,7 +1692,20 @@
                 analysis += '⚠️ Consider rotasi atau substitusi di menit 60-70.<br>';
             }
             
-            analysis += '<br><small style="color: #666;">📚 <em>Benchmark: Sports Science research (Bangsbo, Mohr, Ingebrigtsen et al.), Premier League physical data</em></small>';
+            // Add Benchmark Box at the bottom
+            analysis += `
+                <div style="background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e1e8ed; margin-top: 15px;">
+                    <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">📊 Benchmark:</div>
+                    <div style="font-size: 0.8em; color: #5a6c7d; line-height: 1.6;">
+                        <strong>Distance/90 (km):</strong> ≥12 Exceptional | 11-12 Excellent | 10-11 Good | 9-10 Average | &lt;9 Low<br>
+                        <strong>Sprints/90:</strong> ≥30 Elite Pace | 25-30 Excellent | 20-25 Very Good | 15-20 Good | 10-15 Moderate | &lt;10 Low<br>
+                        <strong>Context:</strong> Midfielders avg 10.5-11.5km | Forwards avg 9-10km | Defenders avg 9.5-10.5km
+                    </div>
+                    <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #e1e8ed; font-size: 0.75em; color: #7f8c8d; font-style: italic;">
+                        Source: Bangsbo et al.; Sports Science Research; Premier League Data
+                    </div>
+                </div>
+            `;
             
             document.getElementById('physicalAnalysis').innerHTML = analysis;
         }
@@ -1887,7 +1865,21 @@
                 }
             }
 
-            analysis += '<br><small style="color: #666;">📚 <em>Benchmark: Understat xG & keeper performance research; FBref goalkeeper metrics; Premier League standards</em></small>';
+            // Add Benchmark Box at the bottom
+            analysis += `
+                <div style="background: #f8fafc; padding: 12px; border-radius: 6px; border: 1px solid #e1e8ed; margin-top: 15px;">
+                    <div style="font-weight: 600; color: #2c3e50; margin-bottom: 8px; font-size: 0.9em;">📊 Benchmark:</div>
+                    <div style="font-size: 0.8em; color: #5a6c7d; line-height: 1.6;">
+                        <strong>Goals Conceded/90:</strong> ≤0.8 Excellent | 0.8-1.0 Very Good | 1.0-1.2 Good | 1.2-1.5 Average | &gt;1.5 Concern<br>
+                        <strong>Save %:</strong> ≥75% Elite | 72-75% Excellent | 68-72% Good | 65-68% Average | &lt;65% Poor<br>
+                        <strong>xG Prevented/90:</strong> ≥0.20 Elite | 0.10-0.20 Excellent | 0.0-0.10 Good | &lt;0.0 Underperforming<br>
+                        <strong>Clean Sheets %:</strong> ≥40% Excellent | 30-40% Very Good | 20-30% Good | &lt;20% Limited
+                    </div>
+                    <div style="margin-top: 8px; padding-top: 8px; border-top: 1px solid #e1e8ed; font-size: 0.75em; color: #7f8c8d; font-style: italic;">
+                        Source: StatsBomb; FBref GK Statistics
+                    </div>
+                </div>
+            `;
 
             document.getElementById('goalkeeperAnalysis').innerHTML = analysis;
         }
@@ -2475,24 +2467,24 @@
             
             // Display breakdown explanation
             if (breakdown) {
-                let breakdownHTML = '<div style="margin-top: 15px; padding: 10px; background: #f8f9fa; border-radius: 5px; font-size: 0.9em;">';
-                breakdownHTML += '<strong>📊 Detail Penilaian Rating:</strong><br><br>';
+                let breakdownHTML = '<div style="margin-top: 15px; padding: 15px; background: #f8fafc; border-radius: 6px; font-size: 0.9em; color: #2c3e50; border: 1px solid #e1e8ed;">';
+                breakdownHTML += '<strong style="color: #2c3e50;">📊 Detail Penilaian Rating:</strong><br><br>';
                 
                 // Base score
-                breakdownHTML += `<strong>Base Performance:</strong> ${breakdown.baseScore.toFixed(1)}/2.5 poin<br>`;
-                breakdownHTML += `<span style="margin-left: 15px; color: #666;">• ${breakdown.baseDetail}</span><br><br>`;
+                breakdownHTML += `<strong style="color: #2c3e50;">Base Performance:</strong> ${breakdown.baseScore.toFixed(1)}/2.5 poin<br>`;
+                breakdownHTML += `<span style="margin-left: 15px; color: #5a6c7d;">• ${breakdown.baseDetail}</span><br><br>`;
                 
                 // Position-specific score
-                breakdownHTML += `<strong>Kontribusi Spesifik Posisi:</strong> ${breakdown.positionScore.toFixed(1)}/2.5 poin<br>`;
+                breakdownHTML += `<strong style="color: #2c3e50;">Kontribusi Spesifik Posisi:</strong> ${breakdown.positionScore.toFixed(1)}/2.5 poin<br>`;
                 if (breakdown.positionDetail.length > 0) {
                     breakdown.positionDetail.forEach(detail => {
-                        breakdownHTML += `<span style="margin-left: 15px; color: #666;">• ${detail}</span><br>`;
+                        breakdownHTML += `<span style="margin-left: 15px; color: #5a6c7d;">• ${detail}</span><br>`;
                     });
                 } else {
-                    breakdownHTML += `<span style="margin-left: 15px; color: #666;">• Tidak ada data metrik posisi</span><br>`;
+                    breakdownHTML += `<span style="margin-left: 15px; color: #5a6c7d;">• Tidak ada data metrik posisi</span><br>`;
                 }
                 
-                breakdownHTML += `<br><strong>Total Rating: ${breakdown.total.toFixed(1)}/5.0</strong>`;
+                breakdownHTML += `<br><strong style="color: #2c3e50;">Total Rating: ${breakdown.total.toFixed(1)}/5.0</strong>`;
                 breakdownHTML += '</div>';
                 
                 document.getElementById('effectivenessText').innerHTML += breakdownHTML;
@@ -2537,30 +2529,30 @@
             html += `</div></div>`;
             
             // Overall Assessment
-            html += `<div class="insight-item" style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin-bottom: 20px; border-left: 4px solid #667eea;">`;
+            html += `<div class="insight-item" style="background: #f8fafc; padding: 15px; border-radius: 6px; margin-bottom: 20px; border-left: 3px solid #3498db;">`;
             html += `<strong>⭐ Penilaian Keseluruhan:</strong><br><br>`;
             
             if (rating >= 4.0) {
-                html += `<span style="color: #28a745; font-size: 1.1em;">✅ PEMAIN KUNCI</span> - Wajib starter, performa sangat baik (Rating: ${rating.toFixed(1)}/5.0)<br>`;
+                html += `<span style="color: #27ae60; font-size: 1.05em;">✅ PEMAIN KUNCI</span> - Wajib starter, performa sangat baik (Rating: ${rating.toFixed(1)}/5.0)<br>`;
                 html += `→ Pemain ini adalah asset penting untuk tim. Fokus training untuk maintain & enhance strengths.<br>`;
             } else if (rating >= 3.5) {
-                html += `<span style="color: #28a745; font-size: 1.1em;">✅ STARTER SOLID</span> - Performa konsisten baik (Rating: ${rating.toFixed(1)}/5.0)<br>`;
+                html += `<span style="color: #27ae60; font-size: 1.05em;">✅ STARTER SOLID</span> - Performa konsisten baik (Rating: ${rating.toFixed(1)}/5.0)<br>`;
                 html += `→ Pemain first-choice dengan sedikit area untuk improvement.<br>`;
             } else if (rating >= 3.0) {
-                html += `<span style="color: #17a2b8; font-size: 1.1em;">✓ ROTASI/BACKUP</span> - Performa standar (Rating: ${rating.toFixed(1)}/5.0)<br>`;
+                html += `<span style="color: #3498db; font-size: 1.05em;">✓ ROTASI/BACKUP</span> - Performa standar (Rating: ${rating.toFixed(1)}/5.0)<br>`;
                 html += `→ Squad player yang berguna. Training focus untuk develop jadi starter.<br>`;
             } else if (rating >= 2.5) {
-                html += `<span style="color: #ffc107; font-size: 1.1em;">⚠️ PERLU DEVELOPMENT</span> - Performa di bawah standar (Rating: ${rating.toFixed(1)}/5.0)<br>`;
+                html += `<span style="color: #f39c12; font-size: 1.05em;">⚠️ PERLU DEVELOPMENT</span> - Performa di bawah standar (Rating: ${rating.toFixed(1)}/5.0)<br>`;
                 html += `→ Butuh intensive training atau loan untuk match experience.<br>`;
             } else {
-                html += `<span style="color: #dc3545; font-size: 1.1em;">⚠️ CONCERN</span> - Performa kurang (Rating: ${rating.toFixed(1)}/5.0)<br>`;
+                html += `<span style="color: #e74c3c; font-size: 1.05em;">⚠️ CONCERN</span> - Performa kurang (Rating: ${rating.toFixed(1)}/5.0)<br>`;
                 html += `→ Pertimbangkan role change, loan, atau development di level lebih rendah.<br>`;
             }
             html += `</div>`;
             
             // Training Recommendations
-            html += `<div style="background: white; padding: 20px; border-radius: 12px; border: 2px solid #667eea;">`;
-            html += `<h3 style="color: #667eea; margin-top: 0;">🎯 Rekomendasi Training Spesifik</h3>`;
+            html += `<div style="background: white; padding: 20px; border-radius: 8px; border: 2px solid #3498db;">`;
+            html += `<h3 style="color: #3498db; margin-top: 0;">🎯 Rekomendasi Training Spesifik</h3>`;
             
             // Position-specific training
             const isGK = pos.includes('GK');
@@ -2666,18 +2658,18 @@
             trainingPriorities.sort((a, b) => priorityOrder[a.priority] - priorityOrder[b.priority]);
             
             trainingPriorities.forEach(item => {
-                let color = item.priority === 'HIGH' ? '#dc3545' : item.priority === 'MEDIUM' ? '#ffc107' : '#17a2b8';
-                html += `<div style="margin-bottom: 15px; padding: 12px; background: #f8f9fa; border-radius: 8px; border-left: 4px solid ${color};">`;
+                let color = item.priority === 'HIGH' ? '#e74c3c' : item.priority === 'MEDIUM' ? '#f39c12' : '#3498db';
+                html += `<div style="margin-bottom: 12px; padding: 12px; background: #f8fafc; border-radius: 6px; border-left: 3px solid ${color};">`;
                 html += `<strong style="color: ${color};">[${item.priority}]</strong> <strong>${item.area}</strong><br>`;
-                html += `<span style="color: #666; margin-left: 20px;">→ ${item.detail}</span>`;
+                html += `<span style="color: #7f8c8d; margin-left: 20px; font-size: 0.9em;">→ ${item.detail}</span>`;
                 html += `</div>`;
             });
             
             html += `</div>`;
             
             // Tactical Usage
-            html += `<div style="background: #e8f4f8; padding: 15px; border-radius: 8px; margin-top: 20px; border-left: 4px solid #17a2b8;">`;
-            html += `<strong style="color: #17a2b8;">💡 Rekomendasi Penggunaan Taktis:</strong><br><br>`;
+            html += `<div style="background: #e8f4f8; padding: 15px; border-radius: 6px; margin-top: 20px; border-left: 3px solid #3498db;">`;
+            html += `<strong style="color: #3498db;">💡 Rekomendasi Penggunaan Taktis:</strong><br><br>`;
             
             if (bestRole) {
                 html += `✓ <strong>Role Optimal:</strong> ${bestRole}`;
