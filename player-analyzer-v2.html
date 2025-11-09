@@ -360,6 +360,22 @@
                     <small id="playerCount"></small>
                 </div>
             </div>
+            
+            <!-- Data Preview Table -->
+            <div id="dataPreview" class="hidden" style="margin-top: 20px;">
+                <h3 style="text-align: center; color: #2c3e50; margin-bottom: 15px;">📋 Preview Data Imported</h3>
+                <div style="overflow: auto; max-height: 400px; border: 2px solid #e1e8ed; border-radius: 8px; background: white;">
+                    <table id="previewTable" style="width: 100%; border-collapse: collapse; font-size: 0.85em;">
+                        <thead style="position: sticky; top: 0; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; z-index: 10;">
+                            <tr id="previewTableHeader"></tr>
+                        </thead>
+                        <tbody id="previewTableBody"></tbody>
+                    </table>
+                </div>
+                <p style="text-align: center; margin-top: 10px; color: #7f8c8d; font-size: 0.9em;">
+                    <em>Scroll horizontal/vertikal untuk lihat semua data</em>
+                </p>
+            </div>
         </div>
 
         <div class="content hidden" id="mainContent">
@@ -1309,8 +1325,9 @@
             // Reset file input
             document.getElementById('fileInput').value = '';
             
-            // Hide file info and main content
+            // Hide file info, data preview, and main content
             document.getElementById('fileInfo').classList.add('hidden');
+            document.getElementById('dataPreview').classList.add('hidden');
             document.getElementById('mainContent').classList.add('hidden');
             document.getElementById('analysisResult').classList.add('hidden');
             
@@ -1353,6 +1370,76 @@
                 
                 option.textContent = `${name} ${position ? '(' + position + ')' : ''} ${age ? '- ' + age + ' tahun' : ''}`;
                 select.appendChild(option);
+            });
+            
+            // Generate data preview table
+            generateDataPreview();
+        }
+        
+        function generateDataPreview() {
+            if (!playersData || playersData.length === 0) {
+                document.getElementById('dataPreview').classList.add('hidden');
+                return;
+            }
+            
+            // Show preview section
+            document.getElementById('dataPreview').classList.remove('hidden');
+            
+            // Get all unique keys from all players
+            const allKeys = new Set();
+            playersData.forEach(player => {
+                Object.keys(player).forEach(key => allKeys.add(key));
+            });
+            
+            // Prioritize important columns
+            const priorityKeys = ['Player', 'Position', 'Age', 'Avg Rat', 'Best Pos', 'Best Role', 
+                                  'Goals', 'Assists', 'Appearances', 'xG/90', 'xA/90'];
+            const otherKeys = Array.from(allKeys).filter(key => !priorityKeys.includes(key));
+            const orderedKeys = [...priorityKeys.filter(key => allKeys.has(key)), ...otherKeys];
+            
+            // Generate table header
+            const headerRow = document.getElementById('previewTableHeader');
+            headerRow.innerHTML = '';
+            orderedKeys.forEach(key => {
+                const th = document.createElement('th');
+                th.textContent = key;
+                th.style.cssText = 'padding: 12px 15px; text-align: left; white-space: nowrap; border-right: 1px solid rgba(255,255,255,0.2); font-weight: 600;';
+                headerRow.appendChild(th);
+            });
+            
+            // Generate table body
+            const tbody = document.getElementById('previewTableBody');
+            tbody.innerHTML = '';
+            playersData.forEach((player, index) => {
+                const tr = document.createElement('tr');
+                tr.style.cssText = `background: ${index % 2 === 0 ? '#f8f9fa' : 'white'}; cursor: pointer; transition: background 0.2s;`;
+                tr.onmouseover = () => tr.style.background = '#e3f2fd';
+                tr.onmouseout = () => tr.style.background = index % 2 === 0 ? '#f8f9fa' : 'white';
+                tr.onclick = () => {
+                    document.getElementById('playerSelect').value = index;
+                    analyzePlayer();
+                };
+                
+                orderedKeys.forEach(key => {
+                    const td = document.createElement('td');
+                    const value = player[key];
+                    td.textContent = value !== undefined && value !== null ? value : '-';
+                    td.style.cssText = 'padding: 10px 15px; border-bottom: 1px solid #e1e8ed; border-right: 1px solid #e1e8ed; white-space: nowrap;';
+                    
+                    // Highlight important cells
+                    if (key === 'Player') {
+                        td.style.fontWeight = '600';
+                        td.style.color = '#2c3e50';
+                    }
+                    if (key === 'Position') {
+                        td.style.color = '#667eea';
+                        td.style.fontWeight = '500';
+                    }
+                    
+                    tr.appendChild(td);
+                });
+                
+                tbody.appendChild(tr);
             });
         }
 
