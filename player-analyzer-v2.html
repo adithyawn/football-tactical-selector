@@ -3106,7 +3106,7 @@
                     } else if (xg90 >= 0.35) {
                         analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <span style="color: #17a2b8;">? GOOD</span> (0.35-0.5). Solid goal threat (~12-16 goals/season).<br>`;
                     } else {
-                        analysis += &nbsp;&nbsp;&nbsp;&nbsp;&#9888; <span style="color: #ffc107;">&#128680; BELOW PAR</span> untuk striker murni. Perlu improve movement & positioning.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&#9888; <span style="color: #ffc107;">&#128680; BELOW PAR</span> untuk striker murni. Perlu improve movement & positioning.<br>`;
                         analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? Cocok untuk role support striker, target man, atau false nine.<br>`;
                     }
                     
@@ -3122,7 +3122,7 @@
                     } else if (xg90 >= 0.20) {
                         analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <span style="color: #17a2b8;">? GOOD</span> (0.2-0.3). Balanced winger (goals + assists).<br>`;
                     } else if (xg90 >= 0.10) {
-                        analysis += &nbsp;&nbsp;&nbsp;&nbsp;&#128681; <span style="color: #ffc107;">&#128221; MODERATE</span> threat. More creator/dribbler than finisher.<br>`;
+                        analysis += `&nbsp;&nbsp;&nbsp;&nbsp;&#128681; <span style="color: #ffc107;">&#128221; MODERATE</span> threat. More creator/dribbler than finisher.<br>`;
                         analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? Traditional winger atau wide playmaker role.<br>`;
                     } else {
                         analysis += `&nbsp;&nbsp;&nbsp;&nbsp;? <span style="color: #dc3545;">? LIMITED</span> finishing threat. Fokus: Width, crossing, assists.<br>`;
@@ -3241,7 +3241,7 @@
                 
                 // Context warning untuk winger dengan dribbling rendah
                 if (isWinger && dribbles < 1.5) {
-                    analysis += &nbsp;&nbsp;&#9888; &#128681; Low dribbling untuk winger - More sistem player atau crosser style.<br>`;
+                    analysis += `&nbsp;&nbsp;&#9888; &#128681; Low dribbling untuk winger - More sistem player atau crosser style.<br>`;
                 }
                 
                 analysis += '<br>';
@@ -3296,7 +3296,7 @@
                 
                 // Warning untuk volume tinggi dengan accuracy rendah
                 if ((isWinger || isFB) && parseFloat(crossAcc) < 20 && crosses >= 2.5) {
-                    analysis += &nbsp;&nbsp;&#9888; &#128165; <strong>High volume + Low accuracy</strong> = Wasteful possession.<br>`;
+                    analysis += `&nbsp;&nbsp;&#9888; &#128165; <strong>High volume + Low accuracy</strong> = Wasteful possession.<br>`;
                     if (isWinger) {
                         analysis += `&nbsp;&nbsp;? Saran: Consider cutting inside more atau improve crossing technique.<br>`;
                     }
@@ -3878,25 +3878,25 @@
 
             // Overall Rating
             if (avgRat >= 7.5) {
-                insights.push({ type: 'strength', icon: '&#11088;', text: Performa EXCELLENT (${avgRat.toFixed(2)}). Pemain kunci dengan dampak besar.` });
+                insights.push({ type: 'strength', icon: '&#11088;', text: `Performa EXCELLENT (${avgRat.toFixed(2)}). Pemain kunci dengan dampak besar.` });
             } else if (avgRat >= 7.0) {
-                insights.push({ type: 'strength', icon: '&#128077;', text: Performa SOLID (${avgRat.toFixed(2)}). Kontributor andalan tim.` });
+                insights.push({ type: 'strength', icon: '&#128077;', text: `Performa SOLID (${avgRat.toFixed(2)}). Kontributor andalan tim.` });
             } else if (avgRat > 0 && avgRat < 6.5) {
-                insights.push({ type: 'weakness', icon: '&#9888;', text: Rating ${avgRat.toFixed(2)} di bawah standar. Perlu evaluasi role atau adaptasi.` });
+                insights.push({ type: 'weakness', icon: '&#9888;', text: `Rating ${avgRat.toFixed(2)} di bawah standar. Perlu evaluasi role atau adaptasi.` });
             }
 
             // Passing & Build-up
             if (psC >= 40 && psA > 0) {
                 const accuracy = ((psC / psA) * 100).toFixed(1);
-                insights.push({ type: 'strength', icon: '&#127912;', text: Passing tinggi (${psC.toFixed(1)}/90, ${accuracy}% akurasi). ${prPasses >= 5 ? 'Progresif dalam build-up (' + prPasses.toFixed(1) + ' pr passes).' : ''}` });
+                insights.push({ type: 'strength', icon: '&#127912;', text: `Passing tinggi (${psC.toFixed(1)}/90, ${accuracy}% akurasi). ${prPasses >= 5 ? 'Progresif dalam build-up (' + prPasses.toFixed(1) + ' pr passes).' : ''}` });
             }
             if (prPasses >= 5) {
-                insights.push({ type: 'strength', icon: '&#128640;', text: Progressive passes excellent (${prPasses.toFixed(1)}/90). Efektif membawa bola ke area berbahaya.` });
+                insights.push({ type: 'strength', icon: '&#128640;', text: `Progressive passes excellent (${prPasses.toFixed(1)}/90). Efektif membawa bola ke area berbahaya.` });
             }
 
             // Creativity
             if (chCreated >= 2.0) {
-                insights.push({ type: 'strength', icon: '&#127775;', text: Kreator utama: ${chCreated.toFixed(1)} peluang/90. ${keyPasses >= 1.5 ? 'Key passes produktif (' + keyPasses.toFixed(1) + ').' : ''}` });
+                insights.push({ type: 'strength', icon: '&#127775;', text: `Kreator utama: ${chCreated.toFixed(1)} peluang/90. ${keyPasses >= 1.5 ? 'Key passes produktif (' + keyPasses.toFixed(1) + ').' : ''}` });
             }
 
             // Goal Contributions
@@ -3908,25 +3908,25 @@
 
             // Dribbling & Mobility
             if (dribbles >= 1.5) {
-                insights.push({ type: 'strength', icon: '&#128293;', text: Dribbler aktif (${dribbles.toFixed(1)}/90). ${sprints >= 20 ? 'Sprint tinggi (' + sprints.toFixed(0) + '/90) - ancaman transisi.' : ''}` });
+                insights.push({ type: 'strength', icon: '&#128293;', text: `Dribbler aktif (${dribbles.toFixed(1)}/90). ${sprints >= 20 ? 'Sprint tinggi (' + sprints.toFixed(0) + '/90) - ancaman transisi.' : ''}` });
             }
             if (distance >= 11) {
-                insights.push({ type: 'strength', icon: '&#128170;', text: Work rate tinggi (${distance.toFixed(1)} km/90). Excellent untuk box-to-box role.` });
+                insights.push({ type: 'strength', icon: '&#128170;', text: `Work rate tinggi (${distance.toFixed(1)} km/90). Excellent untuk box-to-box role.` });
             }
 
             // Crossing
             if (crosses >= 2) {
                 const crossAcc = crosses > 0 ? ((crossesC / crosses) * 100).toFixed(1) : 0;
-                insights.push({ type: crosses >= 3 ? 'strength' : 'neutral', icon: '&#128640;', text: Outlet sayap (${crosses.toFixed(1)} crosses/90, ${crossAcc}% sukses). ${crosses >= 3 ? 'Cocok wing-play dominan.' : ''}` });
+                insights.push({ type: crosses >= 3 ? 'strength' : 'neutral', icon: '&#128640;', text: `Outlet sayap (${crosses.toFixed(1)} crosses/90, ${crossAcc}% sukses). ${crosses >= 3 ? 'Cocok wing-play dominan.' : ''}` });
             }
 
             // Possession
             if (possWon > 0 && possLost > 0) {
                 const ratio = (possWon / possLost).toFixed(2);
                 if (parseFloat(ratio) >= 1.1) {
-                    insights.push({ type: 'strength', icon: '&#128737;', text: Ball security bagus (won ${possWon.toFixed(1)} vs lost ${possLost.toFixed(1)}). Aman dalam possession.` });
+                    insights.push({ type: 'strength', icon: '&#128737;', text: `Ball security bagus (won ${possWon.toFixed(1)} vs lost ${possLost.toFixed(1)}). Aman dalam possession.` });
                 } else if (possLost >= 10) {
-                    insights.push({ type: 'weakness', icon: '&#9888;', text: Turnover tinggi (${possLost.toFixed(1)} lost/90). ${pos.includes('W') || pos.includes('F') ? 'Wajar untuk attacker, tapi tetap perlu hati-hati.' : 'Perlu improve decision making.'}` });
+                    insights.push({ type: 'weakness', icon: '&#9888;', text: `Turnover tinggi (${possLost.toFixed(1)} lost/90). ${pos.includes('W') || pos.includes('F') ? 'Wajar untuk attacker, tapi tetap perlu hati-hati.' : 'Perlu improve decision making.'}` });
                 }
             }
 
@@ -3934,25 +3934,25 @@
             const isDef = pos.includes('D') || pos.includes('DM');
             if (isDef) {
                 if (hdrsW >= 3) {
-                    insights.push({ type: 'strength', icon: '&#128170;', text: Dominasi udara (${hdrsW.toFixed(1)} headers won/90). Ancaman set-piece & solid defensif.` });
+                    insights.push({ type: 'strength', icon: '&#128170;', text: `Dominasi udara (${hdrsW.toFixed(1)} headers won/90). Ancaman set-piece & solid defensif.` });
                 }
                 if (interceptions >= 2.5) {
-                    insights.push({ type: 'strength', icon: '&#128065;', text: Game reading bagus (${interceptions.toFixed(1)} int/90). Positioning & anticipation strong.` });
+                    insights.push({ type: 'strength', icon: '&#128065;', text: `Game reading bagus (${interceptions.toFixed(1)} int/90). Positioning & anticipation strong.` });
                 }
                 if (tackles > 0 && tackleRate >= 75) {
-                    insights.push({ type: 'strength', icon: '&#128737;', text: Tackling efisien (${tackles.toFixed(1)}/90, ${tackleRate.toFixed(0)}% sukses). Reliable dalam duel.` });
+                    insights.push({ type: 'strength', icon: '&#128737;', text: `Tackling efisien (${tackles.toFixed(1)}/90, ${tackleRate.toFixed(0)}% sukses). Reliable dalam duel.` });
                 }
             }
 
             // Pressing
             if (presC >= 3) {
-                insights.push({ type: 'strength', icon: '&#128293;', text: Pressing efektif (${presC.toFixed(1)} sukses/90). Kontribusi recovery bola tinggi.` });
+                insights.push({ type: 'strength', icon: '&#128293;', text: `Pressing efektif (${presC.toFixed(1)} sukses/90). Kontribusi recovery bola tinggi.` });
             }
 
             // Man of the Match
             if (mom > 0) {
                 const momRate = ((mom / apps) * 100).toFixed(1);
-                insights.push({ type: 'strength', icon: '&#11088;', text: ${mom}x MoMRate}%). Sering jadi game changer!` });
+                insights.push({ type: 'strength', icon: '&#11088;', text: `${mom}x MoM (${momRate}%). Sering jadi game changer!` });
             }
 
             return insights;
@@ -4621,6 +4621,7 @@
     </script>
 </body>
 </html>
+
 
 
 
