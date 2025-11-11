@@ -453,6 +453,11 @@
                 <select id="playerSelect" onchange="analyzePlayer()">
                     <option value="">-- Pilih Pemain --</option>
                 </select>
+                <div style="margin-top: 15px; text-align: center;">
+                    <button class="btn btn-primary" onclick="exportAllPlayersData()" style="background: #27ae60; padding: 12px 24px; font-size: 0.95em;">
+                        &#128190; Export Rekap Analisis All Player
+                    </button>
+                </div>
             </div>
 
             <div id="analysisResult" class="hidden">
@@ -4635,6 +4640,914 @@
                     }
                 }, 100);
             }
+        }
+
+        // Helper function to get quality labels for export
+        function getPassAccuracyLabel(passAcc, pos) {
+            const isGK = pos.includes('GK');
+            const isCB = pos.includes('CB') || (pos.includes('D') && pos.includes('C'));
+            const isFB = pos.includes('B') || pos.includes('WB');
+            const isDM = pos.includes('DM') || pos.includes('CDM');
+            const isCM = pos.includes('CM') || (pos.includes('M') && !pos.includes('A') && !pos.includes('D'));
+            const isAM = pos.includes('AM') || pos.includes('CAM');
+            const isWinger = pos.includes('W') || pos.includes('AML') || pos.includes('AMR');
+            const isStriker = pos.includes('ST') || pos.includes('CF');
+
+            if (isGK) {
+                if (passAcc >= 75) return 'EXCELLENT';
+                if (passAcc >= 65) return 'GOOD';
+                return 'TRADITIONAL GK';
+            } else if (isCB || isDM) {
+                if (passAcc >= 90) return 'ELITE';
+                if (passAcc >= 85) return 'EXCELLENT';
+                if (passAcc >= 80) return 'GOOD';
+                return 'BELOW PAR';
+            } else if (isFB) {
+                if (passAcc >= 80) return 'EXCELLENT';
+                if (passAcc >= 75) return 'GOOD';
+                return 'TRADITIONAL FB';
+            } else if (isCM || isAM) {
+                if (passAcc >= 85) return 'ELITE';
+                if (passAcc >= 80) return 'EXCELLENT';
+                if (passAcc >= 75) return 'OK';
+                return 'CONCERN';
+            } else if (isWinger || isStriker) {
+                if (passAcc >= 75) return 'BONUS';
+                if (passAcc >= 70) return 'STANDARD';
+                return 'DIRECT PLAYER';
+            }
+            
+            if (passAcc >= 85) return 'ELITE';
+            if (passAcc >= 80) return 'GOOD';
+            if (passAcc >= 75) return 'AVERAGE';
+            return 'POOR';
+        }
+
+        function getProgressivePassesLabel(prPasses, pos) {
+            const isGK = pos.includes('GK');
+            const isCB = pos.includes('CB') || (pos.includes('D') && pos.includes('C'));
+            const isFB = pos.includes('B') || pos.includes('WB');
+            const isDM = pos.includes('DM');
+            const isCM = pos.includes('CM') || (pos.includes('M') && !pos.includes('A') && !pos.includes('D'));
+            const isAM = pos.includes('AM');
+
+            if (isGK) {
+                if (prPasses >= 3) return 'ELITE';
+                if (prPasses >= 2) return 'EXCELLENT';
+                if (prPasses >= 1) return 'GOOD';
+                return 'TRADITIONAL';
+            } else if (isCB) {
+                if (prPasses >= 5) return 'ELITE';
+                if (prPasses >= 3.5) return 'EXCELLENT';
+                if (prPasses >= 2.5) return 'GOOD';
+                return 'BELOW AVERAGE';
+            } else if (isFB) {
+                if (prPasses >= 4) return 'ELITE';
+                if (prPasses >= 3) return 'EXCELLENT';
+                if (prPasses >= 2) return 'GOOD';
+                return 'AVERAGE';
+            } else if (isDM) {
+                if (prPasses >= 8) return 'ELITE';
+                if (prPasses >= 6) return 'EXCELLENT';
+                if (prPasses >= 4) return 'GOOD';
+                return 'BELOW AVERAGE';
+            } else if (isCM) {
+                if (prPasses >= 7) return 'ELITE';
+                if (prPasses >= 5) return 'EXCELLENT';
+                if (prPasses >= 3.5) return 'GOOD';
+                return 'AVERAGE';
+            } else if (isAM) {
+                if (prPasses >= 6) return 'ELITE';
+                if (prPasses >= 4.5) return 'EXCELLENT';
+                if (prPasses >= 3) return 'GOOD';
+                return 'AVERAGE';
+            }
+            
+            if (prPasses >= 5) return 'EXCELLENT';
+            if (prPasses >= 3) return 'GOOD';
+            if (prPasses >= 1.5) return 'AVERAGE';
+            return 'POOR';
+        }
+
+        function getCreativityLabel(chCreated, keyPasses, pos) {
+            const isAM = pos.includes('AM');
+            const isWinger = pos.includes('W') || pos.includes('AML') || pos.includes('AMR');
+            const isFB = pos.includes('B') || pos.includes('WB');
+            const isCM = pos.includes('CM');
+
+            if (isAM) {
+                if (chCreated >= 2.5 || keyPasses >= 2.5) return 'ELITE';
+                if (chCreated >= 2 || keyPasses >= 2) return 'EXCELLENT';
+                if (chCreated >= 1.5 || keyPasses >= 1.5) return 'GOOD';
+                return 'BELOW PAR';
+            } else if (isWinger) {
+                if (chCreated >= 2.5 || keyPasses >= 2.5) return 'ELITE';
+                if (chCreated >= 2 || keyPasses >= 2) return 'EXCELLENT';
+                if (chCreated >= 1.2 || keyPasses >= 1.2) return 'GOOD';
+                return 'AVERAGE';
+            } else if (isFB) {
+                if (chCreated >= 1.5 || keyPasses >= 1.5) return 'ELITE';
+                if (chCreated >= 1 || keyPasses >= 1) return 'EXCELLENT';
+                if (chCreated >= 0.6 || keyPasses >= 0.6) return 'GOOD';
+                return 'DEFENSIVE FB';
+            } else if (isCM) {
+                if (chCreated >= 2 || keyPasses >= 2) return 'ELITE';
+                if (chCreated >= 1.5 || keyPasses >= 1.5) return 'EXCELLENT';
+                if (chCreated >= 1 || keyPasses >= 1) return 'GOOD';
+                return 'AVERAGE';
+            }
+            
+            if (chCreated >= 1.5 || keyPasses >= 1.5) return 'EXCELLENT';
+            if (chCreated >= 1 || keyPasses >= 1) return 'GOOD';
+            if (chCreated >= 0.5 || keyPasses >= 0.5) return 'AVERAGE';
+            return 'POOR';
+        }
+
+        function getBallSecurityLabel(possWon, possLost, pos) {
+            if (!possWon || !possLost) return 'N/A';
+            const ratio = parseFloat(possWon) / parseFloat(possLost);
+            
+            if (ratio >= 1.2) return 'EXCELLENT';
+            if (ratio >= 1.0) return 'GOOD';
+            if (ratio >= 0.8) return 'AVERAGE';
+            return 'POOR';
+        }
+
+        function getPressingLabel(presC, presA, pos) {
+            if (!presC || !presA) return 'N/A';
+            const presSucc = (parseFloat(presC) / parseFloat(presA)) * 100;
+            const presAVal = parseFloat(presA);
+            
+            // Check volume first
+            let volumeLabel = '';
+            if (presAVal >= 20) {
+                volumeLabel = 'HIGH VOLUME PRESSER';
+            } else if (presAVal >= 10) {
+                volumeLabel = 'MODERATE PRESSING';
+            } else if (presAVal < 5) {
+                volumeLabel = 'LOW PRESSING';
+            }
+            
+            // Success rate labels (based on frontend logic)
+            let qualityLabel = '';
+            if (presSucc >= 40) {
+                qualityLabel = 'ELITE PRESSER';
+            } else if (presSucc >= 35) {
+                qualityLabel = 'EXCELLENT';
+            } else if (presSucc >= 30) {
+                qualityLabel = 'GOOD';
+            } else if (presSucc >= 25) {
+                qualityLabel = 'AVERAGE';
+            } else {
+                qualityLabel = 'INEFFICIENT';
+            }
+            
+            // Combine both if high volume
+            if (presAVal >= 20) {
+                return `${qualityLabel} - ${volumeLabel}`;
+            } else if (presAVal < 5) {
+                return volumeLabel;
+            }
+            
+            return qualityLabel;
+        }
+
+        function getShootingLabel(xG90, shots, pos) {
+            const isStriker = pos.includes('ST') || pos.includes('CF');
+            const isWinger = pos.includes('W') || pos.includes('AML') || pos.includes('AMR');
+            const isAM = pos.includes('AM');
+
+            // Use same thresholds as analyzeAttacking to keep labels identical
+            const xGVal = parseFloat(xG90) || 0;
+
+            if (isStriker) {
+                // analyzeAttacking uses 0.7/0.5/0.35 for striker
+                if (xGVal >= 0.7) return 'ELITE';
+                if (xGVal >= 0.5) return 'EXCELLENT';
+                if (xGVal >= 0.35) return 'GOOD';
+                return 'BELOW AVERAGE';
+            } else if (isWinger || isAM) {
+                // wingers: 0.4/0.25/0.15
+                if (xGVal >= 0.4) return 'ELITE';
+                if (xGVal >= 0.25) return 'EXCELLENT';
+                if (xGVal >= 0.15) return 'GOOD';
+                return 'AVERAGE';
+            }
+
+            // default: general attacker expectations
+            if (xGVal >= 0.3) return 'GOOD';
+            if (xGVal >= 0.15) return 'AVERAGE';
+            return 'LOW QUALITY';
+        }
+
+        function getDribblingLabel(dribbles, pos) {
+            const drbVal = parseFloat(dribbles) || 0;
+            
+            // Based on frontend: Elite 3+, Very Good 2-3, Good 1-2, Limited <1
+            if (drbVal >= 3.0) return 'ELITE';
+            if (drbVal >= 2.0) return 'VERY GOOD';
+            if (drbVal >= 1.0) return 'GOOD';
+            if (drbVal >= 0.5) return 'LIMITED';
+            return 'MINIMAL';
+        }
+
+        function getCrossingLabel(crosses, crossesC, pos) {
+            const crsVal = parseFloat(crosses) || 0;
+            const crsC = parseFloat(crossesC) || 0;
+            
+            if (crsVal === 0) return 'N/A';
+            
+            const crsAcc = (crsC / crsVal) * 100;
+            
+            // Based on frontend: Elite 35%+, Excellent 28-35%, Good 22-28%, Average 18-22%, Poor <18%
+            if (crsAcc >= 35) return 'ELITE';
+            if (crsAcc >= 28) return 'EXCELLENT';
+            if (crsAcc >= 22) return 'GOOD';
+            if (crsAcc >= 18) return 'AVERAGE';
+            return 'POOR';
+        }
+
+        // Helper functions to convert stats to labels
+        function getAerialDuelsLabel(value) {
+            if (!value || value === 'N/A') return 'N/A';
+            const v = parseFloat(value);
+            if (v >= 4.0) return 'DOMINANT';
+            if (v >= 3.0) return 'STRONG';
+            if (v >= 2.0) return 'GOOD';
+            if (v >= 1.0) return 'MODERATE';
+            return 'WEAK';
+        }
+
+        function getInterceptionsLabel(value) {
+            if (!value || value === 'N/A') return 'N/A';
+            const v = parseFloat(value);
+            if (v >= 3.0) return 'ELITE';
+            if (v >= 2.5) return 'EXCELLENT';
+            if (v >= 2.0) return 'VERY GOOD';
+            if (v >= 1.5) return 'GOOD';
+            return 'LIMITED';
+        }
+
+        function getTacklesLabel(value) {
+            if (!value || value === 'N/A') return 'N/A';
+            const v = parseFloat(value);
+            if (v >= 3.5) return 'VERY HIGH';
+            if (v >= 2.5) return 'HIGH';
+            if (v >= 1.5) return 'GOOD';
+            if (v >= 1.0) return 'MODERATE';
+            return 'LOW';
+        }
+
+        function getTackleSuccessLabel(value) {
+            if (!value || value === 'N/A') return 'N/A';
+            const v = parseFloat(value);
+            if (v >= 75) return 'ELITE';
+            if (v >= 70) return 'EXCELLENT';
+            if (v >= 65) return 'GOOD';
+            if (v >= 60) return 'AVERAGE';
+            return 'POOR';
+        }
+
+        function getClearancesLabel(value) {
+            if (!value || value === 'N/A') return 'N/A';
+            const v = parseFloat(value);
+            if (v >= 5.0) return 'VERY HIGH';
+            if (v >= 3.5) return 'HIGH';
+            if (v >= 2.0) return 'MODERATE';
+            return 'LOW';
+        }
+
+        function getBlocksLabel(value) {
+            if (!value || value === 'N/A') return 'N/A';
+            const v = parseFloat(value);
+            if (v >= 2.0) return 'VERY HIGH';
+            if (v >= 1.5) return 'HIGH';
+            if (v >= 1.0) return 'GOOD';
+            if (v >= 0.5) return 'MODERATE';
+            return 'LOW';
+        }
+
+        function getDistanceLabel(value) {
+            if (!value || value === 'N/A') return 'N/A';
+            const v = parseFloat(value);
+            if (v >= 12) return 'EXCEPTIONAL';
+            if (v >= 11) return 'EXCELLENT';
+            if (v >= 10) return 'GOOD';
+            if (v >= 9) return 'AVERAGE';
+            return 'LOW';
+        }
+
+        function getSprintsLabel(value) {
+            if (!value || value === 'N/A') return 'N/A';
+            const v = parseFloat(value);
+            if (v >= 30) return 'EXPLOSIVE';
+            if (v >= 20) return 'HIGH INTENSITY';
+            if (v >= 15) return 'MODERATE';
+            if (v >= 10) return 'LOW';
+            return 'MINIMAL';
+        }
+
+        function getAerialWinPercentLabel(value) {
+            if (!value || value === 'N/A') return 'N/A';
+            const v = parseFloat(value);
+            if (v >= 65) return 'DOMINANT';
+            if (v >= 55) return 'STRONG';
+            if (v >= 45) return 'AVERAGE';
+            if (v >= 35) return 'BELOW AVERAGE';
+            return 'WEAK';
+        }
+
+        // ========= HELPER FUNCTIONS FOR EXPORT (Match Frontend Logic) =========
+        
+        function getPassAccuracyLabelForExport(psC, psA, pos) {
+            if (!psC || !psA || psA === 0) return 'N/A';
+            const acc = (psC / psA) * 100;
+            if (acc >= 85) return 'ELITE';
+            if (acc >= 80) return 'EXCELLENT';
+            if (acc >= 75) return 'GOOD';
+            if (acc >= 70) return 'AVERAGE';
+            return 'POOR';
+        }
+        
+        function getProgressivePassesLabelForExport(prPasses, pos) {
+            if (!prPasses) return 'N/A';
+            const isFB = pos.includes('B') || pos.includes('WB');
+            const isCM = pos.includes('M') && !pos.includes('AM') && !pos.includes('DM');
+            const isAM = pos.includes('AM');
+            
+            if (isFB) {
+                if (prPasses >= 4) return 'ELITE';
+                if (prPasses >= 3) return 'EXCELLENT';
+                if (prPasses >= 2) return 'GOOD';
+                return 'AVERAGE';
+            } else if (isCM) {
+                if (prPasses >= 6) return 'ELITE';
+                if (prPasses >= 4.5) return 'EXCELLENT';
+                if (prPasses >= 3) return 'GOOD';
+                return 'AVERAGE';
+            } else if (isAM) {
+                if (prPasses >= 5) return 'ELITE';
+                if (prPasses >= 3.5) return 'EXCELLENT';
+                if (prPasses >= 2.5) return 'GOOD';
+                return 'AVERAGE';
+            }
+            
+            if (prPasses >= 4) return 'EXCELLENT';
+            if (prPasses >= 3) return 'GOOD';
+            return 'AVERAGE';
+        }
+        
+        function getCreativityLabelForExport(chCreated, keyPasses, xA, pos) {
+            if (!chCreated && !keyPasses && !xA) return 'N/A';
+            const ch = parseFloat(chCreated) || 0;
+            const kp = parseFloat(keyPasses) || 0;
+            const xa = parseFloat(xA) || 0;
+            
+            const isAM = pos.includes('AM');
+            const isWinger = pos.includes('W') || pos.includes('(RL)');
+            const isCM = pos.includes('M') && !pos.includes('AM') && !pos.includes('DM');
+            const isFB = pos.includes('B') || pos.includes('WB');
+            const isStriker = pos.includes('ST') || pos.includes('CF');
+            
+            // AM/Winger: Primary creators
+            if (isAM || isWinger) {
+                if (ch >= 3 || xa >= 0.30) return 'ELITE CREATOR';
+                if (ch >= 2 || xa >= 0.20) return 'EXCELLENT';
+                if (ch >= 1.5 || xa >= 0.12) return 'GOOD';
+                if (xa >= 0.08) return 'MODERATE';
+                return 'LIMITED';
+            } 
+            // CM: Supporting creator
+            else if (isCM) {
+                if (ch >= 2 || xa >= 0.15) return 'ELITE';
+                if (ch >= 1.2 || xa >= 0.10) return 'GOOD';
+                if (ch >= 0.5 || xa >= 0.08) return 'MODERATE';
+                return 'DESTROYER';
+            }
+            // Full-backs: Bonus creativity
+            else if (isFB) {
+                if (ch >= 1.5 || xa >= 0.20) return 'ELITE ATTACKING FB';
+                if (ch >= 0.8 || xa >= 0.12) return 'GOOD';
+                if (ch >= 0.3) return 'OCCASIONAL';
+                return 'DEFENSIVE FB';
+            }
+            // Strikers: Link-up play
+            else if (isStriker) {
+                if (ch >= 1.5 || xa >= 0.20) return 'COMPLETE FORWARD';
+                if (ch >= 0.8 || xa >= 0.10) return 'GOOD LINK-UP';
+                if (ch >= 0.3) return 'OCCASIONAL';
+                return 'PURE FINISHER';
+            }
+            
+            // Generic
+            if (ch >= 1.5 || xa >= 0.15) return 'EXCELLENT';
+            if (ch >= 1 || xa >= 0.08) return 'MODERATE';
+            return 'POOR';
+        }
+        
+        function getBallSecurityLabelForExport(possWon, possLost) {
+            if (!possWon || !possLost || possLost === 0) return 'N/A';
+            const ratio = possWon / possLost;
+            if (ratio >= 1.2) return 'EXCELLENT';
+            if (ratio >= 1.0) return 'BALANCED';
+            if (ratio >= 0.8) return 'TURNOVER RISK';
+            return 'MASALAH';
+        }
+        
+        function getPressingLabelForExport(presC, presA) {
+            if (!presC || !presA || presA === 0) return 'N/A';
+            const presSucc = (presC / presA) * 100;
+            
+            let volumeText = '';
+            if (presA >= 20) volumeText = ' - HIGH VOLUME';
+            else if (presA < 5) return 'LOW PRESSING';
+            
+            if (presSucc >= 40) return 'ELITE PRESSER' + volumeText;
+            if (presSucc >= 35) return 'EXCELLENT' + volumeText;
+            if (presSucc >= 30) return 'GOOD' + volumeText;
+            if (presSucc >= 25) return 'AVERAGE';
+            return 'INEFFICIENT';
+        }
+        
+        function getShootingLabelForExport(xGShot, shots) {
+            // Frontend uses xG/Shot to determine shot quality, not xG/90
+            const xGShotVal = parseFloat(xGShot) || 0;
+            const shotsVal = parseFloat(shots) || 0;
+            
+            if (shotsVal === 0 || xGShotVal === 0) return 'N/A';
+            
+            // Based on frontend analyzeAttacking function
+            // xG per shot quality (Michael Caley research)
+            if (xGShotVal >= 0.15) {
+                return 'HIGH QUALITY';
+            } else if (xGShotVal >= 0.10) {
+                return 'GOOD QUALITY';
+            } else if (xGShotVal > 0) {
+                return 'LOW QUALITY';
+            }
+            
+            return 'N/A';
+        }
+        
+        function getDribblingLabelForExport(dribbles) {
+            if (!dribbles) return 'N/A';
+            if (dribbles >= 3.0) return 'ELITE DRIBBLER';
+            if (dribbles >= 2.0) return 'VERY GOOD';
+            if (dribbles >= 1.0) return 'GOOD';
+            if (dribbles >= 0.5) return 'LIMITED';
+            return 'MINIMAL';
+        }
+        
+        function getCrossingLabelForExport(crosses, crossesC, pos) {
+            const crs = parseFloat(crosses) || 0;
+            const crsC = parseFloat(crossesC) || 0;
+            
+            if (crs === 0) return 'N/A';
+            
+            const crossAcc = (crsC / crs) * 100;
+            
+            if (crossAcc >= 35) return 'ELITE';
+            if (crossAcc >= 28) return 'EXCELLENT';
+            if (crossAcc >= 22) return 'GOOD';
+            if (crossAcc >= 18) return 'AVERAGE';
+            return 'POOR';
+        }
+        
+        function getAerialDuelsLabelForExport(aerials) {
+            if (!aerials) return 'N/A';
+            if (aerials >= 4) return 'DOMINANT';
+            if (aerials >= 3) return 'STRONG';
+            if (aerials >= 2) return 'GOOD';
+            if (aerials >= 1) return 'MODERATE';
+            return 'WEAK';
+        }
+        
+        function getInterceptionsLabelForExport(interceptions) {
+            if (!interceptions) return 'N/A';
+            if (interceptions >= 3) return 'ELITE READER';
+            if (interceptions >= 2) return 'EXCELLENT';
+            if (interceptions >= 1.5) return 'GOOD';
+            if (interceptions >= 1) return 'AVERAGE';
+            return 'REACTIVE';
+        }
+        
+        function getTacklingLabelForExport(tackles, tackleRate) {
+            if (!tackles || !tackleRate) return 'N/A';
+            
+            let efficiencyLabel = '';
+            if (tackleRate >= 80) efficiencyLabel = 'ELITE EFFICIENCY';
+            else if (tackleRate >= 70) efficiencyLabel = 'EXCELLENT';
+            else if (tackleRate >= 60) efficiencyLabel = 'GOOD';
+            else if (tackleRate >= 50) efficiencyLabel = 'AVERAGE';
+            else efficiencyLabel = 'POOR';
+            
+            let volumeText = '';
+            if (tackles >= 3) volumeText = ' - HIGH VOLUME';
+            else if (tackles >= 1.5) volumeText = ' - MODERATE';
+            else volumeText = ' - LOW VOLUME';
+            
+            return efficiencyLabel + volumeText;
+        }
+        
+        function getLastDitchLabelForExport(clearances, blocks) {
+            if (!clearances && !blocks) return 'N/A';
+            const clr = parseFloat(clearances) || 0;
+            const blk = parseFloat(blocks) || 0;
+            
+            let label = '';
+            if (clr >= 5) label = 'HIGH CLEARANCES';
+            else if (clr >= 3) label = 'NORMAL';
+            else label = 'LOW';
+            
+            if (blk >= 1.5) label += ' - SHOT BLOCKER';
+            
+            return label || 'MINIMAL';
+        }
+        
+        function getDistanceLabelForExport(distance) {
+            if (!distance) return 'N/A';
+            const dist = parseFloat(distance);
+            if (dist >= 12) return 'EXCEPTIONAL';
+            if (dist >= 11) return 'EXCELLENT';
+            if (dist >= 10) return 'GOOD';
+            if (dist >= 9) return 'AVERAGE';
+            return 'LOW';
+        }
+        
+        function getSprintsLabelForExport(sprints) {
+            if (!sprints) return 'N/A';
+            const sprint = parseFloat(sprints);
+            if (sprint >= 30) return 'EXPLOSIVE';
+            if (sprint >= 20) return 'HIGH INTENSITY';
+            if (sprint >= 15) return 'MODERATE';
+            if (sprint >= 10) return 'LOW';
+            return 'MINIMAL';
+        }
+        
+        function getGKPerformanceLabelForExport(diff, conceded, xgp) {
+            if (!xgp || !conceded) return 'N/A';
+            if (diff > 0) return `EXCELLENT (+${diff.toFixed(2)} vs xG) - Performing above expectation`;
+            if (diff < -0.5) return `CONCERN (${diff.toFixed(2)} vs xG) - Conceding more than expected`;
+            return `AVERAGE (On par with xG)`;
+        }
+
+        // Export All Players Data to Excel
+        function exportAllPlayersData() {
+            if (!playersData || playersData.length === 0) {
+                alert('Tidak ada data pemain untuk di-export. Silakan upload file terlebih dahulu.');
+                return;
+            }
+
+            // Prepare data for export
+            const exportData = [];
+            
+            playersData.forEach((p) => {
+                // Get basic player info
+                const name = findAttribute(p, ['Player', 'Name']) || 'Unknown';
+                const position = findAttribute(p, ['Position', 'Pos']) || 'N/A';
+                const age = findAttribute(p, ['Age']) || 'N/A';
+                const bestPos = findAttribute(p, ['Best Pos']) || '';
+                const bestRole = findAttribute(p, ['Best Role']) || '';
+                
+                // Get all key stats with proper fallback
+                const avgRat = findAttribute(p, ['Avg Rat', 'AvRat', 'Average Rating']) || '';
+                const apps = findAttribute(p, ['Appearances', 'Apps', 'Aps']) || '';
+                const goals = findAttribute(p, ['Goals', 'Gls']) || '';
+                const assists = findAttribute(p, ['Assists', 'Asts', 'Ast']) || '';
+                
+                // Passing Stats
+                const prPasses = findAttribute(p, ['Pr passes/90', 'Progressive Passes']) || '';
+                const psA = findAttribute(p, ['Ps A/90', 'Passes Attempted']) || '';
+                const psC = findAttribute(p, ['Ps C/90', 'Passes Completed']) || '';
+                let passAccuracy = '';
+                if (psA && psC && parseFloat(psA) > 0) {
+                    passAccuracy = ((parseFloat(psC) / parseFloat(psA)) * 100).toFixed(1) + '%';
+                }
+                const keyPasses = findAttribute(p, ['OP-KP/90', 'Key Passes', 'KeyP/90']) || '';
+                const chCreated = findAttribute(p, ['Ch C/90', 'Chances Created']) || '';
+                const xA = findAttribute(p, ['xA/90', 'xA', 'Expected Assists']) || '';
+                
+                // Possession Stats
+                const possWon = findAttribute(p, ['Poss Won/90', 'Possession Won']) || '';
+                const possLost = findAttribute(p, ['Poss Lost/90', 'Possession Lost']) || '';
+                const dribbles = findAttribute(p, ['Drb/90', 'Dribbles']) || '';
+                const drbSuccess = findAttribute(p, ['Drb Suc %', 'Dribble Success']) || '';
+                
+                // Defensive Stats
+                const tackles = findAttribute(p, ['Tck/90', 'Tackles']) || '';
+                const tckWon = findAttribute(p, ['Tck Won/90', 'Tackles Won']) || '';
+                const interceptions = findAttribute(p, ['Int/90', 'Interceptions']) || '';
+                const blocks = findAttribute(p, ['Blk/90', 'Blocks']) || '';
+                const clr = findAttribute(p, ['Clr/90', 'Clearances']) || '';
+                
+                // Pressing Stats
+                const presA = findAttribute(p, ['Pres A/90', 'Pressures Attempted']) || '';
+                const presC = findAttribute(p, ['Pres C/90', 'Pressures Completed']) || '';
+                
+                // Attacking Stats
+                const shots = findAttribute(p, ['Shot/90', 'Shots']) || '';
+                const shotsOnTarget = findAttribute(p, ['Sht/90', 'SoT/90', 'Shots on Target']) || '';
+                const xG = findAttribute(p, ['xG/90']) || '';
+                const xGShot = findAttribute(p, ['xG/shot']) || '';
+                const npXG = findAttribute(p, ['NP-xG/90']) || '';
+                const crosses = findAttribute(p, ['OP-Crs A/90', 'Crs/90', 'Crosses']) || '';
+                const crossesC = findAttribute(p, ['OP-Crs C/90', 'Crosses Completed']) || '';
+                const crsSuccess = findAttribute(p, ['Crs Suc %', 'Cross Success']) || '';
+                
+                // Physical Stats
+                const distance = findAttribute(p, ['Dist/90', 'Distance']) || '';
+                const sprints = findAttribute(p, ['Sprints/90']) || '';
+                const aerials = findAttribute(p, ['Hdrs W/90', 'Headers Won']) || '';
+                const aerialWinPerc = findAttribute(p, ['Hdrs W%', 'Aerial Win %']) || '';
+                
+                // Goalkeeper specific stats
+                const isGK = position.toUpperCase().includes('GK');
+                let gkConceded = '';
+                let gkSaves = '';
+                let gkSavePerc = '';
+                let gkXGP = '';
+                let gkXGP90 = '';
+                let gkXSavePerc = '';
+                let gkPerformance = '';
+                
+                if (isGK) {
+                    gkConceded = findAttribute(p, ['All/90', 'Conceded']) || '';
+                    gkSaves = findAttribute(p, ['Saves/90', 'Saves']) || '';
+                    gkSavePerc = findAttribute(p, ['Sv %', 'Save %']) || '';
+                    gkXGP = findAttribute(p, ['xGP', 'Expected Goals Prevented']) || '';
+                    gkXGP90 = findAttribute(p, ['xGP/90']) || '';
+                    gkXSavePerc = findAttribute(p, ['xSv %', 'Expected Save %']) || '';
+                    
+                    // Calculate GK Performance using helper function
+                    const xgpVal = parseFloat(gkXGP) || 0;
+                    const concededVal = parseFloat(gkConceded) || 0;
+                    gkPerformance = getGKPerformanceLabelForExport(xgpVal, concededVal, xgpVal);
+                }
+                
+                // Get quality labels for each metric
+                const pos = position.toUpperCase();
+                const psAccVal = (psA && psC && parseFloat(psA) > 0) ? ((parseFloat(psC) / parseFloat(psA)) * 100) : 0;
+                const prPassesVal = parseFloat(prPasses) || 0;
+                const chCreatedVal = parseFloat(chCreated) || 0;
+                const keyPassesVal = parseFloat(keyPasses) || 0;
+                const possWonVal = parseFloat(possWon) || 0;
+                const possLostVal = parseFloat(possLost) || 0;
+                const presCVal = parseFloat(presC) || 0;
+                const presAVal = parseFloat(presA) || 0;
+                const xg90Val = parseFloat(xG) || 0;
+                const shotsVal = parseFloat(shots) || 0;
+                const dribblesVal = parseFloat(dribbles) || 0;
+                const crossesVal = parseFloat(crosses) || 0;
+                const crsSuccessVal = parseFloat(crsSuccess) || 0;
+                
+                // Get quality labels using new export-specific helper functions
+                const passAccuracyLabel = getPassAccuracyLabelForExport(parseFloat(psC), parseFloat(psA), position);
+                const progressivePassesLabel = getProgressivePassesLabelForExport(parseFloat(prPasses), position);
+                const creativityLabel = getCreativityLabelForExport(parseFloat(chCreated), parseFloat(keyPasses), parseFloat(xA), position);
+                const ballSecurityLabel = getBallSecurityLabelForExport(parseFloat(possWon), parseFloat(possLost));
+                const pressingLabel = getPressingLabelForExport(parseFloat(presC), parseFloat(presA));
+                const shootingLabel = getShootingLabelForExport(parseFloat(xGShot), parseFloat(shots));
+                const dribblingLabel = getDribblingLabelForExport(parseFloat(dribbles));
+                const crossingLabel = getCrossingLabelForExport(parseFloat(crosses), parseFloat(crossesC), position);
+                
+                // Defensive labels
+                const aerialLabel = getAerialDuelsLabelForExport(parseFloat(aerials));
+                const interceptLabel = getInterceptionsLabelForExport(parseFloat(interceptions));
+                const tackleLabel = getTacklingLabelForExport(parseFloat(tackles), parseFloat(findAttribute(p, ['Tck R'])));
+                const lastDitchLabel = getLastDitchLabelForExport(parseFloat(clr), parseFloat(blocks));
+                
+                // Physical labels
+                const distanceLabel = getDistanceLabelForExport(parseFloat(distance));
+                const sprintsLabel = getSprintsLabelForExport(parseFloat(sprints));
+                
+                // Calculate effectiveness rating
+                const rating = calculateEffectiveness(p);
+                
+                // Generate training recommendation based on position and stats
+                let trainingRecom = '';
+                const tacklesVal = parseFloat(tackles) || 0;
+                const tckWonVal = parseFloat(tckWon) || 0;
+                const tckSuccessRate = (tacklesVal > 0) ? (tckWonVal / tacklesVal * 100) : 0;
+                const interceptionsVal = parseFloat(interceptions) || 0;
+                const blocksVal = parseFloat(blocks) || 0;
+                const clrVal = parseFloat(clr) || 0;
+                const distanceVal = parseFloat(distance) || 0;
+                const sprintsVal = parseFloat(sprints) || 0;
+                const aerialsVal = parseFloat(aerials) || 0;
+                const aerialWinPercVal = parseFloat(aerialWinPerc) || 0;
+                
+                const isDefender = pos.includes('D') || pos.includes('CB') || pos.includes('B');
+                const isDM = pos.includes('DM');
+                const isMidfielder = pos.includes('M') && !isDM;
+                const isAttacker = pos.includes('ST') || pos.includes('CF') || pos.includes('W') || pos.includes('AM');
+                
+                if (isGK) {
+                    const svPerc = parseFloat(gkSavePerc) || 0;
+                    if (svPerc < 70) {
+                        trainingRecom = 'Shot-Stopping & Positioning';
+                    } else if (psAccVal < 70) {
+                        trainingRecom = 'Distribution & Passing';
+                    } else {
+                        trainingRecom = 'Command of Box & Communication';
+                    }
+                } else if (isAttacker) {
+                    if (xg90Val < 0.3 || (shotsVal > 0 && xg90Val/shotsVal < 0.12)) {
+                        trainingRecom = 'Finishing & Movement';
+                    } else if (dribblesVal < 1.5 && pos.includes('W')) {
+                        trainingRecom = '1v1 Dribbling & Take-ons';
+                    } else if (prPassesVal < 3.0) {
+                        trainingRecom = 'Link-up Play & Vision';
+                    } else {
+                        trainingRecom = 'Maintain Sharpness & Decision Making';
+                    }
+                } else if (isMidfielder) {
+                    if (psAccVal < 75) {
+                        trainingRecom = 'Passing Accuracy & Technique';
+                    } else if (prPassesVal < 4.0) {
+                        trainingRecom = 'Progressive Passing & Vision';
+                    } else if (tacklesVal < 1.5) {
+                        trainingRecom = 'Defensive Work & Positioning';
+                    } else {
+                        trainingRecom = 'Ball Retention & Game Intelligence';
+                    }
+                } else if (isDefender || isDM) {
+                    if (tacklesVal < 2.0 && interceptionsVal < 1.5) {
+                        trainingRecom = 'Defensive Fundamentals & Tackling';
+                    } else if (psAccVal < 70) {
+                        trainingRecom = 'Ball Playing & Distribution';
+                    } else {
+                        trainingRecom = 'Positioning & Anticipation';
+                    }
+                } else {
+                    trainingRecom = 'General Technical & Tactical';
+                }
+                
+                // Generate position recommendation
+                let positionRecom = bestPos || position;
+                if (bestRole) {
+                    positionRecom += ` (${bestRole})`;
+                }
+                
+                if (rating >= 4.0) {
+                    positionRecom += ' - Starter Utama';
+                } else if (rating >= 3.5) {
+                    positionRecom += ' - Starter';
+                } else if (rating >= 3.0) {
+                    positionRecom += ' - Rotasi/Backup';
+                } else if (rating >= 2.5) {
+                    positionRecom += ' - Butuh Development';
+                } else {
+                    positionRecom += ' - Consider Loan';
+                }
+                
+                // Create row data with quality labels - Structured like frontend analysis
+                const rowData = {
+                    // BASIC INFO
+                    'Player': name,
+                    'Position': position,
+                    'Age': age,
+                    'Best Pos': bestPos || 'N/A',
+                    'Best Role': bestRole || 'N/A',
+                    'Avg Rating': avgRat,
+                    'Apps': apps,
+                    'Goals': goals,
+                    'Assists': assists,
+                    
+                    // PASSING & CREATIVITY
+                    'Pass Accuracy': passAccuracyLabel,
+                    'Ps Attempted/90': psA,
+                    'Ps Completed/90': psC,
+                    'Progressive Passes': progressivePassesLabel,
+                    'Pr Passes/90': prPasses,
+                    'Kreativitas': creativityLabel,
+                    'Key Passes/90': keyPasses,
+                    'Chances Created/90': chCreated,
+                    
+                    // POSSESSION & PRESSING
+                    'Ball Security': ballSecurityLabel,
+                    'Poss Won/90': possWon,
+                    'Poss Lost/90': possLost,
+                    'Pressing': pressingLabel,
+                    'Pres Attempted/90': presA,
+                    'Pres Completed/90': presC,
+                    
+                    // ATTACKING
+                    'Shooting': shootingLabel,
+                    'Shots/90': shots,
+                    'Shots on Target': shotsOnTarget,
+                    'xG/90': xG,
+                    'xG/Shot': xGShot,
+                    'NP-xG/90': npXG,
+                    'Dribbling': dribblingLabel,
+                    'Dribbles/90': dribbles,
+                    'Crossing': crossingLabel,
+                    'Crosses/90': crosses,
+                    
+                    // DEFENSIVE
+                    'Aerial Duels': aerialLabel,
+                    'Aerials Won/90': aerials,
+                    'Interceptions': interceptLabel,
+                    'Interceptions/90': interceptions,
+                    'Tackling': tackleLabel,
+                    'Tackles/90': tackles,
+                    'Last-ditch Defense': lastDitchLabel,
+                    'Clearances/90': clr,
+                    'Blocks/90': blocks,
+                    
+                    // PHYSICAL
+                    'Distance': distanceLabel,
+                    'Distance/90': distance,
+                    'Sprints': sprintsLabel,
+                    'Sprints/90': sprints
+                };
+                
+                // Add GK specific column if player is GK
+                if (isGK) {
+                    rowData['Conceded/90'] = gkConceded;
+                    rowData['Saves/90'] = gkSaves;
+                    rowData['Save %'] = gkSavePerc;
+                    rowData['xGP'] = gkXGP;
+                    rowData['xGP/90'] = gkXGP90;
+                    rowData['xSave %'] = gkXSavePerc;
+                    rowData['Performance vs Expectation (GK)'] = gkPerformance;
+                }
+                
+                // OVERALL & RECOMMENDATIONS (Always at the end)
+                rowData['Effectiveness Rating'] = rating.toFixed(2);
+                rowData['Rekomendasi Training'] = trainingRecom;
+                rowData['Rekomendasi Posisi'] = positionRecom;
+                
+                exportData.push(rowData);
+            });
+            
+            // Create worksheet
+            const ws = XLSX.utils.json_to_sheet(exportData);
+            
+            // Set column widths
+            const colWidths = [
+                { wch: 20 }, // Player
+                { wch: 12 }, // Position
+                { wch: 6 },  // Age
+                { wch: 10 }, // Best Pos
+                { wch: 12 }, // Best Role
+                { wch: 12 }, // Avg Rating
+                { wch: 8 },  // Apps
+                { wch: 8 },  // Goals
+                { wch: 8 },  // Assists
+                { wch: 18 }, // Pass Accuracy Label
+                { wch: 12 }, // Pass Accuracy %
+                { wch: 22 }, // Progressive Passes Label
+                { wch: 18 }, // Progressive Passes/90
+                { wch: 15 }, // Key Passes/90
+                { wch: 15 }, // Kreativitas Label
+                { wch: 18 }, // Chances Created/90
+                { wch: 15 }, // Ball Security Label
+                { wch: 12 }, // Poss Won/90
+                { wch: 12 }, // Poss Lost/90
+                { wch: 15 }, // Dribbling Label
+                { wch: 12 }, // Dribbles/90
+                { wch: 18 }, // Dribble Success %
+                { wch: 15 }, // Pressing Label
+                { wch: 18 }, // Pres Attempted/90
+                { wch: 18 }, // Pres Completed/90
+                { wch: 15 }, // Shooting Label
+                { wch: 12 }, // Shots/90
+                { wch: 18 }, // Shots on Target
+                { wch: 10 }, // xG/90
+                { wch: 10 }, // xG/Shot
+                { wch: 12 }, // NP-xG/90
+                { wch: 15 }, // Crossing Label
+                { wch: 12 }, // Crosses/90
+                { wch: 16 }, // Cross Success %
+                { wch: 12 }, // Tackles/90
+                { wch: 15 }, // Tackles Won/90
+                { wch: 15 }, // Interceptions/90
+                { wch: 10 }, // Blocks/90
+                { wch: 15 }, // Clearances/90
+                { wch: 12 }, // Distance/90
+                { wch: 12 }, // Sprints/90
+                { wch: 15 }, // Aerials Won/90
+                { wch: 14 }, // Aerial Win %
+                { wch: 18 }, // Effectiveness Rating
+                { wch: 35 }, // Rekomendasi Training
+                { wch: 40 }, // Rekomendasi Posisi
+                { wch: 45 }  // Performance vs Expectation (GK)
+            ];
+            ws['!cols'] = colWidths;
+            
+            // Create workbook
+            const wb = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(wb, ws, 'Rekap Pemain');
+            
+            // Generate filename with date
+            const today = new Date();
+            const dateStr = today.toISOString().split('T')[0];
+            const filename = `Rekap_Analisis_Pemain_${dateStr}.xlsx`;
+            
+            // Save file
+            XLSX.writeFile(wb, filename);
+            
+            alert(`✅ Export berhasil! File "${filename}" telah di-download.\n\nTotal ${exportData.length} pemain dengan analisis lengkap.`);
         }
     </script>
 </body>
